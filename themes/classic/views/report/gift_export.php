@@ -6,6 +6,7 @@
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Gift Type</th>
+			<th>Updated At</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,16 +16,18 @@
 			<td><?php echo $user->type?></td>
 			<td><?php echo $user->first_name?></td>
 			<td><?php echo $user->last_name?></td>
-			<td><?php echo $user->headset?></td>
+			<td><?php echo empty($user->gift)?$user->headset:$user->gift->name?></td>
+			<td><?php echo $user->gift_at?></td>
 		</tr>
 		<?php }?>
 		<?php foreach($guests as $guest){?>
 		<tr>
 			<td><?php echo 'W'.$guest->user->id. 'G';?></td>
-			<td><?php echo $guest->user->type?></td>
+			<td><?php echo $guest->user->type?> Guest</td>
 			<td><?php echo $guest->first_name?></td>
 			<td><?php echo $guest->last_name?></td>
-			<td><?php echo $guest->headset?></td>
+			<td><?php echo empty($user->gift)?$guest->headset:$guest->gift->name;?></td>
+			<td><?php echo $guest->gift_at?></td>
 		</tr>
 		<?php }?>
 	</tbody>

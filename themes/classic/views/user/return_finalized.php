@@ -10,17 +10,17 @@
 				<?php if($user->type=='Top Achievers'||$user->type=='Eagles'){?>
 				Thank you.  Your registration to Winners Circle is now finalized.  To view your Information Summary please <?php echo CHtml::link('click here',array('user/emailSummary','email'=>$user->email))?><br/>
 				If you have any questions regarding your registration please contact <a href="mailto:lauren.picart@gartner.com" >Lauren Picart</a>  in the Winners Circle Events Team.<br/><br/>
-				<span style="color:#fff">See you in Miami!<br/>
+				<span style="color:#fff">See you in Sydney!<br/>
 				Winners Circle Events Team</span>
 				<?php }elseif($user->type=='Host GEN'||$user->type=='Host GVP'||$user->type=='Winners'){?>
 				Thank you.  Your registration to Winners Circle is now finalized.  To view your Information Summary please <?php echo CHtml::link('click here',array('user/emailSummary','email'=>$user->email))?><br/>
 				If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporatereg.com">Winners Circle Events Team </a>.<br/><br/>
-				<span style="color:#fff">See you in Miami!<br/>
+				<span style="color:#fff">See you in Sydney!<br/>
 				Winners Circle Events Team</span>
 				<?php }elseif($user->type=='Operating Committee'){?>
 				Thank you.  Your registration to Winners Circle is now finalized.  To view your Information Summary please <?php echo CHtml::link('click here',array('user/emailSummary','email'=>$user->email))?><br/>
 				If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporatereg.com">Winners Circle Events Team </a>.<br/><br/>
-				<span style="color:#fff">We very much look forward to seeing you in Miami!<br/>
+				<span style="color:#fff">We very much look forward to seeing you in Sydney!<br/>
 				Winners Circle Events Team</span>
 				<?php }elseif($user->type=='Gartner Crew'||$user->type=='Crew'){?>
 				Thank you.  Your registration to Winners Circle is now finalized.  To view your Information Summary please <?php echo CHtml::link('click here',array('user/emailSummary','email'=>$user->email))?><br/>

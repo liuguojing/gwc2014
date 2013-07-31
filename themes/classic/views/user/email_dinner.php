@@ -17,13 +17,15 @@
 				'htmlOptions'=>array('class'=>'form-inline'),
 			)); ?>	
 			<div class="row">
-				<div class="span12"><p class="alert alert-warning">Please note any fields with a <span class="required">*</span> are mandatory</p></div>
+				<div class="span12">
+				  <p class="alert alert-warning">Thank you! Your Team Dinner option is finalized.</p>
+				  </div>
 				<?php
 				foreach(Yii::app()->user->getFlashes() as $key => $message) {
 					echo '<div class="span12"><p class="alert alert-' . $key . '">' . $message . "</p></div>\n";
 				}
 				?>
-				<div class="span6">
+				<div class="span6" style="display:none">
 				<legend><b>Winner Team Dinner</b></legend>
 					<div class="control-group">
 						<b>On Thursday April 18, 2013 you are invited to a team dinner.</b><br/>
@@ -38,7 +40,7 @@
 					</div>
 						    		
 				</div>
-				<div class="span6 <?php if($model->has_guest != 1){ echo 'hide';}?>" id="guest_information">
+				<div class="span6 <?php if($model->has_guest != 1){ echo 'hide';}?>" id="guest_information" style="display:none">
 					<legend><b>Guest Team Dinner</b></legend>
 					<div class="control-group">
 					<b></b><br/>
@@ -58,7 +60,7 @@
 		
 			<div class="row">
 				<div class="control-group">
-					<div class="controls" style="float:right;">
+					<div class="controls" style=" display:none">
 						<label class="checkbox">
 						</label>
 						<button type="submit"  class="btn btn-large2 btn-warning">Save & Proceed</button>

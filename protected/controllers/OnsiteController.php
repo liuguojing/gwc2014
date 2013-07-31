@@ -120,7 +120,7 @@ class OnsiteController extends Controller
 				if($model->save()){
 					Yii::app()->user->setFlash('success',$model->first_name . ' ' . $model->last_name . ' Checkin.');
 					unset($model->id);
-					$this->render('search',array('model'=>$model));
+					$this->redirect(array('search'));
 					Yii::app()->end();
 				}else{
 					Yii::app()->user->setFlash('error','Can not save.');
@@ -146,7 +146,7 @@ class OnsiteController extends Controller
 				if($model->save()){
 					Yii::app()->user->setFlash('success','Success.');
 					unset($model->id);
-					$this->render('search',array('model'=>$model));
+					$this->redirect(array('search'));
 					Yii::app()->end();
 				}else{
 					var_dump($model->getErrors());
@@ -171,19 +171,19 @@ class OnsiteController extends Controller
 				$model->setScenario('checkin');
 				$model->attributes=$_POST['Guest'];
 				$model->has_gift = 1;
+				$model->gift_at = new CDbExpression('NOW()');
 				if($model->save()){
 					Yii::app()->user->setFlash('success','Success.');
 					unset($model->id);
-					$this->render('searchGift',array('model'=>$model));
+					$this->redirect(array('searchGift'));
 					Yii::app()->end();
 				}else{
-					var_dump($model->getErrors());
 					Yii::app()->user->setFlash('error','Can not save.');
 				}
 			}
 		}
 	
-		$this->render('guest_gift',array('model'=>$model));
+		$this->render('guest_gift',array('model'=>$model,'gifts'=>Gift::model()->getGiftsByType($model->user->type)));
 	}
 
 	public function actionGift($id)
@@ -204,7 +204,7 @@ class OnsiteController extends Controller
 				if($model->save()){
 					Yii::app()->user->setFlash('success','Success.');
 					unset($model->id);
-					$this->render('search_gift',array('model'=>$model));
+					$this->redirect(array('searchGift'));
 					Yii::app()->end();
 				}else{
 					var_dump($model->getErrors());
@@ -225,15 +225,27 @@ class OnsiteController extends Controller
 			$model->setScenario('checkin');
 			$coupon = $model->coupon;
 			$travel_ticket = $model->travel_ticket;
+			$guest_coupon = $model->guest_coupon;
+			$guest_travel_ticket = $model->guest_travel_ticket;
 			$model->attributes = $_POST['User'];
 			$model->coupon = $coupon==1?1:$this->array2string($model->coupon);
-			$model->travel_ticket = $coupon==1?1:$this->array2string($model->travel_ticket);
+			$model->travel_ticket = $travel_ticket==1?1:$this->array2string($model->travel_ticket);
+		    $model->guest_coupon = $guest_coupon == 1?1:$this->array2string($model->guest_coupon);
+			$model->guest_travel_ticket = $guest_travel_ticket == 1?1:$this->array2string($model->guest_travel_ticket);
+			if($model->has_ipad!=1){
+				$model->ipad_at = new CDbExpression('NOW()');
+				$model->ipad_by = Yii::app()->user->name;
+			}
 			$model->has_ipad = 1;
-			$model->ipad_at = new CDbExpression('NOW()');
+			$model->ipadupdated_at = new CDbExpression('NOW()');
+			$model->ipadupdated_by = Yii::app()->user->name;
 			$model->save();
+			$this->redirect(array('searchIpad'));
 		}
 		$model->coupon = $this->string2array($model->coupon);
 		$model->travel_ticket = $this->string2array($model->travel_ticket);
+		$model->guest_coupon = $this->string2array($model->guest_coupon);
+		$model->guest_travel_ticket = $this->string2array($model->guest_travel_ticket);
 		$this->render('ipad',array('model'=>$model));
 	}
 	
@@ -271,7 +283,10 @@ class OnsiteController extends Controller
 		$model->attributes = $_POST['User'];
 	    $model->coupon = $this->array2string($model->coupon);
 		$model->travel_ticket = $this->array2string($model->travel_ticket);
+	    $model->guest_coupon = $this->array2string($model->guest_coupon);
+		$model->guest_travel_ticket = $this->array2string($model->guest_travel_ticket);
 		$model->has_ipad = 1;
+		$model->ipad_by = Yii::app()->user->name;
 		$model->ipad_at = new CDbExpression('NOW()');
 		$image = base64_decode($model->img);
 		try{

@@ -27,15 +27,13 @@
 <?php if($model->has_guest == 1 && $model->guest){?>
 <p style="word-wrap:break-word;font-family:arial;"><b>Guest Choice:</b> <?php echo $model->guest->team_dinner_menu;?></p>
 <?php }?>
-<p style="word-wrap:break-word;font-family:arial;"><a style="float:left;maring-left:500px;" href="<?php echo $this->domain;?>index.php/user/emailDinner?email=<?php echo $model->email;?>"><img src="http://app.ya-yaonline.co.uk/gwc/img/Amend.jpg" alt="Amend"/></a></p>
+<p style="word-wrap:break-word;font-family:arial;"><a href="https://app.ya-yaonline.co.uk/gwc/index.php/user/emailDinner?email=<?php echo $model->email;?>">Amend</a></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Do not hesitate to contact us if you have any queries regarding the above.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">Kind regards</p>
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners Circle Registration Team</p>
-
-<p style="word-wrap:break-word;font-family:arial;"><a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a></p>
 
 <div style="clear:both"></div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>

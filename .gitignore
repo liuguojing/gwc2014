@@ -3,3 +3,5 @@ protected/runtime/
 .project
 
 *.DS_Store
+
+uploads/*

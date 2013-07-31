@@ -26,6 +26,9 @@ if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee')))
 	$minDate = 'Apr/17/2013';
 	$maxDate = "Apr/21/2013";
 }
+$disabled = array('separator' => '','disabled'=>'disabled', 'template' => '<li class="q6" style="list-style: none outside none;display:block;margin:10px;">{input} {label} </li>', 'labelOptions' => array('style' => 'display:inline;'));
+$undisabled = array('separator' => '', 'template' => '<li class="q6" style="list-style: none outside none;display:block;margin:10px;">{input} {label} </li>', 'labelOptions' => array('style' => 'display:inline;'));
+
 ?>
 
 <h1>Update User <?php echo $model->id; ?></h1>
@@ -44,6 +47,7 @@ if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee')))
 		  <button type="button" class="btn btn-info" onclick="showDiv('travel')">Travel</button>
 		  <button type="button" class="btn btn-info" onclick="showDiv('hotel')">Hotel</button>
 		  <button type="button" class="btn btn-info" onclick="showDiv('tours')">Additional</button>
+		  <button type="button" class="btn btn-info" onclick="showDiv('onsite')">Onsite</button>
 		  <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn btn-success','style'=>'')); ?>
 		</div>
 		<p class="alert alert-danger" style="margin-top:20px;">If you want change user's type,please save first and then update other infomation.</p>
@@ -60,6 +64,14 @@ if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee')))
 			<?php echo $form->dropDownList($model,'status',User::model()->getStatusOptions()); ?>
 			<?php echo $form->error($model,'status'); ?>
 		</div>
+		
+		<div class="control-group">
+		    <label class="control-label" for="User_headset"></label>
+		    <div class="controls">
+		    	<?php echo $form->CheckBoxList($model,'no_gala_dinner',array('1'=>"Winner No Gala Dinner"),$undisabled);?>
+		       	<?php echo $form->CheckBoxList($guest,'no_gala_dinner',array('1'=>"Guest No Gala Dinner"),$undisabled);?>
+		    </div>
+		  </div>
 		
 		<div class="control-group">
 			<?php echo $form->labelEx($model,'comment'); ?>
@@ -362,7 +374,7 @@ if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee')))
 		<div class="row">
 			<div class="span12">
 				<p>Please ensure that you have read and understood the Winners Circle travel policy that applies.<br/>
-<?php echo CHtml::link('Download',Yii::app()->request->baseUrl . '/travel_policy.pdf',array('target'=>'_blank'));?> the Winners Circle 2012 travel policy document.<br/><br/>
+<?php echo CHtml::link('Download',Yii::app()->request->baseUrl . '/travel_policy.pdf',array('target'=>'_blank'));?> the Winners Circle 2013 travel policy document.<br/><br/>
 
 To expedite finalizing travel reservations, Winners are encouraged to utilize email when corresponding with our dedicated travel team at American Express Travel.  Should you have a concern and need to discuss your travel arrangements with an agent, a phone number with be provided with your itinerary.<br/>
 Once registered, you will receive a suggested air itinerary within 5 working days.</p><br/>
@@ -800,6 +812,63 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 					</div>
 				</div>
 			</div>
+	</div>
+</div>
+<div class="row hide" id="onsite" style="margin-top:0px;">
+	<div class="span12">
+		<h1>Onsite</h1>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'has_checkin'); ?>
+			<?php echo $form->dropDownList($model,'has_checkin',array(0=>'No-Show',1=>'Checked-in')); ?>
+			<?php echo $form->error($model,'has_checkin'); ?>
+		</div>
+		<div class="control-group">
+			<?php echo $form->labelEx($guest,'has_checkin'); ?>
+			<?php echo $form->dropDownList($guest,'has_checkin',array(0=>'No-Show',1=>'Checked-in')); ?>
+			<?php echo $form->error($guest,'has_checkin'); ?>
+		</div>
+		
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'headset'); ?>
+			<?php echo $form->dropDownList($model,'headset',Chtml::listData(Gift::model()->findAll(), 'id', 'name'),array('style'=>'width:400px;','empty'=>'')); ?>
+			<?php echo $form->error($model,'headset'); ?>
+		</div>
+		<?php if($model->has_guest && $guest){?>
+		<div class="control-group">
+			<?php echo $form->labelEx($guest,'headset'); ?>
+			<?php echo $form->dropDownList($guest,'headset',Chtml::listData(Gift::model()->findAll(), 'id', 'name'),array('style'=>'width:400px;','empty'=>'')); ?>
+			<?php echo $form->error($guest,'headset'); ?>
+		</div>
+		<?php }?>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'amount'); ?>
+			<?php echo $form->textField($model,'amount'); ?>
+			<?php echo $form->error($model,'amount'); ?>
+		</div>
+		
+		  <div class="control-group">
+		    <label class="control-label" for="User_headset"></label>
+		    <div class="controls">
+		    	<?php 
+		    	$coupon = $model->coupon == array(1)?$disabled:$undisabled;
+		    	$travel = $model->travel_ticket == array(1)?$disabled:$undisabled;
+		    	$guest_coupon = $model->guest_coupon == array(1)?$disabled:$undisabled;
+		    	$guest_travel = $model->guest_travel_ticket == array(1)?$disabled:$undisabled;
+		    	?>
+		    	<?php echo $form->CheckBoxList($model,'coupon',array('1'=>"Winner Circle Lounge Voucher"),$undisabled);?>
+		       	<?php echo $form->CheckBoxList($model,'travel_ticket',array('1'=>"Winner Transport Ticket"),$undisabled);?>
+		       	<?php echo $form->CheckBoxList($model,'guest_coupon',array('1'=>"Guest Circle Lounge Voucher"),$undisabled);?>
+		       	<?php echo $form->CheckBoxList($model,'guest_travel_ticket',array('1'=>"Guest Transport Ticket"),$undisabled);?>
+		    </div>
+		  </div>
+		  <div class="control-group">
+			<?php echo $form->labelEx($model,'has_ipad'); ?>
+			<?php echo $form->dropDownList($model,'has_ipad',array(0=>'No',1=>'Yes')); ?>
+			<?php echo $form->error($model,'has_ipad'); ?>
+		</div>
+		  
+		
+		
 	</div>
 </div>
 

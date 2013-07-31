@@ -19,8 +19,10 @@
 							<th>Last Name</th>
 							<th>Amount</th>
 							<th>Sign</th>
-							<th>Ticket</th>
-							<th>Coupon</th>
+							<th>Winner Transport Ticket</th>
+							<th>Winner Circle Lounge Voucher</th>
+							<th>Guest Transport Ticket</th>
+							<th>Guest Circle Lounge Voucher</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,6 +36,8 @@
 							<td><?php echo CHtml::image(Yii::app()->request->baseUrl . '/uploads/' . $user->id . '.png','',array('style'=>'width:100px;height:50px;'))?></td>
 							<td><?php echo $user->travel_ticket==0?"No":"Yes";?></td>
 							<td><?php echo $user->coupon==0?"No":"Yes";?></td>
+							<td><?php echo $user->guest_travel_ticket==0?"No":"Yes";?></td>
+							<td><?php echo $user->guest_coupon==0?"No":"Yes";?></td>
 						</tr>
 						<?php }?>
 					</tbody>

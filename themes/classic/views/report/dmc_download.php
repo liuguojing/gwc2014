@@ -33,8 +33,8 @@
 	<td style="background-color:#ccffcc">TO</td>
 	<td style="background-color:#ccffcc">DEP</td>
 	<td style="background-color:#ccffcc">ARR</td>
-	<td style="background-color:#ffcc99">Arrival date into Miami</td>
-	<td style="background-color:#ffcc99">Departure date from Miami</td>
+	<td style="background-color:#ffcc99">Arrival date into Sydney</td>
+	<td style="background-color:#ffcc99">Departure date from Sydney</td>
 	<td style="background-color:#99ccff">DATE</td>
 	<td style="background-color:#99ccff">FLIGHT</td>
 	<td style="background-color:#99ccff">FROM</td>

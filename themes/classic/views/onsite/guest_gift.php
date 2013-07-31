@@ -1,5 +1,5 @@
 <div class="container top">
-	<h1>Guest Gift</h1>
+	<h1>Bose Gift Redemption</h1>
 	<div class="row">
 		<?php
 			foreach(Yii::app()->user->getFlashes() as $key => $message) {
@@ -26,11 +26,38 @@
 		    </div>
 		  </div>
 		  <div class="control-group">
-		    <label class="control-label" for="User_headset"></label>
+		    <label class="control-label" for="inputEmail">Category</label>
 		    <div class="controls">
-		       <?php echo $form->dropDownList($model,'headset',User::model()->getHeadsetList($model->user->type));?>
+		      <input type="text" id="inputEmail" placeholder="Category" readonly=readonly value="<?php echo $model->user->type;?> Guest">
 		    </div>
 		  </div>
+		  <div class="control-group">
+		    <label class="control-label" for="User_headset">Gift Selection</label>
+		  </div>
+		       	<?php foreach($gifts as $gift){?>
+         			<label for="User_headset_<?php echo $gift->id;?>">
+		         		<div class="row">
+		         			<div class="span4" style="width:160px;">
+		         				<input type="radio" id="Guest_headset_<?php echo $gift->id;?>" name="Guest[headset]" value="<?php echo $gift->id;?>" />
+		         				<?php echo CHtml::image(Yii::app()->request->baseUrl."/img/".$gift->image,$gift->name,array('style'=>'width:100px;height:100px;'))?>
+		         			</div>
+		         			<div class="span8">
+			         			<div class="row">
+				         			<p>
+				         				<b><?php echo $gift->brand;?></b>
+				         				<b style="margin-left:200px;"><?php echo $gift->code;?></b>
+				         			</p>
+				         			
+			         			</div>
+			         			<div class="row">
+				         			<p><b><?php echo $gift->name;?></b></p>
+				         			<p><?php echo $gift->description;?></p>
+			         			</div>
+		         			</div>
+		         		</div>
+         			</label>
+		         	<hr/>
+		         <?php }?>
 		  <div class="control-group">
 		    <label class="control-label" for=""></label>
 		    <div class="controls">
@@ -41,6 +68,3 @@
 		</div>
 		<?php $this->endWidget(); ?>
 </div>
-<script>
-	$('#User_id').focus();
-</script>

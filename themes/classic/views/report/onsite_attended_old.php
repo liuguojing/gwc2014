@@ -51,7 +51,7 @@
 						<td><?php echo $users['Winners']['r']==0?'':$formatter->format('#,##0',$users['Winners']['a'] * 100/$users['Winners']['r']);?>%</td>
 						<td><?php echo $guests['Winners']['r'];?></td>
 						<td><?php echo $guests['Winners']['a'];?></td>
-						<td><?php echo $guests['Winners']['r']==0?'':$formatter->format('#,##0',$guests['Winners']['a'] * 100/$guests['Winners']['r']);?>%</td>
+						<td><?php echo $guests['Winners']['a']==0?'':$formatter->format('#,##0',$guests['Winners']['r'] * 100/$guests['Winners']['a']);?>%</td>
 						<td><?php echo $guests['Winners']['r']+$users['Winners']['r'];?></td>
 						<td><?php echo CHtml::link($guests['Winners']['a']+$users['Winners']['a'],array('report/attendedDownload','type'=>'Winners'));?></td>
 						<td><?php echo $guests['Winners']['r']+$users['Winners']['r']==0?'':$formatter->format('#,##0',($users['Winners']['a'] +$guests['Winners']['a']) * 100/($users['Winners']['r']+$guests['Winners']['r']));?>%</td>
@@ -74,10 +74,10 @@
 						<td>Host GEN</td>
 						<td><?php echo $users['Host GEN']['r'];?></td>
 						<td><?php echo $users['Host GEN']['a'];?></td>
-						<td><?php echo $users['Host GEN']['r']==0?'':$formatter->format('#,##0',$users['Host GEN']['a'] * 100/$users['Host GEN']['r']);?>%</td>
+						<td><?php echo $users['Host GEN']['a']==0?'':($users['Host GEN']['r'] * 100/$users['Host GEN']['a']);?>%</td>
 						<td><?php echo $guests['Host GEN']['r'];?></td>
 						<td><?php echo $guests['Host GEN']['a'];?></td>
-						<td><?php echo $guests['Host GEN']['r']==0?'':($guests['Host GEN']['a'] * 100/$guests['Host GEN']['r']);?>%</td>
+						<td><?php echo $guests['Host GEN']['a']==0?'':($guests['Host GEN']['r'] * 100/$guests['Host GEN']['a']);?>%</td>
 						<td><?php echo $guests['Host GEN']['r']+$users['Host GEN']['r'];?></td>
 						<td><?php echo CHtml::link($guests['Host GEN']['a']+$users['Host GEN']['a'],array('report/attendedDownload','type'=>'Host GEN'));?></td>
 						<td><?php echo $guests['Host GEN']['r']+$users['Host GEN']['r']==0?'':$formatter->format('#,##0',($users['Host GEN']['a'] +$guests['Host GEN']['a']) * 100/($users['Host GEN']['r']+$guests['Host GEN']['r']));?>%</td>

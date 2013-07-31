@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>2014 Global Sales Leadership Meeting</title>
+    <title>GARTNER WINNERS CIRCLE 2013</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -67,22 +67,31 @@
 			<div class="cl"></div>
 		</div>
 	</div>
-	<div class="navbar">
-		<div class="navbar-inner">
-			<ul class="nav">
-				<?php $active = Yii::app()->getController()->getAction()->id;?>
-				<li<?php if($active == 'index'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
-				<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='Dickie' ||Yii::app()->user->name=='admin' || Yii::app()->user->name=='Caroline')){?>
-				<li<?php if(Yii::app()->getController()->id == 'user'){echo ' class="active"';}?>><?php echo CHtml::link('Users',array('user/admin'));?></li>
-				<?php }?>
-				<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='onsite'){?>
-				<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Checkin',array('onsite/search'));?></li>
-				<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchGift','guestGift','gift'))){echo ' class="active"';}?>><?php echo CHtml::link('Gift',array('onsite/searchGift'));?></li>
-				<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchIpad','ipad'))){echo ' class="active"';}?>><?php echo CHtml::link('ipad',array('onsite/searchIpad'));?></li>
-				<?php }?>
-			</ul>
-		</div>
-	</div>
+			<div class="navbar">
+				<div class="navbar-inner">
+					<ul class="nav">
+						<?php $active = Yii::app()->getController()->getAction()->id;?>
+						<li<?php if($active == 'index'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
+						<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='Dickie' || Yii::app()->user->name=='Caroline')){?>
+						<li<?php if(Yii::app()->getController()->id == 'user'){echo ' class="active"';}?>><?php echo CHtml::link('Users',array('user/admin'));?></li>
+						<?php }?>
+						<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='onsite'){?>
+						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Check-in Portal',array('onsite/search'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchGift','guestGift','gift'))){echo ' class="active"';}?>><?php echo CHtml::link('Bose Gift Redemption',array('onsite/searchGift'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchIpad','ipad'))){echo ' class="active"';}?>><?php echo CHtml::link('Amex Card Redemption',array('onsite/searchIpad'));?></li>
+						<?php }?>
+						<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='YYO'){?>
+						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Check-in Portal',array('onsite/search'));?></li>
+						<?php }?>
+						<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='BOSE'){?>
+						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchGift','guestGift','gift'))){echo ' class="active"';}?>><?php echo CHtml::link('Bose Gift Redemption',array('onsite/searchGift'));?></li>
+						<?php }?>
+						<?php if(!Yii::app()->user->isGuest && in_array(Yii::app()->user->name ,array('Dickie','Caroline','Ramona','Heenal','Hope','Craig','Zoe','Charlene','Lauren','Lynne','Kerry','Cindy','Laura','Holly','Jackie','Nicole','Melissa','Sophie'))){?>
+						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchIpad','ipad'))){echo ' class="active"';}?>><?php echo CHtml::link('Amex Card Redemption',array('onsite/searchIpad'));?></li>
+						<?php }?>
+					</ul>
+				</div>
+			</div>
 	<div style="clear:both;"></div>
 	<?php echo $content;?>
 

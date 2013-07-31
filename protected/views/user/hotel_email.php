@@ -7,7 +7,7 @@
 <p style="word-wrap:break-word;font-family:arial;">We are delighted to confirm your accommodation for Winners Circle 2013 as follows:</p>
 
 <p style="word-wrap:break-word;font-family:arial;">Fontainebleau Hotel<br/>
-4441 Collins Avenue Miami Beach<br/>
+4441 Collins Avenue Sydney Beach<br/>
 Florida <br/>
 33140 <br/>
 USA <br/>
@@ -18,7 +18,7 @@ Check out: <?php echo $model->hotel_departure_date;?><br/>
 Reservation number: <?php echo $model->hotel_confirmation_number;?><br/>
 </p>
 <p style="word-wrap:break-word;font-family:arial;">Please do not hesitate to contact us if you have any queries regarding your reservation. </p>
-<p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Miami,</p>
+<p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney,</p>
 <p style="word-wrap:break-word;font-family:arial;">Kind Regards,</p>
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners Circle Registration Team</p>

@@ -1,8 +1,8 @@
 <div class="container top">
 		<div class="row">
 			<div class="span12">
-				<p class="alert alert-info">Most citizens will require a VISA or ESTA for entry into Miami. <br/>
-				 For international travelers entering the United States to gain entry or transit through to Miami or with a deviation you must apply online in advance of travel for your visa waiver, using the following website <a href="https://esta.cbp.dhs.gov">https://esta.cbp.dhs.gov</a> </br/>
+				<p class="alert alert-info">Most citizens will require a VISA or ESTA for entry into Sydney. <br/>
+				 For international travelers entering the United States to gain entry or transit through to Sydney or with a deviation you must apply online in advance of travel for your visa waiver, using the following website <a href="https://esta.cbp.dhs.gov">https://esta.cbp.dhs.gov</a> </br/>
 				 Anyone holding a passport from one of the countries listed below can apply for an ESTA to the United States. </p>
 			</div>
 		</div>

@@ -114,7 +114,7 @@ class User extends TrackStarActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status, has_guest, gala_dinner, other_activity, created_by, updated_by', 'numerical', 'integerOnly'=>true),
+			array('guest_travel_ticket,guest_coupon,status, has_guest, gala_dinner, other_activity, created_by, updated_by', 'numerical', 'integerOnly'=>true),
 			array('frequent_flyer_number,preferred_airline, first_name, last_name, office_location, department, telephone_number_desk, telephone_number_cell, email, password, date_of_birth, 
 					dietary_requirements, passport, special_requests, nationality, airport_name, airport_code, travel_policy, visa_policy,hotel_venue, daytime_phone, 
 					evening_phone, work_address1, work_address2, work_city, work_state, work_zip_code, work_country, managers_name, emergency_contact_name, 
@@ -127,8 +127,9 @@ class User extends TrackStarActiveRecord
 					driving,frequent_flyer_number,preferred_airline,comment,dietary_comment,gala_dinner_vip,crew_diet_requirements,crew_other_info,crew_menu_choice,crew_unifrom_size,requirements,cardholders_address,csv_number,type,gender,created_at, updated_at,team_dinner,team_dinner_menu,team_dinner_dietary,gala_dinner_menu,gala_dinner_dietary',
 					 'safe'),
 			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, status, declien_reason, first_name, last_name, office_location, department, telephone_number_desk, telephone_number_cell, email, password, date_of_birth, dietary_requirements, passport, special_requests, nationality, has_guest, departure_date, return_date, airport_name, airport_code, travel_policy, visa_policy, hotel_arrival_date, hotel_departure_date, hotel_venue, gala_dinner, other_activity, created_at, created_by, updated_at,updated_by, daytime_phone, evening_phone, work_address1, work_address2, work_city, work_state, work_zip_code, work_country, managers_name, emergency_contact_name, emergency_contact_tel_number, relationship_with_the_emergency_contact, ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date, ga_redress_number, previous_winners, times, years, destination_city, preferred_seat_request, preferred_airline_frequent_flyer_number, other, need_visa, visa_letter, checked, room_type, room_requirements, credit_card_number, credit_card_expiration_date, cardholders_name, credit_card_type', 'safe', 'on'=>'search'),
+			
+            // Please remove those attributes that should not be searched.
+            array('id, status, declien_reason, first_name, last_name, office_location, department, telephone_number_desk, telephone_number_cell, email, password, date_of_birth, dietary_requirements, passport, special_requests, nationality, has_guest, departure_date, return_date, airport_name, airport_code, travel_policy, visa_policy, hotel_arrival_date, hotel_departure_date, hotel_venue, gala_dinner, other_activity, created_at, created_by, updated_at, updated_by, daytime_phone, evening_phone, work_address1, work_address2, work_city, work_state, work_zip_code, work_country, managers_name, emergency_contact_name, emergency_contact_tel_number, relationship_with_the_emergency_contact, ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date, ga_redress_number, previous_winners, times, years, destination_city, preferred_seat_request, preferred_airline_frequent_flyer_number, other, need_visa, visa_letter, checked, room_type, room_requirements, credit_card_number, credit_card_expiration_date, cardholders_name, credit_card_type, team_dinner, team_dinner_menu, team_dinner_dietary, gala_dinner_menu, gala_dinner_dietary, type, gender, country, preferred_name, requirements, cardholders_address, csv_number, crew_diet_requirements, crew_other_info, crew_menu_choice, crew_unifrom_size, comment, gala_dinner_vip, dietary_comment, frequent_flyer_number, preferred_airline, hotel, driving, fi_status, fi_adate, fi_adate1, fi_aflight1, fi_afrom1, fi_ato1, fi_adep1, fi_aarr1, fi_adate2, fi_aflight2, fi_afrom2, fi_ato2, fi_adep2, fi_aarr2, fi_adate3, fi_aflight3, fi_afrom3, fi_ato3, fi_adep3, fi_aarr3, fi_ddate, fi_ddate1, fi_dflight1, fi_dfrom1, fi_dto1, fi_ddep1, fi_darr1, fi_ddate2, fi_dflight2, fi_dfrom2, fi_dto2, fi_ddep2, fi_darr2, fi_ddate3, fi_dflight3, fi_dfrom3, fi_dto3, fi_ddep3, fi_darr3, table_no, room_bigtype, hotel_type, hotel_confirmation_number, has_checkin, headset, has_gift, has_ipad, amount, checkin_at, gift_at, ipad_at, middel_name, middle_name, job_title, cost_centre_number, region, region_comment, ga_middlename, departure_city, travel_region, travel_ticket, coupon, title, title_comment, guest_travel_ticket, guest_coupon', 'safe', 'on'=>'search'),
 			array('preferred_name,daytime_phone,telephone_number_cell,work_address1,work_city,work_zip_code,work_country,
 					emergency_contact_name,emergency_contact_tel_number, relationship_with_the_emergency_contact,has_guest,relationship_with_the_emergency_contact','required','on'=>'winner'),		
 			array('destination_city,ga_passport,ga_dateofbirth,ga_firstname,ga_lastname,ga_gender,ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, 
@@ -145,9 +146,11 @@ class User extends TrackStarActiveRecord
 			array('team_dinner_menu','required','on'=>'emailDinner'),
 				
 			array('hotel_confirmation_number','length','max'=>'50'),
-			array('has_checkin,headset,has_gift, checkin_at, gift_at,has_ipad,ipad_at,img,amount','safe','on'=>'checkin'),
+			array('has_checkin,headset,has_gift, checkin_at, gift_at,has_ipad,ipad_at,img,amount,ipadupdated_at,ipad_by,ipadupdated_by','safe','on'=>'checkin'),
 			//array('headset','required','on'=>'gift'),
-			array('travel_ticket,coupon','length','max'=>'1'),
+			array('travel_ticket,coupon,guest_travel_ticket,guest_coupon','length','max'=>'1'),
+				
+			array('no_gala_dinner','safe'),
 		);
 	}
 	
@@ -182,6 +185,7 @@ class User extends TrackStarActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 				'guest' => array(self::HAS_ONE,'Guest','user_id'),
+				'gift' => array(self::BELONGS_TO,'Gift','headset'),
 		);
 	}
 
@@ -257,7 +261,7 @@ class User extends TrackStarActiveRecord
 				'csv_number'=>'CSV number',
 				'crew_unifrom_size'=>'Crew Uniform Size',
 				'fi_status'=>'Flight Information Status',
-				'fi_adate'=>'Arrival Date Into Miami',
+				'fi_adate'=>'Arrival Date Into Sydney',
 				'fi_adate1'=>'Arrival Date',
 				'fi_aflight1'=>'Arrival Flight',
 				'fi_afrom1'=>'Arrival From',
@@ -276,7 +280,7 @@ class User extends TrackStarActiveRecord
 				'fi_ato3'=>'Arrival To',
 				'fi_adep3'=>'Arrival Dep',
 				'fi_aarr3'=>'Arrival Arr',
-				'fi_ddate'=>'Departure date from Miami',
+				'fi_ddate'=>'Departure date from Sydney',
 				'fi_ddate1'=>'Departure Date',
 				'fi_dflight1'=>'Departure Flight',
 				'fi_dfrom1'=>'Departure From',
@@ -298,6 +302,17 @@ class User extends TrackStarActiveRecord
 				'work_address1'=>'Work Address 1',
 				'work_address2'=>'Work Address 2',
 				'table_no'=>'Table Number',
+				'has_checkin'=>'Checked-in',
+				'headset'=>'Gift Collection',
+				'amount'=>'Amex Card Redemption Amount',
+				'coupon'=>'Winner Circle Lounge Voucher',
+				'travel_ticket'=>'Winner Transport Ticket',
+				'guest_coupon'=>'Guest Circle Lounge Voucher',
+				'guest_travel_ticket'=>'Guest Transport Ticket',
+				'has_ipad'=>'Sign status',
+				
+				'no_gala_dinner'=>'Winners Not Attending Gala Dinner',
+				
 		);
 	}
 
@@ -880,7 +895,7 @@ Roasted Pineapple Cheesecake');
 	public function destinationList(){
 		return array(
 				''=>'Please select',
-				'Miami'=>'Miami',
+				'Sydney'=>'Sydney',
 				'Fort Lauderdale'=>'Fort Lauderdale',
 		);
 	}
@@ -1113,12 +1128,33 @@ Roasted Pineapple Cheesecake');
 				'headset14'=>'headset14',
 				);
 	}
-	public function getAmountList($type){
+	public function getAmountList(){
+		$amount = 0;
+		switch ($this->type){
+			case 'Winners':
+				$amount = 250;
+				break;
+			case 'Host GEN':
+				$amount = 250;
+				break;
+			case 'Host GVP':
+				$amount = 250;
+				break;
+			case 'Operating Committee':
+				$amount = 250;
+				break;
+			case 'Top Achievers':
+				$amount = 400;
+				break;
+			case 'Eagles':
+				$amount = 400;
+				break;
+		}
+		if($this->has_guest == 1){
+			$amount = $amount * 2;
+		}
 		return array(
-				'Amount11'=>'Amount11',
-				'Amount12'=>'Amount12',
-				'Amount13'=>'Amount13',
-				'Amount14'=>'Amount14',
+				$amount=>$amount,
 		);
 	}
 }

@@ -30,6 +30,8 @@
  */
 class Guest extends TrackStarActiveRecord
 {
+	
+	public $checkSave = true;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -64,15 +66,16 @@ class Guest extends TrackStarActiveRecord
 					dietary_comment,created_at, updated_at,team_dinner,team_dinner_menu,team_dinner_dietary,gala_dinner_menu,gala_dinner_dietary', 'safe'),
 			array('id,user_id','unsafe'),
 			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, user_id, first_name, last_name, relationship, telephone_number, email, date_of_birth, dietary_requirements, passport, special_requests, nationality, departure_date, return_date, airport_name, airport_code, hotel_arrival_date, hotel_departure_date, room_type, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
-			array('first_name,last_name,preferred_name,ga_dateofbirth','required','on'=>'winner'),	
+			 // Please remove those attributes that should not be searched.
+             array('id, user_id, first_name, last_name, relationship, telephone_number, email, date_of_birth, dietary_requirements, passport, special_requests, nationality, departure_date, return_date, airport_name, airport_code, hotel_arrival_date, hotel_departure_date, room_type, created_at, created_by, updated_at, updated_by, ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date, ga_redress_number, destination_city, preferred_seat_request, preferred_airline_frequent_flyer_number, other, need_visa, visa_letter, checked, hotel_venue, team_dinner, team_dinner_menu, team_dinner_dietary, gala_dinner, gala_dinner_menu, gala_dinner_dietary, dietary_comment, frequent_flyer_number, preferred_airline, fi_status, fi_adate, fi_adate1, fi_aflight1, fi_afrom1, fi_ato1, fi_adep1, fi_aarr1, fi_adate2, fi_aflight2, fi_afrom2, fi_ato2, fi_adep2, fi_aarr2, fi_adate3, fi_aflight3, fi_afrom3, fi_ato3, fi_adep3, fi_aarr3, fi_ddate, fi_ddate1, fi_dflight1, fi_dfrom1, fi_dto1, fi_ddep1, fi_darr1, fi_ddate2, fi_dflight2, fi_dfrom2, fi_dto2, fi_ddep2, fi_darr2, fi_ddate3, fi_dflight3, fi_dfrom3, fi_dto3, fi_ddep3, fi_darr3, has_checkin, headset, has_gift, checkin_at, gift_at', 'safe', 'on'=>'search'),
+        	array('first_name,last_name,','required','on'=>'winner'),	
 			array('airport_name,destination_city,departure_date,return_date,visa_letter,checked,ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, 
 					ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date,ga_gender,visa_letter','required','on'=>'travel'),
 				
 			array('driving','required','on'=>'driving'),
 			array('team_dinner_menu,gala_dinner_menu','required','on'=>'tours'),
 			array('has_checkin, has_gift, headset, checkin_at, gift_at','safe','on'=>'checkin'),
+			array('no_gala_dinner','safe'),
 		);
 	}
 
@@ -85,6 +88,7 @@ class Guest extends TrackStarActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 				'user' => array(self::BELONGS_TO,'User','user_id'),
+				'gift' => array(self::BELONGS_TO,'Gift','headset'),
 		);
 	}
 
@@ -135,7 +139,7 @@ class Guest extends TrackStarActiveRecord
 				'need_visa'=>'Do you need a Visa?',
 				
 				'fi_status'=>'Flight Information Status',
-				'fi_adate'=>'Arrival Date Into Miami',
+				'fi_adate'=>'Arrival Date Into Sydney',
 				'fi_adate1'=>'Arrival Date',
 				'fi_aflight1'=>'Arrival Flight',
 				'fi_afrom1'=>'Arrival From',
@@ -154,7 +158,7 @@ class Guest extends TrackStarActiveRecord
 				'fi_ato3'=>'Arrival To',
 				'fi_adep3'=>'Arrival Dep',
 				'fi_aarr3'=>'Arrival Arr',
-				'fi_ddate'=>'Departure date from Miami',
+				'fi_ddate'=>'Departure date from Sydney',
 				'fi_ddate1'=>'Departure Date',
 				'fi_dflight1'=>'Departure Flight',
 				'fi_dfrom1'=>'Departure From',
@@ -173,6 +177,10 @@ class Guest extends TrackStarActiveRecord
 				'fi_dto3'=>'Departure To',
 				'fi_ddep3'=>'Departure Dep',
 				'fi_darr3'=>'Departure Arr',
+				'headset'=>'Guest Gift Collection',
+				'has_checkin'=>'Guest Checked-in',
+				
+				'no_gala_dinner'=>'Guest Not Attending Gala Dinner',
 		);
 	}
 

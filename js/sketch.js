@@ -93,12 +93,16 @@ var __slice = Array.prototype.slice;
     	$("#save").attr("disabled","disabled");
     	var coupons = $('#User_coupon_0').attr("checked") == 'checked'?'1':0;
     	var travels = $('#User_travel_ticket_0').attr("checked") == 'checked'?'1':0;
+    	var guest_coupons = $('#User_guest_coupon_0').attr("checked") == 'checked'?'1':0;
+    	var guest_travels = $('#User_guest_travel_ticket_0').attr("checked") == 'checked'?'1':0;
     	$.post( "../save" , 
     			{'User[amount]' : $('#User_amount').val(),
     			'User[id]' : $("#User_id").val(),
     			'User[img]' : b64,
     			'User[coupon][]' : coupons,
     			'User[travel_ticket][]' : travels,
+    			'User[guest_coupon][]' : guest_coupons,
+    			'User[guest_travel_ticket][]' : guest_travels,
     			 filename : filename,
     			}, function(data){
     				if(data =='Success'){

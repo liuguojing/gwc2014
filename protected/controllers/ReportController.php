@@ -34,7 +34,7 @@ class ReportController extends Controller
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
 						'actions'=>array('index','onsiteAttended','onsiteGaladinner','onsiteTeamdinner',
 								'onsiteGalatable','gift','ipad','onsiteUsers','onsiteExportGalaDietary',
-								'onsiteExportTeamDietary','onsiteMeal','onsiteLibbys','onsiteExportLibbys'),
+								'onsiteExportTeamDietary','onsiteMeal','onsiteLibbys','onsiteExportLibbys','attendedDownload','noShowDownload'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin'
 				),
@@ -256,7 +256,7 @@ class ReportController extends Controller
 		$this->render('transfer');
 	}
 	/**
-	 * fi_adate  Arrival Date Into Miami
+	 * fi_adate  Arrival Date Into Sydney
 	 */
 	public function actionArrival(){
 		$dates = array();
@@ -287,7 +287,7 @@ class ReportController extends Controller
 		$this->render('arrival',array('users'=>$result,'dates'=>$dates)); 
 	}
 	/**
-	 * fi_ddate Departure date from Miami
+	 * fi_ddate Departure date from Sydney
 	 */
 	public function actionDeparture(){
 
@@ -573,7 +573,7 @@ class ReportController extends Controller
 		if(!empty($table_no)){
 			$criteria->addInCondition('t.table_no', explode(',',$table_no));
 		}
-		$criteria->addColumnCondition(array('status'=>'1','t.has_checkin'=>1));
+		$criteria->addColumnCondition(array('status'=>'1','t.has_checkin'=>1,'t.no_gala_dinner'=>0));
 		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> ''");
 		$criteria->order = "t.id desc";
 		$users = User::model()->findAll($criteria);
@@ -591,7 +591,7 @@ class ReportController extends Controller
 		if(!empty($table_no)){
 			$criteria->addInCondition('user.table_no', explode(',',$table_no));
 		}
-		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1,'t.has_checkin'=>1));
+		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1,'t.has_checkin'=>1,'t.no_gala_dinner'=>0));
 		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> ''");
 		$criteria->order = "t.id desc";
 		$guests = Guest::model()->with('user')->findAll($criteria);
@@ -695,7 +695,7 @@ class ReportController extends Controller
 			}
 		}
 	
-		$criteria->addCondition("team_dinner is not null and t.has_checkin = 1");
+		$criteria->addCondition("team_dinner is not null and t.has_checkin = 1 and t.no_gala_dinner = 0");
 	
 		if(!empty($dietary)){
 			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
@@ -730,7 +730,7 @@ class ReportController extends Controller
 		if(!empty($table_no)){
 			$criteria->addInCondition('user.table_no', explode(',',$table_no));
 		}
-		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1,'t.has_checkin'=>1));
+		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1,'t.has_checkin'=>1,'t.no_gala_dinner'=>0));
 		$criteria->order = "t.id desc";
 		$guests = Guest::model()->with('user')->findAll($criteria);
 	
@@ -770,14 +770,16 @@ class ReportController extends Controller
 	
 	public function actionOnsiteMeal(){
 		$meals = array();
-		$dbCommand = Yii::app()->db->createCommand("select gala_dinner_menu ,table_no,count(1) as num from users where status = 1 and has_checkin = 1 and type <> 'Crew' group by table_no,gala_dinner_menu order by table_no");
+		$dbCommand = Yii::app()->db->createCommand("select gala_dinner_menu ,table_no,count(1) as num 
+				from users where status = 1 and no_gala_dinner = 0 and has_checkin = 1 and type <> 'Crew' and table_no <> '' and table_no is not null group by table_no,gala_dinner_menu order by table_no");
 		$result = $dbCommand->queryAll();
 		if(isset($result)){
 			foreach($result as $item){
 				$meals[$item['table_no']][$item['gala_dinner_menu']]=$item['num'];
 			}
 		}
-		$dbCommand = Yii::app()->db->createCommand("select g.gala_dinner_menu ,u.table_no,count(1) as num from users u,guests g where u.id = g.user_id and g.has_checkin = 1 and u.has_guest = 1 and u.type<>'Crew' and u.status = 1 group by u.table_no,g.gala_dinner_menu order by u.table_no");
+		$dbCommand = Yii::app()->db->createCommand("select g.gala_dinner_menu ,u.table_no,count(1) as num 
+				from users u,guests g where u.id = g.user_id  and g.no_gala_dinner = 0 and g.has_checkin = 1 and u.has_guest = 1 and u.type<>'Crew' and u.status = 1 and table_no <> '' and table_no is not null group by u.table_no,g.gala_dinner_menu order by u.table_no");
 		$result = $dbCommand->queryAll();
 		if(isset($result)){
 			foreach($result as $item){
@@ -801,7 +803,10 @@ class ReportController extends Controller
 	}
 	public function actionOnsiteLibbys(){
 		$meals = array();
-		$dbCommand = Yii::app()->db->createCommand("SELECT sum(user_num) AS user_num, table_no, sum(guest_num) as guest_num FROM ( SELECT count(1) AS user_num, table_no, 0 AS guest_num FROM users WHERE STATUS = 1 and has_checkin = 1 AND table_no IS NOT NULL AND table_no <> '' GROUP BY table_no UNION ALL SELECT 0 AS user_num, u.table_no, count(1) AS guest_num FROM guests g, users u WHERE u.has_guest = 1 and g.user_id = u.id and g.has_checkin = 1 AND u. STATUS = 1 GROUP BY table_no ) AS a GROUP BY table_no");
+		$dbCommand = Yii::app()->db->createCommand("SELECT sum(user_num) AS user_num, table_no, team_dinner, sum(guest_num) as guest_num 
+				FROM ( SELECT count(1) AS user_num,team_dinner, table_no, 0 AS guest_num FROM users WHERE STATUS = 1  and no_gala_dinner = 0  and has_checkin = 1 AND table_no IS NOT NULL AND table_no <> '' and table_no is not null GROUP BY table_no 
+						UNION ALL 
+						SELECT 0 AS user_num,u.team_dinner, u.table_no, count(1) AS guest_num FROM guests g, users u WHERE u.has_guest = 1  and g.no_gala_dinner = 0 and g.user_id = u.id and g.has_checkin = 1 AND u. STATUS = 1 AND u.table_no <> '' and u.table_no is not null GROUP BY table_no ) AS a GROUP BY table_no");
 		$meals = $dbCommand->queryAll();
 		if($meals === null){
 			$meals = array();
@@ -835,20 +840,21 @@ class ReportController extends Controller
 		
 	}
 	
-	public function actionOnsiteExportLibbys($table_no=''){
+	public function actionOnsiteExportLibbys($table_no='all'){
 		$criteria = new CDbCriteria();
-		if(!empty($table_no)){
+		if($table_no!='all'){
 			$criteria->addInCondition('t.table_no', explode(',',$table_no));
 		}
-		$criteria->addColumnCondition(array('status'=>'1','has_checkin'=>1));
+		$criteria->addColumnCondition(array('t.status'=>'1','t.has_checkin'=>1,'t.no_gala_dinner'=>0));
+		$criteria->addCondition("type <> 'Crew'");
 		$criteria->order = "t.id desc";
 		$users = User::model()->with('guest')->findAll($criteria);
 	
 		$criteria = new CDbCriteria();
-		if(!empty($table_no)){
+		if($table_no!='all'){
 			$criteria->addInCondition('user.table_no', explode(',',$table_no));
 		}
-		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1,'t.has_checkin'=>1));
+		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1,'t.has_checkin'=>1,'t.no_gala_dinner'=>0));
 		$criteria->order = "t.id desc";
 		$guests = Guest::model()->with('user')->findAll($criteria);
 		$this->layout = '//layouts/export';
@@ -858,7 +864,7 @@ class ReportController extends Controller
 		header("Content-Transfer-Encoding: binary");
 		header("Pragma: public");
 		header("Cache-Control: public");
-		$this->render('libbys_export',array('users'=>$users,'guests' => $guests));
+		$this->render('onsite_libbys_export',array('users'=>$users,'guests' => $guests));
 	
 	}
 	
@@ -877,7 +883,7 @@ class ReportController extends Controller
 		
 	}
 	
-	public function actionHousinguser($type='all',$date='',$hotel_type="all"){
+	public function actionHousinguser($type='all',$date='',$hotel_type='all'){
 		$type_array = explode(',',$type);
 		$hotel_type_array = explode(',',$hotel_type);
 		$criteria = new CDbCriteria();
@@ -891,7 +897,7 @@ class ReportController extends Controller
 		if($type != 'all'){
 			$criteria->addInCondition('type', $type_array);
 		}
-		if($type != 'all'){
+		if($hotel_type != 'all'){
 			$criteria->addInCondition('hotel_type', $hotel_type_array);
 		}
 		$criteria->order='t.updated_at desc';
@@ -913,13 +919,17 @@ class ReportController extends Controller
 		foreach($type_array as $type){
 			$users[$type]['r'] = User::model()->countByAttributes(array('status'=>$status,'type'=>$type));
 			$users[$type]['a'] = User::model()->countByAttributes(array('status'=>$status,'type'=>$type,'has_checkin'=>1));
-			$guests[$type]['r'] = User::model()->countByAttributes(array('status'=>$status,'type'=>$type,'has_guest'=>1));
-			$guests[$type]['a'] = User::model()->countByAttributes(array('status'=>$status,'type'=>$type,'has_guest'=>1,'has_checkin'=>1));
+			$guests[$type]['r'] = Guest::model()->countBySql('select count(*) from guests g,users u where g.user_id = u.id and u.status = :status and u.type = :type and u.has_guest = 1',
+					array(':status'=>$status,':type'=>$type));
+			$guests[$type]['a'] = Guest::model()->countBySql('select count(*) from guests g,users u where g.user_id = u.id and u.status = :status and u.type = :type and u.has_guest = 1 and g.has_checkin = 1',
+					array(':status'=>$status,':type'=>$type));
 		}
-		$users['Total']['r'] = User::model()->countByAttributes(array('status'=>$status));
-		$users['Total']['a'] = User::model()->countByAttributes(array('status'=>$status,'has_checkin'=>1));
-		$guests['Total']['r'] = User::model()->countByAttributes(array('status'=>$status,'has_guest'=>1));
-		$guests['Total']['a'] = User::model()->countByAttributes(array('status'=>$status,'has_guest'=>1,'has_checkin'=>1));
+		$users['Total']['r'] = User::model()->count("status=:status and type<>'Crew' and type <> 'Gartner Crew' ",array(':status'=>$status,));
+		$users['Total']['a'] = User::model()->count("status=:status and type<>'Crew' and type <> 'Gartner Crew' and has_checkin = 1 ",array(':status'=>$status));
+		$guests['Total']['r'] =Guest::model()->countBySql("select count(*) from guests g,users u where g.user_id = u.id and u.status = :status and u.has_guest = 1 and type<>'Crew' and type <> 'Gartner Crew' ",
+					array(':status'=>$status));
+		$guests['Total']['a'] = Guest::model()->countBySql("select count(*) from guests g,users u where g.user_id = u.id and u.status = :status and u.has_guest = 1 and g.has_checkin = 1  and type<>'Crew' and type <> 'Gartner Crew'",
+					array(':status'=>$status));
 		$this->render('onsite_attended',array(
 				'users'=>$users,
 				'guests'=>$guests,
@@ -928,11 +938,11 @@ class ReportController extends Controller
 	}
 	public function actionOnsiteGaladinner(){
 		$cirteria = new CDbCriteria;
-		$cirteria->addCondition("team_dinner is not null and t.type <>'Crew' and  t.status = 1 and t.has_checkin = 1");
+		$cirteria->addCondition("team_dinner is not null and t.type <>'Crew' and  t.status = 1 and t.has_checkin = 1 and t.no_gala_dinner = 0");
 		$cirteria->order = 'team_dinner asc';
 		$users = User::model()->findAll($cirteria);
 		$cirteria = new CDbCriteria;
-		$cirteria->addCondition('t.gala_dinner_menu is not null and user.team_dinner is not null and user.status = 1 and user.has_guest = 1 and t.has_checkin = 1');
+		$cirteria->addCondition('t.gala_dinner_menu is not null and user.team_dinner is not null and user.status = 1 and user.has_guest = 1 and t.has_checkin = 1 and t.no_gala_dinner = 0');
 		$cirteria->order = 'user.team_dinner asc';
 		$guests = Guest::model()->with('user')->findAll($cirteria);
 		$this->render('onsite_galadinner',array('users'=>$users,'guests'=>$guests));
@@ -952,8 +962,8 @@ class ReportController extends Controller
 		$this->render('onsite_galatable');
 	}
 	public function actionGift($download=0){
-		$users = User::model()->findAllByAttributes(array('has_gift'=>1));
-		$guests = Guest::model()->with('user')->findAllByAttributes(array('has_gift'=>1));
+		$users = User::model()->with('gift')->findAllByAttributes(array('has_gift'=>1));
+		$guests = Guest::model()->with('user','gift')->findAllByAttributes(array('has_gift'=>1));
 		if($download==1){
 			$this->layout = '//layouts/export';
 			$filename = 'Gift_Report';
@@ -983,6 +993,43 @@ class ReportController extends Controller
 		}else{
 			$this->render('ipad',array('users'=>$users));
 		}
+	}
+	
+	public function actionAttendedDownload($type="all"){
+		$this->layout = '//layouts/export';
+		$filename = 'All Users';
+		
+		$criteria = new CDbCriteria();
+		$type_array = explode(',',$type);
+		if($type != 'all'){
+			$criteria->addInCondition('type', $type_array);
+		}
+		$criteria->addCondition('t.status = 1 and (t.has_checkin = 1 or guest.has_checkin = 1)');
+		$users = User::model()->with('guest')->findAll($criteria);
+		
+		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
+		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
+		header("Content-Transfer-Encoding: binary");
+		header("Pragma: public");
+		header("Cache-Control: public");
+		$this->render('onsite_download',array('users'=>$users));
+	}
+	public function actionNoShowDownload($type="all"){
+		$this->layout = '//layouts/export';
+		$filename = 'All Users';
+		$criteria = new CDbCriteria();
+		$criteria->addCondition('t.status = 1 and (t.has_checkin = 0 or guest.has_checkin = 0)');
+		$type_array = explode(',',$type);
+		if($type != 'all'){
+			$criteria->addInCondition('type', $type_array);
+		}
+		$users = User::model()->with('guest')->findAll($criteria);
+		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
+		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
+		header("Content-Transfer-Encoding: binary");
+		header("Pragma: public");
+		header("Cache-Control: public");
+		$this->render('onsite_noshow_download',array('users'=>$users));
 	}
 	
 

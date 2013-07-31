@@ -38,7 +38,7 @@ class UserController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 					'actions'=>array('admin','create','update','view','index','delete','email','batchSend'),
 					'users'=>array('@'),
-					'expression' => '$user->isAdmin && ($user->name=="Caroline" || $user->name=="Dickie")'
+					'expression' => '$user->isAdmin && ($user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="onsite")'
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('create','update','index','view','admin','delete'),
@@ -137,12 +137,13 @@ class UserController extends Controller
 	{
 		$this->layout = '//layouts/admin';
 		$model = $this->loadModel($id);
+		$model->setScenario('search');
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
 		if($guest === null){
 			$guest = new Guest;
 			$guest->user_id = $model->id;
 		}
-
+		$guest->setScenario('search');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['Guest'])){
@@ -154,16 +155,43 @@ class UserController extends Controller
 			$model->attributes=$_POST['User'];
 			$model->previous_winners = $this->array2string($model->previous_winners);
 			$model->checkSave =false;
+			$guest->checkSave =false;
+			$model->coupon = $this->array2string($model->coupon);
+			$model->travel_ticket = $this->array2string($model->travel_ticket);
+			$model->guest_coupon = $this->array2string($model->guest_coupon);
+			$model->guest_travel_ticket = $this->array2string($model->guest_travel_ticket);
+			$model->no_gala_dinner = $this->array2string($model->no_gala_dinner);
+			if($model->headset == ''){
+				$model->has_gift = 0;
+			}else{
+				$model->has_gift = 1;
+			}
 			if($model->save()){
 				if($model->has_guest == 1 && isset($_POST['Guest'])){
-					if($guest->save())
+					$guest->setScenario('checkin');
+					if($guest->headset == ''){
+						$guest->has_gift = 0;
+					}else{
+						$guest->has_gift = 1;
+					}
+					$guest->no_gala_dinner = $this->array2string($guest->no_gala_dinner);
+					if($guest->save()){
 						$this->redirect(array('view','id'=>$model->id));
+					}else{
+						var_dump($guest->getErrors());
+					}
 				}else{
 					$this->redirect(array('view','id'=>$model->id));
 				}
 			}
 		}
 		$model->previous_winners = $this->string2array($model->previous_winners);
+		$model->coupon = $this->string2array($model->coupon);
+		$model->travel_ticket = $this->string2array($model->travel_ticket);
+		$model->guest_coupon = $this->string2array($model->guest_coupon);
+		$model->guest_travel_ticket = $this->string2array($model->guest_travel_ticket);
+		$model->no_gala_dinner = $this->string2array($model->no_gala_dinner);
+		$guest->no_gala_dinner = $this->string2array($guest->no_gala_dinner);
 		$this->render('superUpdate',array(
 			'model'=>$model,'guest'=>$guest,
 		));
@@ -349,16 +377,16 @@ class UserController extends Controller
 					$guest->setScenario('driving');
 				}
 			}
-			if($model->save()){
+				if($model->save()){
 				if($model->has_guest==1){
 					if($guest->save()){
 						$guest->stringToArray();
 						$this->redirect($nextStep);
 					}
 				}
-			}else{
-				$this->redirect($nextStep);
-			}
+				}else{
+					$this->redirect($nextStep);
+				}
 			$model->stringToArray();
 		}
 		$this->render('travel',array('model'=>$model,'guest'=>$guest));
@@ -506,9 +534,9 @@ class UserController extends Controller
 	public function actionEmail($id){
 		$model = $this->loadModel($id);
 		if($model->type=='Operating Committee'||$model->type=='Crew'||$model->type=='Gartner Crew'){
-			$title = 'Gartner Winners Circle 2012, Miami; Registration Invitation';
+			$title = 'Gartner Winners Circle 2013, Sydney; Registration Invitation';
 		}else{
-			$title = 'Gartner Winners Circle 2012, Miami; Registration Invitation';
+			$title = 'Gartner Winners Circle 2013, Sydney; Registration Invitation';
 		}
 		$this->sendMail($model->email,$title,$model,'email','');
 		//$this->viewPath = '//view/user';
@@ -573,9 +601,9 @@ class UserController extends Controller
 		$model->created_at = new CDbExpression('NOW()');
 		$model->save();
 		if($model->type=='Crew'||$model->type=='Gartner Crew'){
-			$title = 'Gartner Winners Circle 2012, Miami; Registration Confirmation';
+			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';
 		}else{
-			$title = 'Gartner Winners Circle 2012, Miami; Registration Confirmation';
+			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';
 		}
 		$this->sendMail($model->email,$title,$model,'finalize_mail');
 		$this->render('finalize',array('model'=>$model));
@@ -635,9 +663,9 @@ class UserController extends Controller
 				try{
 					$model = $this->loadModel($i);
 					if($model->type=='Operating Committee'||$model->type=='Crew'||$model->type=='Gartner Crew'){
-						$title = 'Gartner Winners Circle 2012, Miami; Registration Invitation';
+						$title = 'Gartner Winners Circle 2013, Sydney; Registration Invitation';
 					}else{
-						$title = 'Gartner Winners Circle 2012, Miami; Registration Invitation';
+						$title = 'Gartner Winners Circle 2013, Sydney; Registration Invitation';
 					}
 					$this->sendMail($model->email,$title,$model,'email','');
 					Yii::log('sent '.$model->email . "\t" . " OK",'error');
@@ -649,25 +677,22 @@ class UserController extends Controller
 		echo 'ok';
 		Yii::app()->end();
 	}
-	public function actionHotelEmail($from_id,$to_id){
-		if(intval($from_id)>intval($to_id)){
-			echo 'error params';
-		}else{
-			set_time_limit(0);
-			for($i=intval($from_id);$i<=intval($to_id);$i++){
-				try{
-					$model = $this->loadModel($i);
-					if(!($model->type=="Operating Committee") && $model->status==1){
-						$title = 'Gartner Winners Circle 2013 Hotel Reservation Number';
-						$this->sendMail($model->email,$title,$model,'hotel_email','');
-						echo "OK <br/>";
-						Yii::log('sent '.$model->email . "\t" . " OK",'error');
-					}else{
-						echo 'OC error<br/>';
-					}
-				}catch (Exception $e){
-					Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');
+	public function actionHotelEmail($ids){
+		$id_arr = explode(',',$ids);
+		set_time_limit(0);
+		foreach($id_arr as $id){
+			try{
+				$model = $this->loadModel(intval(trim($id)));
+				if(!($model->type=="Operating Committee") && $model->status==1){
+					$title = 'Gartner Winners Circle 2013 Hotel Reservation Number';
+					$this->sendMail($model->email,$title,$model,'hotel_email','');
+					echo "OK <br/>";
+					Yii::log('sent '.$model->email . "\t" . " OK",'error');
+				}else{
+					echo 'OC error<br/>';
 				}
+			}catch (Exception $e){
+				Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');
 			}
 		}
 		echo 'ok';

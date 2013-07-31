@@ -6,7 +6,7 @@
 
 <p><b>Dear <?php echo $model->first_name;?></b><br/></p>
 <p>Thank you for taking the time to let us know why you are unable to participate this year.</p>
-<p style="width:852px;word-wrap: break-word;">Once again, we are sorry that you cannot join us for Winner Circle 2012 but we hope that circumstance allows you to join us for Winners Circle 2013.</p>
+<p style="width:852px;word-wrap: break-word;">Once again, we are sorry that you cannot join us for Winner Circle 2013 but we hope that circumstance allows you to join us for Winners Circle 2014.</p>
 <br/>
 <p>Winners Circle Events Team</p>
 </div>

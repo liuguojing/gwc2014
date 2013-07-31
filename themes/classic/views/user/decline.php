@@ -10,7 +10,7 @@
 				<br/>
 				Dear <?php echo $user->first_name;?>
 				<br/><br/>
-				<p>We are sorry you are unable to join us at the Winners Circle 2012 Event in Miami.  Please indicate your reason for declining below.</p>
+				<p>We are sorry you are unable to join us at the Winners Circle 2013 Event in Sydney.  Please indicate your reason for declining below.</p>
 				<p>Winners Circle Event Team</p>
 				<div class="control-group <?php if($user->getError('declien_reason')){ echo 'error';}?>">
 				

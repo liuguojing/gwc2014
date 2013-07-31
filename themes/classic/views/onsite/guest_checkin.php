@@ -1,5 +1,5 @@
 <div class="container top">
-	<h1>Guest Checkin</h1>
+	<h1>Check-in Portal</h1>
 	<div class="row">
 		<?php
 			foreach(Yii::app()->user->getFlashes() as $key => $message) {

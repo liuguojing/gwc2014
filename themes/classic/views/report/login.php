@@ -29,10 +29,9 @@
 	<header class="jumbotron subhead customer" id="overview">
 		<div id="header">
 			<div class="l_box">
-				<div class="a1">DREAM Data</div>
+				<div class="a1"></div>
 				<div class="a2">
-					Welcome to the Reporting Portal for Winners Circle 2012.<br>
-					Please click on the link below to view your desired report
+					
 				</div>
 			</div>
 		

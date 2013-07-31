@@ -1,0 +1,53 @@
+/*!
+ *
+ * Copyright 2012 cranelee@gmail.com
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ */
+body {
+	padding-top: 0px;
+	padding-bottom: 40px;
+}
+
+.customer { //
+	text-align: center;
+	background-color: #36783e;
+}
+
+#header { //
+	width: 1024px;
+	height: 165px;
+	background: url(../img/logo.png) no-repeat left 0;
+}
+
+#header .l_box {
+	float: left;
+	height: 155px;
+	padding: 10px 0 0 2px;
+	text-align: left;
+}
+
+#header .l_box .a1 {
+	color: #000;
+}
+
+#header .l_box .a2 {
+	margin-top: 20px;
+	color: #fff;
+}
+
+.cl {
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+
+.navbar .nav>li {
+	line-height: 23px;
+}
+
+.nav>.active>a:focus {
+	background-color: #2DACE3;
+}
+span.required {color:red;}

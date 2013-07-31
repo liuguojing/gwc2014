@@ -2,7 +2,6 @@
 .form-horizontal .control-label{width:440px;}
 .form-horizontal .controls {margin-left: 460px;}
 </style>
-<?php var_dump($model->getErrors());?>
 <div class="container top">
 	<?php $form=$this->beginWidget('CActiveForm', array(
 				'id'=>'user-form',

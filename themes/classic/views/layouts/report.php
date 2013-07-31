@@ -65,24 +65,25 @@
 			<div class="l_box">
 			</div>
 			<div class="cl"></div>
-			<div class="navbar">
-				<div class="navbar-inner">
-					<ul class="nav">
-						<?php $active = Yii::app()->getController()->getAction()->id;?>
-						<li<?php if($active == 'index'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
-						<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='Dickie' || Yii::app()->user->name=='Caroline')){?>
-						<li<?php if(Yii::app()->getController()->id == 'user'){echo ' class="active"';}?>><?php echo CHtml::link('Users',array('user/admin'));?></li>
-						<?php }?>
-						<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='onsite'){?>
-						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Checkin',array('onsite/search'));?></li>
-						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchGift','guestGift','gift'))){echo ' class="active"';}?>><?php echo CHtml::link('Gift',array('onsite/searchGift'));?></li>
-						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchIpad','ipad'))){echo ' class="active"';}?>><?php echo CHtml::link('ipad',array('onsite/searchIpad'));?></li>
-						<?php }?>
-					</ul>
-				</div>
-			</div>
 		</div>
 	</div>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<?php $active = Yii::app()->getController()->getAction()->id;?>
+				<li<?php if($active == 'index'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
+				<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='Dickie' ||Yii::app()->user->name=='admin' || Yii::app()->user->name=='Caroline')){?>
+				<li<?php if(Yii::app()->getController()->id == 'user'){echo ' class="active"';}?>><?php echo CHtml::link('Users',array('user/admin'));?></li>
+				<?php }?>
+				<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='onsite'){?>
+				<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Checkin',array('onsite/search'));?></li>
+				<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchGift','guestGift','gift'))){echo ' class="active"';}?>><?php echo CHtml::link('Gift',array('onsite/searchGift'));?></li>
+				<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchIpad','ipad'))){echo ' class="active"';}?>><?php echo CHtml::link('ipad',array('onsite/searchIpad'));?></li>
+				<?php }?>
+			</ul>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
 	<?php echo $content;?>
 
   </body>

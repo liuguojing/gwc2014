@@ -354,8 +354,6 @@ class UserController extends Controller
 					if($guest->save()){
 						$guest->stringToArray();
 						$this->redirect($nextStep);
-					}else{
-						var_dump($guest->getErrors);exit;
 					}
 				}
 			}else{

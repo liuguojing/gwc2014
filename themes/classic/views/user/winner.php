@@ -300,13 +300,13 @@
 	<script>
 	$(function() {
 		$( "#User_ga_dateofbirth" ).datepicker({
-			defaultDate: "April/16/1992",
+			defaultDate: "April/10/1993",
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			maxDate: 'Apr/16/1992',
-			yearRange: '1912:1992',
+			maxDate: 'Apr/10/1993',
+			yearRange: '1912:1993',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_dateofbirth" ).datepicker("getDate"))!=dateText){
@@ -331,13 +331,13 @@
 			numberOfMonths: 1,
 		});
 		$( "#Guest_ga_dateofbirth" ).datepicker({
-			defaultDate: "01/01/1992",
+			defaultDate: "Apr/10/1993",
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			maxDate: 'Apr/16/1992',
-			yearRange: '1912:1992',
+			maxDate: 'Apr/10/1993',
+			yearRange: '1912:1993',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_ga_dateofbirth" ).datepicker("getDate"))!=dateText){

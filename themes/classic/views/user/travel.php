@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="span12">
 				<p>Please ensure that you have read and understood the Winners Circle travel policy that applies.<br/>
-<?php echo CHtml::link('Download',Yii::app()->request->baseUrl . '/travel_policy.pdf',array('target'=>'_blank'));?> the Winners Circle 2012 travel policy document.<br/><br/>
+<?php echo CHtml::link('Download',Yii::app()->request->baseUrl . '/travel_policy.pdf',array('target'=>'_blank'));?> the Winners Circle 2013 travel policy document.<br/><br/>
 
 To expedite finalizing travel reservations, Winners are encouraged to utilize email when corresponding with our dedicated travel team at American Express Travel.  Should you have a concern and need to discuss your travel arrangements with an agent, a phone number with be provided with your itinerary.<br/>
 Once registered, you will receive a suggested air itinerary within 5 working days.</p><br/>
@@ -124,7 +124,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 					</div>
 					<div class="control-group <?php if($model->getError('destination_city')){ echo 'error';}?>">
 						<label class="" for="User_destination_city"><?php echo $model->getAttributeLabel('destination_city')?>: <span class="required">*</span></label>
-						<?php echo $form->dropDownList($model,'destination_city',User::model()->destinationList()); ?>
+						<?php echo $form->textField($model,'destination_city',array('readonly'=>'readonly')); ?>
 						<?php if($model->getError('destination_city')){?><span class="help-inline"><?php echo $model->getError('destination_city')?></span><?php }?>
 					</div>
 					<div class="control-group <?php if($model->getError('preferred_seat_request')){ echo 'error';}?>">
@@ -256,7 +256,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						</div>
 						<div class="control-group <?php if($guest->getError('destination_city')){ echo 'error';}?>">
 							<label class="" for="Guest_destination_city"><?php echo $guest->getAttributeLabel('destination_city')?>: <span class="required">*</span></label>
-							<?php echo $form->dropDownList($guest,'destination_city',User::model()->destinationList()); ?>
+							<?php echo $form->textField($guest,'destination_city',array('readonly'=>'readonly')); ?>
 							<?php if($guest->getError('destination_city')){?><span class="help-inline"><?php echo $guest->getError('destination_city')?></span><?php }?>
 						</div>
 						<div class="control-group <?php if($guest->getError('preferred_seat_request')){ echo 'error';}?>">
@@ -382,7 +382,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			changeMonth: true,
 			numberOfMonths: 2,
 			dateFormat: 'M/dd/yy',
-			maxDate: '+6month',
+			maxDate: '+12month',
 			minDate: '+1day',
 			onClose: function(dateText, inst) {
 				try{
@@ -399,7 +399,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			changeMonth: true,
 			numberOfMonths: 2,
 			dateFormat: 'M/dd/yy',
-			maxDate: '+6month',
+			maxDate: '+12month',
 			minDate: '+1day',
 			onClose: function(dateText, inst) {
 				try{
@@ -418,7 +418,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			numberOfMonths: 2,
 			disabled:false,
 			dateFormat: 'M/dd/yy',
-			maxDate: '+6month',
+			maxDate: '+12month',
 			minDate: '+1day',
 			onClose: function(dateText, inst) {
 				try{
@@ -437,7 +437,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			numberOfMonths: 2,
 			disabled:false,
 			dateFormat: 'M/dd/yy',
-			maxDate: '+6month',
+			maxDate: '+12month',
 			minDate: '+1day',
 			onClose: function(dateText, inst) {
 				try{

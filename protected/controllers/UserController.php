@@ -14,8 +14,8 @@ class UserController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			//'postOnly + delete', // we only allow deletion via POST request
+				'accessControl', // perform access control for CRUD operations
+				//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -27,26 +27,26 @@ class UserController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('welcome','decline','visa','teamdinnermenu','galadinnermenu','emailSummary','create','emailDinner','dinnerEmail','hotelEmail'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('winner','travel','hotel','tours','summary','crew','complete','dinner','finalize'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('admin','create','update','view','index','delete','email','batchSend'),
-					'users'=>array('@'),
-					'expression' => '$user->isAdmin && ($user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="onsite")'
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('create','update','index','view','admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+				array('allow',  // allow all users to perform 'index' and 'view' actions
+						'actions'=>array('welcome','decline','visa','teamdinnermenu','galadinnermenu','emailSummary','create','emailDinner','dinnerEmail','hotelEmail'),
+						'users'=>array('*'),
+				),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+						'actions'=>array('winner','travel','hotel','tours','summary','crew','complete','dinner','finalize'),
+						'users'=>array('@'),
+				),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+						'actions'=>array('admin','create','update','view','index','delete','email','batchSend'),
+						'users'=>array('@'),
+						'expression' => '$user->isAdmin && ($user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="onsite")'
+				),
+				array('allow', // allow admin user to perform 'admin' and 'delete' actions
+						'actions'=>array('create','update','index','view','admin','delete'),
+						'users'=>array('admin'),
+				),
+				array('deny',  // deny all users
+						'users'=>array('*'),
+				),
 		);
 	}
 
@@ -89,11 +89,11 @@ class UserController extends Controller
 				$checkUser = User::model()->findByAttributes(array('email'=>$model->email));
 				if($checkUser===null){
 					if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee'))){
-						$minDate = 'Apr/16/2013';
-						$maxDate = "Apr/21/2013";
+						$minDate = 'Apr/10/2014';
+						$maxDate = "Apr/14/2014";
 					}else{
-						$minDate = 'Apr/17/2013';
-						$maxDate = "Apr/21/2013";
+						$minDate = 'Apr/10/2014';
+						$maxDate = "Apr/14/2014";
 					}
 					$model->departure_date = $minDate;
 					$model->return_date = $maxDate;
@@ -124,7 +124,7 @@ class UserController extends Controller
 		}
 
 		$this->render('superUpdate',array(
-			'model'=>$model,'guest'=>$guest,
+				'model'=>$model,'guest'=>$guest,
 		));
 	}
 
@@ -151,7 +151,7 @@ class UserController extends Controller
 		}
 		if(isset($_POST['User']))
 		{
-			
+				
 			$model->attributes=$_POST['User'];
 			$model->previous_winners = $this->array2string($model->previous_winners);
 			$model->checkSave =false;
@@ -193,7 +193,7 @@ class UserController extends Controller
 		$model->no_gala_dinner = $this->string2array($model->no_gala_dinner);
 		$guest->no_gala_dinner = $this->string2array($guest->no_gala_dinner);
 		$this->render('superUpdate',array(
-			'model'=>$model,'guest'=>$guest,
+				'model'=>$model,'guest'=>$guest,
 		));
 	}
 
@@ -219,7 +219,7 @@ class UserController extends Controller
 		$this->layout = '//layouts/admin';
 		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+				'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -235,7 +235,7 @@ class UserController extends Controller
 			$model->attributes=$_GET['User'];
 
 		$this->render('admin',array(
-			'model'=>$model,
+				'model'=>$model,
 		));
 	}
 
@@ -264,7 +264,7 @@ class UserController extends Controller
 			Yii::app()->end();
 		}
 	}
-	
+
 	public function actionWelcome($email=""){
 		if(!$email==""){
 			$login = new LoginForm();
@@ -287,10 +287,10 @@ class UserController extends Controller
 				throw new CHttpException(404,'The requested page does not exist.');
 			}
 			//else{
-				//$user = User::model()->findByAttributes(array('email'=>$email));
-				//@todo summary页面再修改状态
-// 				$user->status = 1;
-// 				$user->save();
+			//$user = User::model()->findByAttributes(array('email'=>$email));
+			//@todo summary页面再修改状态
+			// 				$user->status = 1;
+			// 				$user->save();
 			//}
 		}
 		if($email == "" && Yii::app()->user->isGuest){
@@ -303,7 +303,7 @@ class UserController extends Controller
 		$this->user = $user;
 		$this->render('welcome',array('user'=>$user));
 	}
-	
+
 	public function actionWinner(){
 		$model = $this->loadModel(Yii::app()->user->id);
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
@@ -311,12 +311,12 @@ class UserController extends Controller
 			$guest = new Guest;
 			$guest->user_id = $model->id;
 		}
-		
+
 		$model->setScenario('winner');
 		$guest->setScenario('winner');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		
+
 		if(isset($_POST['User']))
 		{
 			$nextStep = array('travel');
@@ -347,7 +347,7 @@ class UserController extends Controller
 		$model->previous_winners = $this->string2array($model->previous_winners);
 		$this->render('winner',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionTravel(){
 		$model = $this->loadModel(Yii::app()->user->id);
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
@@ -355,6 +355,10 @@ class UserController extends Controller
 			$guest = new Guest;
 			$guest->user_id = $model->id;
 		}
+
+		$model->destination_city = 'Sydney';
+		$guest->destination_city = 'Sydney';
+
 		$model->setScenario('travel');
 		$guest->setScenario('travel');
 		if(isset(Yii::app()->session['summary'])&&Yii::app()->session['summary']==1){
@@ -366,32 +370,37 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			$guest->attributes = $_POST['Guest'];
-			
+				
 			if(!empty($model->driving)){
 				$model->driving = 1;
 				$model->setScenario('driving');
+			}else{
+				$model->driving = 0;
 			}
 			if($model->has_guest==1){
 				if(!empty($guest->driving)){
 					$guest->driving = 1;
 					$guest->setScenario('driving');
+				}else{
+					$guest->driving = 0;
 				}
 			}
-				if($model->save()){
+			if($model->save()){
 				if($model->has_guest==1){
 					if($guest->save()){
 						$guest->stringToArray();
 						$this->redirect($nextStep);
 					}
-				}
 				}else{
 					$this->redirect($nextStep);
 				}
+				
+			}
 			$model->stringToArray();
 		}
 		$this->render('travel',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionHotel(){
 		$model = $this->loadModel(Yii::app()->user->id);
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
@@ -423,7 +432,7 @@ class UserController extends Controller
 					if($guest->save()){
 						$this->redirect($nextStep);
 					}
-					
+						
 				}else{
 					$this->redirect($nextStep);
 				}
@@ -432,7 +441,7 @@ class UserController extends Controller
 		}
 		$this->render('hotel',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionTours(){
 		$model = $this->loadModel(Yii::app()->user->id);
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
@@ -461,7 +470,7 @@ class UserController extends Controller
 		}
 		$this->render('tours',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionEmailDinner($email=''){
 		$this->layout = '//layouts/nonav';
 		if(!$email==""){
@@ -503,7 +512,7 @@ class UserController extends Controller
 		}
 		$this->render('email_dinner',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionSummary(){
 		$model = $this->loadModel(Yii::app()->user->id);
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
@@ -514,7 +523,7 @@ class UserController extends Controller
 		Yii::app()->session['summary'] = 1;
 		$this->render('summary',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionEmailSummary($email=''){
 		$this->layout = '//layouts/nonav';
 		if(!$email==""){
@@ -530,7 +539,7 @@ class UserController extends Controller
 		}
 		$this->render('email_summary',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionEmail($id){
 		$model = $this->loadModel($id);
 		if($model->type=='Operating Committee'||$model->type=='Crew'||$model->type=='Gartner Crew'){
@@ -545,7 +554,7 @@ class UserController extends Controller
 		$this->layout = false;
 		$this->render('email',array('user'=>$model));
 	}
-	
+
 	public function actionDinnerEmail($from_id,$to_id){
 		if(intval($from_id)>intval($to_id)){
 			echo 'error params';
@@ -569,11 +578,11 @@ class UserController extends Controller
 		echo 'ok';
 		Yii::app()->end();
 	}
-	
+
 	public function actionComplete(){
 		echo 'ok';Yii::app()->end();
 	}
-	
+
 	public function actionDinner(){
 		$this->redirect('tours');
 		$model = $this->loadModel(Yii::app()->user->id);
@@ -589,10 +598,10 @@ class UserController extends Controller
 				$this->redirect(array('tours'));
 			}
 		}
-		
+
 		$this->render('dinner',array('model'=>$model,'guest'=>$guest));
 	}
-	
+
 	public function actionFinalize(){
 		$this->layout = '//layouts/nonav';
 		$model = $this->loadModel(Yii::app()->user->id);
@@ -608,7 +617,7 @@ class UserController extends Controller
 		$this->sendMail($model->email,$title,$model,'finalize_mail');
 		$this->render('finalize',array('model'=>$model));
 	}
-	
+
 	public function actionDecline($email){
 		$this->layout = '//layouts/nonav';
 		$this->user = $model = User::model()->findByAttributes(array('email'=>$email));
@@ -644,7 +653,7 @@ class UserController extends Controller
 		$this->layout = '//layouts/nonav';
 		$this->render('visa');
 	}
-	
+
 	public function actionTeamdinnermenu(){
 		$this->layout = '//layouts/nonav';
 		$this->render('teamdinnermenu');
@@ -653,7 +662,7 @@ class UserController extends Controller
 		$this->layout = '//layouts/nonav';
 		$this->render('galadinnermenu');
 	}
-	
+
 	public function actionBatchSend($from_id,$to_id){
 		if(intval($from_id)>=intval($to_id)){
 			echo 'error params';

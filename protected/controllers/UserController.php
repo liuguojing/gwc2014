@@ -351,18 +351,15 @@ class UserController extends Controller
 			}
 			if($model->save()){
 				if($model->has_guest==1){
-						if($guest->save()){
-							$guest->stringToArray();
-							$this->redirect($nextStep);
-						}else{
-							var_dump($guest->getErrors);exit;
-						}
+					if($guest->save()){
+						$guest->stringToArray();
+						$this->redirect($nextStep);
+					}else{
+						var_dump($guest->getErrors);exit;
 					}
-				}else{
-					$this->redirect($nextStep);
 				}
 			}else{
-				var_dump($model->getErrors);exit;
+				$this->redirect($nextStep);
 			}
 			$model->stringToArray();
 		}

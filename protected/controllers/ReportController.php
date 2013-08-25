@@ -235,6 +235,8 @@ class ReportController extends Controller
 		$dateArr = array();
 		$typeResult = array();
 		$totalResult = array();
+		$min_date = '2013-04-17';
+		$max_date = '2013-04-21';
 		foreach($users as $user){
 			$from_date = $user->hotel_arrival_date;
 			$end_date = $user->hotel_departure_date;
@@ -251,6 +253,8 @@ class ReportController extends Controller
 	
 			$from_date =  $this->strtodate($from_date);
 			$end_date =  $this->strtodate($end_date);
+			$from_date = $from_date>=$min_date?$from_date:$min_date;
+			$end_date = $end_date>=$max_date?$end_date:$max_date;
 	
 			$tmpDate = $from_date;
 			while($tmpDate < $end_date ){

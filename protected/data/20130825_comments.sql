@@ -33,7 +33,7 @@ CREATE TABLE `rooms` (
 	`updated_by` INT (11) DEFAULT NULL,
 	PRIMARY KEY (`id`)
 ) ENGINE = INNODB  DEFAULT CHARSET = utf8;
-ALTER TABLE `gwc`.`rooms` ADD UNIQUE `hotel_date` USING BTREE (hotel_id, date);
+ALTER TABLE `rooms` ADD UNIQUE `hotel_date` USING BTREE (hotel_id, date);
 
 alter table comments add column room text;
 

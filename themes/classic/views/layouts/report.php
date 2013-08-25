@@ -71,7 +71,7 @@
 				<div class="navbar-inner">
 					<ul class="nav">
 						<?php $active = Yii::app()->getController()->getAction()->id;?>
-						<li<?php if($active == 'index'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'report'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
 						<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='Dickie' || Yii::app()->user->name=='Caroline')){?>
 						<li<?php if(Yii::app()->getController()->id == 'user'){echo ' class="active"';}?>><?php echo CHtml::link('Users',array('user/admin'));?></li>
 						<li<?php if(Yii::app()->getController()->id == 'hotel'){echo ' class="active"';}?>><?php echo CHtml::link('Hotels',array('hotel/admin'));?></li>

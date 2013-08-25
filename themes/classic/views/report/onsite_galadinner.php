@@ -1,15 +1,14 @@
 <?php 
-
-
-
-
 $cottagePie = array();
 $cod = array();
 $ravioli = array();
 $other = array();
 $total = array();
+$sum = array('total'=>0,'cottagePie'=>0,'cod'=>0,'ravioli'=>0);
 foreach($users as $user){
+	$sum['total']++;
 	if($user->gala_dinner_menu == 'Cottage Pie'){
+		$sum['cottagePie']++;
 		if($user->gala_dinner_vip=='Gala Dinner VIP'){
 			if(isset($cottagePie['VIP'])){
 				$cottagePie['VIP']++;
@@ -32,6 +31,7 @@ foreach($users as $user){
 			}
 		}
 	}elseif($user->gala_dinner_menu == 'Cod'){
+		$sum['cod']++;
 		if($user->gala_dinner_vip=='Gala Dinner VIP'){
 			if(isset($cod['VIP'])){
 				$cod['VIP']++;
@@ -54,6 +54,7 @@ foreach($users as $user){
 			}
 		}
 	}elseif($user->gala_dinner_menu == 'Ravioli'){
+		$sum['ravioli']++;
 		if($user->gala_dinner_vip=='Gala Dinner VIP'){
 			if(isset($ravioli['VIP'])){
 				$ravioli['VIP']++;
@@ -102,7 +103,9 @@ foreach($users as $user){
 }
 
 foreach($guests as $guest){
+	$sum['total']++;
 	if($guest->gala_dinner_menu == 'Cottage Pie'){
+		$sum['cottagePie']++;
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
 			if(isset($cottagePie['VIP'])){
 				$cottagePie['VIP']++;
@@ -117,6 +120,7 @@ foreach($guests as $guest){
 			}
 		}
 	}elseif($guest->gala_dinner_menu == 'Cod'){
+		$sum['cod']++;
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
 			if(isset($cod['VIP'])){
 				$cod['VIP']++;
@@ -131,6 +135,7 @@ foreach($guests as $guest){
 			}
 		}
 	}elseif($guest->gala_dinner_menu == 'Ravioli'){
+		$sum['ravioli']++;
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
 			if(isset($ravioli['VIP'])){
 				$ravioli['VIP']++;
@@ -203,6 +208,13 @@ foreach($guests as $guest){
 							<td><?php echo isset($cottagePie['Gartner Crew'])?CHtml::link($cottagePie['Gartner Crew'],array('report/onsiteExportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Cottage Pie')):0?></td>
 							<td><?php echo isset($cod['Gartner Crew'])?CHtml::link($cod['Gartner Crew'],array('report/onsiteExportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Cod')):0?></td>
 							<td><?php echo isset($ravioli['Gartner Crew'])?CHtml::link($ravioli['Gartner Crew'],array('report/onsiteExportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Ravioli')):0?></td>
+						</tr>
+						<tr>
+							<td><?php echo "Total"?></td>
+							<td><?php echo isset($sum['total'])?CHtml::link($sum['total'],array('report/onsiteExportGalaDietary','team_dinner'=>'','gala_dinner_menu'=>'')):0?></td>
+							<td><?php echo isset($sum['cottagePie'])?CHtml::link($sum['cottagePie'],array('report/onsiteExportGalaDietary','team_dinner'=>'','gala_dinner_menu'=>'Cottage Pie')):0?></td>
+							<td><?php echo isset($sum['cod'])?CHtml::link($sum['cod'],array('report/onsiteExportGalaDietary','team_dinner'=>'','gala_dinner_menu'=>'Cod')):0?></td>
+							<td><?php echo isset($sum['ravioli'])?CHtml::link($sum['ravioli'],array('report/onsiteExportGalaDietary','team_dinner'=>'','gala_dinner_menu'=>'Ravioli')):0?></td>
 						</tr>
 							
 					</tbody>

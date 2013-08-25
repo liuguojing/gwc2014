@@ -61,6 +61,11 @@ class ReportController extends Controller
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin && $user->name=="NTE"'
 				),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+						'actions'=>array('housingMaster','compare','travelComment','updateTravelComment'),
+						'users'=>array('@'),
+						'expression' => '$user->isAdmin'
+				),
 				array('allow', // allow admin user to perform 'admin' and 'delete' actions
 						'actions'=>array('create','update','index','view','admin','delete'),
 						'users'=>array('admin'),
@@ -186,14 +191,14 @@ class ReportController extends Controller
 			$end_date = $user->hotel_departure_date;
 			
 			//如果是非标准时间
-			if($user->hotel_venue == 'I will be making my own arrangements'){
-				if(in_array($user->type,array('Top Achievers','Eagles','Operating Committee'))){
-					$from_date = 'Apr/16/2013';
-				}else{
-					$from_date = 'Apr/17/2013';
-				}
-				$end_date = "Apr/21/2013";
-			}
+// 			if($user->hotel_venue == 'I will be making my own arrangements'){
+// 				if(in_array($user->type,array('Top Achievers','Eagles','Operating Committee'))){
+// 					$from_date = 'Apr/16/2013';
+// 				}else{
+// 					$from_date = 'Apr/17/2013';
+// 				}
+// 				$end_date = "Apr/21/2013";
+// 			}
 			
 			$from_date =  $this->strtodate($from_date);
 			$end_date =  $this->strtodate($end_date);
@@ -221,6 +226,55 @@ class ReportController extends Controller
 		$this->render('housing',array('dates'=>$dateArr,'typeResult'=>$typeResult,'totalResult'=>$totalResult,'blocks'=>User::model()->getBlockRoom(),
 										'attritonRates'=>User::model()->getAttritonRates(),'sellRates'=>User::model()->getSellRates()));
 	}
+	
+	public function actionHousingMaster()
+	{
+		set_time_limit(0);
+		$users = User::model()->findAllByAttributes(array('status'=>1),array('order'=>'type,hotel_type'));
+	
+		$dateArr = array();
+		$typeResult = array();
+		$totalResult = array();
+		foreach($users as $user){
+			$from_date = $user->hotel_arrival_date;
+			$end_date = $user->hotel_departure_date;
+	
+			//如果是非标准时间
+			// 			if($user->hotel_venue == 'I will be making my own arrangements'){
+			// 				if(in_array($user->type,array('Top Achievers','Eagles','Operating Committee'))){
+			// 					$from_date = 'Apr/16/2013';
+			// 				}else{
+			// 					$from_date = 'Apr/17/2013';
+			// 				}
+			// 				$end_date = "Apr/21/2013";
+			// 			}
+	
+			$from_date =  $this->strtodate($from_date);
+			$end_date =  $this->strtodate($end_date);
+	
+			$tmpDate = $from_date;
+			while($tmpDate < $end_date ){
+				if(!in_array($tmpDate,$dateArr)){
+					$dateArr[]=$tmpDate;
+				}
+				if(isset($typeResult[$user->type][$user->hotel_type][$tmpDate])){
+					$typeResult[$user->type][$user->hotel_type][$tmpDate]++;
+				}else{
+					$typeResult[$user->type][$user->hotel_type][$tmpDate] = 1;
+				}
+	
+				if(isset($totalResult[$user->hotel_type][$tmpDate])){
+					$totalResult[$user->hotel_type][$tmpDate]++;
+				}else{
+					$totalResult[$user->hotel_type][$tmpDate] = 1;
+				}
+				$tmpDate = date('Y-m-d',strtotime($tmpDate)+3600*24);
+			}
+			}
+			sort($dateArr);
+			$this->render('housing',array('dates'=>$dateArr,'typeResult'=>$typeResult,'totalResult'=>$totalResult,'blocks'=>User::model()->getMasterBlockRoom(),
+					'attritonRates'=>User::model()->getAttritonRates(),'sellRates'=>User::model()->getSellRates()));
+		}
 
 	public function actionIndex()
 	{
@@ -1030,6 +1084,33 @@ class ReportController extends Controller
 		header("Pragma: public");
 		header("Cache-Control: public");
 		$this->render('onsite_noshow_download',array('users'=>$users));
+	}
+	public function actionCompare(){
+		$users = User::model()->findAll('(departure_date <> hotel_arrival_date or return_date<>hotel_departure_date) and status = 1');
+		$guests = Guest::model()->with('user')->findAll('(t.departure_date <> t.hotel_arrival_date or t.return_date<>t.hotel_departure_date) and user.status = 1');
+		$this->render('compare',array('users'=>$users,'guests'=>$guests));
+	}
+	
+	public function actionTravelComment(){
+		$users = User::model()->findAll('status = 1');
+		$this->render('travel_comment',array('users'=>$users));
+	}
+	
+	public function actionUpdateTravelComment($id){
+		$model = User::model()->findByPk($id);
+		if($model === null){
+			throw new CHttpException(404,'The requested page does not exist.');
+		}else{
+			if(isset($_POST['User'])){
+				
+				$model->setScenario('search');
+				$model->attributes=$_POST['User'];
+				if($model->save()){
+					$this->redirect(array('report/travelComment'));
+				}
+			}
+		}
+		$this->render('update_travel_comment',array('model'=>$model));
 	}
 	
 

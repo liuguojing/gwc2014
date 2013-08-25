@@ -74,6 +74,8 @@
 						<li<?php if($active == 'index'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
 						<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='Dickie' || Yii::app()->user->name=='Caroline')){?>
 						<li<?php if(Yii::app()->getController()->id == 'user'){echo ' class="active"';}?>><?php echo CHtml::link('Users',array('user/admin'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'hotel'){echo ' class="active"';}?>><?php echo CHtml::link('Hotels',array('hotel/admin'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'room'){echo ' class="active"';}?>><?php echo CHtml::link('Rooms',array('room/admin'));?></li>
 						<?php }?>
 						<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='onsite'){?>
 						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Check-in Portal',array('onsite/search'));?></li>

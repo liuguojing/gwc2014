@@ -859,14 +859,18 @@ Roasted Pineapple Cheesecake');
 	}
 	public function beforeSave(){
 		parent::beforeSave();
-		if($this->status!=0 && $this->checkSave && !in_array($this->getScenario(),array('checkin','gift'))){
+		if($this->status!=0 && $this->checkSave && !in_array($this->getScenario(),array('checkin','gift','search'))){
 			throw new CHttpException(404,'The email has already been registered, or this is a wrong link.');
 			return false;
 		}
+		$this->credit_card_number = $this->encode($this->credit_card_number);
+		$this->csv_number = $this->encode($this->csv_number);
 		return true;
 	}
 	public function afterFind(){
 		parent::afterFind();
+		$this->credit_card_number = $this->decode($this->credit_card_number);
+		$this->csv_number = $this->decode($this->csv_number);
 		$this->statusName = $this->getStatusText();
 	}
 	public function galaDinnerVipList(){
@@ -902,6 +906,8 @@ Roasted Pineapple Cheesecake');
 		);
 	}
 	public function getHotelTypeOptions(){
+		return CHtml::listData(Hotel::model()->findBySql('select distinct(type) as type from hotels') , 'type','type');
+		/**
 			return array(
 					'Presidential Suite'=>'Presidential Suite',
 					'Sorrento Ocean Front 1 bedroom Suite'=>'Sorrento Ocean Front 1 bedroom Suite',
@@ -914,9 +920,17 @@ Roasted Pineapple Cheesecake');
 					'Standard ($325)'=>'Standard ($325)',
 					'Hospitality Suite'=>'Hospitality Suite',
 			);
+			*/
 	}
 	
 	public function getRoomRate(){
+		$hotel = Hotel::model()->findByAttributes(array('type'=>$this->hotel_type));
+		if($hotel === null){
+			return 0;
+		}else{
+			return $hotel->room_rate;
+		}
+		/**
 		if($this->hotel_type=='Presidential Suite'){
 			return 359;
 		}elseif($this->hotel_type=='Sorrento Ocean Front 1 bedroom Suite'){
@@ -936,10 +950,23 @@ Roasted Pineapple Cheesecake');
 		}elseif($this->hotel_type=='Hospitality Suite'){
 			return 0;
 		}
+		*/
 	}
-	
-	public function getBlockRoom(){
+	public function getMasterBlockRoom(){
+		$rooms = Room::model()->with('hotel')->findAll('is_master = 1',array('order'=>'hotel_id asc,date asc'));
 		$block = array();
+		foreach($rooms as $room){
+			$block[$room->hotel->name][$room->date] = $room->number;
+		}
+		return $block;
+	}
+	public function getBlockRoom(){
+		$rooms = Room::model()->with('hotel')->findAll(array('order'=>'hotel_id asc,date asc'));
+		$block = array();
+		foreach($rooms as $room){
+			$block[$room->hotel->name][$room->date] = $room->number;
+		}
+		/**
 		$block['Presidential Suite']['Apr/14/2013'] = 2;
 		$block['Presidential Suite']['Apr/15/2013'] = 2;
 		$block['Presidential Suite']['Apr/16/2013'] = 2;
@@ -1037,12 +1064,14 @@ Roasted Pineapple Cheesecake');
 		$block['Hospitality Suite']['Apr/18/2013'] = 1;
 		$block['Hospitality Suite']['Apr/19/2013'] = 1;
 		$block['Hospitality Suite']['Apr/20/2013'] = 1;
-		
+		*/
 		
 		return $block;
 	}
 	
 	public function getAttritonRates(){
+		return CHtml::listData(Hotel::model()->findAll(),'name','attriton_rate');
+		/**
 		return array(
 				'Presidential Suite'=>'359.00',
 				'Sorrento Ocean Front 1 bedroom Suite'=>'749.00',
@@ -1055,8 +1084,12 @@ Roasted Pineapple Cheesecake');
 				'Standard ($325)'=>'325.00',
 				'Hospitality Suite'=>'699.00',
 				);
+				*/
 	}
 	public function getSellRates(){
+		
+		return CHtml::listData(Hotel::model()->findAll(),'name','sell_rate');
+		/**
 		return array(
 				'Presidential Suite'=>'462.95',
 				'Sorrento Ocean Front 1 bedroom Suite'=>'852.95',
@@ -1069,6 +1102,7 @@ Roasted Pineapple Cheesecake');
 				'Standard ($325)'=>'428.95',
 				'Hospitality Suite'=>'758.95',
 		);
+		*/
 	}
 	
 	public function getDinnerByTeam($teamDinner){

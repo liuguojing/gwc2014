@@ -1,9 +1,9 @@
-<div class="jumbotron subhead" style="min-height:440px;min-width:400px;background-color:red;background:url(<?php echo Yii::app()->request->baseUrl;?>/img/bg2.jpeg) no-repeat top;">
+<div class="jumbotron subhead bgbox" style="min-height:440px;min-width:400px;background:url(<?php echo Yii::app()->request->baseUrl;?>/img/bg2.jpg) no-repeat top;">
 	<div class="container top" >
 		<div class="row" style="color:#fff">
 			<div class="span6"><h1></h1></div>
 			<div class="span6" style="min-height:300px;">
-				<p style="color:#000;font-size:24px;line-height:30px;">
+				<p style="color:#fff;font-size:24px;line-height:30px;">
 				<br/>
 				Dear <?php echo $user->first_name;?>:
 				<br/><br/>

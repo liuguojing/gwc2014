@@ -44,7 +44,6 @@
 	<div class="jumbotron subhead customer" id="overview">
 		<div id="header">
 			<div class="l_box" style="margin-left:10px;">
-			<?php echo CHtml::image(Yii::app()->request->baseUrl . '/img/reg1.jpg','',array('style'=>'margin-top: 12px;margin-left: 15px;'));?>
 			</div>
 			<div class="cl"></div>
 			<div class="navbar">

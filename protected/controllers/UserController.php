@@ -230,12 +230,21 @@ class UserController extends Controller
 	{
 		$this->layout = '//layouts/admin';
 		$model=new User('search');
+		$comment = Comment::model()->findByPk(1);
+		if($comment===null){
+			$comment = new Comment;
+		}
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['User']))
 			$model->attributes=$_GET['User'];
-
+		if(isset($_POST['Comment'])){
+			$comment->attributes = $_POST['Comment'];
+			$commnet->id = 1;
+			$comment->save();
+		}
 		$this->render('admin',array(
 				'model'=>$model,
+				'comment'=>$comment,
 		));
 	}
 

@@ -107,4 +107,16 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	public function actionHotel(){
+		$user = new User;
+		if(isset($_POST['User'])){
+			$email = $_POST['User']['email'];
+			if(in_array($email,array('li.he@brightac.com.cn'))){
+				echo 'good mail';
+			}else{
+				echo 'bad mail';
+			}
+		}
+		$this->render('hotel',array('model'=>$user));
+	}
 }

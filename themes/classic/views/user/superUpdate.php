@@ -31,7 +31,7 @@ $undisabled = array('separator' => '', 'template' => '<li class="q6" style="list
 
 ?>
 
-<h1>Update User <?php echo $model->id; ?></h1>
+<h1><?php echo $model->isNewRecord ? 'Create' : 'Update'; ?> User <?php echo $model->id; ?></h1>
 
 <div class="row">
 <div class="span12">
@@ -59,6 +59,12 @@ $undisabled = array('separator' => '', 'template' => '<li class="q6" style="list
 <div class="row" id="main" style="margin-top:0px;">
 	<div class="span12">
 		<h1>main</h1>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'qualified'); ?>
+			<?php echo $form->dropDownList($model,'qualified',array('no'=>'no','yes'=>'yes')); ?>
+			<?php echo $form->error($model,'qualified'); ?>
+		</div>
+		
 		<div class="control-group">
 			<?php echo $form->labelEx($model,'status'); ?>
 			<?php echo $form->dropDownList($model,'status',User::model()->getStatusOptions()); ?>

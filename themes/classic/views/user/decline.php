@@ -1,4 +1,4 @@
-<div class="jumbotron subhead" style="min-height:440px;min-width:400px;background-color:red;background:url(<?php echo Yii::app()->request->baseUrl;?>/img/bg5.jpeg) no-repeat top;">
+<div class="jumbotron subhead" style="min-height:440px;min-width:400px;background-color:red;background:url(<?php echo Yii::app()->request->baseUrl;?>/img/bg2.jpg) no-repeat bottom;">
 	<div class="container top" >
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'user-form',
@@ -17,13 +17,13 @@
 				<label for="User_declien_reason">Reason for decline:<span class="required">*</span></label>
 				<?php if($user->getError('declien_reason')){?><span class="help-inline"><?php echo $user->getError('declien_reason')?></span><br/><?php }?>
 				
-				<?php echo $form->textArea($user,'declien_reason');?>
+				<?php echo $form->textArea($user,'declien_reason');?><br/>
+				<?php echo CHtml::submitButton('Confirm',array('class'=>'btn btn-warning btn-large2')); ?>
 				</div>
 				
 		</div>
 		<div class="row">
-			<div class="span12">
-			<?php echo CHtml::submitButton('Confirm',array('class'=>'btn btn-warning btn-large2','style'=>'float:right;')); ?>
+			<div class="span6 offset4">
 			<br/><br/><br/><br/>
 			
 			</div>

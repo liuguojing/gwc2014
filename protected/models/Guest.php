@@ -287,5 +287,17 @@ class Guest extends TrackStarActiveRecord
 	public function printAttribute($attribute){
 			echo CHtml::encode($this->$attribute);
 	}
+	public function beforeSave(){
+		parent::beforeSave();
+		$this->credit_card_number = $this->encode($this->credit_card_number);
+		$this->csv_number = $this->encode($this->csv_number);
+		return true;
+	}
+	public function afterSave(){
+		parent::afterSave();
+		$this->credit_card_number = $this->decode($this->credit_card_number);
+		$this->csv_number = $this->decode($this->csv_number);
+		return true;
+	}
 	
 }

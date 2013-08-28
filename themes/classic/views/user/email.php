@@ -135,9 +135,9 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">Winners Circle Events Team</p>
 <?php }?>
-<a style="float:left;maring-left:500px;" href="<?php echo $this->domain;?>index.php/user/welcome?email=<?php echo $model->email;?>"><img src="http://app.ya-yaonline.co.uk/gwc/img/accept.jpg" alt="Accept"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="float:left;maring-left:500px;" href="<?php echo $this->domain;?>index.php/user/welcome?email=<?php echo $model->email;?>"><img src="https://app.magictony-se.com/gwc2013/img/accept.jpg" alt="Accept"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
 <?php if(!($model->type=='Crew'||$model->type=="Gartner Crew")) {?>
-<a style="float:left;maring-left:50px;"  href="<?php echo $this->domain;?>index.php/user/decline?email=<?php echo $model->email;?>"><img src="http://app.ya-yaonline.co.uk/gwc/img/decline.jpg" alt="Decline"/></a>
+<a style="float:left;maring-left:50px;"  href="<?php echo $this->domain;?>index.php/user/decline?email=<?php echo $model->email;?>"><img src="https://app.magictony-se.com/gwc2013/img/decline.jpg" alt="Decline"/></a>
 <?php }?>
 <div style="clear:both"></div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>

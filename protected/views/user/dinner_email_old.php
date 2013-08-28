@@ -27,7 +27,7 @@
 <?php if($model->has_guest == 1 && $model->guest){?>
 <p style="word-wrap:break-word;font-family:arial;"><b>Guest Choice:</b> <?php echo $model->guest->team_dinner_menu;?></p>
 <?php }?>
-<p style="word-wrap:break-word;font-family:arial;"><a href="https://app.ya-yaonline.co.uk/gwc/index.php/user/emailDinner?email=<?php echo $model->email;?>">Amend</a></p>
+<p style="word-wrap:break-word;font-family:arial;"><a href="https://app.magictony-se.com/gwc2013/index.php/user/emailDinner?email=<?php echo $model->email;?>">Amend</a></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Do not hesitate to contact us if you have any queries regarding the above.</p>
 

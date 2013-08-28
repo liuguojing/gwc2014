@@ -83,5 +83,12 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'cranelee@gmail.com',
+		'ses'=>array(
+				'accessKey'=>'AKIAIPH65IQ3TFH6FVKA',
+				'secretKey'=>'',
+				'replyTo'=>'corporateevents@gartner.com',
+				'returnPath'=>'corporateevents@gartner.com',
+				'from'=>'Gartner Corporate Events<corporateevents@gartner.com>',
+		),
 	),
 );

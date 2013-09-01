@@ -1124,7 +1124,7 @@ class ReportController extends Controller
 
 	public function actionVisa($status='Not applied'){
 		$users = User::model()->with('guest')->findAllByAttributes(array('visa_status'=>$status,'status'=>1));
-		$guests = Guest::model()->with('user')->findAllByAttributes(array('visa_status'=>$status,'status'=>1));
+		$guests = Guest::model()->with('user')->findAllByAttributes(array('visa_status'=>$status,'user.status'=>1));
 		$this->render('visa',array('users'=>$users,'guests'=>$guests,'status'=>$status));
 	}
 	public function actionHotelLogin(){

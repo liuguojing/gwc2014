@@ -3,18 +3,18 @@
 /* @var $model Hotel */
 
 $this->breadcrumbs=array(
-	'Hotels'=>array('index'),
+	'Room Types'=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'Create Hotel', 'url'=>array('create')),
-	array('label'=>'View Hotel', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Hotel', 'url'=>array('admin')),
+	array('label'=>'Create Room Type', 'url'=>array('create')),
+	array('label'=>'View Room Type', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage Room Type', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Hotel <?php echo $model->id; ?></h1>
+<h1>Update Room Type <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'admins':
  * @property string $id
  * @property string $role
+ * @property string $email
  * @property string $password
  * @property string $created_at
  * @property integer $created_by
@@ -43,9 +44,10 @@ class Admin extends TrackStarActiveRecord
 		return array(
 			array('created_by, updated_by', 'numerical', 'integerOnly'=>true),
 			array('role', 'length', 'max'=>20),
-			array('password', 'length', 'max'=>255),
+			array('password, email', 'length', 'max'=>255),
 			array('created_at, updated_at', 'safe'),
-			array('role,password','required'),
+			array('role,password,email','required','on'=>'update,create'),
+			array('password','safe','on'=>'password'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, role, password, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
@@ -91,6 +93,7 @@ class Admin extends TrackStarActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
+		$criteria->compare('email',$this->email,true);
 		$criteria->compare('role',$this->role,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('created_at',$this->created_at,true);
@@ -129,6 +132,23 @@ class Admin extends TrackStarActiveRecord
 			$this->_identity->authenticate();
 		}
 		if($this->_identity->errorCode===AdminIdentity::ERROR_NONE)
+		{
+			$duration=0; // 30 days
+			Yii::app()->user->login($this->_identity,$duration);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public function hotelLogin(){
+		if($this->_identity===null)
+		{
+			$this->_identity=new HotelAdminIdentity($this->email,'hotel');
+			$this->_identity->authenticate();
+		}
+		if($this->_identity->errorCode===HotelAdminIdentity::ERROR_NONE)
 		{
 			$duration=0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);

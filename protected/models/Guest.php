@@ -78,7 +78,7 @@ class Guest extends TrackStarActiveRecord
 			array('driving','required','on'=>'driving'),
 			array('team_dinner_menu,gala_dinner_menu','required','on'=>'tours'),
 			array('has_checkin, has_gift, headset, checkin_at, gift_at','safe','on'=>'checkin'),
-			array('no_gala_dinner','safe'),
+			array('no_gala_dinner,visa_status,permanent_home_address,place_of_birth','safe'),
 		);
 	}
 

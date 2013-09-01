@@ -61,7 +61,7 @@ return array(
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=>'error, warning, info',
 				),
 				// uncomment the following to show log messages on web pages
 				/*
@@ -85,7 +85,7 @@ return array(
 		'adminEmail'=>'cranelee@gmail.com',
 		'ses'=>array(
 				'accessKey'=>'AKIAIPH65IQ3TFH6FVKA',
-				'secretKey'=>'',
+				'secretKey'=>'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',
 				'replyTo'=>'corporateevents@gartner.com',
 				'returnPath'=>'corporateevents@gartner.com',
 				'from'=>'Gartner Corporate Events<corporateevents@gartner.com>',

@@ -151,7 +151,7 @@ class User extends TrackStarActiveRecord
 			//array('headset','required','on'=>'gift'),
 			array('travel_ticket,coupon,guest_travel_ticket,guest_coupon','length','max'=>'1'),
 				
-			array('no_gala_dinner','safe'),
+			array('no_gala_dinner,travel_comment,travel_comment_status,dietary_commnet,billing_instruction,visa_status,permanent_home_address,place_of_birth','safe'),
 		);
 	}
 	
@@ -867,6 +867,13 @@ Roasted Pineapple Cheesecake');
 		$this->csv_number = $this->encode($this->csv_number);
 		return true;
 	}
+	public function afterSave(){
+		parent::afterSave();
+		if($this->status == 3){
+			Yii::app()->db->createCommand()->execute("delete from tour_users where user_id = $this->id");
+			Yii::app()->db->createCommand()->execute("delete from wishlists where user_id = $this->id");
+		}
+	}
 	public function afterFind(){
 		parent::afterFind();
 		$this->credit_card_number = $this->decode($this->credit_card_number);
@@ -906,7 +913,7 @@ Roasted Pineapple Cheesecake');
 		);
 	}
 	public function getHotelTypeOptions(){
-		return CHtml::listData(Hotel::model()->findBySql('select distinct(type) as type from hotels') , 'type','type');
+		return CHtml::listData(Hotel::model()->findAllBySql('select distinct(type) as type from hotels') , 'type','type');
 		/**
 			return array(
 					'Presidential Suite'=>'Presidential Suite',
@@ -1192,5 +1199,20 @@ Roasted Pineapple Cheesecake');
 		return array(
 				$amount=>$amount,
 		);
+	}
+	public function getTravelCommentStatus(){
+		return array(
+				'Finish'=>'Finish',
+				'Pending'=>'Pending',
+				'Working'=>'Working',
+				);
+	}
+	public function getVisaStatus(){
+		return array(
+				'Not applied'=>'Not applied',
+				'Applying'=>'Applying',
+				'Pending'=>'Pending',
+				'Completed'=>'Completed',
+				);
 	}
 }

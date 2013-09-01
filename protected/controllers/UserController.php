@@ -359,11 +359,19 @@ class UserController extends Controller
 
 	public function actionTravel(){
 		$model = $this->loadModel(Yii::app()->user->id);
+		if(empty($model->departure_date))
+			$model->departure_date = 'Apr/10/2014';
+		if(empty($model->return_date))
+			$model->return_date = 'Apr/14/2014';
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
 		if($guest === null){
 			$guest = new Guest;
 			$guest->user_id = $model->id;
 		}
+		if(empty($guest->departure_date))
+			$guest->departure_date = 'Apr/10/2014';
+		if(empty($guest->return_date))
+			$guest->return_date = 'Apr/14/2014';
 
 		$model->destination_city = 'Sydney';
 		$guest->destination_city = 'Sydney';
@@ -378,6 +386,13 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
+			if($model->visa_letter=='Yes'){
+				$model->visa_status = 'Applying';
+			}elseif($model->visa_letter == 'No'){
+				$model->visa_status = 'Not Applied';
+			}else{
+				$model->visa_status = '';
+			}
 			$guest->attributes = $_POST['Guest'];
 				
 			if(!empty($model->driving)){
@@ -387,6 +402,13 @@ class UserController extends Controller
 				$model->driving = 0;
 			}
 			if($model->has_guest==1){
+				if($guest->visa_letter=='Yes'){
+					$guest->visa_status = 'Applying';
+				}elseif($guest->visa_letter=="No"){
+					$guest->visa_status = 'Not Applied';
+				}else{
+					$guest->visa_status = '';
+				}
 				if(!empty($guest->driving)){
 					$guest->driving = 1;
 					$guest->setScenario('driving');

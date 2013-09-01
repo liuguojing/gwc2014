@@ -1,10 +1,10 @@
 <?php 
 	if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee'))){
-		$minDate = 'Apr/16/2013';
-		$maxDate = "Apr/21/2013";
+		$minDate = 'Apr/10/2014';
+		$maxDate = "Apr/14/2014";
 	}else{
-		$minDate = 'Apr/17/2013';
-		$maxDate = "Apr/21/2013";
+		$minDate = 'Apr/10/2014';
+		$maxDate = "Apr/14/2014";
 	}
 	if(empty($model->hotel_arrival_date)){
 		$model->hotel_arrival_date = $minDate;
@@ -123,7 +123,7 @@
 					<div class="controls" style="float:right;">
 						<label class="checkbox">
 						</label>
-						<button type="submit"  class="btn btn-large2 btn-warning">Save & Proceed</button>
+						<button type="submit"  class="btn btn-large2 btn-success">Save & Proceed</button>
 					</div>
 				</div>
 			</div>
@@ -167,7 +167,7 @@
 				numberOfMonths: 2,
 				disabled:true,
 				dateFormat: 'M/dd/yy',
-				maxDate: '+6month',
+				maxDate: '+12month',
 				minDate: '<?php echo $maxDate?>',
 				onClose: function(dateText, inst) {
 					try{
@@ -219,7 +219,7 @@
 				changeMonth: true,
 				numberOfMonths: 2,
 				dateFormat: 'M/dd/yy',
-				maxDate: '+6month',
+				maxDate: '+12month',
 				minDate: '<?php echo $maxDate?>',
 				onClose: function(dateText, inst) {
 					try{
@@ -249,14 +249,14 @@
 	function checkCsv(){
 		if($("#User_credit_card_type").val()=="American Express"){
 			if(!/^[0-9]{4}$/.test($("#User_csv_number").val())){
-		        alert("Csv Number must be 4 digits");
+		        alert("CSV Number must be 4 digits");
 		        //$("#User_csv_number").val('')
 		        $("#User_csv_number").focus();
 		        return false;
 		    }
 		}else{
 			if(!/^[0-9]{3}$/.test($("#User_csv_number").val())){
-		        alert("Csv Number must be 3 digits");
+		        alert("CSV Number must be 3 digits");
 		        //$("#User_csv_number").val('')
 		        $("#User_csv_number").focus();
 		        return false;

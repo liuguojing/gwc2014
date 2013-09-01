@@ -3,13 +3,13 @@
 /* @var $model Hotel */
 
 $this->breadcrumbs=array(
-	'Hotels'=>array('index'),
+	'Room Types'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Hotel', 'url'=>array('index')),
-	array('label'=>'Create Hotel', 'url'=>array('create')),
+	array('label'=>'List Room Type', 'url'=>array('index')),
+	array('label'=>'Create Room Type', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Hotels</h1>
+<h1>Manage Room Types</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -46,6 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'type',
+		'hotel_name',
 		'name',
 		'room_rate',
 		'attriton_rate',

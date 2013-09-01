@@ -71,11 +71,13 @@
 				<div class="navbar-inner">
 					<ul class="nav">
 						<?php $active = Yii::app()->getController()->getAction()->id;?>
-						<li<?php if(Yii::app()->getController()->id == 'report'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
 						<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='Dickie' || Yii::app()->user->name=='Caroline')){?>
+						<li<?php if(Yii::app()->getController()->id == 'report'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>
 						<li<?php if(Yii::app()->getController()->id == 'user'){echo ' class="active"';}?>><?php echo CHtml::link('Users',array('user/admin'));?></li>
-						<li<?php if(Yii::app()->getController()->id == 'hotel'){echo ' class="active"';}?>><?php echo CHtml::link('Hotels',array('hotel/admin'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'hotel'){echo ' class="active"';}?>><?php echo CHtml::link('Room Type',array('hotel/admin'));?></li>
 						<li<?php if(Yii::app()->getController()->id == 'room'){echo ' class="active"';}?>><?php echo CHtml::link('Rooms',array('room/admin'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'admin' && Yii::app()->getController()->getAction()->id != 'password'){echo ' class="active"';}?>><?php echo CHtml::link('Admins',array('admin/admin'));?></li>
+						<li<?php if(Yii::app()->getController()->id == 'admin' && Yii::app()->getController()->getAction()->id == 'password'){echo ' class="active"';}?>><?php echo CHtml::link('Change Password',array('admin/password'));?></li>
 						<?php }?>
 						<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='onsite'){?>
 						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Check-in Portal',array('onsite/search'));?></li>

@@ -28,11 +28,11 @@ class ReportController extends Controller
 	{
 		return array(
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-						'actions'=>array('login'),
+						'actions'=>array('login','hotelLogin'),
 						'users'=>array('*'),
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('index','onsiteAttended','onsiteGaladinner','onsiteTeamdinner',
+						'actions'=>array('visa','index','onsiteAttended','onsiteGaladinner','onsiteTeamdinner',
 								'onsiteGalatable','gift','ipad','onsiteUsers','onsiteExportGalaDietary',
 								'onsiteExportTeamDietary','onsiteMeal','onsiteLibbys','onsiteExportLibbys','attendedDownload','noShowDownload'),
 						'users'=>array('@'),
@@ -70,6 +70,11 @@ class ReportController extends Controller
 						'actions'=>array('create','update','index','view','admin','delete'),
 						'users'=>array('admin'),
 				),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+						'actions'=>array('hotelReport'),
+						'users'=>array('@'),
+						'expression' => '$user->isHotelAdmin'
+				),
 				array('deny',  // deny all users
 						'users'=>array('*'),
 				),
@@ -86,7 +91,7 @@ class ReportController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-		
+
 		if(isset($_POST['Admin']))
 		{
 			$model->attributes=$_POST['Admin'];
@@ -235,8 +240,8 @@ class ReportController extends Controller
 		$dateArr = array();
 		$typeResult = array();
 		$totalResult = array();
-		$min_date = '2013-04-17';
-		$max_date = '2013-04-21';
+		$min_date = '2014-04-08';
+		$max_date = '2014-04-13';
 		foreach($users as $user){
 			$from_date = $user->hotel_arrival_date;
 			$end_date = $user->hotel_departure_date;
@@ -1095,9 +1100,9 @@ class ReportController extends Controller
 		$this->render('compare',array('users'=>$users,'guests'=>$guests));
 	}
 	
-	public function actionTravelComment(){
-		$users = User::model()->findAll('status = 1');
-		$this->render('travel_comment',array('users'=>$users));
+	public function actionTravelComment($status='Finish'){
+		$users = User::model()->findAllByAttributes(array('status' => '1',  'travel_comment_status'=>$status));
+		$this->render('travel_comment',array('users'=>$users,'status'=>$status));
 	}
 	
 	public function actionUpdateTravelComment($id){
@@ -1115,6 +1120,32 @@ class ReportController extends Controller
 			}
 		}
 		$this->render('update_travel_comment',array('model'=>$model));
+	}
+
+	public function actionVisa($status='Not applied'){
+		$users = User::model()->with('guest')->findAllByAttributes(array('visa_status'=>$status,'status'=>1));
+		$guests = Guest::model()->with('user')->findAllByAttributes(array('visa_status'=>$status,'status'=>1));
+		$this->render('visa',array('users'=>$users,'guests'=>$guests,'status'=>$status));
+	}
+	public function actionHotelLogin(){
+		$this->layout = false;
+		$model=new Admin;
+		
+		if(isset($_POST['Admin']))
+		{
+			$model->attributes=$_POST['Admin'];
+			if( $model->hotelLogin()){
+				$this->redirect(array('report/hotelReport'));
+			}else{
+				Yii::app()->user->setFlash('error','Email Error!');
+			}
+		}
+		$this->render('hotel_login',array('model'=>$model));
+	}
+	public function actionHotelReport(){
+		$users = User::model()->with('guest')->findAllByAttributes(array('status'=>1));
+		$this->sendMail(Yii::app()->user->email, 'Hotel Information', $users,'hotel_report');
+		$this->render('hotel_report');
 	}
 	
 

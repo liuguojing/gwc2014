@@ -1,3 +1,24 @@
+<?php 
+if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee'))){
+	$minDate = 'Apr/10/2014';
+	$maxDate = "Apr/14/2014";
+}else{
+	$minDate = 'Apr/10/2014';
+	$maxDate = "Apr/14/2014";
+}
+if(empty($model->departure_date)){
+	$model->departure_date = $minDate;
+}
+if(empty($model->return_date)){
+	$model->return_date = $maxDate;
+}
+if(empty($guest->departure_date)){
+	$guest->departure_date = $minDate;
+}
+if(empty($guest->return_date)){
+	$guest->return_date = $maxDate;
+}
+?>
 <style>
 .form-horizontal .control-label{width:440px;}
 .form-horizontal .controls {margin-left: 460px;}
@@ -109,9 +130,9 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						</div>
 						<div class="control-group <?php if($model->getError('departure_date')||$model->getError('return_date')){ echo 'error';}?>">
 							<label class="input" for="User_departure_date">Departure Date: <span class="required">*</span>
-							<?php echo $form->textField($model,'departure_date',array('placeholder'=>$model->getAttributeLabel('departure_date'))); ?></label>
+							<?php echo $form->textField($model,'departure_date',array('placeholder'=>$model->getAttributeLabel('departure_date'),'readonly'=>'readonly')); ?></label>
 							<label class="input" for="User_return_date">Return Date: <span class="required">*</span>
-							<?php echo $form->textField($model,'return_date',array('placeholder'=>$model->getAttributeLabel('return_date'))); ?></label>
+							<?php echo $form->textField($model,'return_date',array('placeholder'=>$model->getAttributeLabel('return_date'),'readonly'=>'readonly')); ?></label>
 							<?php if($model->getError('departure_date')||$model->getError('return_date')){?><span class="help-inline"><?php echo $model->getError('departure_date')?><?php echo $model->getError('return_date')?></span><?php }?>
 						</div>
 					</div>
@@ -153,10 +174,23 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 					<div style="clear:both;"></div>
 					<div class="control-group <?php if($model->getError('visa_letter')){ echo 'error';}?>">
 						<label class="" for="User_visa_letter"><?php echo $model->getAttributeLabel('visa_letter');?><span class="required">*</span> </label><br/>
-						<?php echo $form->radioButtonList($model,'visa_letter',User::model()->yesNoList(),array('separator' => '', 'template' => '<li class="q6" style="list-style: none outside none;display:block;float:left;margin:10px;">{input} {label} </li>&nbsp;&nbsp;', 'labelOptions' => array('style' => 'display:inline;'))); ?>
+						<?php echo $form->radioButtonList($model,'visa_letter',User::model()->yesNoList(),array('onclick'=>'visa();','separator' => '', 'template' => '<li class="q6" style="list-style: none outside none;display:block;float:left;margin:10px;">{input} {label} </li>&nbsp;&nbsp;', 'labelOptions' => array('style' => 'display:inline;'))); ?>
 						<?php if($model->getError('visa_letter')){?><span class="help-inline"><?php echo $model->getError('visa_letter')?></span><?php }?>
 					</div>
 					<div style="clear:both;"></div>
+					<div id="user_visa" class="<?php echo $model->visa_letter == 'Yes'?'':'hidden'?>">
+					<div class="control-group <?php if($model->getError('permanent_home_address')){ echo 'error';}?>">
+						<label class="" for="User_permanent_home_address"><?php echo $model->getAttributeLabel('permanent_home_address')?>: </label>
+						<?php echo $form->textField($model,'permanent_home_address',array('placeholder'=>$model->getAttributeLabel('permanent_home_address'))); ?>
+						<?php if($model->getError('permanent_home_address')){?><span class="help-inline"><?php echo $model->getError('permanent_home_address')?></span><?php }?>
+					</div>
+					<div class="control-group <?php if($model->getError('place_of_birth')){ echo 'error';}?>">
+						<label class="" for="User_place_of_birth"><?php echo $model->getAttributeLabel('place_of_birth')?>: </label>
+						<?php echo $form->textField($model,'place_of_birth',array('placeholder'=>$model->getAttributeLabel('place_of_birth'))); ?>
+						<?php if($model->getError('place_of_birth')){?><span class="help-inline"><?php echo $model->getError('place_of_birth')?></span><?php }?>
+					</div>
+					
+					</div>
 					<div class="control-group <?php if($model->getError('checked')){ echo 'error';}?>">
 						<label class="" for="User_checked"><?php echo $form->checkBoxList($model,'checked',array('Yes'=>'I confirm that I have read and understood the '.CHtml::link('VISA',array('user/visa'),array('target'=>'_blank')).' requirements for Winner Circle. '))?><span class="required">*</span></label><br/>
 						<?php if($model->getError('checked')){?><span class="help-inline"><?php echo $model->getError('checked')?></span><?php }?>
@@ -241,9 +275,9 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						</div>
 						<div class="control-group <?php if($guest->getError('departure_date')||$guest->getError('return_date')){ echo 'error';}?>">
 							<label class="input" for="Guest_departure_date">Departure Date:<span class="required">*</span> 
-							<?php echo $form->textField($guest,'departure_date',array('placeholder'=>$guest->getAttributeLabel('departure_date'))); ?></label>
+							<?php echo $form->textField($guest,'departure_date',array('placeholder'=>$guest->getAttributeLabel('departure_date'),'readonly'=>'readonly')); ?></label>
 							<label class="input" for="Guest_return_date">Return Date: <span class="required">*</span>
-							<?php echo $form->textField($guest,'return_date',array('placeholder'=>$guest->getAttributeLabel('return_date'))); ?></label>
+							<?php echo $form->textField($guest,'return_date',array('placeholder'=>$guest->getAttributeLabel('return_date'),'readonly'=>'readonly')); ?></label>
 							<?php if($guest->getError('departure_date')||$guest->getError('return_date')){?><span class="help-inline"><?php echo $guest->getError('departure_date')?><?php echo $guest->getError('return_date')?></span><?php }?>
 						</div>
 					</div>
@@ -285,8 +319,21 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						<div style="clear:both;"></div>
 						<div class="control-group <?php if($guest->getError('visa_letter')){ echo 'error';}?>">
 							<label class="" for="Guest_visa_letter"><?php echo $guest->getAttributeLabel('visa_letter');?> <span class="required">*</span></label><br/>
-							<?php echo $form->radioButtonList($guest,'visa_letter',User::model()->yesNoList(),array('separator' => '', 'template' => '<li class="q6" style="list-style: none outside none;display:block;float:left;margin:10px;">{input} {label} </li>&nbsp;&nbsp;', 'labelOptions' => array('style' => 'display:inline;'))); ?>
+							<?php echo $form->radioButtonList($guest,'visa_letter',User::model()->yesNoList(),array('separator' => '','onclick'=>'guest_visa()', 'template' => '<li class="q6" style="list-style: none outside none;display:block;float:left;margin:10px;">{input} {label} </li>&nbsp;&nbsp;', 'labelOptions' => array('style' => 'display:inline;'))); ?>
 							<?php if($guest->getError('visa_letter')){?><span class="help-inline"><?php echo $guest->getError('visa_letter')?></span><?php }?>
+						</div>
+						<div id="guest_visa" class="<?php echo $guest->visa_letter == 'Yes'?'':'hidden'?>">
+						<div class="control-group <?php if($model->getError('permanent_home_address')){ echo 'error';}?>">
+							<label class="" for="User_permanent_home_address"><?php echo $model->getAttributeLabel('permanent_home_address')?>: </label>
+							<?php echo $form->textField($model,'permanent_home_address',array('placeholder'=>$model->getAttributeLabel('permanent_home_address'))); ?>
+							<?php if($model->getError('permanent_home_address')){?><span class="help-inline"><?php echo $model->getError('permanent_home_address')?></span><?php }?>
+						</div>
+						<div class="control-group <?php if($model->getError('place_of_birth')){ echo 'error';}?>">
+							<label class="" for="User_place_of_birth"><?php echo $model->getAttributeLabel('place_of_birth')?>: </label>
+							<?php echo $form->textField($model,'place_of_birth',array('placeholder'=>$model->getAttributeLabel('place_of_birth'))); ?>
+							<?php if($model->getError('place_of_birth')){?><span class="help-inline"><?php echo $model->getError('place_of_birth')?></span><?php }?>
+						</div>
+						
 						</div>
 						<div style="clear:both;"></div>
 						<div class="control-group <?php if($guest->getError('checked')){ echo 'error';}?>">
@@ -305,7 +352,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 					<div class="controls" style="float:right;">
 						<label class="checkbox">
 						</label>
-						<button type="submit"  class="btn btn-large2 btn-warning">Save & Proceed</button>
+						<button type="submit"  class="btn btn-large2 btn-success">Save & Proceed</button>
 					</div>
 				</div>
 			</div>
@@ -378,78 +425,6 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 				}
 			}
 		});
-		$( "#User_departure_date" ).datepicker({
-			changeMonth: true,
-			numberOfMonths: 2,
-			dateFormat: 'M/dd/yy',
-			maxDate: '+12month',
-			minDate: '+1day',
-			onClose: function(dateText, inst) {
-				try{
-					if($.datepicker.formatDate('M/dd/yy',$( "#User_departure_date" ).datepicker("getDate"))!=dateText){
-						$( "#User_departure_date" ).val("");
-						alert("Please choose date from calendar.");
-					}
-				}catch(e){
-					alert("Please choose date from calendar.");
-				}
-			}
-		});
-		$( "#User_return_date" ).datepicker({
-			changeMonth: true,
-			numberOfMonths: 2,
-			dateFormat: 'M/dd/yy',
-			maxDate: '+12month',
-			minDate: '+1day',
-			onClose: function(dateText, inst) {
-				try{
-					if($.datepicker.formatDate('M/dd/yy',$( "#User_return_date" ).datepicker("getDate"))!=dateText){
-						$( "#User_return_date" ).val("");
-						alert("Please choose date from calendar.");
-					}
-				}catch(e){
-					alert("Please choose date from calendar.");
-				}
-			}
-		});
-		$( "#Guest_departure_date" ).datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			numberOfMonths: 2,
-			disabled:false,
-			dateFormat: 'M/dd/yy',
-			maxDate: '+12month',
-			minDate: '+1day',
-			onClose: function(dateText, inst) {
-				try{
-					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_departure_date" ).datepicker("getDate"))!=dateText){
-						$( "#Guest_departure_date" ).val("");
-						alert("Please choose date from calendar.");
-					}
-				}catch(e){
-					alert("Please choose date from calendar.");
-				}
-			}
-		});
-		$( "#Guest_return_date" ).datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			numberOfMonths: 2,
-			disabled:false,
-			dateFormat: 'M/dd/yy',
-			maxDate: '+12month',
-			minDate: '+1day',
-			onClose: function(dateText, inst) {
-				try{
-					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_return_date" ).datepicker("getDate"))!=dateText){
-						$( "#Guest_return_date" ).val("");
-						alert("Please choose date from calendar.");
-					}
-				}catch(e){
-					alert("Please choose date from calendar.");
-				}
-			}
-		});
 	
 		
 	});
@@ -465,6 +440,127 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			$("#guest_content").show();
 		}
 	}
+	function visa(){
+		if($('#User_visa_letter_0').is(':checked')){
+			$("#user_visa").show();
+		}else{
+			$("#user_visa").hide();
+			$('#User_permanent_home_address').val('');
+			$('#User_place_of_birth').val('');
+		}
+	}
+	function guest_visa(){
+		if($('#Guest_visa_letter_0').is(':checked')){
+			$("#guest_visa").show();
+		}else{
+			$("#guest_visa").hide();
+			$('#Guest_permanent_home_address').val('');
+			$('#Guest_place_of_birth').val('');
+		}
+	}
 	function freeDate(){
+		if($("#freeDateCheck").is(':checked')){
+			$( "#User_departure_date" ).attr('readonly',false);
+			$( "#User_return_date" ).attr('readonly',false);
+			$( "#freeDateCheckGuest" ).attr('disabled',false);
+			$( "#User_departure_date" ).datepicker({
+				changeMonth: true,
+				numberOfMonths: 2,
+				dateFormat: 'M/dd/yy',
+				maxDate: '<?php echo $minDate?>',
+				minDate: '+1day',
+				onClose: function(dateText, inst) {
+					try{
+						if($.datepicker.formatDate('M/dd/yy',$( "#User_departure_date" ).datepicker("getDate"))!=dateText){
+							$( "#User_departure_date" ).val("");
+							alert("Please choose date from calendar.");
+						}
+					}catch(e){
+						alert("Please choose date from calendar.");
+					}
+				}
+			});
+			$( "#User_return_date" ).datepicker({
+				changeMonth: true,
+				numberOfMonths: 2,
+				dateFormat: 'M/dd/yy',
+				maxDate: '+12month',
+				minDate: '<?php echo $maxDate?>',
+				onClose: function(dateText, inst) {
+					try{
+						if($.datepicker.formatDate('M/dd/yy',$( "#User_return_date" ).datepicker("getDate"))!=dateText){
+							$( "#User_return_date" ).val("");
+							alert("Please choose date from calendar.");
+						}
+					}catch(e){
+						alert("Please choose date from calendar.");
+					}
+				}
+			});
+			$( "#User_departure_date" ).datepicker('enable');
+			$( "#User_return_date" ).datepicker('enable');
+		}else{
+			$( "#freeDateCheckGuest" ).attr('disabled',true);
+			$( "#User_departure_date" ).val("<?php echo $minDate?>");
+			$( "#User_return_date" ).val("<?php echo $maxDate?>");
+			$( "#User_departure_date" ).attr('readonly',true);
+			$( "#User_return_date" ).attr('readonly',true);
+			$( "#User_departure_date" ).datepicker('disable');
+			$( "#User_return_date" ).datepicker('disable');
+		}
+		if($("#freeDateCheckGuest").is(':checked')){
+			$( "#Guest_departure_date" ).datepicker( "option", "maxDate", "Apr/21/2014" );
+			$( "#Guest_return_date" ).datepicker( "option", "maxDate", "Apr/21/2014" );
+			$( "#Guest_departure_date" ).attr('readonly',false);
+			$( "#Guest_return_date" ).attr('readonly',false);
+			$( "#Guest_departure_date" ).datepicker({
+				defaultDate: "+1w",
+				changeMonth: true,
+				numberOfMonths: 2,
+				disabled:false,
+				dateFormat: 'M/dd/yy',
+				maxDate: '<?php echo $minDate?>',
+				minDate: '+1day',
+				onClose: function(dateText, inst) {
+					try{
+						if($.datepicker.formatDate('M/dd/yy',$( "#Guest_departure_date" ).datepicker("getDate"))!=dateText){
+							$( "#Guest_departure_date" ).val("");
+							alert("Please choose date from calendar.");
+						}
+					}catch(e){
+						alert("Please choose date from calendar.");
+					}
+				}
+			});
+			$( "#Guest_return_date" ).datepicker({
+				defaultDate: "+1w",
+				changeMonth: true,
+				numberOfMonths: 2,
+				disabled:false,
+				dateFormat: 'M/dd/yy',
+				maxDate: '+12month',
+				minDate: '<?php echo $maxDate?>',
+				onClose: function(dateText, inst) {
+					try{
+						if($.datepicker.formatDate('M/dd/yy',$( "#Guest_return_date" ).datepicker("getDate"))!=dateText){
+							$( "#Guest_return_date" ).val("");
+							alert("Please choose date from calendar.");
+						}
+					}catch(e){
+						alert("Please choose date from calendar.");
+					}
+				}
+			});
+			$( "#Guest_departure_date" ).datepicker('enable');
+			$( "#Guest_return_date" ).datepicker('enable');
+		}else{
+			$( "#Guest_departure_date" ).val("<?php echo $minDate?>");
+			$( "#Guest_return_date" ).val("<?php echo $maxDate?>");
+			$( "#Guest_departure_date" ).attr('readonly',true);
+			$( "#Guest_return_date" ).attr('readonly',true);
+			$( "#Guest_departure_date" ).datepicker('disable');
+			$( "#Guest_return_date" ).datepicker('disable');
+		}
+		
 	}
 	</script>

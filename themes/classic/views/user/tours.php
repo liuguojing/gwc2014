@@ -90,7 +90,7 @@
 					<div class="controls" style="float:right;">
 						<label class="checkbox">
 						</label>
-						<button type="submit"  class="btn btn-large2 btn-warning">Save & Proceed</button>
+						<button type="submit"  class="btn btn-large2 btn-success">Save & Proceed</button>
 					</div>
 				</div>
 			</div>

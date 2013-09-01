@@ -20,6 +20,12 @@
 		<?php echo $form->textField($model,'type',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'hotel_name'); ?>
+		<?php echo $form->dropDownList($model,'hotel_name',$model->getHotelNames(),array('empty'=>'')); ?>
+		<?php echo $form->error($model,'hotel_name'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>

@@ -122,6 +122,26 @@ $undisabled = array('separator' => '', 'template' => '<li class="q6" style="list
 			<?php echo $form->textField($model,'declien_reason',array('size'=>60,'maxlength'=>255)); ?>
 			<?php echo $form->error($model,'declien_reason'); ?>
 		</div>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'travel_comment');?>
+			<?php echo $form->textArea($model,'travel_comment',array('style'=>'width:400px;'));?>
+			<?php echo $form->error($model,'travel_comment');?>
+		</div>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'travel_comment_status');?>
+			<?php echo $form->dropDownList($model,'travel_comment_status',$model->getTravelCommentStatus(),array('empty'=>''));?>
+			<?php echo $form->error($model,'travel_comment_status');?>
+		</div>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'dietary_commnet');?>
+			<?php echo $form->textArea($model,'dietary_commnet',array('style'=>'width:400px;'));?>
+			<?php echo $form->error($model,'dietary_commnet');?>
+		</div>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'billing_instruction');?>
+			<?php echo $form->textArea($model,'billing_instruction',array('style'=>'width:400px;'));?>
+			<?php echo $form->error($model,'billing_instruction');?>
+		</div>
 	</div>
 </div>
 <div class="row hide" id="information">
@@ -513,6 +533,12 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						<?php echo $form->textarea($model,'other',array('placeholder'=>$model->getAttributeLabel('other'))); ?>
 						<?php if($model->getError('other')){?><span class="help-inline"><?php echo $model->getError('other')?></span><?php }?>
 					</div>
+
+					<div class="control-group">
+						<?php echo $form->labelEx($model,'visa_status');?>
+						<?php echo $form->dropDownList($model,'visa_status',$model->getVisaStatus(),array('empty'=>''));?>
+						<?php echo $form->error($model,'visa_status');?>
+					</div>
 					<div class="control-group <?php if($model->getError('need_visa')){ echo 'error';}?>">
 						<label class="" for="User_need_visa"><?php echo Chtml::link($model->getAttributeLabel('need_visa'),array('visa'),array('target'=>'_blank'));?> </label><br/>
 					</div>
@@ -649,6 +675,11 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						<?php echo $form->textarea($guest,'other',array('placeholder'=>$guest->getAttributeLabel('other'))); ?>
 						<?php if($guest->getError('other')){?><span class="help-inline"><?php echo $guest->getError('other')?></span><?php }?>
 					</div>
+					<div class="control-group">
+						<?php echo $form->labelEx($guest,'visa_status');?>
+						<?php echo $form->dropDownList($guest,'visa_status',User::model()->getVisaStatus(),array('empty'=>''));?>
+						<?php echo $form->error($guest,'visa_status');?>
+					</div>
 					<div class="control-group <?php if($guest->getError('need_visa')){ echo 'error';}?>">
 						<label class="" for="Guest_need_visa"><?php echo Chtml::link($guest->getAttributeLabel('need_visa'),array('visa'));?> </label><br/>
 					</div>
@@ -679,7 +710,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 		</div>
 		<div style="clear:both" class="control-group <?php if($model->getError('hotel_type')){ echo 'error';}?>">
 			<label class="input" for="User_hotel_type"><?php echo $model->getAttributeLabel('hotel_type')?>:<span class="required">*</span> 
-			<?php echo $form->dropDownList($model,'hotel_type',array(''=>'') + $model->getHotelTypeOptions()); ?></label>
+			<?php echo $form->dropDownList($model,'hotel_type',$model->getHotelTypeOptions(),array('empty'=>'')); ?></label>
 			<?php if($model->getError('hotel_type')){?><span class="help-inline"><?php echo $model->getError('hotel_type')?><?php echo $model->getError('hotel_type')?></span><?php }?>
 		</div>
 		<div class="control-group">

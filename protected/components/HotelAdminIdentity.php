@@ -5,7 +5,7 @@
  * It contains the authentication method that checks if the provided
  * data can identity the user.
  */
-class AdminIdentity extends CUserIdentity
+class HotelAdminIdentity extends CUserIdentity
 {
 	private $_id;
 	private $_isAdmin; //是否具有管理权限
@@ -19,25 +19,22 @@ class AdminIdentity extends CUserIdentity
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate() {
-		$admin = Admin::model()->findByAttributes(array('role' => $this->username));
+		$admin = Admin::model()->findByAttributes(array('email' => $this->username,'role'=>$this->password));
  		if ($admin === null) {
  			$this->errorCode = self::ERROR_USERNAME_INVALID;
  		} else {
- 			if ($admin->password != $admin->encrypt($this->password)) {
- 				$this->errorCode = self::ERROR_PASSWORD_INVALID;
- 			} else{
  				$this->_id = $admin->id;
- 				$isAdmin = 1;
+ 				$isHotelAdmin = 1;
  				$cookie = new CHttpCookie('id',$admin->id);
  				$cookie->expire = time()+60*60*24*30;  //有限期30天
  				Yii::app()->request->cookies['id']=$cookie;
  				$this->setState('name', $admin->role);
- 				$this->setState('isAdmin', $isAdmin);
- 				$this->setState('isHotelAdmin' , 0);
+ 				$this->setState('email', $admin->email);
+ 				$this->setState('isAdmin', 0);
  				$this->setState('isUser' , 0);
+ 				$this->setState('isHotelAdmin' , $isHotelAdmin);
  				
  				$this->errorCode = self::ERROR_NONE;
- 			}
  		}
 		return !$this->errorCode;
 	}

@@ -3,15 +3,15 @@
 /* @var $model Hotel */
 
 $this->breadcrumbs=array(
-	'Hotels'=>array('index'),
+	'Room Types'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'Manage Hotel', 'url'=>array('admin')),
+	array('label'=>'Manage Room Type', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Hotel</h1>
+<h1>Create Room Type</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

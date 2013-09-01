@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $type
  * @property string $name
+ * @property string $hotel_name
  * @property string $room_rate
  * @property string $attriton_rate
  * @property string $sell_rate
@@ -47,10 +48,10 @@ class Hotel extends TrackStarActiveRecord
 			array('type, name', 'length', 'max'=>255),
 			array('room_rate, attriton_rate, sell_rate', 'length', 'max'=>10),
 			array('created_at, updated_at', 'safe'),
-			array('type, name, room_rate, attriton_rate, sell_rate','required'),
+			array('type, name, room_rate, attriton_rate, sell_rate, hotel_name','required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type, name, is_master, number, room_rate, attriton_rate, sell_rate, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
+			array('id, hotel_name, type, name, is_master, number, room_rate, attriton_rate, sell_rate, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,7 +75,8 @@ class Hotel extends TrackStarActiveRecord
 		return array(
 			'id' => 'ID',
 			'type' => 'Type',
-			'name' => 'Name',
+			'hotel_name' => 'Hotel Name',
+			'name' => 'Room Type',
 			'room_rate' => 'Room Rate',
 			'attriton_rate' => 'Attriton Rate',
 			'sell_rate' => 'Sell Rate',
@@ -98,6 +100,7 @@ class Hotel extends TrackStarActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('type',$this->type,true);
+		$criteria->compare('hotel_name',$this->hotel_name,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('room_rate',$this->room_rate,true);
 		$criteria->compare('attriton_rate',$this->attriton_rate,true);
@@ -110,5 +113,12 @@ class Hotel extends TrackStarActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	public function getHotelNames(){
+		return array(
+				'Shangri-La'=>'Shangri-La',
+				'Hilton'=>'Hilton',
+				'Sheraton'=>'Sheraton',
+		);
 	}
 }

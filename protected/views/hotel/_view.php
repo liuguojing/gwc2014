@@ -12,11 +12,15 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
 	<?php echo CHtml::encode($data->type); ?>
 	<br />
-
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('hotel_name')); ?>:</b>
+	<?php echo CHtml::encode($data->hotel_name); ?>
+	<br />
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
-
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('room_rate')); ?>:</b>
 	<?php echo CHtml::encode($data->room_rate); ?>
 	<br />

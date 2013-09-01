@@ -1,15 +1,15 @@
 <?php
-/* @var $this RoomController */
-/* @var $model Room */
+/* @var $this AdminController */
+/* @var $model Admin */
 
 $this->breadcrumbs=array(
-	'Rooms'=>array('index'),
+	'Admins'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Room', 'url'=>array('index')),
-	array('label'=>'Create Room', 'url'=>array('create')),
+	array('label'=>'List Admin', 'url'=>array('index')),
+	array('label'=>'Create Admin', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('room-grid', {
+	$.fn.yiiGridView.update('admin-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Rooms</h1>
+<h1>Manage Admins</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,16 +41,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'room-grid',
+	'id'=>'admin-grid',
 	'dataProvider'=>$model->search(),
 	'columns'=>array(
 		'id',
-		'hotel.hotel_name',
-		'hotel.name',
-		'is_master',
-		'date',
-		'number',
+		'email',
+		'role',
 		/*
+		'password',
 		'created_at',
 		'created_by',
 		'updated_at',
@@ -58,6 +56,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}{update}{delete}{email}',
+			'buttons'=>array(
+					'email' => array(
+							'label'=>'email',
+							'url'=>'Yii::app()->createUrl("admin/email", array("id"=>$data->id))',
+					),
+			),
 		),
 	),
 )); ?>

@@ -73,7 +73,7 @@ class Room extends TrackStarActiveRecord
 		return array(
 			'id' => 'ID',
 			'is_master' => 'Is Master',
-			'hotel_id' => 'Hotel',
+			'hotel_id' => 'Room Type',
 			'date' => 'Date',
 			'number' => 'Number',
 			'created_at' => 'Created At',

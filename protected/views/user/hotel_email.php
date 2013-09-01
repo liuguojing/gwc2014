@@ -2,7 +2,7 @@
 <tr>
 <td style="width:852px">
 <div style="width:852px;word-wrap: break-word;font-family:arial;">
-<img src="<?php echo $this->domain?>img/email_head.png" />
+<img src="<?php echo $this->domain?>img/logo.png" width="852px" height="138px" />
 <p><b>Dear <?php echo $model->first_name;?></b></p>
 <p style="word-wrap:break-word;font-family:arial;">We are delighted to confirm your accommodation for Winners Circle 2013 as follows:</p>
 

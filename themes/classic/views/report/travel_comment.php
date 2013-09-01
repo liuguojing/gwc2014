@@ -2,6 +2,11 @@
 		<div class="row">
 			<div class="span12" style="text-align:center">
 				<h1>Travel Comment</h1>
+				<div class="btn-group">
+				<?php foreach(User::model()->getTravelCommentStatus() as $comment_status){?>
+				<?php echo CHtml::link($comment_status,array('report/travelComment','status'=>$comment_status),array('class'=>$status==$comment_status?'btn active':'btn'));?>
+				<?php }?>
+			</div>
 			</div>
 		</div>
 		<div class="row">

@@ -48,7 +48,7 @@
 					</div>
 				</div>
 				<div class="control-group <?php if($model->getError('preferred_name')){ echo 'error';}?>">
-					<label class="control-label" for="User_preferred_name">Please state your preferred first name.  This will appear on your badge.<span class="required">*</span></label>
+					<label class="control-label" for="User_preferred_name">Please state your preferred first name.  This will appear on your badge:<span class="required">*</span></label>
 					<div class="controls">
 						<?php echo $form->textField($model,'preferred_name',array('placeholder'=>$model->getAttributeLabel('preferred_name'))); ?>
 						<?php if($model->getError('preferred_name')){?><span class="help-inline"><?php echo $model->getError('preferred_name')?></span><?php }?>
@@ -57,7 +57,7 @@
 				<div class="control-group <?php if($model->getError('ga_dateofbirth')){ echo 'error';}?>">
 					<label class="control-label" for="User_ga_dateofbirth"><?php echo $model->getAttributeLabel('ga_dateofbirth')?>:<span class="required">*</span></label>
 					<div class="controls">
-						<?php echo $form->textField($model,'ga_dateofbirth',array('placeholder'=>$model->getAttributeLabel('ga_dateofbirth'))); ?>
+						<?php echo $form->textField($model,'ga_dateofbirth',array('placeholder'=>'Gartner Winner Date of Birth')); ?>
 						<?php if($model->getError('ga_dateofbirth')){?><span class="help-inline"><?php echo $model->getError('ga_dateofbirth')?></span><?php }?>
 					</div>
 				</div>
@@ -193,7 +193,7 @@
 				</div>
 				<?php if($model->type != 'Crew' && $model->type != 'Gartner Crew'){?>
 				<div class="control-group <?php if($model->getError('previous_winners')){ echo 'error';}?>">
-					<label class="control-label" for="User_previous_winners"><?php echo $model->getAttributeLabel('previous_winners')?><br/>(this information will be used to obtain your year book photograph)<br/>Please select all that apply</label>
+					<label class="control-label" for="User_previous_winners"><?php echo $model->getAttributeLabel('previous_winners')?><br/>(this information will be used to obtain your year book photograph)<br/>Please select all that apply:</label>
 					<div class="controls">
 						<?php echo $form->checkBoxList($model,'previous_winners',User::model()->previousList(),array('separator' => '', 'template' => '<li class="q6" style="list-style: none outside none;display:block;margin:10px;">{input} {label} </li>', 'labelOptions' => array('style' => 'display:inline;'))); ?>
 						<?php if($model->getError('previous_winners')){?><span class="help-inline"><?php echo $model->getError('previous_winners')?></span><?php }?>
@@ -252,7 +252,7 @@
 							</div>
 						</div>
 						<div class="control-group <?php if($guest->getError('preferred_name')){ echo 'error';}?>">
-							<label class="control-label" for="Guest_preferred_name">Please state your preferred first name.  This will appear on your badge.<span class="required">*</span></label>
+							<label class="control-label" for="Guest_preferred_name">Please state your preferred first name.  This will appear on your badge:<span class="required">*</span></label>
 							<div class="controls">
 								<?php echo $form->textField($guest,'preferred_name',array('placeholder'=>$guest->getAttributeLabel('preferred_name'))); ?>
 								<?php if($guest->getError('preferred_name')){?><span class="help-inline"><?php echo $guest->getError('preferred_name')?></span><?php }?>
@@ -261,13 +261,13 @@
 						<div class="control-group <?php if($guest->getError('ga_dateofbirth')){ echo 'error';}?>">
 							<label class="control-label" for="Guest_ga_dateofbirth"><?php echo $guest->getAttributeLabel('ga_dateofbirth')?>:<span class="required">*</span></label>
 							<div class="controls">
-								<?php echo $form->textField($guest,'ga_dateofbirth',array('placeholder'=>$guest->getAttributeLabel('ga_dateofbirth'))); ?>
+								<?php echo $form->textField($guest,'ga_dateofbirth',array('placeholder'=>'Guest Date of Birth')); ?>
 								<?php if($guest->getError('ga_dateofbirth')){?><span class="help-inline"><?php echo $guest->getError('ga_dateofbirth')?></span><?php }?>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="User_team_dinner_dietary">
-							    Does your guest have any dietary requirements
+							    Does your guest have any dietary requirements:
 							</label>
 							<div class="controls">
 							    <?php echo $form->dropDownList($guest,'team_dinner_dietary',$model->getDietaryOptions(),array('onchange'=>'guest_dietary(this.value)'))?>
@@ -289,7 +289,7 @@
 						<div class="controls" style="float:right;">
 							<label class="checkbox">
 							</label>
-							<button type="submit"  class="btn btn-large2 btn-warning">Save & Proceed</button>
+							<button type="submit"  class="btn btn-large2 btn-success">Save & Proceed</button>
 						</div>
 					</div>
 				</div>

@@ -28,9 +28,9 @@
 		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/dmc" class="btn btn-large btn-primary"><i class="icon-user icon-white"></i>DMC Tours & Activity Report</a><p>New registrations csv download for DMC.</p></div>
 	</div>
 	<div class="row">
-		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/compare" class="btn btn-large btn-primary"><i class="icon-gift icon-white"></i> Housing and Travel dates – compare report / process</a><p>a report to show whose travel date is not same with hotel date</p></div>
-		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/travelComment" class="btn btn-large btn-primary"><i class="icon-gift icon-white"></i> Travel Comment Report</a><p></p></div>
-		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/visa" class="btn btn-large btn-primary"><i class="icon-gift icon-white"></i> Visa Report</a><p></p></div>
+		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/compare" class="btn btn-large btn-primary"><i class="icon-home icon-white"></i> Housing and Travel dates – compare report / process</a><p>a report to show whose travel date is not same with hotel date</p></div>
+		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/travelComment" class="btn btn-large btn-primary"><i class="icon-user icon-white"></i> Travel Comment Report</a><p></p></div>
+		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/visa" class="btn btn-large btn-primary"><i class="icon-user icon-white"></i> Visa Report</a><p></p></div>
 	</div>
 	<?php }elseif(Yii::app()->user->name=="Amex"){?>
 	<div class="row">

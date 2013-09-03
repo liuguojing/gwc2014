@@ -287,8 +287,14 @@ class ReportController extends Controller
 			}
 			}
 			sort($dateArr);
-			$this->render('housing_master',array('dates'=>$dateArr,'typeResult'=>$typeResult,'totalResult'=>$totalResult,'blocks'=>User::model()->getMasterBlockRoom($hotel),
-					'attritonRates'=>User::model()->getAttritonRates($hotel),'sellRates'=>User::model()->getSellRates($hotel)));
+			$this->render('housing_master',
+					array('dates'=>$dateArr,
+							'typeResult'=>$typeResult,
+							'totalResult'=>$totalResult,
+							'blocks'=>User::model()->getMasterBlockRoom($hotel),
+							'attritonRates'=>User::model()->getAttritonRates($hotel),
+							'sellRates'=>User::model()->getSellRates($hotel),
+							'hotel'=>$hotel));
 		}
 
 	public function actionIndex()

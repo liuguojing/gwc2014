@@ -136,6 +136,9 @@ class User extends TrackStarActiveRecord
 			array('destination_city,ga_passport,ga_firstname,ga_lastname,ga_gender,ga_passport,
 					ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date,airport_name,destination_city,departure_date,return_date,visa_letter,checked,
 					','required','on'=>'travel'),
+				array('permanent_home_address,place_of_birth,destination_city,ga_passport,ga_firstname,ga_lastname,ga_gender,ga_passport,
+						ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date,airport_name,destination_city,departure_date,return_date,visa_letter,checked,
+						','required','on'=>'travel_visa'),
 			array('years','crewRequired','on'=>'winner'),
 			array('times','crewRequiredPlus','on'=>'winner'),
 			array('team_dinner','teamDinnerRequired','on'=>'winner'),
@@ -916,12 +919,12 @@ Roasted Pineapple Cheesecake');
 		$hotels = Hotel::model()->findAll();
 		$result = array();
 		foreach($hotels as $hotel){
-			$result[$hotel->id] = $hotel->type . ' - ' . $hotel->name; 
+			$result[$hotel->id] = $hotel->hotel_name . ' - ' . $hotel->name; 
 		}
 		return $result;
 	}
 	public function getHotelTypeOptions(){
-		return CHtml::listData(Hotel::model()->findAllBySql('select distinct(type) as type from hotels') , 'type','type');
+		return CHtml::listData(Hotel::model()->findAllBySql("select distinct(concat(hotel_name,' - ' ,name)) as type from hotels") , 'type','type');
 		/**
 			return array(
 					'Presidential Suite'=>'Presidential Suite',
@@ -939,7 +942,7 @@ Roasted Pineapple Cheesecake');
 	}
 	
 	public function getRoomRate(){
-		$hotel = Hotel::model()->findByAttributes(array('type'=>$this->hotel_type));
+		$hotel = Hotel::model()->findByAttributes(array('name'=>$this->hotel_type));
 		if($hotel === null){
 			return 0;
 		}else{
@@ -967,8 +970,12 @@ Roasted Pineapple Cheesecake');
 		}
 		*/
 	}
-	public function getMasterBlockRoom(){
-		$rooms = Room::model()->with('hotel')->findAll('t.is_master = 1',array('order'=>'hotel_id asc,date asc'));
+	public function getMasterBlockRoom($hotel){
+		$criteria = new CDbCriteria();
+		$criteria->condition = "hotel.hotel_name = :hotel_name and t.is_master = 1";
+		$criteria->order = 'hotel_id asc,date asc';
+		$criteria->params = array(':hotel_name'=>$hotel);
+		$rooms = Room::model()->with('hotel')->findAll($criteria);
 		$block = array();
 		foreach($rooms as $room){
 			$block[$room->hotel->name][$room->date] = $room->number;

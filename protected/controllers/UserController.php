@@ -400,6 +400,9 @@ class UserController extends Controller
 				$model->setScenario('driving');
 			}else{
 				$model->driving = 0;
+				if($model->visa_letter == 'Yes'){
+					$model->setScenario('travel_visa');
+				}
 			}
 			if($model->has_guest==1){
 				if($guest->visa_letter=='Yes'){
@@ -414,6 +417,9 @@ class UserController extends Controller
 					$guest->setScenario('driving');
 				}else{
 					$guest->driving = 0;
+					if($guest->visa_letter == 'Yes'){
+						$guest->setScenario('travel_visa');
+					}
 				}
 			}
 			if($model->save()){

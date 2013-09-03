@@ -238,11 +238,11 @@ class ReportController extends Controller
 						'hotel'=>$hotel));
 	}
 	
-	public function actionHousingMaster()
+	public function actionHousingMaster($hotel='Shangri-La')
 	{
 		set_time_limit(0);
-		$users = User::model()->findAllByAttributes(array('status'=>1),array('order'=>'type,hotel_type'));
-	
+		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select type from hotels where hotel_name=:hotel_name )"
+				,array(':hotel_name'=>$hotel));
 		$dateArr = array();
 		$typeResult = array();
 		$totalResult = array();
@@ -288,7 +288,7 @@ class ReportController extends Controller
 			}
 			sort($dateArr);
 			$this->render('housing',array('dates'=>$dateArr,'typeResult'=>$typeResult,'totalResult'=>$totalResult,'blocks'=>User::model()->getMasterBlockRoom(),
-					'attritonRates'=>User::model()->getAttritonRates(),'sellRates'=>User::model()->getSellRates()));
+					'attritonRates'=>User::model()->getAttritonRates($hotel),'sellRates'=>User::model()->getSellRates($hotel)));
 		}
 
 	public function actionIndex()

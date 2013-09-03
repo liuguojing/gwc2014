@@ -6,9 +6,13 @@ function formatCost($cost){
 ?>
 <div class="container top">
 		<div class="row">
-			<div class="span8 offset2">
+			<div class="span12">
 				<p>
-				
+					<div class="btn-group" style="text-align:center">
+					<?php foreach(Hotel::model()->getHotelNames() as $hotelName){?>
+					<?php echo CHtml::link($hotelName,array('report/housing','hotel'=>$hotelName),array('class'=>$hotel==$hotelName?'btn active':'btn'));?>
+					<?php }?>
+					</div>
 				</p>
 			</div>
 		</div>

@@ -40,7 +40,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery-ui-1.8.23.custom.min.js"></script>
 </head>
 
-  <body style="padding-bottom: 0px;">
+  <body style="padding-bottom: 0px;max-width:1280px;margin:auto;">
 	<div class="jumbotron subhead customer" id="overview">
 		<div id="header">
 			<div class="l_box" style="margin-left:10px;">

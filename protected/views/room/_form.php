@@ -17,7 +17,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'hotel_id'); ?>
-		<?php echo $form->dropDownList($model,'hotel_id',CHtml::listData(Hotel::model()->findAll(),'id','name'),array('empty'=>'Select One')); ?>
+		<?php echo $form->dropDownList($model,'hotel_id',User::model()->getRoomType(),array('empty'=>'Select One')); ?>
 		<?php echo $form->error($model,'hotel_id'); ?>
 	</div>
 

@@ -178,7 +178,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						<?php if($model->getError('visa_letter')){?><span class="help-inline"><?php echo $model->getError('visa_letter')?></span><?php }?>
 					</div>
 					<div style="clear:both;"></div>
-					<div id="user_visa" class="<?php echo $model->visa_letter == 'Yes'?'':'hidden'?>">
+					<div id="user_visa" class="<?php echo $model->visa_letter == 'Yes'?'':'hide'?>">
 					<div class="control-group <?php if($model->getError('permanent_home_address')){ echo 'error';}?>">
 						<label class="" for="User_permanent_home_address"><?php echo $model->getAttributeLabel('permanent_home_address')?>: </label>
 						<?php echo $form->textField($model,'permanent_home_address',array('placeholder'=>$model->getAttributeLabel('permanent_home_address'))); ?>
@@ -322,16 +322,16 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 							<?php echo $form->radioButtonList($guest,'visa_letter',User::model()->yesNoList(),array('separator' => '','onclick'=>'guest_visa()', 'template' => '<li class="q6" style="list-style: none outside none;display:block;float:left;margin:10px;">{input} {label} </li>&nbsp;&nbsp;', 'labelOptions' => array('style' => 'display:inline;'))); ?>
 							<?php if($guest->getError('visa_letter')){?><span class="help-inline"><?php echo $guest->getError('visa_letter')?></span><?php }?>
 						</div>
-						<div id="guest_visa" class="<?php echo $guest->visa_letter == 'Yes'?'':'hidden'?>">
-						<div class="control-group <?php if($model->getError('permanent_home_address')){ echo 'error';}?>">
-							<label class="" for="User_permanent_home_address"><?php echo $model->getAttributeLabel('permanent_home_address')?>: </label>
-							<?php echo $form->textField($model,'permanent_home_address',array('placeholder'=>$model->getAttributeLabel('permanent_home_address'))); ?>
-							<?php if($model->getError('permanent_home_address')){?><span class="help-inline"><?php echo $model->getError('permanent_home_address')?></span><?php }?>
+						<div id="guest_visa" class="<?php echo $guest->visa_letter == 'Yes'?'':'hide'?>">
+						<div class="control-group <?php if($guest->getError('permanent_home_address')){ echo 'error';}?>">
+							<label class="" for="Guset_permanent_home_address"><?php echo $guest->getAttributeLabel('permanent_home_address')?>: </label>
+							<?php echo $form->textField($guest,'permanent_home_address',array('placeholder'=>$guest->getAttributeLabel('permanent_home_address'))); ?>
+							<?php if($guest->getError('permanent_home_address')){?><span class="help-inline"><?php echo $guest->getError('permanent_home_address')?></span><?php }?>
 						</div>
-						<div class="control-group <?php if($model->getError('place_of_birth')){ echo 'error';}?>">
-							<label class="" for="User_place_of_birth"><?php echo $model->getAttributeLabel('place_of_birth')?>: </label>
-							<?php echo $form->textField($model,'place_of_birth',array('placeholder'=>$model->getAttributeLabel('place_of_birth'))); ?>
-							<?php if($model->getError('place_of_birth')){?><span class="help-inline"><?php echo $model->getError('place_of_birth')?></span><?php }?>
+						<div class="control-group <?php if($guest->getError('place_of_birth')){ echo 'error';}?>">
+							<label class="" for="Guest_place_of_birth"><?php echo $guest->getAttributeLabel('place_of_birth')?>: </label>
+							<?php echo $form->textField($guest,'place_of_birth',array('placeholder'=>$guest->getAttributeLabel('place_of_birth'))); ?>
+							<?php if($guest->getError('place_of_birth')){?><span class="help-inline"><?php echo $guest->getError('place_of_birth')?></span><?php }?>
 						</div>
 						
 						</div>

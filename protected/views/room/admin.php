@@ -46,6 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'hotel.hotel_name',
+		'hotel.type',
 		'hotel.name',
 		'is_master',
 		'date',

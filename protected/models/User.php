@@ -912,6 +912,14 @@ Roasted Pineapple Cheesecake');
 				//'Fort Lauderdale'=>'Fort Lauderdale',
 		);
 	}
+	public function getRoomType(){
+		$hotels = Hotel::model()->findAll();
+		$result = array();
+		foreach($hotels as $hotel){
+			$result[$hotel->id] = $hotel->type . ' - ' . $hotel->name; 
+		}
+		return $result;
+	}
 	public function getHotelTypeOptions(){
 		return CHtml::listData(Hotel::model()->findAllBySql('select distinct(type) as type from hotels') , 'type','type');
 		/**
@@ -960,15 +968,19 @@ Roasted Pineapple Cheesecake');
 		*/
 	}
 	public function getMasterBlockRoom(){
-		$rooms = Room::model()->with('hotel')->findAll('is_master = 1',array('order'=>'hotel_id asc,date asc'));
+		$rooms = Room::model()->with('hotel')->findAll('t.is_master = 1',array('order'=>'hotel_id asc,date asc'));
 		$block = array();
 		foreach($rooms as $room){
 			$block[$room->hotel->name][$room->date] = $room->number;
 		}
 		return $block;
 	}
-	public function getBlockRoom(){
-		$rooms = Room::model()->with('hotel')->findAll(array('order'=>'hotel_id asc,date asc'));
+	public function getBlockRoom($hotel){
+		$criteria = new CDbCriteria();
+		$criteria->condition = "hotel.hotel_name = :hotel_name";
+		$criteria->order = 'hotel_id asc,date asc';
+		$criteria->params = array(':hotel_name'=>$hotel);
+		$rooms = Room::model()->with('hotel')->findAll($criteria);
 		$block = array();
 		foreach($rooms as $room){
 			$block[$room->hotel->name][$room->date] = $room->number;
@@ -1076,8 +1088,12 @@ Roasted Pineapple Cheesecake');
 		return $block;
 	}
 	
-	public function getAttritonRates(){
-		return CHtml::listData(Hotel::model()->findAll(),'name','attriton_rate');
+	public function getAttritonRates($hotel){
+		$criteria = new CDbCriteria();
+		$criteria->condition = "hotel_name = :hotel_name";
+		$criteria->params = array(':hotel_name'=>$hotel);
+		$hotels = Hotel::model()->findAll($criteria);
+		return CHtml::listData($hotels,'name','attriton_rate');
 		/**
 		return array(
 				'Presidential Suite'=>'359.00',
@@ -1093,9 +1109,12 @@ Roasted Pineapple Cheesecake');
 				);
 				*/
 	}
-	public function getSellRates(){
-		
-		return CHtml::listData(Hotel::model()->findAll(),'name','sell_rate');
+	public function getSellRates($hotel){
+		$criteria = new CDbCriteria();
+		$criteria->condition = "hotel_name = :hotel_name";
+		$criteria->params = array(':hotel_name'=>$hotel);
+		$hotels = Hotel::model()->findAll($criteria);
+		return CHtml::listData($hotels,'name','sell_rate');
 		/**
 		return array(
 				'Presidential Suite'=>'462.95',

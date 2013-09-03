@@ -2,8 +2,8 @@
 	<div class="container top" >
 		<div class="row" style="color:#fff">
 			<div class="span6"><h1></h1></div>
-			<div class="span6" style="min-height:300px;">
-				<p style="color:#fff;font-size:24px;line-height:30px;">
+			<div class="span6" id="bgbox" style="min-height:300px;">
+				<p style="color:#fff;font-size:24px;line-height:30px;margin:10px;">
 				<br/>
 				Dear <?php echo $user->first_name;?>:
 				<br/><br/>
@@ -28,8 +28,10 @@
 				<span style="color:#fff">Winners Circle Events Leadership Team</span>
 				<?php }?>
 				</p>
+			</div>
 				
 		</div>
+		
 		<div class="row">
 			<div class="span12">
 			<br/><br/><br/><br/>
@@ -37,7 +39,6 @@
 			</div>
 		</div>
 		
-	</div>
 	</div>
 	
 	</div>

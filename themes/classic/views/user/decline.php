@@ -5,7 +5,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 		<div class="row" style="color:#fff">
-			<div class="span6 offset6" id="bgbox" style="min-height:300px;">
+			<div class="span6" id="bgbox" style="min-height:300px;">
 				<div class="row-fluid">
 					<div class="span12" style="margin:10px">
 						<p style="color:#fff;font-size:20px;line-height:24px;">

@@ -1,7 +1,6 @@
 <div class="jumbotron subhead" style="min-height:440px;min-width:400px;background:url(<?php echo Yii::app()->request->baseUrl;?>/img/bg2.jpg) no-repeat bottom;">
 	<div class="container top" >
 		<div class="row" style="color:#fff">
-			<div class="span6"><h1></h1></div>
 			<div class="span6" id="bgbox" style="min-height:300px;">
 				<p style="color:#fff;font-size:24px;line-height:30px;margin:10px;">
 				<br/>

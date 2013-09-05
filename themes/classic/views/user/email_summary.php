@@ -132,7 +132,7 @@
 						<?php 
 							$total = 9;
 							$fill = 0;
-							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,need_visa,visa_letter');
+							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth');
 							foreach($travelAttributes as $attribute){
 								if(!empty($model->$attribute))
 									$fill++;
@@ -159,7 +159,7 @@
 						<?php 
 							$total = 9;
 							$fill = 0;
-							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,need_visa,visa_letter');
+							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth');
 							foreach($travelAttributes as $attribute){
 								if(!empty($guest->$attribute))
 									$fill++;

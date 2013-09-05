@@ -28,7 +28,7 @@
 					<?php if($model->type=="Operating Committee"){?>
 					The cost of your hotel room, tax and incidentals will be covered for the duration of the event.
 					<?php }else{?>
-					The cost of your hotel room and tax will be covered by Gartner based on an arrival date of <?php echo $minDate;?> and departure date of <?php echo $maxDate?>.  If you require additional accommodation outside of these nights, they are subject to availability and you will be responsible for paying for these yourself.  Your personal credit card details will be requested for any additional nights at your assigned hotel.
+					The cost of your hotel room and tax will be covered by Gartner based on an arrival date of <?php echo $minDate;?> and departure date of <?php echo $maxDate?>.  If you require additional accommodation outside of these nights, they are subject to availability and you will be responsible for paying for these yourself.  Your personal credit card details are requested for any additional nights at your assigned hotel and for any incidentals incurred for the duration of your stay.
 					<?php }?>
 				</p>
 			</div>

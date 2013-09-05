@@ -1,7 +1,6 @@
 <div class="jumbotron subhead bgbox" style="min-height:440px;min-width:400px;background:url(<?php echo Yii::app()->request->baseUrl;?>/img/bg2.jpg) no-repeat top;">
 	<div class="container top" >
 		<div class="row" style="color:#fff">
-			<div class="span6"><h1></h1></div>
 			<div class="span6" id="bgbox" style="min-height:300px;">
 				<div class="row-fluid">
 					<div class="span12">

@@ -26,9 +26,7 @@
 				<div class="span6">
 				<legend><b>Winner Team Dinner</b></legend>
 					<div class="control-group">
-						<b>On Thursday April 18, 2013 you are invited to a team dinner.</b><br/>
-						<b>To help us with the organization of this please indicate your menu choice below:</b><br/>
-						Please <?php echo CHtml::link('click here',array('user/teamdinnermenu'),array('target'=>'_blank'));?> for a sample menu
+						<b>To help us with the organisation for the Team Dinner, please indicate your menu choice below.  <?php echo CHtml::link('Click here',array('user/teamdinnermenu'),array('target'=>'_blank'));?> for a sample menu.   Further details regarding the Team Dinner will be emailed to you at a later date.</b><br/>
 					</div>
 					<div class="control-group <?php if($model->getError('team_dinner_menu')){ echo 'error';}?>">
 						<label class="" for="User_team_dinner_menu">
@@ -39,9 +37,7 @@
 					</div>
 					<legend><b>Winner Gala Dinner</b></legend>
 					<div class="control-group" style="min-height:80px;">
-						<b>On Saturday April 20, 2013 you are invited to a gala dinner.</b><br/>
-						<b>To help us with the organization of this please indicate your menu choice below:</b><br/>
-						Please <?php echo CHtml::link('click here',array('user/galadinnermenu'),array('target'=>'_blank'));?> for a sample menu
+						<b>To help us with the organisation for the Gala Dinner, please indicate your menu choice below.  <?php echo CHtml::link('Click here',array('user/galadinnermenu'),array('target'=>'_blank'));?> for a sample menu.  Further details regarding the Gala Dinner will be emailed to you at a later date.</b><br/>
 					</div>
 					
 					<div class="control-group <?php if($model->getError('gala_dinner_menu')){ echo 'error';}?>" style="min-height:80px;">

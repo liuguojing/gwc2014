@@ -368,7 +368,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			dateFormat: 'M/dd/yy',
 			onClose: function(dateText, inst) {
 				try{
-					$( "#User_ga_card_issue_date" ).datepicker( "option", "minDate",$( "#User_ga_card_expiration_date" ).val());;
+					$( "#User_ga_card_issue_date" ).datepicker( "option", "maxDate",$( "#User_ga_card_expiration_date" ).val());;
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_card_expiration_date" ).datepicker("getDate"))!=dateText){
 						$( "#User_ga_card_expiration_date" ).val("");
 						alert("Please choose date from calendar.");
@@ -385,7 +385,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			dateFormat: 'M/dd/yy',
 			onClose: function(dateText, inst) {
 				try{
-					$( "#User_ga_card_expiration_date" ).datepicker( "option", "maxDate",$( "#User_ga_card_issue_date" ).val());;
+					$( "#User_ga_card_expiration_date" ).datepicker( "option", "minDate",$( "#User_ga_card_issue_date" ).val());;
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_card_issue_date" ).datepicker("getDate"))!=dateText){
 						$( "#User_ga_card_issue_date" ).val("");
 						alert("Please choose date from calendar.");
@@ -402,7 +402,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 			dateFormat: 'M/dd/yy',
 			onClose: function(dateText, inst) {
 				try{
-					$( "#Guest_ga_card_issue_date" ).datepicker( "option", "minDate",$( "#Guest_ga_card_expiration_date" ).val());;
+					$( "#Guest_ga_card_issue_date" ).datepicker( "option", "maxDate",$( "#Guest_ga_card_expiration_date" ).val());;
 					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_ga_card_expiration_date" ).datepicker("getDate"))!=dateText){
 						$( "#Guest_ga_card_expiration_date" ).val("");
 						alert("Please choose date from calendar.");

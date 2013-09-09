@@ -7,7 +7,7 @@
 			</p>
 		</div>
 	</div>
-	<?php if(Yii::app()->user->name == 'client'|| in_array(Yii::app()->user->name ,array( 'YYO' ,'Dickie','Caroline'))){?>
+	<?php if(Yii::app()->user->name == 'client'|| in_array(Yii::app()->user->name ,array( 'YYO' ,'Dickie','Caroline', 'Tony'))){?>
 	<div class="row">
 		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/registation" class="btn btn-large btn-primary" ><i class="icon-th icon-white"></i>Registration Report</a><p>Summary of Registrants.</p></div>
 		<div class="span3"><a style="width:200px;background-color:#388cbb;background-image:-webkit-linear-gradient(top, #2aabe2, #388cbb);" href="<?php echo Yii::app()->request->baseUrl;?>/index.php/report/download" class="btn btn-large btn-primary"><i class="icon-user icon-white"></i> Full Download</a><p>This is Full Download</p></div>

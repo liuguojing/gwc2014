@@ -645,6 +645,7 @@ class UserController extends Controller
 		$model->status = 1;
 		$model->checkSave = false;
 		$model->created_at = new CDbExpression('NOW()');
+		$model->billing_instruction = User::model()->getBillingInstructionByType($model->type);
 		$model->save();
 		if($model->type=='Crew'||$model->type=='Gartner Crew'){
 			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';

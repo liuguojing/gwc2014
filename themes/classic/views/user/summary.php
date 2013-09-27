@@ -155,8 +155,11 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr><td><?php echo $model->getAttributeLabel('driving')?></td><td><?php echo CHtml::encode($model->driving)==0?'No':'Yes';?></td></tr>
+						<?php if($model->driving==0){?>
 						<?php foreach($travelAttributes as $attribute){?>
 							<tr><td><?php echo $model->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($model->$attribute);?></td></tr>
+						<?php }?>
 						<?php }?>
 					</tbody>
 				</table>

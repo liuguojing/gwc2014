@@ -25,9 +25,6 @@
 							<td>Brunei</td><td>Greece</td><td>Liechtenstein</td><td>Portugal</td><td>Spain</td><td></td>
 						</tr>
 						<tr>
-							<td>Australia</td><td>Finland</td><td>Italy</td><td>Netherlands</td><td>Slovakia</td><td></td>
-						</tr>
-						<tr>
 							<td>Czech Republic </td><td>Hungary</td><td>Lithuania</td><td>Republic of Malta</td><td>Sweden</td><td></td>
 						</tr>
 						<tr>

@@ -155,6 +155,7 @@ class User extends TrackStarActiveRecord
 			array('travel_ticket,coupon,guest_travel_ticket,guest_coupon','length','max'=>'1'),
 				
 			array('no_gala_dinner,travel_comment,travel_comment_status,dietary_commnet,billing_instruction,visa_status,permanent_home_address,place_of_birth','safe'),
+			array('credit_card_number', 'length', 'min'=>16,'on'=>'hotel'),
 		);
 	}
 	

@@ -6,7 +6,7 @@
 
 <p><b>Dear admin </b><br/></p>
 <p>Your username and password of Winner Circle 2013 is <?php echo $model->role;?> , <?php echo $model->password?>.<br/>
-click <?php echo CHtml::link('here','https://app.magictony-se.com/gwc2013/index.php/report/login')?> 
+click <?php echo CHtml::link('here','https://app.corporate-reg.com/gwc2013/index.php/report/login')?> 
  to login and change your password.
 </p>
 <br/>

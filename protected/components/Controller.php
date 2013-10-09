@@ -16,7 +16,7 @@ class Controller extends CController
 	public $menu=array();
 	
 	public $user;
-	public $domain = 'https://app.magictony-se.com/gwc2013/';
+	public $domain = 'https://app.corporate-reg.com/gwc2013/';
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}

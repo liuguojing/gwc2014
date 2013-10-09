@@ -46,10 +46,10 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=gwc',
+			'connectionString' => 'mysql:host=localhost;dbname=gwc2014',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'dev',
+			'password' => 'MagicTony1q2w3e4r',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(

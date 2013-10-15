@@ -129,7 +129,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 							</label>
 						</div>
 						<div class="control-group <?php if($model->getError('departure_date')||$model->getError('return_date')){ echo 'error';}?>">
-							<label class="input" for="User_departure_date">Departure Date: <span class="required">*</span>
+							<label class="input" for="User_departure_date">Arrival Date: <span class="required">*</span>
 							<?php echo $form->textField($model,'departure_date',array('placeholder'=>$model->getAttributeLabel('departure_date'),'readonly'=>'readonly')); ?></label>
 							<label class="input" for="User_return_date">Return Date: <span class="required">*</span>
 							<?php echo $form->textField($model,'return_date',array('placeholder'=>$model->getAttributeLabel('return_date'),'readonly'=>'readonly')); ?></label>
@@ -274,7 +274,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 							</label>
 						</div>
 						<div class="control-group <?php if($guest->getError('departure_date')||$guest->getError('return_date')){ echo 'error';}?>">
-							<label class="input" for="Guest_departure_date">Departure Date:<span class="required">*</span> 
+							<label class="input" for="Guest_departure_date">Arrival Date:<span class="required">*</span> 
 							<?php echo $form->textField($guest,'departure_date',array('placeholder'=>$guest->getAttributeLabel('departure_date'),'readonly'=>'readonly')); ?></label>
 							<label class="input" for="Guest_return_date">Return Date: <span class="required">*</span>
 							<?php echo $form->textField($guest,'return_date',array('placeholder'=>$guest->getAttributeLabel('return_date'),'readonly'=>'readonly')); ?></label>

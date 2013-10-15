@@ -8,7 +8,7 @@
 				<br/><br/>
 				<?php if($user->type=='Top Achievers'||$user->type=='Eagles'){?>
 				Thank you.  Your registration to Winners Circle is now finalized.  To view your Information Summary please <?php echo CHtml::link('click here',array('user/emailSummary','email'=>$user->email))?><br/>
-				If you have any questions regarding your registration please contact <a href="mailto:lauren.picart@gartner.com" >Lauren Picart</a>  in the Winners Circle Events Team.<br/><br/>
+				If you have any questions regarding your registration please contact <a href="mailto:zoe.venning-pridham@gartner.com">Zoe Venning-Pridham</a>  in the Winners Circle Events Team.<br/><br/>
 				<span style="color:#fff">See you in Sydney!<br/>
 				Winners Circle Events Team</span>
 				<?php }elseif($user->type=='Host GEN'||$user->type=='Host GVP'||$user->type=='Winners'){?>

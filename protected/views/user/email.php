@@ -3,13 +3,13 @@
 <td style="width:852px">
 <div style="width:852px;word-wrap: break-word;font-family:arial;">
 <img src="<?php echo $this->domain?>img/email_head.png" />
-<p><b>Dear <?php echo $model->first_name . ' ' . $model->last_name;?></b></p>
+<p><b>Dear <?php echo $model->first_name . ' ' . $model->last_name;?>,</b></p>
 <?php if($model->type=="Winners"){?>
-<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney</p>
+<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April, 10-14 2014.</p>
+<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April 10th-14th 2014.</p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday February, 15 2014. </b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
@@ -25,11 +25,11 @@
 To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this->domain;?>travel_policy.pdf">click here.</a></p>
 </p>
 <?php }elseif($model->type=="Host GEN"){?>
-<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney</p>
+<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April, 10-14 2014.</p>
+<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April 10th-14th 2014.</p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday February, 15 2014. </b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
@@ -45,11 +45,11 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this->domain;?>travel_policy.pdf">click here.</a></p>
 
 <?php }elseif($model->type=="Host GVP"){?>
-<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney</p>
+<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April, 10-14 2014.</p>
+<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April 10th-14th 2014.</p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday February, 15 2014. </b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
@@ -65,11 +65,11 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this->domain;?>travel_policy.pdf">click here.</a></p>
 
 <?php }elseif($model->type=="Top Achievers"){?>
-<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney</p>
+<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia.  As a Top Achiever you are invited to arrive on Wednesday April 9, 2014.  This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday April 10, 2014. </p>
+<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia.  As a Top Achiever you are invited to arrive on Wednesday, April 9th 2014.  This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday, April 10th 2014. </p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday February, 15 2014. </b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
@@ -86,9 +86,9 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this->domain;?>travel_policy.pdf">click here.</a></p>
 
 <?php }elseif($model->type=="Operating Committee"){?>
-<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate in Sydney, Australia.  As a member of the Operating Committee you are invited to arrive on Wednesday April 9, 2014.  This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday April 10, 2014.</p>
+<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate in Sydney, Australia.  As a member of the Operating Committee you are invited to arrive on Wednesday, April 9th 2014.  This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday, April 10th 2014.</p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration and housing requirements by clicking on the accept or decline options below by Friday February, 15 2014. </b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration and housing requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
 <p style="word-wrap:break-word;font-family:arial;">To book your travel to Winners Circle, please contact <a href="mailto:ax1gartnervip@aexp.com">Marisa Kazi</a> from American Express.</p>
 
@@ -100,11 +100,11 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this->domain;?>travel_policy.pdf">click here.</a></p>
 
 <?php }elseif($model->type=="Eagles"){?>
-<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney</p>
+<p style="word-wrap:break-word;font-family:arial;">Congratulations on qualifying for Winners Circle 2013 in Sydney.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia.  As an Eagle Winner you are invited to arrive on April 9 2014.  This will give you an extra day to explore Sydney. </p>
+<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate your hard work and success in Sydney, Australia.  As an Eagle Winner you are invited to arrive on April 9th 2014.  This will give you an extra day to explore Sydney. </p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday February, 15 2014. </b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process.</p>
 
@@ -126,7 +126,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
  
 <p style="word-wrap:break-word;font-family:arial;">Please can you register for the event and advise your details. Your travel arrangements should already be either in progress or completed.  </p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>All crew must be registered for Winners Circle. Please complete your details by clicking on the 'accept' option below no later than Friday 25 January 2014.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>All crew must be registered for Winners Circle. Please complete your details by clicking on the 'accept' option below no later than Friday, January 25th 2014.</b></p>
  
 <p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration or the event then please contact <a href="mailto:zoe.venning-pridham@gartner.com">Zoe Venning-Pridham</a>.</p>
  

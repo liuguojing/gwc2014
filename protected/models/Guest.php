@@ -103,7 +103,7 @@ class Guest extends TrackStarActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'User',
-			'first_name' => 'Guest First Name(s) ( this will appear on their badge)',
+			'first_name' => 'Guest First Name(s)',
 			'last_name' => 'Guest Last Name(s)',
 			'relationship' => 'Relationship',
 			'telephone_number' => 'Telephone Number',

@@ -11,7 +11,7 @@
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">Within the next 48 hours you will receive an e-mail from the Tours and Activities company, providing you with the website link and your username and password.</P>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any <b>accommodation</b> or <b>registration</b> queries please email: <a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a> </p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any <b>travel</b> related queries please email: <a href="mailto:winnerscircletravel@aexp.com">winnerscircletravel@aexp.com</a></p>
-			<p style="width:852px;font-family:arial;word-wrap: break-word;">For all other queries please contact <a href="mailto:lauren.picart@gartner.com">Lauren Picart</a> </p>
+			<p style="width:852px;font-family:arial;word-wrap: break-word;">For all other queries please contact <a href="mailto:zoe.venning-pridham@gartner.com">zoe.venning-pridham@gartner.com</a> </p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">We look forward to seeing you in Sydney!</p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;margin-top:24px;">Winners Circle Events Team</P>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;margin-top:24px;">To see the agenda and learn more about the event, please <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">click here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
@@ -40,7 +40,7 @@
 			
 			<?php }elseif($model->type == 'Crew' || $model->type == 'Gartner Crew'){?>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;"><b>Thank you for registering for Winners Circle 2013 in Sydney.</b></p>
-			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any Accommodation or Registration queries please email <a href="mailto:charlene.johnson-crooks@gartner.com">Charlene Johnson-Crooks</a></p>
+			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any Accommodation or Registration queries please email <a href="mailto:zoe.venning-pridham@gartner.com">zoe.venning-pridham@gartner.com</a></p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">We look forward to seeing you in Sydney!<br/></p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;margin-top:24px;">Winners Circle Events Team
 			<p style="margin-top:24px;width:852px;font-family:arial;word-wrap: break-word;">To view your Information Summary please <?php echo CHtml::link('click here',Yii::app()->request->hostInfo.Yii::app()->request->baseUrl.'/index.php/user/emailSummary?email='.$model->email)?>. </p>

@@ -144,6 +144,7 @@ class User extends TrackStarActiveRecord
 			array('team_dinner','teamDinnerRequired','on'=>'winner'),
 			array('read_policy','required','on'=>'travel','message'=>'You need to agree to the Winners Circle travel policy'),
 			array('read_policy','required','on'=>'driving','message'=>'You need to agree to the Winners Circle travel policy'),
+			array('read_policy','required','on'=>'travel_visa','message'=>'You need to agree to the Winners Circle travel policy'),
 			array('room_type,hotel_arrival_date,hotel_departure_date,credit_card_number,credit_card_expiration_date,cardholders_name,credit_card_type,cardholders_address,csv_number','required','on'=>'hotel'),
 			array('room_type','required','on'=>'ochotel'),
 			array('team_dinner_menu,gala_dinner_menu','required','on'=>'tours'),
@@ -202,7 +203,7 @@ class User extends TrackStarActiveRecord
 		return array(
 			'id' => 'ID',
 			'status' => 'Status',
-			'declien_reason' => 'Declien Reason',
+			'declien_reason' => 'Decline Reason',
 			'first_name' => 'First Name',
 			'last_name' => 'Last Name',
 			'preferred_name'=>'Preferred First name as will appear on your badge',
@@ -219,7 +220,7 @@ class User extends TrackStarActiveRecord
 			'special_requests' => 'Special Requests (access / allergies)',
 			'nationality' => 'Nationality',
 			'has_guest' => 'Has Guest',
-			'departure_date' => 'Departure Date',
+			'departure_date' => 'Arrival Date',
 			'return_date' => 'Return Date',
 			'airport_name' => 'Preferred Departure Airport / City',
 			'airport_code' => 'Closest Airport Code',
@@ -259,7 +260,7 @@ class User extends TrackStarActiveRecord
 				'other'=>'Is there any other information you need to communicate',
 				'visa_letter'=>'Would you like the registration team to provide you with a visa invitation letter?',
 				'checked'=>'Have you checked if you need a visa?',
-				'need_visa'=>'Do you need a Visa?',
+				'need_visa'=>'Most travellers require a Visa to enter Australia.  Check here to see if you qualify for ETA visa program.',
 				'credit_card_type'=>'Type of Credit Card',
 				'requirements'=>'Have you any special requirements?',
 				'cardholders_address'=>'Cardholders Address, City, State, Country, Postal Code',
@@ -548,7 +549,7 @@ class User extends TrackStarActiveRecord
 				'Visa'=>'Visa',
 				'Mastercard'=>'Mastercard',
 				'American Express'=>'American Express',
-				'Discover'=>'Discover',
+				'Diners Club'=>'Diners Club',
 				'JCB	Carte Blanche'=>'JCB	Carte Blanche',
 				);
 	}

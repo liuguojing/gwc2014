@@ -1,6 +1,6 @@
 <?php 
 if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee'))){
-	$minDate = 'Apr/10/2014';
+	$minDate = 'Apr/09/2014';
 	$maxDate = "Apr/14/2014";
 }else{
 	$minDate = 'Apr/10/2014';

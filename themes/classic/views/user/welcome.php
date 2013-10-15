@@ -12,9 +12,9 @@
 						<?php if($user->type=='Operating Committee'){?>
 						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:Amy.repik@gartner.com" style="color:#fff">Amy.repik@gartner.com</a>
 						<?php }elseif($user->type=='Gartner Crew'){?>
-						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:Charlene.johnson-crooks@gartner.com" style="color:#fff">Charlene.johnson-crooks@gartner.com</a>
+						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:zoe.venning-pridham@gartner.com" style="color:#fff">zoe.venning-pridham@gartner.com</a>
 						<?php }elseif($user->type=='Crew'){?>
-						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:Charlene.johnson-crooks@gartner.com" style="color:#fff">Charlene.johnson-crooks@gartner.com</a>
+						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:zoe.venning-pridham@gartner.com" style="color:#fff">zoe.venning-pridham@gartner.com</a>
 						<?php }else{?>
 						<p style="color:#fff;font-size:18px;line-height:20px;margin:10px;">
 						Congratulations on qualifying for Winners Circle 2013 in Sydney<br><br>

@@ -1,7 +1,7 @@
 <div class="container top">
 		<div class="row">
 			<div class="span12">
-				<p class="alert alert-info">Most citizens will require a VISA or ESTA for entry into Sydney. <br/>
+				<p class="alert alert-info">Most citizens will require a VISA or ETA for entry into Sydney. <br/>
 				  For  international travelers entering Australia to gain entry or transit through to  Sydney or with a deviation you must apply online in advance of travel for your  visa, using the following website <a href="https://www.eta.immi.gov.au/ETA/etas.jsp">https://www.eta.immi.gov.au/ETA/etas.jsp</a> <br/>
 				 Anyone holding a passport from one of the countries listed below can apply for an ETA to Australia. </p>
 		  </div>

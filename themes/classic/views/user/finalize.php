@@ -10,7 +10,7 @@
 				<p>Within the next 48 hours you will receive an e-mail from the Tours and Activities company, providing you with the website link and your username and password.</P>
 				<p>For any <b>accommodation</b> or <b>registration</b> queries please email: <a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a> </p>
 				<p>For any <b>travel</b> related queries please email: <a href="mailto:winnerscircletravel@aexp.com">winnerscircletravel@aexp.com</a></p>
-				<p>For all other queries please contact <a href="mailto:lauren.picart@gartner.com">Lauren Picart</a> </p>
+				<p>For all other queries please contact <a href="mailto:zoe.venning-pridham@gartner.com">zoe.venning-pridham@gartner.com</a> </p>
 				<p>We look forward to seeing you in Sydney!</p>
 				<p style="margin-top:24px;">Winners Circle Events Team</P>
 				<p style="margin-top:24px;">To see the agenda and learn more about the event, please <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">click here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
@@ -36,7 +36,7 @@
 				<p>To view your Information Summary please <?php echo CHtml::link('click here',Yii::app()->request->hostInfo.Yii::app()->request->baseUrl.'/index.php/user/emailSummary?email='.$model->email)?>. </p>
 				
 				<?php }elseif($model->type == 'Crew' || $model->type == 'Gartner Crew'){?>
-				<p>For any Accommodation or Registration queries please email <a href="mailto:charlene.johnson-crooks@gartner.com">Charlene Johnson-Crooks</a> </p>
+				<p>For any Accommodation or Registration queries please email <a href="mailto:zoe.venning-pridham@gartner.com">zoe.venning-pridham@gartner.com</a> </p>
 				<p>We look forward to seeing you in Sydney!</p>
 				<p>Winners Circle Events Team
 				<?php }?>

@@ -75,7 +75,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email within 48 hours from our tours and activities company outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly.   </p>  
 
-<p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:zoe.venning-pridham@gartner.com">Zoe Venning-Pridham</a> in the Winners Circle Events Team. </p>
+<p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> in the Winners Circle Events Team. </p>
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
 <p style="word-wrap:break-word;font-family:arial;">Thank you, </p>
@@ -110,7 +110,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email within 48 hours from our tours and activities company outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly.  </p> 
 
-<p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:zoe.venning-pridham@gartner.com">Zoe Venning-Pridham</a> in the Winners Circle Events Team. </p>
+<p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> in the Winners Circle Events Team. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 

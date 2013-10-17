@@ -8,10 +8,10 @@
 			<p style="width:852px;font-family:arial;word-wrap: break-word;"><b>Thank you for registering for Winners Circle 2013 in Sydney.</b></p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">Your request for travel has been sent to the dedicated Winners Circle American Express team.</P>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">American Express will send a receipt of request within 24 hours. A proposed itinerary will be e-mailed within 5 working days. All correspondence will be managed within the GMT time zone. Normal office working hours are between 9am and 5pm GMT</P>
-			<p style="width:852px;font-family:arial;word-wrap: break-word;">Within the next 48 hours you will receive an e-mail from the Tours and Activities company, providing you with the website link and your username and password.</P>
+			<p style="width:852px;font-family:arial;word-wrap: break-word;"><b>You are now able to peruse and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Tours please contact XXXXXX.</b></P>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any <b>accommodation</b> or <b>registration</b> queries please email: <a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a> </p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any <b>travel</b> related queries please email: <a href="mailto:winnerscircletravel@aexp.com">winnerscircletravel@aexp.com</a></p>
-			<p style="width:852px;font-family:arial;word-wrap: break-word;">For all other queries please contact <a href="mailto:zoe.venning-pridham@gartner.com">zoe.venning-pridham@gartner.com</a> </p>
+			<p style="width:852px;font-family:arial;word-wrap: break-word;">For all other queries please contact <a href="mailto:cindy.rosado@gartner.com">cindy.rosado@gartner.com</a> </p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">We look forward to seeing you in Sydney!</p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;margin-top:24px;">Winners Circle Events Team</P>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;margin-top:24px;">To see the agenda and learn more about the event, please <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">click here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
@@ -21,7 +21,7 @@
 			<p style="width:852px;font-family:arial;word-wrap: break-word;"><b>Thank you for registering for Winners Circle 2013 in Sydney.</b></p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">Your request for travel has been sent to the dedicated Winners Circle American Express team.</P>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">American Express will send a receipt of request within 24 hours. A proposed itinerary will be e-mailed within 5 working days. All correspondence will be managed within the GMT time zone. Normal office working hours are between 9am and 5pm GMT</P>
-			<p style="width:852px;font-family:arial;word-wrap: break-word;">Within the next 48 hours you will receive an e-mail from the Tours and Activities company, providing you with the website link and your username and password.</P>
+			<p style="width:852px;font-family:arial;word-wrap: break-word;"><b>You are now able to peruse and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Tours please contact XXXXXX.</b></P>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any <b>accommodation</b> or <b>registration</b> queries please email: <a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a> </p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">For any <b>travel</b> related queries please email: <a href="mailto:winnerscircletravel@aexp.com">winnerscircletravel@aexp.com</a></p>
 			<p style="width:852px;font-family:arial;word-wrap: break-word;">We look forward to seeing you in Sydney!</p>

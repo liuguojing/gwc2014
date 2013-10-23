@@ -26,7 +26,7 @@
 				<div class="span6">
 				<legend><b>Winner Team Dinner</b></legend>
 					<div class="control-group">
-						<b>To help us with the organisation for the Team Dinner, please indicate your menu choice below.  <?php echo CHtml::link('Click here',array('user/teamdinnermenu'),array('target'=>'_blank'));?> for a sample menu.   Further details regarding the Team Dinner will be emailed to you at a later date.</b><br/>
+						<b>To help us with the organisation for the Team Dinner.Further details regarding the Team Dinner will be emailed to you at a later date.</b><br/>
 					</div>
 					<div class="control-group <?php if($model->getError('team_dinner_menu')){ echo 'error';}?>">
 						<label class="" for="User_team_dinner_menu">
@@ -37,7 +37,7 @@
 					</div>
 					<legend><b>Winner Gala Dinner</b></legend>
 					<div class="control-group" style="min-height:80px;">
-						<b>To help us with the organisation for the Gala Dinner, please indicate your menu choice below.  <?php echo CHtml::link('Click here',array('user/galadinnermenu'),array('target'=>'_blank'));?> for a sample menu.  Further details regarding the Gala Dinner will be emailed to you at a later date.</b><br/>
+						<b>To help us with the organisation for the Gala Dinner.Further details regarding the Gala Dinner will be emailed to you at a later date.</b>
 					</div>
 					
 					<div class="control-group <?php if($model->getError('gala_dinner_menu')){ echo 'error';}?>" style="min-height:80px;">
@@ -55,7 +55,6 @@
 					<div class="control-group">
 					<b></b><br/>
 					<b></b><br/>
-						Please <?php echo CHtml::link('click here',array('user/teamdinnermenu'),array('target'=>'_blank'));?> for a sample menu
 					</div>
 					<div class="control-group <?php if($guest->getError('team_dinner_menu')){ echo 'error';}?>" style="min-height:80px;">
 						<label class="" for="Guest_team_dinner_menu">
@@ -66,7 +65,6 @@
 					</div>
 					<legend><b>Guest Gala Dinner</b></legend>
 					<div class="control-group" style="min-height:80px;">
-					Please <?php echo CHtml::link('click here',array('user/galadinnermenu'),array('target'=>'_blank'));?> for a sample menu
 					</div>
 					<div class="control-group <?php if($guest->getError('gala_dinner_menu')){ echo 'error';}?>">
 						<label class="input" for="">

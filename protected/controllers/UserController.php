@@ -646,13 +646,16 @@ class UserController extends Controller
 		$model->checkSave = false;
 		$model->created_at = new CDbExpression('NOW()');
 		$model->billing_instruction = User::model()->getBillingInstructionByType($model->type);
-		$model->save();
+		if($model->save())
+		{
+			Yii::app()->user->logout();
+		}
 		if($model->type=='Crew'||$model->type=='Gartner Crew'){
 			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';
 		}else{
 			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';
 		}
-		$this->sendMail($model->email,$title,$model,'finalize_mail');
+		//$this->sendMail($model->email,$title,$model,'finalize_mail');
 		$this->render('finalize',array('model'=>$model));
 	}
 

@@ -129,7 +129,7 @@ class User extends TrackStarActiveRecord
 			// The following rule is used by search().
 			
             // Please remove those attributes that should not be searched.
-            array('id, status, declien_reason, first_name, last_name, office_location, department, telephone_number_desk, telephone_number_cell, email, password, date_of_birth, dietary_requirements, passport, special_requests, nationality, has_guest, departure_date, return_date, airport_name, airport_code, travel_policy, visa_policy, hotel_arrival_date, hotel_departure_date, hotel_venue, gala_dinner, other_activity, created_at, created_by, updated_at, updated_by, daytime_phone, evening_phone, work_address1, work_address2, work_city, work_state, work_zip_code, work_country, managers_name, emergency_contact_name, emergency_contact_tel_number, relationship_with_the_emergency_contact, ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date, ga_redress_number, previous_winners, times, years, destination_city, preferred_seat_request, preferred_airline_frequent_flyer_number, other, need_visa, visa_letter, checked, room_type, room_requirements, credit_card_number, credit_card_expiration_date, cardholders_name, credit_card_type, team_dinner, team_dinner_menu, team_dinner_dietary, gala_dinner_menu, gala_dinner_dietary, type, gender, country, preferred_name, requirements, cardholders_address, csv_number, crew_diet_requirements, crew_other_info, crew_menu_choice, crew_unifrom_size, comment, gala_dinner_vip, dietary_comment, frequent_flyer_number, preferred_airline, hotel, driving, fi_status, fi_adate, fi_adate1, fi_aflight1, fi_afrom1, fi_ato1, fi_adep1, fi_aarr1, fi_adate2, fi_aflight2, fi_afrom2, fi_ato2, fi_adep2, fi_aarr2, fi_adate3, fi_aflight3, fi_afrom3, fi_ato3, fi_adep3, fi_aarr3, fi_ddate, fi_ddate1, fi_dflight1, fi_dfrom1, fi_dto1, fi_ddep1, fi_darr1, fi_ddate2, fi_dflight2, fi_dfrom2, fi_dto2, fi_ddep2, fi_darr2, fi_ddate3, fi_dflight3, fi_dfrom3, fi_dto3, fi_ddep3, fi_darr3, table_no, room_bigtype, hotel_type, hotel_confirmation_number, has_checkin, headset, has_gift, has_ipad, amount, checkin_at, gift_at, ipad_at, middel_name, middle_name, job_title, cost_centre_number, region, region_comment, ga_middlename, departure_city, travel_region, travel_ticket, coupon, title, title_comment, guest_travel_ticket, guest_coupon', 'safe', 'on'=>'search'),
+            array('id, status, declien_reason, first_name, last_name, office_location, department, telephone_number_desk, telephone_number_cell, email, password, date_of_birth, dietary_requirements, passport, special_requests, nationality, has_guest, departure_date, return_date, airport_name, airport_code, travel_policy, visa_policy, hotel_arrival_date, hotel_departure_date, hotel_venue, gala_dinner, other_activity, created_at, created_by, updated_at, updated_by, daytime_phone, evening_phone, work_address1, work_address2, work_city, work_state, work_zip_code, work_country, managers_name, emergency_contact_name, emergency_contact_tel_number, relationship_with_the_emergency_contact, ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date, ga_redress_number, previous_winners, times, years, destination_city, preferred_seat_request, preferred_airline_frequent_flyer_number, other, need_visa, visa_letter, checked, room_type, room_requirements, credit_card_number, credit_card_expiration_date, cardholders_name, credit_card_type, team_dinner, team_dinner_menu, team_dinner_dietary, gala_dinner_menu, gala_dinner_dietary, type, gender, country, preferred_name, requirements, cardholders_address, csv_number, crew_diet_requirements, crew_other_info, crew_menu_choice, crew_unifrom_size, comment, gala_dinner_vip, dietary_comment, frequent_flyer_number, preferred_airline, hotel,flight_price,employeeid,payrollnumber,driving,fi_status, fi_adate, fi_adate1, fi_aflight1, fi_afrom1, fi_ato1, fi_adep1, fi_aarr1, fi_adate2, fi_aflight2, fi_afrom2, fi_ato2, fi_adep2, fi_aarr2, fi_adate3, fi_aflight3, fi_afrom3, fi_ato3, fi_adep3, fi_aarr3, fi_ddate, fi_ddate1, fi_dflight1, fi_dfrom1, fi_dto1, fi_ddep1, fi_darr1, fi_ddate2, fi_dflight2, fi_dfrom2, fi_dto2, fi_ddep2, fi_darr2, fi_ddate3, fi_dflight3, fi_dfrom3, fi_dto3, fi_ddep3, fi_darr3, table_no, room_bigtype, hotel_type, hotel_confirmation_number, has_checkin, headset, has_gift, has_ipad, amount, checkin_at, gift_at, ipad_at, middel_name, middle_name, job_title, cost_centre_number, region, region_comment, ga_middlename, departure_city, travel_region, travel_ticket, coupon, title, title_comment, guest_travel_ticket, guest_coupon', 'safe', 'on'=>'search'),
 			array('ga_dateofbirth,preferred_name,daytime_phone,telephone_number_cell,work_address1,work_city,work_zip_code,work_country,
 					emergency_contact_name,emergency_contact_tel_number, relationship_with_the_emergency_contact,has_guest,relationship_with_the_emergency_contact','required',
 					'on'=>'winner'),		
@@ -142,6 +142,7 @@ class User extends TrackStarActiveRecord
 			array('years','crewRequired','on'=>'winner'),
 			array('times','crewRequiredPlus','on'=>'winner'),
 			array('team_dinner','teamDinnerRequired','on'=>'winner'),
+			array('crew_menu_choice,crew_unifrom_size','crewNewRequired','on'=>'winner'),
 			array('read_policy','required','on'=>'travel','message'=>'You need to agree to the Winners Circle travel policy'),
 			array('read_policy','required','on'=>'driving','message'=>'You need to agree to the Winners Circle travel policy'),
 			array('read_policy','required','on'=>'travel_visa','message'=>'You need to agree to the Winners Circle travel policy'),
@@ -167,6 +168,15 @@ class User extends TrackStarActiveRecord
 			}
 		}
 	}
+	
+	public function crewNewRequired($attribute,$params){
+		if($this->type=='Crew'||$this->type=="Gartner Crew"){
+			if(empty($this->$attribute)||$this->$attribute=='' || $this->$attribute==null ){
+				$this->addError($attribute, $attribute . ' cannot be blank.');
+			}
+		}
+	}
+	
 	public function crewRequiredPlus($attribute,$params){
 		if($this->type!='Crew' && $this->type!="Gartner Crew"){
 			if($this->$attribute=='' || $this->$attribute==null ){
@@ -316,7 +326,9 @@ class User extends TrackStarActiveRecord
 				'guest_coupon'=>'Guest Circle Lounge Voucher',
 				'guest_travel_ticket'=>'Guest Transport Ticket',
 				'has_ipad'=>'Sign status',
-				
+				'flight_price'=>'flight price',
+				'employeeid'=>'EmployeeID',
+				'payrollnumber'=>'payrollnumber',
 				'no_gala_dinner'=>'Winners Not Attending Gala Dinner',
 				
 		);
@@ -445,7 +457,44 @@ class User extends TrackStarActiveRecord
 				//2=>'I am undecided',
 				);
 	}
-	
+       public function getSexOptions(){
+		return array(
+				'Ladies'=>'Ladies',
+				'Mens'=>'Mens',
+				//2=>'I am undecided',
+				);
+	}
+    public function getLadiesOptions()
+    {
+    	return array(
+    	        ''=>'Please select',
+				'UK 8'=>'UK 8',
+				'UK 10'=>'UK 10',
+				'UK 12'=>'UK 12',
+				'UK 14'=>'UK 14',
+				'UK 16'=>'UK 16',
+				'UK 18'=>'UK 18',
+				'US 4'=>'US 4',
+				'US 6'=>'US 6',
+				'US 8'=>'US 8',
+				'US 10'=>'US 10',
+				'US 12'=>'US 12',
+				'US 14'=>'US 14',
+				);
+    }
+    
+    public function getMensOptions()
+    {
+    	return array(
+    	        ''=>'Please select',
+				'36'=>'36',
+				'38'=>'38',
+				'40'=>'40',
+				'42'=>'42',
+				'44'=>'44',
+				'46'=>'46',
+				);
+    }
 	public function getHasGuestText(){
 		$options = $this->getHasGuestOptions();
 		return isset($options[$this->has_guest])?$options[$this->has_guest]:'';

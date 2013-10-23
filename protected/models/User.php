@@ -460,7 +460,7 @@ class User extends TrackStarActiveRecord
        public function getSexOptions(){
 		return array(
 				'Ladies'=>'Ladies',
-				'Mens'=>'Mens',
+				'Mens'=>'Mens:	Chest Size (in inches)',
 				//2=>'I am undecided',
 				);
 	}

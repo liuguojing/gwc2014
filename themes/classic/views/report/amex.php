@@ -1,7 +1,7 @@
 <table>
 <tr>
 	<td colspan=45 style="text-align:center;background-color:#999999">THESE COLUMNS ARE TAKEN FROM THE REGISTRATION SYSTEM (can include any field that is captured)</td>
-	<td colspan=39 style="text-align:center;background-color:#999999">THESE COLUMNS ARE BY AMEX TRAVEL</td>
+	<td colspan=40 style="text-align:center;background-color:#999999">THESE COLUMNS ARE BY AMEX TRAVEL</td>
 <tr>
 	<td>Participant Type</td>
 	<td>Reg ID</td>

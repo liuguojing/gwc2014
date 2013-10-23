@@ -1,7 +1,7 @@
 <table>
 <tr>
 	<td colspan=45 style="text-align:center;background-color:#999999">THESE COLUMNS ARE TAKEN FROM THE REGISTRATION SYSTEM (can include any field that is captured)</td>
-	<td colspan=39 style="text-align:center;background-color:#999999">THESE COLUMNS ARE BY AMEX TRAVEL</td>
+	<td colspan=40 style="text-align:center;background-color:#999999">THESE COLUMNS ARE BY AMEX TRAVEL</td>
 <tr>
 	<td>Participant Type</td>
 	<td>Reg ID</td>
@@ -89,6 +89,7 @@
 	<td style="background-color:#99ccff">TO</td>
 	<td style="background-color:#99ccff">DEP</td>
 	<td style="background-color:#99ccff">ARR</td>
+	<td style="background-color:#99ccff">Flight price</td>
 </tr>
 
 <?php foreach($users as $user){?>
@@ -177,6 +178,7 @@
 	<td><?php echo $user->fi_dto3?></td>
 	<td><?php echo $user->fi_ddep3?></td>
 	<td><?php echo $user->fi_darr3?></td>
+	<td><?php echo $user->flight_price?></td>
 </tr>
 <?php if($user->guest && $user->has_guest == 1){?>
 <tr>
@@ -268,6 +270,7 @@
 	<td><?php echo $user->guest->fi_dto3?></td>
 	<td><?php echo $user->guest->fi_ddep3?></td>
 	<td><?php echo $user->guest->fi_darr3?></td>
+	<td></td>
 </tr>
 <?php }}?>
 

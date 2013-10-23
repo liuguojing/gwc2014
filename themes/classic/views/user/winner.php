@@ -183,6 +183,32 @@
 					    <?php echo $form->dropDownList($model,'team_dinner_dietary',$model->getDietaryOptions(),array('onchange'=>'user_dietary(this.value)'))?>
 					</div>
 				</div>
+				
+				
+				
+				<div class="control-group <?php if($model->getError('crew_unifrom_size')){ echo 'error';}?>" <?php if($model->type!='Gartner Crew'&&$model->type!='Crew'){echo ' hidden';}?> ">
+					<label class="control-label" for="User_crew_unifrom_size">
+					    Please advise your shirt size for your uniform:<span class="required">*</span>
+					    
+					</label>
+					<div class="controls">
+			            <?php echo $form->radioButtonList($model,'crew_menu_choice',$model->getSexOptions(),array('onchange'=>'user_sex(this.value)','separator' => '', 'template' => '<label class="checkbox">{input} {label} </label>', 'style'=>'float:left;margin-left:-20px;', 'labelOptions' => array('style' => 'display:inline;margin-bottom:5px'))); ?>
+		            </div>
+		         
+					<div class="controls" id="user_ladies" <?php if($model->crew_menu_choice=="Mens"){echo 'hidden';}?>>
+					    <?php echo $form->dropDownList($model,'crew_unifrom_size',$model->getLadiesOptions(),array('id'=>'La1'));?>
+					    <?php if($model->getError('crew_unifrom_size')){?><span class="help-inline"><?php echo $model->getError('crew_unifrom_size')?></span><?php }?>
+					</div>
+					
+					<div class="controls" id="user_mens" <?php if($model->crew_menu_choice!='Mens'){echo 'hidden';}?>>
+					    <?php echo $form->dropDownList($model,'crew_unifrom_size',$model->getMensOptions(),array('id'=>'La2'));?>
+					    <?php if($model->getError('crew_unifrom_size')){?><span class="help-inline"><?php echo $model->getError('crew_unifrom_size')?></span><?php }?>
+					</div>
+					
+				</div>
+				
+				
+				
 				<div class="control-group<?php echo $model->team_dinner_dietary=='Other'?'':' hide';?>" id="user_dietary_comment_div">
 					<label class="control-label" for="User_dietary_comment">
 					    Other Dietary Comment
@@ -305,8 +331,6 @@
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			maxDate: 'Apr/10/1993',
-			yearRange: '1912:1993',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_dateofbirth" ).datepicker("getDate"))!=dateText){
@@ -336,8 +360,6 @@
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			maxDate: 'Apr/10/1993',
-			yearRange: '1912:1993',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_ga_dateofbirth" ).datepicker("getDate"))!=dateText){
@@ -387,5 +409,24 @@
 			$('#User_dietary_comment').val('');
 			$('#user_dietary_comment_div').hide();
 		}
+	}
+	function user_sex(value)
+	{
+		 if(value=='Ladies')
+		 {
+			 $('#user_ladies').show();
+			 $("#La1").removeAttr("disabled", "disabled");
+			 $('#user_mens').hide();
+			 $("#La2").attr("disabled", "disabled");
+		 }
+		 else if(value=='Mens')
+		 {
+			 $('#user_mens').show();
+			 $("#La2").removeAttr("disabled", "disabled");
+			$('#user_ladies').hide();
+			$("#La1").attr("disabled", "disabled");
+			
+			
+		 }
 	}
 	</script>

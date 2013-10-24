@@ -331,7 +331,7 @@
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			yearRange: '-30:+30',
+			yearRange: 'c-30:c+30',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_dateofbirth" ).datepicker("getDate"))!=dateText){
@@ -361,7 +361,7 @@
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			yearRange: '-30:+30',
+			yearRange: 'c-30:c+30',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_ga_dateofbirth" ).datepicker("getDate"))!=dateText){

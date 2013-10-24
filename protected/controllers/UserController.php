@@ -666,7 +666,7 @@ class UserController extends Controller
 		}else{
 			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';
 		}
-		//$this->sendMail($model->email,$title,$model,'finalize_mail');
+		$this->sendMail($model->email,$title,$model,'finalize_mail');
 		$this->render('finalize',array('model'=>$model));
 	}
 

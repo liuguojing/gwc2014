@@ -1,3 +1,9 @@
+<style>
+#User_team_dinner_menu label{width:400px;} 
+#Guest_team_dinner_menu label{width:400px;} 
+.form-horizontal .control-label{width:440px;}
+.form-horizontal .controls {margin-left: 460px;}
+</style>
 <?php 
 	if($model->type == 'Gartner Crew'){
 		$title = 'Gartner Crew Information';
@@ -12,16 +18,30 @@
 	}else{
 		$title = 'Winner Information';
 	}?>
-<div class="container top">
-		<div class="row">
+<div class="row">
 			<div class="span12" style="text-align:center;">
 				<h1>Review your Information</h1>
 				<p class="alert alert-info" style="float:right;">‘Right click mouse’ for printing options</p>
 			</div>
+</div>
+
+<div class="row">
+<div class="span12">
+
+<div class="row">
+	<div class="span12">
+		<div class="btn-group" data-toggle="buttons-radio">
+		  <button type="button" class="btn btn-info active" onclick="showDiv('RI')">Registration Information</button>
+		  <button type="button" class="btn btn-info" onclick="showDiv('HI')">Hotel Information</button>
+		  <button type="button" class="btn btn-info" onclick="showDiv('TI')">Travel Information</button>
+		  <button type="button" class="btn btn-info" onclick="showDiv('TOI')">Tours Information</button>
 		</div>
-		<div class="row">
-			<div class="span12">
-				<table class="table table-bordered table-hover table-striped">
+	
+	</div>
+</div>
+<div class="row" id="RI" style="margin-top:0px;">
+	<div class="span12">
+		<table class="table table-bordered table-hover table-striped">
 					<caption>
 					<h2><?php echo $title?></h2>
 						<?php $winner_total = 30;
@@ -75,6 +95,13 @@
 						<?php }?>
 						<tr><td><?php echo $model->getAttributeLabel('team_dinner_dietary')?></td><td><?php echo CHtml::encode($model->team_dinner_dietary);?></td></tr>
 						<?php if($model->type!='Crew' && $model->type!='Gartner Crew'&& $model->type!='Operating Committee'){?>
+						<?php if($model->type=='Gartner Crew'||$model->type=='Crew'){?>
+						<tr><td>Uniform Choice</td><td><?php echo CHtml::encode($model->crew_menu_choice);?></td></tr>
+						<?php }?>
+						<?php if($model->type=='Gartner Crew'||$model->type=='Crew'){?>
+						<tr><td>Uniform Size</td><td><?php echo CHtml::encode($model->crew_unifrom_size);?></td></tr>
+						<?php }?>
+						
 						<tr><td><?php echo $model->getAttributeLabel('ga_passport')?></td><td><?php echo CHtml::encode($model->ga_passport);?></td></tr>
 						<tr><td><?php echo $model->getAttributeLabel('ga_dateofbirth')?></td><td><?php echo CHtml::encode($model->ga_dateofbirth);?></td></tr>
 						<tr><td><?php echo $model->getAttributeLabel('ga_firstname')?></td><td><?php echo CHtml::encode($model->ga_firstname);?></td></tr>
@@ -121,91 +148,6 @@
 					<tbody>
 						<?php foreach($guestAttributes as $attribute){?>
 							<tr><td><?php echo $guest->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($guest->$attribute);?></td></tr>
-						<?php }?>
-					</tbody>
-				</table>
-				<?php }?>
-				<?php if($model->type!='Operating Committee' && $model->type!='Crew' && $model->type!='Gartner Crew'){?>
-				<table class="table table-bordered table-hover table-striped">
-					<caption>
-					<h2><?php echo 'Travel Information'?></h2>
-						<?php 
-							$total = 9;
-							$fill = 0;
-							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth');
-							foreach($travelAttributes as $attribute){
-								if(!empty($model->$attribute))
-									$fill++;
-							}
-							$persent = Yii::app()->numberFormatter->format('#.##',100*$fill/$total);
-						?>
-					</caption>
-					<thead>
-						<tr>
-							<th>TITLE</th><th>INFO</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach($travelAttributes as $attribute){?>
-							<tr><td><?php echo $model->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($model->$attribute);?></td></tr>
-						<?php }?>
-					</tbody>
-				</table>
-				<?php }?>
-				<?php if($model->has_guest==1 && $model->type!='Operating Committee'){?>
-				<table class="table table-bordered table-hover table-striped">
-					<caption>
-					<h2><?php echo 'Guest Travel Information'?></h2>
-						<?php 
-							$total = 9;
-							$fill = 0;
-							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth');
-							foreach($travelAttributes as $attribute){
-								if(!empty($guest->$attribute))
-									$fill++;
-							}
-							$persent = Yii::app()->numberFormatter->format('#.##',100*$fill/$total);
-						?>
-					</caption>
-					<thead>
-						<tr>
-							<th>TITLE</th><th>INFO</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach($travelAttributes as $attribute){?>
-							<tr><td><?php echo $guest->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($guest->$attribute);?></td></tr>
-						<?php }?>
-					</tbody>
-				</table>
-				<?php }?>
-				<?php if($model->type!='Gartner Crew'&&$model->type!='Crew'){?>
-				<table class="table table-bordered table-hover table-striped">
-					<caption>
-					<h2><?php echo 'Hotel Information'?></h2>
-						<?php 
-							$total = 8;
-							$fill = 0;
-							if($model->type=='Operating Committee'){
-								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue');
-							}else{
-								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue,credit_card_number,credit_card_type,credit_card_expiration_date,cardholders_name');
-							}
-							foreach($attributes as $attribute){
-								if(!empty($model->$attribute))
-									$fill++;
-							}
-							$persent = Yii::app()->numberFormatter->format('#.##',100*$fill/$total);
-						?>
-					</caption>
-					<thead>
-						<tr>
-							<th>TITLE</th><th>INFO</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach($attributes as $attribute){?>
-							<tr><td><?php echo $model->getAttributeLabel($attribute)?></td><td><?php if($attribute=='credit_card_number'){$model->displayCreditCardNumber();}else{echo CHtml::encode($model->$attribute);}?></td></tr>
 						<?php }?>
 					</tbody>
 				</table>
@@ -265,9 +207,114 @@
 				</table>
 				<?php }?>
 				<?php }?>
-				</div>
-		</div>
-		<footer class="row">
-			<div class="span12">&nbsp;</div>
-		</footer>
+				
+				
 	</div>
+</div>
+<div class="row hide" id="HI">
+	<div class="span12">
+				<?php if($model->type!='Gartner Crew'&&$model->type!='Crew'){?>
+				<table class="table table-bordered table-hover table-striped">
+					<caption>
+					<h2><?php echo 'Hotel Information'?></h2>
+						<?php 
+							$total = 8;
+							$fill = 0;
+							if($model->type=='Operating Committee'){
+								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue,hotel_type,hotel_confirmation_number');
+							}else{
+								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue,credit_card_number,credit_card_type,credit_card_expiration_date,cardholders_name,hotel_type,hotel_confirmation_number');
+							}
+							foreach($attributes as $attribute){
+								if(!empty($model->$attribute))
+									$fill++;
+							}
+							$persent = Yii::app()->numberFormatter->format('#.##',100*$fill/$total);
+						?>
+					</caption>
+					<thead>
+						<tr>
+							<th>TITLE</th><th>INFO</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($attributes as $attribute){?>
+							<tr><td><?php echo $model->getAttributeLabel($attribute)?></td><td><?php if($attribute=='credit_card_number'){$model->displayCreditCardNumber();}else{echo CHtml::encode($model->$attribute);}?></td></tr>
+						<?php }?>
+					</tbody>
+				</table>
+				<?php }?>
+	</div>
+</div>
+<div class="row hide" id="TI">
+	<div class="span12">
+		<?php if($model->type!='Operating Committee' && $model->type!='Crew' && $model->type!='Gartner Crew'){?>
+				<table class="table table-bordered table-hover table-striped">
+					<caption>
+					<h2><?php echo 'Travel Information'?></h2>
+						<?php 
+							$total = 9;
+							$fill = 0;
+							$travelAttributes  = explode(',','driving,departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth,visa_status');
+							foreach($travelAttributes as $attribute){
+								if(!empty($model->$attribute))
+									$fill++;
+							}
+							$persent = Yii::app()->numberFormatter->format('#.##',100*$fill/$total);
+						?>
+					</caption>
+					<thead>
+						<tr>
+							<th>TITLE</th><th>INFO</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($travelAttributes as $attribute){?>
+							<tr><td><?php echo $model->getAttributeLabel($attribute)?></td><td><?php if($attribute=='driving'){echo CHtml::encode($model->driving)==0?'No':'Yes';}else{echo CHtml::encode($model->$attribute);}?></td></tr>
+						<?php }?>
+					</tbody>
+				</table>
+				<?php }?>
+				<?php if($model->has_guest==1 && $model->type!='Operating Committee'){?>
+				<table class="table table-bordered table-hover table-striped">
+					<caption>
+					<h2><?php echo 'Guest Travel Information'?></h2>
+						<?php 
+							$total = 9;
+							$fill = 0;
+							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth');
+							foreach($travelAttributes as $attribute){
+								if(!empty($guest->$attribute))
+									$fill++;
+							}
+							$persent = Yii::app()->numberFormatter->format('#.##',100*$fill/$total);
+						?>
+					</caption>
+					<thead>
+						<tr>
+							<th>TITLE</th><th>INFO</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($travelAttributes as $attribute){?>
+							<tr><td><?php echo $guest->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($guest->$attribute);?></td></tr>
+						<?php }?>
+					</tbody>
+				</table>
+				<?php }?>
+	</div>
+</div>
+
+</div>
+</div>
+<script>
+function showDiv(id){
+	$("#RI").hide();
+	$("#HI").hide();
+	$("#TI").hide();
+	$("#TOI").hide();
+	$("#"+id).show();
+}
+
+
+</script>

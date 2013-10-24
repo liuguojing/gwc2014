@@ -329,6 +329,10 @@ class User extends TrackStarActiveRecord
 				'flight_price'=>'flight price',
 				'employeeid'=>'EmployeeID',
 				'payrollnumber'=>'payrollnumber',
+		        'hotel_type'=>'Hotel Type',
+		        'driving'=>'Driving',
+		        'hotel_confirmation_number'=>'Hotel Confirmation number',
+		        'visa_status'=>'Visa status',
 				'no_gala_dinner'=>'Winners Not Attending Gala Dinner',
 				
 		);

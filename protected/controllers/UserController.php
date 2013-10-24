@@ -15,6 +15,7 @@ class UserController extends Controller
 	{
 		return array(
 				'accessControl', // perform access control for CRUD operations
+				'HistoryControl - welcome,summary,finalize,emailSummary',
 				//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
@@ -49,6 +50,16 @@ class UserController extends Controller
 				),
 		);
 	}
+	
+	public function filterHistoryControl($filterChain)  
+	{         
+		$model = $this->loadModel(Yii::app()->user->id);
+		if($model->status==1){
+			throw new CHttpException('Please use the link in invitation letter to begin the registration.');
+		}
+        $filterChain->run();  
+	}
+	
 
 	/**
 	 * Displays a particular model.
@@ -648,7 +659,7 @@ class UserController extends Controller
 		$model->billing_instruction = User::model()->getBillingInstructionByType($model->type);
 		if($model->save())
 		{
-			Yii::app()->user->logout();
+			//Yii::app()->user->logout();
 		}
 		if($model->type=='Crew'||$model->type=='Gartner Crew'){
 			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';

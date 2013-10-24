@@ -184,7 +184,6 @@ class Guest extends TrackStarActiveRecord
 				'has_checkin'=>'Guest Checked-in',
 				
 				'no_gala_dinner'=>'Guest Not Attending Gala Dinner',
-				
 				'visa_status'=>'Guest Visa Status',
 		);
 	}

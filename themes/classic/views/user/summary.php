@@ -84,10 +84,10 @@
 						<?php }?>
 						<tr><td><?php echo $model->getAttributeLabel('team_dinner_dietary')?></td><td><?php echo CHtml::encode($model->team_dinner_dietary);?></td></tr>
 						<?php if($model->type=='Gartner Crew'||$model->type=='Crew'){?>
-						<tr><td>crew_menu_choice</td><td><?php echo CHtml::encode($model->crew_menu_choice);?></td></tr>
+						<tr><td>Uniform Choice</td><td><?php echo CHtml::encode($model->crew_menu_choice);?></td></tr>
 						<?php }?>
 						<?php if($model->type=='Gartner Crew'||$model->type=='Crew'){?>
-						<tr><td>crew_unifrom_size</td><td><?php echo CHtml::encode($model->crew_unifrom_size);?></td></tr>
+						<tr><td>Uniform Size</td><td><?php echo CHtml::encode($model->crew_unifrom_size);?></td></tr>
 						<?php }?>
 						<?php if($model->type!='Gartner Crew' && $model->type!='Crew'&& $model->type!='Operating Committee'){?>
 						<tr><td><?php echo $model->getAttributeLabel('ga_passport')?></td><td><?php echo CHtml::encode($model->ga_passport);?></td></tr>

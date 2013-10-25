@@ -24,13 +24,13 @@
 				<p class="alert alert-info" style="float:right;">‘Right click mouse’ for printing options</p>
 			</div>
 </div>
-
+<div class="container top">
 <div class="row">
 <div class="span12">
 
 <div class="row">
 	<div class="span12">
-		<div class="btn-group" data-toggle="buttons-radio">
+		<div class="btn-group" data-toggle="buttons-radio" style="text-align:center">
 		  <button type="button" class="btn btn-info active" onclick="showDiv('RI')">Registration Information</button>
 		  <button type="button" class="btn btn-info" onclick="showDiv('HI')">Hotel Information</button>
 		  <button type="button" class="btn btn-info" onclick="showDiv('TI')">Travel Information</button>
@@ -255,7 +255,7 @@
 						<?php 
 							$total = 9;
 							$fill = 0;
-							$travelAttributes  = explode(',','driving,departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth,visa_status');
+							$travelAttributes  = explode(',','departure_date,return_date,airport_name,destination_city,preferred_seat_request,preferred_airline,frequent_flyer_number,other,visa_letter,permanent_home_address,place_of_birth,visa_status');
 							foreach($travelAttributes as $attribute){
 								if(!empty($model->$attribute))
 									$fill++;
@@ -269,8 +269,11 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr><td><?php echo $model->getAttributeLabel('driving')?></td><td><?php echo CHtml::encode($model->driving)==0?'No':'Yes';?></td></tr>
+						<?php if($model->driving==0){?>
 						<?php foreach($travelAttributes as $attribute){?>
-							<tr><td><?php echo $model->getAttributeLabel($attribute)?></td><td><?php if($attribute=='driving'){echo CHtml::encode($model->driving)==0?'No':'Yes';}else{echo CHtml::encode($model->$attribute);}?></td></tr>
+							<tr><td><?php echo $model->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($model->$attribute);?></td></tr>
+						<?php }?>
 						<?php }?>
 					</tbody>
 				</table>
@@ -296,8 +299,11 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr><td><?php echo $guest->getAttributeLabel('driving')?></td><td><?php echo CHtml::encode($guest->driving)==0?'No':'Yes';?></td></tr>
+						<?php if($guest->driving==0){?>
 						<?php foreach($travelAttributes as $attribute){?>
 							<tr><td><?php echo $guest->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($guest->$attribute);?></td></tr>
+						<?php }?>
 						<?php }?>
 					</tbody>
 				</table>
@@ -305,6 +311,7 @@
 	</div>
 </div>
 
+</div>
 </div>
 </div>
 <script>

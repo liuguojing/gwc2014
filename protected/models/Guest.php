@@ -185,6 +185,7 @@ class Guest extends TrackStarActiveRecord
 				
 				'no_gala_dinner'=>'Guest Not Attending Gala Dinner',
 				'visa_status'=>'Guest Visa Status',
+		        'driving'=>'Driving',
 		);
 	}
 

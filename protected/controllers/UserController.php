@@ -15,7 +15,7 @@ class UserController extends Controller
 	{
 		return array(
 				'accessControl', // perform access control for CRUD operations
-				'HistoryControl - welcome,summary,finalize,emailSummary',
+				'HistoryControl + winner,travel,hotel,tours,summary',
 				//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}

@@ -191,8 +191,11 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr><td><?php echo $guest->getAttributeLabel('driving')?></td><td><?php echo CHtml::encode($guest->driving)==0?'No':'Yes';?></td></tr>
+						<?php if($guest->driving==0){?>
 						<?php foreach($travelAttributes as $attribute){?>
 							<tr><td><?php echo $guest->getAttributeLabel($attribute)?></td><td><?php echo CHtml::encode($guest->$attribute);?></td></tr>
+						<?php }?>
 						<?php }?>
 					</tbody>
 				</table>

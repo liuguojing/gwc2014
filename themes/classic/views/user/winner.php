@@ -326,12 +326,12 @@
 	<script>
 	$(function() {
 		$( "#User_ga_dateofbirth" ).datepicker({
-			defaultDate: "April/10/1993",
+			defaultDate:'c',
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			yearRange: 'c-30:c+30',
+			yearRange: 'c-60:c',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_dateofbirth" ).datepicker("getDate"))!=dateText){
@@ -356,12 +356,12 @@
 			numberOfMonths: 1,
 		});
 		$( "#Guest_ga_dateofbirth" ).datepicker({
-			defaultDate: "Apr/10/1993",
+			defaultDate:'c' ,
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			yearRange: 'c-30:c+30',
+			yearRange: 'c-60:c',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_ga_dateofbirth" ).datepicker("getDate"))!=dateText){

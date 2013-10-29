@@ -186,7 +186,7 @@ class ReportController extends Controller
 	public function actionHousing($hotel='Shangri-La')
 	{
 		set_time_limit(0);
-		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select type from hotels where hotel_name=:hotel_name )"
+		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
 				,array(':hotel_name'=>$hotel));
 		$dateArr = array();
 		$typeResult = array();
@@ -241,7 +241,7 @@ class ReportController extends Controller
 	public function actionHousingMaster($hotel='Shangri-La')
 	{
 		set_time_limit(0);
-		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select type from hotels where hotel_name=:hotel_name )"
+		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
 				,array(':hotel_name'=>$hotel));
 		$dateArr = array();
 		$typeResult = array();

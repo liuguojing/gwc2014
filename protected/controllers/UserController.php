@@ -585,7 +585,32 @@ class UserController extends Controller
 			$guest = new Guest;
 			$guest->user_id = $model->id;
 		}
-		$this->render('email_summary',array('model'=>$model,'guest'=>$guest));
+		$tour_users = TourUser::model()->with('tour','seat')->findAllByAttributes(array('user_id'=>Yii::app()->user->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
+		$wishlists = Wishlist::model()->with('tour','seat')->findAllByAttributes(array('user_id'=>Yii::app()->user->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
+		
+		$tour_guests = array();
+		$guest_wishlists = array();
+		$user = $model;
+		$guest=new Guest;
+		if($user->has_guest==1){
+			
+			$guest = Guest::model()->findByAttributes(array('user_id'=>$user->id));
+			$tour_guests = TourGuest::model()->with('tour','seat')->findAllByAttributes(array('guest_id'=>$guest->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
+			if($tour_guests===null){
+				$tour_guests = array();
+			}
+			$guest_wishlists = WishlistsGuest::model()->with('tour','seat')->findAllByAttributes(array('guest_id'=>$guest->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
+			if($guest_wishlists === null){
+				$guest_wishlists = array();
+			}
+		}
+		
+		
+		$this->render('email_summary',array('tour_users'=>$tour_users,
+					  'wishlists'=>$wishlists,
+					  'user'=>$user,
+					  'tour_guests'=>$tour_guests,
+					  'guest_wishlists'=>$guest_wishlists,'model'=>$model,'guest'=>$guest));
 	}
 
 	public function actionEmail($id){

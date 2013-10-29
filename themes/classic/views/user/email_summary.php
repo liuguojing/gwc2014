@@ -311,6 +311,178 @@
 	</div>
 </div>
 
+
+<div class="row hide" id="TOI">
+	<div class="span12">
+		<div class="row">
+	<div class="span6" style="">
+		<b>Winner's Schedule</b>
+		<table class="table table-hover table-striped">
+			<tr><td>Tuesday</td><td>Arrivals</td><td></td></tr>
+			<tr><td></td><td>6:00pm-9:00pm</td><td><b>Welcome Reception</b></td></tr>
+			<tr><td>Wednesday</td><td></td><td><b></b></td></tr>
+			<tr><td></td><td>8:00am-9:00am</td><td><b>Kick-Off</b></td></tr>
+		    <?php 
+		          $tmpTime="";
+		          $tourTime="";
+		          foreach($tour_users as $tour_user){
+		          	$tourTime = $tour_user->order_date.$tour_user->seat->begin_time;
+		          	if($tmpTime<'2014-04-1000:00' && $tourTime > '2014-04-1000:00'){ ?>
+		          		<tr><td>Thursday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tmpTime<'2014-04-1020:00' && $tourTime > '2014-04-1020:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>Gala Dinner</b></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1100:00' && $tourTime > '2014-04-1100:00'){ ?>
+		          		<tr><td>Friday</td><td></td><td></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1115:00' && $tourTime > '2014-04-1115:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>WINNER CIRCLE CLOSE</b></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
+		          		<tr><td>Saturday</td><td></td><td></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
+		          		<tr><td>Sunday</td><td></td><td></td></tr>
+		          	<?php
+		          	} ?>
+		          	<tr><td></td><td>
+		          	<?php echo ($tour_user->seat->begin_time>'12:00'?(substr($tour_user->seat->begin_time,0,2)-12).substr($tour_user->seat->begin_time,2,3).'pm':$tour_user->seat->begin_time.'am')
+		          		    .' - '.($tour_user->seat->end_time>'12:00'?(substr($tour_user->seat->end_time,0,2)-12).substr($tour_user->seat->end_time,2,3).'pm':$tour_user->seat->end_time.'am')
+		          	;
+		          	 ?></td><td><b><?php echo $tour_user->tour->name;?></b></td></tr>
+		          	<?php $tmpTime=$tourTime;?>
+		   <?php }?>
+		   <?php if($tourTime < '2014-04-1000:00'){ ?>
+		          		<tr><td>Thursday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1020:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>Gala Dinner</b></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1100:00'){ ?>
+		          		<tr><td>Friday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1115:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>WINNER CIRCLE CLOSE</b></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1200:00'){ ?>
+		          		<tr><td>Saturday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1300:00'){ ?>
+		          		<tr><td>Sunday</td><td></td><td></td></tr>
+		          	<?php
+		          	} ?>
+		</table>
+	</div>
+	<!-- guest -->
+	<?php if($user->has_guest==1){?> 
+	<div class="span6">
+		<b>Guest's Schedule</b>
+		<table class="table table-hover table-striped">
+			<tr><td>Tuesday</td><td>Arrivals</td><td></td></tr>
+			<tr><td></td><td>6:00pm-9:00pm</td><td><b>Welcome Reception</b></td></tr>
+			<tr><td>Wednesday</td><td></td><td><b></b></td></tr>
+			<tr><td></td><td>8:00am-9:00am</td><td><b>Kick-Off</b></td></tr>
+		    <?php 
+		          $tmpTime="";
+		          $tourTime="";
+		          foreach($tour_guests as $tour_user){
+		          	$tourTime = $tour_user->order_date.$tour_user->seat->begin_time;
+		          	if($tmpTime<'2014-04-1000:00' && $tourTime > '2014-04-1000:00'){ ?>
+		          		<tr><td>Thursday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tmpTime<'2014-04-1020:00' && $tourTime > '2014-04-1020:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>Gala Dinner</b></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1100:00' && $tourTime > '2014-04-1100:00'){ ?>
+		          		<tr><td>Friday</td><td></td><td></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1115:00' && $tourTime > '2014-04-1115:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>WINNER CIRCLE CLOSE</b></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
+		          		<tr><td>Saturday</td><td></td><td></td></tr>
+		          	<?php 
+		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
+		          		<tr><td>Sunday</td><td></td><td></td></tr>
+		          	<?php
+		          	} ?>
+		          	<tr><td></td><td>
+		          	<?php echo ($tour_user->seat->begin_time>'12:00'?(substr($tour_user->seat->begin_time,0,2)-12).substr($tour_user->seat->begin_time,2,3).'pm':$tour_user->seat->begin_time.'am')
+		          		    .' - '.($tour_user->seat->end_time>'12:00'?(substr($tour_user->seat->end_time,0,2)-12).substr($tour_user->seat->end_time,2,3).'pm':$tour_user->seat->end_time.'am')
+		          	;
+		          	 ?></td><td><b><?php echo $tour_user->tour->name;?></b></td></tr>
+		          	<?php $tmpTime=$tourTime;?>
+		   <?php }?>
+		   <?php if($tourTime < '2014-04-1000:00'){ ?>
+		          		<tr><td>Thursday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1020:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>Gala Dinner</b></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1100:00'){ ?>
+		          		<tr><td>Friday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1115:00'){ ?>
+		          		<tr><td></td><td>8:00pm – 11:30pm</td><td><b>WINNER CIRCLE CLOSE</b></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1200:00'){ ?>
+		          		<tr><td>Saturday</td><td></td><td></td></tr>
+		          	<?php
+		          	}  if($tourTime < '2014-04-1300:00'){ ?>
+		          		<tr><td>Sunday</td><td></td><td></td></tr>
+		          	<?php
+		          	} ?>
+		</table>
+	</div>
+	<?php }?>
+</div>
+<div class="row">
+	<div class="span6" style="width:630px;">
+		<b>Waiting list:</b><br/>
+		<table class="table table-hover table-striped">
+		<?php foreach($wishlists as $wishlist){?>
+		<tr>
+		<td>
+			<?php echo $wishlist->tour->name;?>
+		</td>
+		<td>
+		<?php echo $tour_user->order_date.' '
+		.($wishlist->seat->begin_time>'12:00'?(substr($wishlist->seat->begin_time,0,2)-12).substr($wishlist->seat->begin_time,2,3).'pm':$wishlist->seat->begin_time.'am')
+	    .' - '.($wishlist->seat->end_time>'12:00'?(substr($wishlist->seat->end_time,0,2)-12).substr($wishlist->seat->end_time,2,3).'pm':$wishlist->seat->end_time.'am');?><br/>
+
+		</td>
+		</tr>
+		<?php }?>
+		</table>
+	</div>
+<!-- guest -->
+	<?php if($user->has_guest==1){?>
+	<div class="span6" style="width:630px;">
+		<b>Waiting list:</b><br/>
+		<table class="table table-hover table-striped">
+		<?php foreach($guest_wishlists as $wishlist){?>
+		<tr>
+		<td>
+			<?php echo $wishlist->tour->name;?>
+		</td>
+		<td>
+		<?php echo $tour_user->order_date.' '
+		.($wishlist->seat->begin_time>'12:00'?(substr($wishlist->seat->begin_time,0,2)-12).substr($wishlist->seat->begin_time,2,3).'pm':$wishlist->seat->begin_time.'am')
+	    .' - '.($wishlist->seat->end_time>'12:00'?(substr($wishlist->seat->end_time,0,2)-12).substr($wishlist->seat->end_time,2,3).'pm':$wishlist->seat->end_time.'am');?><br/>
+
+		</td>
+		</tr>
+		<?php }?>
+		</table>
+	</div>
+	<?php }?>
+</div>
+	</div>
+</div>
+
+
+
 </div>
 </div>
 </div>

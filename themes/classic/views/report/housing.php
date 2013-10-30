@@ -90,6 +90,7 @@ function formatCost($cost){
 						<tr class="">
 							<td><?php echo empty($type)?"untitled":$type;?></td>
 							<?php 
+							    $hotelType=$hotel.' - '.$type;
 								$tmpTotal = 0;
 								foreach($dates as $date){
 									$date = date('M/d/Y',strtotime($date));
@@ -108,7 +109,7 @@ function formatCost($cost){
 							<?php 
 								$tmpTotal = 0;
 								foreach($dates as $date){?>
-							<td><?php if (isset($totalResult[$type][$date])){ echo $totalResult[$type][$date];$tmpTotal+=$totalResult[$type][$date];}else{echo 0;};?></td>
+							<td><?php if (isset($totalResult[$hotelType][$date])){ echo $totalResult[$hotelType][$date];$tmpTotal+=$totalResult[$hotelType][$date];}else{echo 0;};?></td>
 							<?php }?>
 							<td><?php echo $tmpTotal;?></td>
 							<td></td>
@@ -127,7 +128,7 @@ function formatCost($cost){
 							<td>
 								<?php
 								$block_number =  isset($block[date('M/d/Y',strtotime($date))])?$block[date('M/d/Y',strtotime($date))]:0;
-								$pickup_number = isset($totalResult[$type][$date])?$totalResult[$type][$date]:0;
+								$pickup_number = isset($totalResult[$hotelType][$date])?$totalResult[$hotelType][$date]:0;
 								$tmpTotal += $block_number - $pickup_number;
 								echo $block_number - $pickup_number;
 								?>

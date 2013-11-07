@@ -13,7 +13,7 @@
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email within 48 hours from our tours and activities company outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly.  </p> 
+<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX</p> 
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
@@ -33,7 +33,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email within 48 hours from our tours and activities company outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. </p> 
+<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX</p> 
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
@@ -53,7 +53,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email within 48 hours from our tours and activities company outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. </p> 
+<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX </p> 
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
@@ -73,7 +73,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email within 48 hours from our tours and activities company outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly.   </p>  
+<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX  </p>  
 
 <p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> in the Winners Circle Events Team. </p>
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
@@ -108,7 +108,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email within 48 hours from our tours and activities company outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly.  </p> 
+<p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX </p> 
 
 <p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> in the Winners Circle Events Team. </p>
 

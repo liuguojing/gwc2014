@@ -137,6 +137,7 @@
 			changeMonth: true,
 			changeYear: true,
 			dateFormat: 'M/dd/yy',
+                        maxDate: 0,
 		});
 	});
 	function freeDate(){

@@ -293,7 +293,7 @@ class UserController extends Controller
 			if($user===null){
 				throw new CHttpException(404,'The requested page does not exist.');
 			}elseif($user->status!=0){
-				if($user->status==1||$user->status==99){
+				if($user->status==1){
 					$this->layout = '//layouts/nonav';
 					$this->render('return_finalized',array('user'=>$user));
 					Yii::app()->end();

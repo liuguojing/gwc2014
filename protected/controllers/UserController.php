@@ -37,12 +37,12 @@ class UserController extends Controller
 						'users'=>array('@'),
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('admin','create','update','view','index','delete','email','batchSend'),
+						'actions'=>array('admin','create','update','view','index','delete','email','batchSend','guestdelete'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin && ($user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="onsite")'
 				),
 				array('allow', // allow admin user to perform 'admin' and 'delete' actions
-						'actions'=>array('create','update','index','view','admin','delete'),
+						'actions'=>array('create','update','index','view','admin','delete','guestdelete'),
 						'users'=>array('admin'),
 				),
 				array('deny',  // deny all users
@@ -216,12 +216,24 @@ class UserController extends Controller
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
-
+        TourUser::model()->deleteAllByAttributes(array('user_id'=>$id));
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+    public  function actionGuestDelete($id)
+    {	
+		$model = $this->loadModel($id);
+		$model->has_guest=0;
+		$model->checkSave = false;
+		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
+		Guest::model()->deleteAllByAttributes(array('user_id'=>$model->id));
+		TourGuest::model()->deleteAllByAttributes(array('guest_id'=>$guest->id));
 
+		$model->save();
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+    }
 	/**
 	 * Lists all models.
 	 */

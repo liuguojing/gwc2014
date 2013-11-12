@@ -9,7 +9,7 @@ function formatCost($cost){
 			<div class="span12">
 				<p>
 					<div class="btn-group" style="text-align:center">
-					<a class="btn active" href="/gwc2014/index.php/report/housing?hotel=summary">Summary</a>
+					<?php echo CHtml::link('Summary',array('report/housing/summary'),array('class'=>'btn active'));?>
 					<?php foreach(Hotel::model()->getHotelNames() as $hotelName){?>
 					<?php echo CHtml::link($hotelName,array('report/housing','hotel'=>$hotelName),array('class'=>$hotel==$hotelName?'btn active':'btn'));?>
 					<?php }?>

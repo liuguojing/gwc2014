@@ -77,7 +77,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		*/
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view}{update}{delete}{email}{guest}',
+			'template'=>'{view}{update}{delete}{email}{guest}{guestdelete}',
 			'buttons'=>array(
 					'email' => array(
 							'label'=>'send email',
@@ -89,6 +89,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 							'label'=>'guest information',
 							'imageUrl'=>Yii::app()->request->baseUrl.'/images/guest.jpg',
 							'url'=>'Yii::app()->createUrl("user/view", array("id"=>$data->id,"#"=>"guest"))',
+							'visible'=>'$data->has_guest == 1',
+					),
+					'guestdelete' => array(
+							'label'=>'guest delete',
+							'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
+							'url'=>'Yii::app()->createUrl("user/guestdelete", array("id"=>$data->id,"#"=>"guest"))',
 							'visible'=>'$data->has_guest == 1',
 					),
 			),

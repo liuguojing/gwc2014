@@ -183,8 +183,114 @@ class ReportController extends Controller
 	 * 非标准时间的，只管hotel_venue == 0的。 hotel_venue == 1 的不管标准日期以外的
 	 * 
 	 */
-	public function actionHousing($hotel='Shangri-La')
+	public function actionHousing($hotel='summary')
 	{
+		if($hotel=='summary'){
+			$ShangriLa = User::model()->findBySql("
+			SELECT id,ifnull(email,0) email FROM
+(
+	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
+	(
+	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
+	AND b.hotel_name=:hotel_name
+	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	AND a.date<=(SELECT DATE_FORMAT(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y')-1, '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
+	) a LEFT JOIN 
+	(
+	SELECT 
+	DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')) number,t.hotel_type
+	FROM users t  WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
+	) b 
+	ON a.hotel_type=b.hotel_type
+	LEFT JOIN hotels c
+	ON a.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME)
+) a,
+(
+	SELECT 
+	sum(
+	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*c.sell_rate ) as email
+	FROM users t LEFT JOIN hotels c
+	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
+	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
+) b",array(':hotel_name'=>'Shangri-La',':hotel_name_like'=>'Shangri-La%'));
+
+			$Hilton = User::model()->findBySql("
+			SELECT id,ifnull(email,0) email FROM
+(
+	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
+	(
+	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
+	AND b.hotel_name=:hotel_name
+	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	AND a.date<=(SELECT DATE_FORMAT(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y')-1, '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
+	) a LEFT JOIN 
+	(
+	SELECT 
+	DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')) number,t.hotel_type
+	FROM users t  WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
+	) b 
+	ON a.hotel_type=b.hotel_type
+	LEFT JOIN hotels c
+	ON a.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME)
+) a,
+(
+	SELECT 
+	sum(
+	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*c.sell_rate ) as email
+	FROM users t LEFT JOIN hotels c
+	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
+	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
+) b",array(':hotel_name'=>'Hilton',':hotel_name_like'=>'Hilton%'));
+
+			$Sheraton = User::model()->findBySql("
+			SELECT id,ifnull(email,0) email FROM
+(
+	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
+	(
+	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
+	AND b.hotel_name=:hotel_name
+	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	AND a.date<=(SELECT DATE_FORMAT(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y')-1, '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
+	) a LEFT JOIN 
+	(
+	SELECT 
+	DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')) number,t.hotel_type
+	FROM users t  WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
+	) b 
+	ON a.hotel_type=b.hotel_type
+	LEFT JOIN hotels c
+	ON a.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME)
+) a,
+(
+	SELECT 
+	sum(
+	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*c.sell_rate ) as email
+	FROM users t LEFT JOIN hotels c
+	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
+	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
+) b",array(':hotel_name'=>'Sheraton',':hotel_name_like'=>'Sheraton%'));
+
+			$this->render('housingSummary',
+				array('ShangriLa_total1'=>$ShangriLa->id,
+				'ShangriLa_total2'=>$ShangriLa->email,
+				'Hilton_total1'=>$Hilton->id,
+				'Hilton_total2'=>$Hilton->email,
+				'Sheraton_total1'=>$Sheraton->id,
+				'Sheraton_total2'=>$Sheraton->email,
+				'total1'=>$ShangriLa->id+$Hilton->id+$Sheraton->id,
+				'total2'=>$ShangriLa->email+$Hilton->email+$Sheraton->email,
+				'hotel'=>$hotel));
+		}
+		else{
 		set_time_limit(0);
 		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
 				,array(':hotel_name'=>$hotel));
@@ -236,6 +342,7 @@ class ReportController extends Controller
 						'attritonRates'=>User::model()->getAttritonRates($hotel),
 						'sellRates'=>User::model()->getSellRates($hotel),
 						'hotel'=>$hotel));
+		}
 	}
 	
 	public function actionHousingMaster($hotel='Shangri-La')

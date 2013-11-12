@@ -342,7 +342,7 @@ class User extends TrackStarActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($status = '')
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -381,7 +381,11 @@ class User extends TrackStarActiveRecord
 		$criteria->compare('created_by',$this->created_by);
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('updated_by',$this->updated_by);
-
+		if (!empty($status)) {
+			 $criteria->compare('status',$status);
+		}
+		
+       
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'sort'=>array('defaultOrder'=>'updated_at desc'),
@@ -514,6 +518,20 @@ class User extends TrackStarActiveRecord
 				);
 	}
 	
+	public  function getTourStatusOptions()
+	{
+		return array(
+				0=>'Invited',
+				1=>'Accepted',
+				2=>'Declined',
+				3=>'Cancelled',
+				4=>'Active'
+				);
+	}
+    public function getTourStatusText(){
+		$options = $this->getTourStatusOptions();
+		return isset($options[$this->tour_status])?$options[$this->status]:'';
+	}
 	public function getStatusText(){
 		$options = $this->getStatusOptions();
 		return isset($options[$this->status])?$options[$this->status]:'';
@@ -937,6 +955,7 @@ Roasted Pineapple Cheesecake');
 		$this->credit_card_number = $this->decode($this->credit_card_number);
 		$this->csv_number = $this->decode($this->csv_number);
 		$this->statusName = $this->getStatusText();
+		$this->tour_status=$this->getTourStatusText();
 	}
 	public function galaDinnerVipList(){
 		return array(

@@ -194,7 +194,7 @@ class ReportController extends Controller
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
 	AND b.hotel_name=:hotel_name
 	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	AND a.date<=(SELECT DATE_FORMAT(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y')-1, '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
 	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
 	) a LEFT JOIN 
 	(
@@ -225,7 +225,7 @@ class ReportController extends Controller
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
 	AND b.hotel_name=:hotel_name
 	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	AND a.date<=(SELECT DATE_FORMAT(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y')-1, '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
 	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
 	) a LEFT JOIN 
 	(
@@ -256,7 +256,7 @@ class ReportController extends Controller
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
 	AND b.hotel_name=:hotel_name
 	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	AND a.date<=(SELECT DATE_FORMAT(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y')-1, '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
+	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
 	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
 	) a LEFT JOIN 
 	(

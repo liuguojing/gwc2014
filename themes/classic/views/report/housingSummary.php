@@ -3,8 +3,6 @@ function formatCost($cost){
 	$format = new CNumberFormatter('EN');
 	return $format->format('#,##0.00', $cost);
 }
-$total1=0;
-$total2=0;
 ?>
 <div class="container top">
 		<div class="row">
@@ -27,17 +25,32 @@ $total2=0;
 					</caption>
 					<thead>
 						<tr>
-						<?php 
-						echo $ShangriLa_total1."-".$ShangriLa_total2;?>
+							<th>Hotel Name</th>
 							<th>Total</th>
-							<th>Attriton Rate</th>
-							<th>Total</th>
-							<th>Pick-up rate</th>
-							<th>Total</th>
+							<th>Pick-up Total</th>
 						</tr>
 					</thead>
 					<tbody>
-						
+						<tr>
+							<td>Shangri-La</td>
+							<td><?php echo "$".formatCost($ShangriLa_total1)?></td>
+							<td><?php echo "$".formatCost($ShangriLa_total2)?></td>
+						</tr>
+						<tr>
+							<td>Hilton</td>
+							<td><?php echo "$".formatCost($Hilton_total1)?></td>
+							<td><?php echo "$".formatCost($Hilton_total2)?></td>
+						</tr>
+						<tr>
+							<td>Sheraton</td>
+							<td><?php echo "$".formatCost($Sheraton_total1)?></td>
+							<td><?php echo "$".formatCost($Sheraton_total2)?></td>
+						</tr>
+						<tr class="success">
+							<td>Total</td>
+							<td><?php echo "$".formatCost($total1)?></td>
+							<td><?php echo "$".formatCost($total2)?></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

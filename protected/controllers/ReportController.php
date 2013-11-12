@@ -183,12 +183,12 @@ class ReportController extends Controller
 	 * 非标准时间的，只管hotel_venue == 0的。 hotel_venue == 1 的不管标准日期以外的
 	 * 
 	 */
-	public function actionHousing($hotel='Shangri-La')
+	public function actionHousing($hotel='summary')
 	{
 		if($hotel=='summary'){
 			$ShangriLa = User::model()->findBySql("
 			SELECT id,ifnull(email,0) email FROM
-(			
+(
 	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
 	(
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
@@ -216,11 +216,10 @@ class ReportController extends Controller
 	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
 	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
 ) b",array(':hotel_name'=>'Shangri-La',':hotel_name_like'=>'Shangri-La%'));
-			
-			
+
 			$Hilton = User::model()->findBySql("
 			SELECT id,ifnull(email,0) email FROM
-(			
+(
 	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
 	(
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
@@ -248,10 +247,10 @@ class ReportController extends Controller
 	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
 	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
 ) b",array(':hotel_name'=>'Hilton',':hotel_name_like'=>'Hilton%'));
-			
+
 			$Sheraton = User::model()->findBySql("
 			SELECT id,ifnull(email,0) email FROM
-(			
+(
 	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
 	(
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
@@ -279,17 +278,17 @@ class ReportController extends Controller
 	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
 	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
 ) b",array(':hotel_name'=>'Sheraton',':hotel_name_like'=>'Sheraton%'));
-			
+
 			$this->render('housingSummary',
 				array('ShangriLa_total1'=>$ShangriLa->id,
 				'ShangriLa_total2'=>$ShangriLa->email,
 				'Hilton_total1'=>$Hilton->id,
 				'Hilton_total2'=>$Hilton->email,
-				'Sheraton_total1'=>$Hilton->id,
-				'Sheraton_total2'=>$Hilton->email,
+				'Sheraton_total1'=>$Sheraton->id,
+				'Sheraton_total2'=>$Sheraton->email,
+				'total1'=>$ShangriLa->id+$Hilton->id+$Sheraton->id,
+				'total2'=>$ShangriLa->email+$Hilton->email+$Sheraton->email,
 				'hotel'=>$hotel));
-				
-				
 		}
 		else{
 		set_time_limit(0);

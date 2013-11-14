@@ -183,9 +183,66 @@ class ReportController extends Controller
 	 * 非标准时间的，只管hotel_venue == 0的。 hotel_venue == 1 的不管标准日期以外的
 	 * 
 	 */
-	public function actionHousing($hotel='summary')
+	public function actionHousing($hotel='Shangri-La')
 	{
-		if($hotel=='summary'){
+		
+		set_time_limit(0);
+		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
+				,array(':hotel_name'=>$hotel));
+		$dateArr = array();
+		$typeResult = array();
+		$totalResult = array();
+		foreach($users as $user){
+			$from_date = $user->hotel_arrival_date;
+			$end_date = $user->hotel_departure_date;
+			
+			//如果是非标准时间
+// 			if($user->hotel_venue == 'I will be making my own arrangements'){
+// 				if(in_array($user->type,array('Top Achievers','Eagles','Operating Committee'))){
+// 					$from_date = 'Apr/16/2013';
+// 				}else{
+// 					$from_date = 'Apr/17/2013';
+// 				}
+// 				$end_date = "Apr/21/2013";
+// 			}
+			
+			$from_date =  $this->strtodate($from_date);
+			$end_date =  $this->strtodate($end_date);
+			
+			$tmpDate = $from_date;
+			while($tmpDate < $end_date ){
+				if(!in_array($tmpDate,$dateArr)){
+					$dateArr[]=$tmpDate;
+				}
+				if(isset($typeResult[$user->type][$user->hotel_type][$tmpDate])){
+					$typeResult[$user->type][$user->hotel_type][$tmpDate]++;
+				}else{
+					$typeResult[$user->type][$user->hotel_type][$tmpDate] = 1;
+				}
+				
+				if(isset($totalResult[$user->hotel_type][$tmpDate])){
+					$totalResult[$user->hotel_type][$tmpDate]++;
+				}else{
+					$totalResult[$user->hotel_type][$tmpDate] = 1;
+				}
+				$tmpDate = date('Y-m-d',strtotime($tmpDate)+3600*24);
+			}
+		}
+		sort($dateArr);
+		$this->render('housing',
+				array('dates'=>$dateArr,
+						'typeResult'=>$typeResult,
+						'totalResult'=>$totalResult,
+						'blocks'=>User::model()->getBlockRoom($hotel),
+						'attritonRates'=>User::model()->getAttritonRates($hotel),
+						'sellRates'=>User::model()->getSellRates($hotel),
+						'hotel'=>$hotel));
+	
+	}
+	
+	public function actionHousingMaster($hotel='summary')
+	{
+		if($hotel=="summary"){
 			$ShangriLa = User::model()->findBySql("
 			SELECT id,ifnull(email,0) email FROM
 (
@@ -289,64 +346,7 @@ class ReportController extends Controller
 				'total1'=>$ShangriLa->id+$Hilton->id+$Sheraton->id,
 				'total2'=>$ShangriLa->email+$Hilton->email+$Sheraton->email,
 				'hotel'=>$hotel));
-		}
-		else{
-		set_time_limit(0);
-		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
-				,array(':hotel_name'=>$hotel));
-		$dateArr = array();
-		$typeResult = array();
-		$totalResult = array();
-		foreach($users as $user){
-			$from_date = $user->hotel_arrival_date;
-			$end_date = $user->hotel_departure_date;
-			
-			//如果是非标准时间
-// 			if($user->hotel_venue == 'I will be making my own arrangements'){
-// 				if(in_array($user->type,array('Top Achievers','Eagles','Operating Committee'))){
-// 					$from_date = 'Apr/16/2013';
-// 				}else{
-// 					$from_date = 'Apr/17/2013';
-// 				}
-// 				$end_date = "Apr/21/2013";
-// 			}
-			
-			$from_date =  $this->strtodate($from_date);
-			$end_date =  $this->strtodate($end_date);
-			
-			$tmpDate = $from_date;
-			while($tmpDate < $end_date ){
-				if(!in_array($tmpDate,$dateArr)){
-					$dateArr[]=$tmpDate;
-				}
-				if(isset($typeResult[$user->type][$user->hotel_type][$tmpDate])){
-					$typeResult[$user->type][$user->hotel_type][$tmpDate]++;
-				}else{
-					$typeResult[$user->type][$user->hotel_type][$tmpDate] = 1;
-				}
-				
-				if(isset($totalResult[$user->hotel_type][$tmpDate])){
-					$totalResult[$user->hotel_type][$tmpDate]++;
-				}else{
-					$totalResult[$user->hotel_type][$tmpDate] = 1;
-				}
-				$tmpDate = date('Y-m-d',strtotime($tmpDate)+3600*24);
-			}
-		}
-		sort($dateArr);
-		$this->render('housing',
-				array('dates'=>$dateArr,
-						'typeResult'=>$typeResult,
-						'totalResult'=>$totalResult,
-						'blocks'=>User::model()->getBlockRoom($hotel),
-						'attritonRates'=>User::model()->getAttritonRates($hotel),
-						'sellRates'=>User::model()->getSellRates($hotel),
-						'hotel'=>$hotel));
-		}
-	}
-	
-	public function actionHousingMaster($hotel='Shangri-La')
-	{
+		}else {
 		set_time_limit(0);
 		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
 				,array(':hotel_name'=>$hotel));
@@ -402,6 +402,7 @@ class ReportController extends Controller
 							'attritonRates'=>User::model()->getAttritonRates($hotel),
 							'sellRates'=>User::model()->getSellRates($hotel),
 							'hotel'=>$hotel));
+		}
 		}
 
 	public function actionIndex()

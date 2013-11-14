@@ -2,13 +2,17 @@
 function formatCost($cost){
 	$format = new CNumberFormatter('EN');
 	return $format->format('#,##0.00', $cost);
+	
 }
+$total1=0;
+$total2=0;
 ?>
 <div class="container top">
 		<div class="row">
 			<div class="span12">
 				<p>
 					<div class="btn-group" style="text-align:center">
+					<?php echo CHtml::link('Summary',array('report/housingmaster/summary'),array('class'=>'btn'));?>
 					<?php foreach(Hotel::model()->getHotelNames() as $hotelName){?>
 					<?php echo CHtml::link($hotelName,array('report/housingMaster','hotel'=>$hotelName),array('class'=>$hotel==$hotelName?'btn active':'btn'));?>
 					<?php }?>
@@ -115,7 +119,7 @@ function formatCost($cost){
 							<td></td>
 							<td></td>
 							<td><?php echo isset($sellRates[$type])?"$".$sellRates[$type]:0?></td>
-							<td><?php echo isset($sellRates[$type])?"$".formatCost($sellRates[$type] * $tmpTotal):0?></td>
+							<td><?php $tempvalue=0;$tempvalue=isset($sellRates[$type])?$sellRates[$type] * $tmpTotal:0; $total2+=$tempvalue; echo isset($sellRates[$type])?"$".formatCost($sellRates[$type] * $tmpTotal):0?></td>
 						</tr>
 						
 						<tr class="success">
@@ -136,11 +140,28 @@ function formatCost($cost){
 							<?php }?>
 							<td><?php echo $tmpTotal;?></td>
 							<td><?php echo isset($attritonRates[$type])?"$".$attritonRates[$type]:0?></td>
-							<td><?php echo isset($attritonRates[$type])?"$".formatCost($attritonRates[$type] * $tmpTotal):0?></td>
+							<td><?php $vb=isset($attritonRates[$type])?$attritonRates[$type] * $tmpTotal:0;$total1+=$vb; echo isset($attritonRates[$type])?"$".formatCost($attritonRates[$type] * $tmpTotal):0?></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<?php }?>
+						<tr>
+						<td>Total</td>
+						<?php 
+								
+								foreach($dates as $date){
+									
+							?>
+							<td>
+								
+							</td>
+							<?php }?>
+						<td></td>
+						<td></td>
+						<td><?php echo "$".formatCost($total1);?></td>
+						<td></td>
+						<td><?php echo "$".formatCost($total2);?></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

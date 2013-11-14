@@ -93,7 +93,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 					),
 					'guestdelete' => array(
 							'label'=>'guest delete',
-							'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
+					        'imageUrl'=>Yii::app()->request->baseUrl.'/images/remove2.png',
 							'url'=>'Yii::app()->createUrl("user/guestdelete", array("id"=>$data->id,"#"=>"guest"))',
 							'visible'=>'$data->has_guest == 1',
 					),

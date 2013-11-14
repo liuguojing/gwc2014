@@ -215,22 +215,130 @@ class UserController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
-        TourUser::model()->deleteAllByAttributes(array('user_id'=>$id));
+	    $this->actionGuestDeleteNew($id);
+		$tour_user = TourUser::model()->findAllByAttributes(array('user_id'=>$id));
+		$wishlist = Wishlist::model()->findAllByAttributes(array('user_id'=>$id));
+		if($wishlist===null)
+		{
+			
+		}else
+		{
+			foreach($wishlist as $wi)
+			{
+				$wi->delete();
+			}
+		}
+		if($tour_user===null)
+		{
+			
+		}else
+		{
+			foreach($tour_user as $tour)
+			{
+				if($tour->delete())
+				{
+					$tour_seat = TourSeat::model()->findByPk($tour->seat_id);
+			        $tour_seat->optional_seats++;
+			        $tour_seat->save();
+				}
+			}
+		}
+	    $this->loadModel($id)->delete();
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+	
+public  function actionGuestDeleteNew($id)
+    {	
+		$model = $this->loadModel($id);
+		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
+		if($guest===null)
+		{
+			$guest=array();
+		}
+		else 
+		{
+	    Guest::model()->deleteAllByAttributes(array('user_id'=>$model->id));
+		 $gwl=WishlistsGuest::model()->findAllByAttributes(array('guest_id'=>$guest->id));
+	    if($gwl===null)
+	    {
+	    	
+	    }else 
+	    {
+	    	foreach ($gwl as $wi)
+	    	{
+	    		$wi->delete();
+	    	}
+	    }
+	    $tour_guests = TourGuest::model()->with('tour')->findAllByAttributes(array('guest_id'=>$guest->id));
+	    
+		if($tour_guests === null){
+			$result['message'] = 'Error';
+			$result['error'] = 'You did not booked this tour';
+		}else{
+			foreach ($tour_guests as $tour_guest )
+			{
+			if($tour_guest->delete()){
+			$tour_seat = TourSeat::model()->findByPk($tour_guest->seat_id);
+			$tour_seat->optional_seats++;
+			$tour_seat->save();
+		}
+			}
+			
+		}
+	    
+		
+		}
+		
+    }
+	
     public  function actionGuestDelete($id)
     {	
 		$model = $this->loadModel($id);
 		$model->has_guest=0;
 		$model->checkSave = false;
 		$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
-		Guest::model()->deleteAllByAttributes(array('user_id'=>$model->id));
-		TourGuest::model()->deleteAllByAttributes(array('guest_id'=>$guest->id));
-
-		$model->save();
+		if($guest===null)
+		{
+			$guest=array();
+		}
+		else 
+		{
+			
+	    Guest::model()->deleteAllByAttributes(array('user_id'=>$model->id));
+	    $gwl=WishlistsGuest::model()->findAllByAttributes(array('guest_id'=>$guest->id));
+	    if($gwl===null)
+	    {
+	    	
+	    }else 
+	    {
+	    	foreach ($gwl as $wi)
+	    	{
+	    		$wi->delete();
+	    	}
+	    }
+	    $tour_guests = TourGuest::model()->with('tour')->findAllByAttributes(array('guest_id'=>$guest->id));
+	    
+		if($tour_guests === null){
+			$result['message'] = 'Error';
+			$result['error'] = 'You did not booked this tour';
+		}else{
+			foreach ($tour_guests as $tour_guest )
+			{
+				
+			if($tour_guest->delete()){
+			$tour_seat = TourSeat::model()->findByPk($tour_guest->seat_id);
+			$tour_seat->optional_seats++;
+			$tour_seat->save();
+		}
+			}
+			
+		}
+	    
+        $model->save();
+		
+		}
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }

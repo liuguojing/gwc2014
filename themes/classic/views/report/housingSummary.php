@@ -9,9 +9,9 @@ function formatCost($cost){
 			<div class="span12">
 				<p>
 					<div class="btn-group" style="text-align:center">
-					<?php echo CHtml::link('Summary',array('report/housing/summary'),array('class'=>'btn active'));?>
+					<?php echo CHtml::link('Summary',array('report/housingmaster/summary'),array('class'=>'btn active'));?>
 					<?php foreach(Hotel::model()->getHotelNames() as $hotelName){?>
-					<?php echo CHtml::link($hotelName,array('report/housing','hotel'=>$hotelName),array('class'=>$hotel==$hotelName?'btn active':'btn'));?>
+					<?php echo CHtml::link($hotelName,array('report/housingMaster','hotel'=>$hotelName),array('class'=>$hotel==$hotelName?'btn active':'btn'));?>
 					<?php }?>
 					</div>
 				</p>

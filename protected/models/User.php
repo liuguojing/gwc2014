@@ -518,20 +518,20 @@ class User extends TrackStarActiveRecord
 				);
 	}
 	
-	public  function getTourStatusOptions()
-	{
-		return array(
-				0=>'Invited',
-				1=>'Accepted',
-				2=>'Declined',
-				3=>'Cancelled',
-				4=>'Active'
-				);
-	}
-    public function getTourStatusText(){
-		$options = $this->getTourStatusOptions();
-		return isset($options[$this->tour_status])?$options[$this->status]:'';
-	}
+//	public  function getTourStatusOptions()
+//	{
+//		return array(
+//				0=>'Invited',
+//				1=>'Accepted',
+//				2=>'Declined',
+//				3=>'Cancelled',
+//				4=>'Active'
+//				);
+//	}
+//    public function getTourStatusText(){
+//		$options = $this->getTourStatusOptions();
+//		return isset($options[$this->tour_status])?$options[$this->status]:'';
+//	}
 	public function getStatusText(){
 		$options = $this->getStatusOptions();
 		return isset($options[$this->status])?$options[$this->status]:'';
@@ -955,7 +955,6 @@ Roasted Pineapple Cheesecake');
 		$this->credit_card_number = $this->decode($this->credit_card_number);
 		$this->csv_number = $this->decode($this->csv_number);
 		$this->statusName = $this->getStatusText();
-		$this->tour_status=$this->getTourStatusText();
 	}
 	public function galaDinnerVipList(){
 		return array(

@@ -216,6 +216,7 @@ class UserController extends Controller
 	public function actionDelete($id)
 	{
 	    $this->actionGuestDeleteNew($id);
+	    $model = $this->loadModel($id);
 		$tour_user = TourUser::model()->findAllByAttributes(array('user_id'=>$id));
 		$wishlist = Wishlist::model()->findAllByAttributes(array('user_id'=>$id));
 		if($wishlist===null)
@@ -237,9 +238,12 @@ class UserController extends Controller
 			{
 				if($tour->delete())
 				{
-					$tour_seat = TourSeat::model()->findByPk($tour->seat_id);
-			        $tour_seat->optional_seats++;
-			        $tour_seat->save();
+					if($model->tour_status==1)
+					{
+						$tour_seat = TourSeat::model()->findByPk($tour->seat_id);
+						$tour_seat->optional_seats++;
+						$tour_seat->save();
+					}
 				}
 			}
 		}
@@ -280,9 +284,12 @@ public  function actionGuestDeleteNew($id)
 			foreach ($tour_guests as $tour_guest )
 			{
 			if($tour_guest->delete()){
-			$tour_seat = TourSeat::model()->findByPk($tour_guest->seat_id);
-			$tour_seat->optional_seats++;
-			$tour_seat->save();
+				if($model->tour_status==1)
+				{
+					$tour_seat = TourSeat::model()->findByPk($tour_guest->seat_id);
+					$tour_seat->optional_seats++;
+					$tour_seat->save();
+				}
 		}
 			}
 			
@@ -328,9 +335,12 @@ public  function actionGuestDeleteNew($id)
 			{
 				
 			if($tour_guest->delete()){
-			$tour_seat = TourSeat::model()->findByPk($tour_guest->seat_id);
-			$tour_seat->optional_seats++;
-			$tour_seat->save();
+				if($model->tour_status==1)
+				{
+					$tour_seat = TourSeat::model()->findByPk($tour_guest->seat_id);
+					$tour_seat->optional_seats++;
+					$tour_seat->save();
+				}
 		}
 			}
 			

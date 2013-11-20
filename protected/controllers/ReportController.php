@@ -189,7 +189,7 @@ class ReportController extends Controller
 		set_time_limit(0);
 		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
 				,array(':hotel_name'=>$hotel));
-		$dateArr = array();
+		//$dateArr = array();
 		$typeResult = array();
 		$totalResult = array();
 		foreach($users as $user){
@@ -211,9 +211,9 @@ class ReportController extends Controller
 			
 			$tmpDate = $from_date;
 			while($tmpDate < $end_date ){
-				if(!in_array($tmpDate,$dateArr)){
-					$dateArr[]=$tmpDate;
-				}
+				//if(!in_array($tmpDate,$dateArr)){
+				//	$dateArr[]=$tmpDate;
+			//	}
 				if(isset($typeResult[$user->type][$user->hotel_type][$tmpDate])){
 					$typeResult[$user->type][$user->hotel_type][$tmpDate]++;
 				}else{
@@ -228,6 +228,16 @@ class ReportController extends Controller
 				$tmpDate = date('Y-m-d',strtotime($tmpDate)+3600*24);
 			}
 		}
+		$users1 = Room::model()->findAllBySql("select distinct date from rooms t where t.hotel_id in (select id from hotels where hotel_name=:hotel_name )"
+				,array(':hotel_name'=>$hotel));
+		$dateArr = array();
+
+		foreach($users1 as $user1){
+		$tmpDate1 = $this->strtodate($user1->date);
+		if(!in_array($tmpDate1,$dateArr)){
+					$dateArr[]=$tmpDate1;
+				}
+	}
 		sort($dateArr);
 		$this->render('housing',
 				array('dates'=>$dateArr,

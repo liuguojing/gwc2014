@@ -100,8 +100,8 @@ function formatCost($cost){
 							<td><?php if (isset($block[$date])){ echo $block[$date];$tmpTotal+=$block[$date];}else{echo 0;};?></td>
 							<?php }?>
 							<td><?php echo $tmpTotal;?></td>
-							<td></td>
-							<td></td>
+							<td><?php echo isset($attritonRates[$type])?"$".$attritonRates[$type]:0?></td>
+							<td><?php echo isset($attritonRates[$type])?"$".formatCost($attritonRates[$type] * $tmpTotal):0?></td>
 							<td></td>
 							<td></td>
 						</tr>

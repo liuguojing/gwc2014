@@ -946,8 +946,17 @@ Roasted Pineapple Cheesecake');
 	public function afterSave(){
 		parent::afterSave();
 		if($this->status == 3){
-			Yii::app()->db->createCommand()->execute("delete from tour_users where user_id = $this->id");
-			Yii::app()->db->createCommand()->execute("delete from wishlists where user_id = $this->id");
+			
+			$sql1="delete from tour_users where user_id=:usid";
+			$sql2="delete from wishlists where user_id =:usid";
+			$sql3="UPDATE tour_seats ts SET optional_seats=optional_seats+1 WHERE ts.id IN(SELECT seat_id FROM tour_users tu WHERE tu.user_id=:usid)";
+			if($this->tour_status==1)
+			{
+				Yii::app()->db->createCommand($sql3)->execute(array(':usid'=>$this->id));
+			}
+			Yii::app()->db->createCommand($sql1)->execute(array(':usid'=>$this->id));
+			
+			Yii::app()->db->createCommand($sql2)->execute(array(':usid'=>$this->id));
 		}
 	}
 	public function afterFind(){

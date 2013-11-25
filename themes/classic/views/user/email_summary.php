@@ -31,10 +31,10 @@
 <div class="row">
 	<div class="span12">
 		<div class="btn-group" data-toggle="buttons-radio" style="text-align:center">
-		  <button type="button" class="btn btn-info active" onclick="showDiv('RI')">Registration Information</button>
-		  <button type="button" class="btn btn-info" onclick="showDiv('HI')">Hotel Information</button>
-		  <button type="button" class="btn btn-info" onclick="showDiv('TI')">Travel Information</button>
-		  <button type="button" class="btn btn-info" onclick="showDiv('TOI')">Tours Information</button>
+		  <button type="button" class="btn btn-info active" onclick="showDiv('RI')"><i class="gwc-icon-reg"></i>&nbsp;Registration Information</button>
+		  <button type="button" class="btn btn-info" onclick="showDiv('HI')"><i class="gwc-icon-hotel"></i>&nbsp;Hotel Information</button>
+		  <button type="button" class="btn btn-info" onclick="showDiv('TI')"><i class="gwc-icon-air"></i>&nbsp;Travel Information</button>
+		  <button type="button" class="btn btn-info" onclick="showDiv('TOI')"><i class="gwc-icon-tour"></i>&nbsp;Tours Calendar</button>
 		</div>
 	
 	</div>
@@ -308,6 +308,198 @@
 					</tbody>
 				</table>
 				<?php }?>
+			
+			<?php if($model->fi_status=='ticketed'){?>
+			   <table class="table table-bordered table-hover table-striped" width="40%">
+			   	<caption>
+					<h2><?php echo 'Winner Flight Information'?></h2>
+					</caption>
+					<thead>
+						<tr>
+							<th colspan="7"><i class="gwc-icon-arrival"></i>&nbsp;Arrival Flights to Sydney</th><th colspan="7"><i class="gwc-icon-depart"></i>&nbsp;Departure Flights from Sydney</th>
+						</tr>
+						<tr>
+							<th>Flight Date</th><th>Flight No.</th><th>From.</th><th>To.</th><th>Departure Time</th><th>Arrival Time</th><th>Arrival Date into Sydney</th>
+							<th>Departure Date from Sydney</th><th>Flight Date</th><th>Flight No.</th><th>From.</th><th>To.</th><th>Departure Time</th><th>Arrival Time</th>
+						</tr>
+						
+					</thead>
+					<tbody>
+						
+						<?php if($model->fi_adate1!=''){?>
+						<tr>
+						   <td><?php echo $model->fi_adate1?></td><td><?php echo $model->fi_aflight1?></td><td><?php echo $model->fi_afrom1?></td><td><?php echo $model->fi_ato1?></td><td><?php echo $model->fi_adep1?></td><td><?php echo $model->fi_aarr1?></td><td></td>
+						   <td><?php echo $model->fi_ddate?></td>	
+						   <td><?php echo $model->fi_ddate1?></td><td><?php echo $model->fi_dflight1?></td><td><?php echo $model->fi_dfrom1?></td><td><?php echo $model->fi_dto1?></td><td><?php echo $model->fi_ddep1?></td><td><?php echo $model->fi_darr1?></td>
+						    </tr>	
+						    <tr>
+						    <td><?php echo $model->fi_adate2?></td><td><?php echo $model->fi_aflight2?></td><td><?php echo $model->fi_afrom2?></td><td><?php echo $model->fi_ato2?></td><td><?php echo $model->fi_adep2?></td><td><?php echo $model->fi_aarr2?></td><td></td>
+						    <td></td>
+						    <?php if($model->fi_ddate2!=''){?>
+						    <td><?php echo $model->fi_ddate2?></td><td><?php echo $model->fi_dflight2?></td><td><?php echo $model->fi_dfrom2?></td><td><?php echo $model->fi_dto2?></td><td><?php echo $model->fi_ddep2?></td><td><?php echo $model->fi_darr2?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						    <tr>
+						    <td><?php echo $model->fi_adate3?></td><td><?php echo $model->fi_aflight3?></td><td><?php echo $model->fi_afrom3?></td><td><?php echo $model->fi_ato3?></td><td><?php echo $model->fi_adep3?></td><td><?php echo $model->fi_aarr3?></td><td><?php echo $model->fi_adate?></td>
+						    <td></td>
+						    <?php if($model->fi_ddate3!=''){?>
+						    <td><?php echo $model->fi_ddate3?></td><td><?php echo $model->fi_dflight3?></td><td><?php echo $model->fi_dfrom3?></td><td><?php echo $model->fi_dto3?></td><td><?php echo $model->fi_ddep3?></td><td><?php echo $model->fi_darr3?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						<?php } elseif($model->fi_adate2!=''){?>
+						<tr>
+						    <td><?php echo $model->fi_adate2?></td><td><?php echo $model->fi_aflight2?></td><td><?php echo $model->fi_afrom2?></td><td><?php echo $model->fi_ato2?></td><td><?php echo $model->fi_adep2?></td><td><?php echo $model->fi_aarr2?></td><td></td>
+						    <td><?php echo $model->fi_ddate?></td>	
+						    <td><?php echo $model->fi_ddate1?></td><td><?php echo $model->fi_dflight1?></td><td><?php echo $model->fi_dfrom1?></td><td><?php echo $model->fi_dto1?></td><td><?php echo $model->fi_ddep1?></td><td><?php echo $model->fi_darr1?></td>
+						    </tr>	
+						    <tr>
+						    <td><?php echo $model->fi_adate3?></td><td><?php echo $model->fi_aflight3?></td><td><?php echo $model->fi_afrom3?></td><td><?php echo $model->fi_ato3?></td><td><?php echo $model->fi_adep3?></td><td><?php echo $model->fi_aarr3?></td><td><?php echo $model->fi_adate?></td>
+						    <td></td>
+						    <?php if($model->fi_ddate2!=''){?>
+						    <td><?php echo $model->fi_ddate2?></td><td><?php echo $model->fi_dflight2?></td><td><?php echo $model->fi_dfrom2?></td><td><?php echo $model->fi_dto2?></td><td><?php echo $model->fi_ddep2?></td><td><?php echo $model->fi_darr2?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						    <tr>
+						    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						    <td></td>
+						    <?php if($model->fi_ddate3!=''){?>
+						    <td><?php echo $model->fi_ddate3?></td><td><?php echo $model->fi_dflight3?></td><td><?php echo $model->fi_dfrom3?></td><td><?php echo $model->fi_dto3?></td><td><?php echo $model->fi_ddep3?></td><td><?php echo $model->fi_darr3?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						<?php } elseif($model->fi_adate3!=''){?>
+						<tr>
+						     <td><?php echo $model->fi_adate3?></td><td><?php echo $model->fi_aflight3?></td><td><?php echo $model->fi_afrom3?></td><td><?php echo $model->fi_ato3?></td><td><?php echo $model->fi_adep3?></td><td><?php echo $model->fi_aarr3?></td><td><?php echo $model->fi_adate?></td>
+							   <td><?php echo $model->fi_ddate?></td>	
+						    <td><?php echo $model->fi_ddate1?></td><td><?php echo $model->fi_dflight1?></td><td><?php echo $model->fi_dfrom1?></td><td><?php echo $model->fi_dto1?></td><td><?php echo $model->fi_ddep1?></td><td><?php echo $model->fi_darr1?></td>
+						    </tr>
+					      <tr>
+						    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						    <td></td>
+						    <?php if($model->fi_ddate2!=''){?>
+						    <td><?php echo $model->fi_ddate2?></td><td><?php echo $model->fi_dflight2?></td><td><?php echo $model->fi_dfrom2?></td><td><?php echo $model->fi_dto2?></td><td><?php echo $model->fi_ddep2?></td><td><?php echo $model->fi_darr2?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						    <tr>
+						    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						    <td></td>
+						    <?php if($model->fi_ddate3!=''){?>
+						    <td><?php echo $model->fi_ddate3?></td><td><?php echo $model->fi_dflight3?></td><td><?php echo $model->fi_dfrom3?></td><td><?php echo $model->fi_dto3?></td><td><?php echo $model->fi_ddep3?></td><td><?php echo $model->fi_darr3?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						<?php }?>					
+
+					</tbody>
+
+				 </table>
+			<?php }?>	
+			
+				<?php if($guest->fi_status=='ticketed'){?>
+			   <table class="table table-bordered table-hover table-striped" width="40%">
+			   	<caption>
+					<h2><?php echo 'Guest Flight Information'?></h2>
+					</caption>
+					<thead>
+						<tr>
+							<th colspan="7">Arrival Flights to Sydney</th><th colspan="7">Departure Flights from Sydney</th>
+						</tr>
+						<tr>
+							<th>Flight Date</th><th>Flight No.</th><th>From.</th><th>To.</th><th>Departure Time</th><th>Arrival Time</th><th>Arrival Date into Sydney</th>
+							<th>Departure Date from Sydney</th><th>Flight Date</th><th>Flight No.</th><th>From.</th><th>To.</th><th>Departure Time</th><th>Arrival Time</th>
+						</tr>
+						
+					</thead>
+					<tbody>
+						
+						<?php if($guest->fi_adate1!=''){?>
+						<tr>
+						   <td><?php echo $guest->fi_adate1?></td><td><?php echo $guest->fi_aflight1?></td><td><?php echo $guest->fi_afrom1?></td><td><?php echo $guest->fi_ato1?></td><td><?php echo $guest->fi_adep1?></td><td><?php echo $guest->fi_aarr1?></td><td></td>
+						   <td><?php echo $guest->fi_ddate?></td>	
+						   <td><?php echo $guest->fi_ddate1?></td><td><?php echo $guest->fi_dflight1?></td><td><?php echo $guest->fi_dfrom1?></td><td><?php echo $guest->fi_dto1?></td><td><?php echo $guest->fi_ddep1?></td><td><?php echo $guest->fi_darr1?></td>
+						    </tr>	
+						    <tr>
+						    <td><?php echo $guest->fi_adate2?></td><td><?php echo $guest->fi_aflight2?></td><td><?php echo $guest->fi_afrom2?></td><td><?php echo $guest->fi_ato2?></td><td><?php echo $guest->fi_adep2?></td><td><?php echo $guest->fi_aarr2?></td><td></td>
+						    <td></td>
+						    <?php if($guest->fi_ddate2!=''){?>
+						    <td><?php echo $guest->fi_ddate2?></td><td><?php echo $guest->fi_dflight2?></td><td><?php echo $guest->fi_dfrom2?></td><td><?php echo $guest->fi_dto2?></td><td><?php echo $guest->fi_ddep2?></td><td><?php echo $guest->fi_darr2?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						    <tr>
+						    <td><?php echo $guest->fi_adate3?></td><td><?php echo $guest->fi_aflight3?></td><td><?php echo $guest->fi_afrom3?></td><td><?php echo $guest->fi_ato3?></td><td><?php echo $guest->fi_adep3?></td><td><?php echo $guest->fi_aarr3?></td><td><?php echo $guest->fi_adate?></td>
+						    <td></td>
+						    <?php if($guest->fi_ddate3!=''){?>
+						    <td><?php echo $guest->fi_ddate3?></td><td><?php echo $guest->fi_dflight3?></td><td><?php echo $guest->fi_dfrom3?></td><td><?php echo $guest->fi_dto3?></td><td><?php echo $guest->fi_ddep3?></td><td><?php echo $guest->fi_darr3?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						<?php } elseif($guest->fi_adate2!=''){?>
+						<tr>
+						    <td><?php echo $guest->fi_adate2?></td><td><?php echo $guest->fi_aflight2?></td><td><?php echo $guest->fi_afrom2?></td><td><?php echo $guest->fi_ato2?></td><td><?php echo $guest->fi_adep2?></td><td><?php echo $guest->fi_aarr2?></td><td></td>
+						    <td><?php echo $guest->fi_ddate?></td>	
+						    <td><?php echo $guest->fi_ddate1?></td><td><?php echo $guest->fi_dflight1?></td><td><?php echo $guest->fi_dfrom1?></td><td><?php echo $guest->fi_dto1?></td><td><?php echo $guest->fi_ddep1?></td><td><?php echo $guest->fi_darr1?></td>
+						    </tr>	
+						    <tr>
+						    <td><?php echo $guest->fi_adate3?></td><td><?php echo $guest->fi_aflight3?></td><td><?php echo $guest->fi_afrom3?></td><td><?php echo $guest->fi_ato3?></td><td><?php echo $guest->fi_adep3?></td><td><?php echo $guest->fi_aarr3?></td><td><?php echo $guest->fi_adate?></td>
+						    <td></td>
+						    <?php if($guest->fi_ddate2!=''){?>
+						    <td><?php echo $guest->fi_ddate2?></td><td><?php echo $guest->fi_dflight2?></td><td><?php echo $guest->fi_dfrom2?></td><td><?php echo $guest->fi_dto2?></td><td><?php echo $guest->fi_ddep2?></td><td><?php echo $guest->fi_darr2?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						    <tr>
+						    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						    <td></td>
+						    <?php if($guest->fi_ddate3!=''){?>
+						    <td><?php echo $guest->fi_ddate3?></td><td><?php echo $guest->fi_dflight3?></td><td><?php echo $guest->fi_dfrom3?></td><td><?php echo $guest->fi_dto3?></td><td><?php echo $guest->fi_ddep3?></td><td><?php echo $guest->fi_darr3?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						<?php } elseif($guest->fi_adate3!=''){?>
+						<tr>
+						     <td><?php echo $guest->fi_adate3?></td><td><?php echo $guest->fi_aflight3?></td><td><?php echo $guest->fi_afrom3?></td><td><?php echo $guest->fi_ato3?></td><td><?php echo $guest->fi_adep3?></td><td><?php echo $guest->fi_aarr3?></td><td><?php echo $guest->fi_adate?></td>
+							   <td><?php echo $guest->fi_ddate?></td>	
+						    <td><?php echo $guest->fi_ddate1?></td><td><?php echo $guest->fi_dflight1?></td><td><?php echo $guest->fi_dfrom1?></td><td><?php echo $guest->fi_dto1?></td><td><?php echo $guest->fi_ddep1?></td><td><?php echo $guest->fi_darr1?></td>
+						    </tr>
+					      <tr>
+						    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						    <td></td>
+						    <?php if($guest->fi_ddate2!=''){?>
+						    <td><?php echo $guest->fi_ddate2?></td><td><?php echo $guest->fi_dflight2?></td><td><?php echo $guest->fi_dfrom2?></td><td><?php echo $guest->fi_dto2?></td><td><?php echo $guest->fi_ddep2?></td><td><?php echo $guest->fi_darr2?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						    <tr>
+						    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						    <td></td>
+						    <?php if($guest->fi_ddate3!=''){?>
+						    <td><?php echo $guest->fi_ddate3?></td><td><?php echo $guest->fi_dflight3?></td><td><?php echo $guest->fi_dfrom3?></td><td><?php echo $guest->fi_dto3?></td><td><?php echo $guest->fi_ddep3?></td><td><?php echo $guest->fi_darr3?></td>		
+						    <?php } else {	?>
+						     <td></td><td></td><td></td><td></td><td></td><td></td>
+						    <?php }?>
+						    </tr>
+						<?php }?>					
+
+					</tbody>
+
+				 </table>
+			<?php }?>	
 	</div>
 </div>
 

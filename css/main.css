@@ -53,3 +53,69 @@ body {
 span.required {color:red;}
 #bgbox{background:rgba(54,120,62,0.5);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f36783e,endColorstr=#7f36783e);zoom:1;}
 :root #bgbox{filter:none\9;}/*for IE9*/
+
+.gwc-icon-reg{
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	margin-top: 1px;
+	line-height: 14px;
+	vertical-align: text-top;
+	background-repeat: no-repeat;
+	background-image: url(../images/icon_reg.png);
+}
+
+.gwc-icon-hotel{
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	margin-top: 1px;
+	line-height: 19px;
+	vertical-align: text-top;
+	background-repeat: no-repeat;
+	background-image: url(../images/icon_hotel.png);
+}
+
+.gwc-icon-air{
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	margin-top: 1px;
+	line-height: 19px;
+	vertical-align: text-top;
+	background-repeat: no-repeat;
+	background-image: url(../images/icon_air.png);
+}
+
+.gwc-icon-tour{
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	margin-top: 1px;
+	line-height: 19px;
+	vertical-align: text-top;
+	background-repeat: no-repeat;
+	background-image: url(../images/icon_calendar.png);
+}
+
+.gwc-icon-depart{
+	display: inline-block;
+	width: 27px;
+	height: 27px;
+	margin-top: 1px;
+	line-height: 28px;
+	vertical-align: text-top;
+	background-repeat: no-repeat;
+	background-image: url(../images/icon_depart.png);
+}
+
+.gwc-icon-arrival{
+	display: inline-block;
+	width: 27px;
+	height: 27px;
+	margin-top: 1px;
+	line-height: 28px;
+	vertical-align: text-top;
+	background-repeat: no-repeat;
+	background-image: url(../images/icon_arrival.png);
+}

@@ -136,7 +136,7 @@
 			defaultDate: "+1w",
 			changeMonth: true,
 			changeYear: true,
-			dateFormat: 'M/dd/yy',
+			dateFormat: 'M/yy',
 		});
 	});
 	function freeDate(){

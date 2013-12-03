@@ -157,8 +157,31 @@ class User extends TrackStarActiveRecord
 			array('travel_ticket,coupon,guest_travel_ticket,guest_coupon','length','max'=>'1'),
 				
 			array('no_gala_dinner,travel_comment,travel_comment_status,dietary_commnet,billing_instruction,visa_status,permanent_home_address,place_of_birth','safe'),
-			array('credit_card_number', 'length', 'min'=>16,'on'=>'hotel'),
+			array('credit_card_number', 'lengthCheck','on'=>'hotel'),
 		);
+	}
+	
+	public function lengthCheck($attribute,$params)
+	{
+		if($this->credit_card_type=='American Express')
+		{
+			if(!empty($this->$attribute)){
+			$len=strlen($this->$attribute);
+			if($len<15)
+			{
+				$this->addError($attribute, $attribute . 'is too short(minimum is 15 characters)');
+			}
+			}
+		}
+		else{
+		if(!empty($this->$attribute)){
+			$len=strlen($this->$attribute);
+			if($len<16)
+			{
+				$this->addError($attribute, $attribute . 'is too short(minimum is 16 characters)');
+			}
+			}
+		}
 	}
 	
 	public function crewRequired($attribute,$params){
@@ -879,16 +902,16 @@ class User extends TrackStarActiveRecord
 	}
 	public function menuList(){
 		return array(
-				'Meat'=>'Meat Option',
-				'Fish'=>'Fish Option',
-				'Vegetarian'=>'Vegetarian Option',
+				'Meat'=>'Meat',
+				'Fish'=>'Fish',
+				'Vegetarian'=>'Vegetarian',
 		);
 	}
 	public function galaMenuList(){
 		return array(
-				'Cottage Pie'=>'Upside Down Cottage Pie',
-				'Cod'=>'Miso Black Cod',
-				'Ravioli'=>'Open Faced Ravioli',
+				'Meat'=>'Meat',
+				'Fish'=>'Fish',
+				'Vegetarian'=>'Vegetarian',
 				);
 	}
 	public function gala_dinner_menuText(){

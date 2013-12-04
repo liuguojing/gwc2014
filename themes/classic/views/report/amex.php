@@ -10,6 +10,7 @@
 	<td>Passport Given Name(s)</td>
 	<td>Passport Surname</td>
 	<td>Preferred Name</td>
+	<td>Date of Birth</td>
 	<td>Email</td>
 	<td>Daytime Phone</td>
 	
@@ -42,7 +43,7 @@
 	<td>Hotel</td>
 	<td>Date/Time for Registration</td>
 	<td>Date/time for last updated</td>
-	<td>Date of Birth</td>
+	
 	<td>Guest</td>
 	<td>Dietary </td>
 	<td>Dietary Comment</td>
@@ -101,6 +102,7 @@
 	<td><?php echo $user->ga_firstname?></td>
 	<td><?php echo $user->ga_lastname?></td>
 	<td><?php echo $user->preferred_name?></td>
+	<td><?php echo $user->ga_dateofbirth;?></td>
 	<td><?php echo $user->email?></td>
 	<td><?php echo $user->daytime_phone?></td>
 	<td><?php echo $user->evening_phone;?> </td>
@@ -131,7 +133,7 @@
 	<td><?php echo $user->hotel?></td>
 	<td><?php echo $user->created_at;?></td>
 	<td><?php echo $user->updated_at;?></td>
-	<td><?php echo $user->ga_dateofbirth;?></td>
+	
 	<td><?php echo $user->has_guest==1?'Yes':'No';?></td>
 	<td><?php echo $user->team_dinner_dietary;?> </td>
 	<td><?php echo $user->dietary_comment;?> </td>

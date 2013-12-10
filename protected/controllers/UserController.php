@@ -715,16 +715,16 @@ public  function actionGuestDeleteNew($id)
 			$guest = new Guest;
 			$guest->user_id = $model->id;
 		}
-		$tour_users = TourUser::model()->with('tour','seat')->findAllByAttributes(array('user_id'=>Yii::app()->user->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
-		$wishlists = Wishlist::model()->with('tour','seat')->findAllByAttributes(array('user_id'=>Yii::app()->user->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
+		$tour_users = TourUser::model()->with('tour','seat')->findAllByAttributes(array('user_id'=>$model->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
+		$wishlists = Wishlist::model()->with('tour','seat')->findAllByAttributes(array('user_id'=>$model->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
 		
 		$tour_guests = array();
 		$guest_wishlists = array();
 		$user = $model;
 		$guest=new Guest;
-		if($user->has_guest==1){
+		if($model->has_guest==1){
 			
-			$guest = Guest::model()->findByAttributes(array('user_id'=>$user->id));
+			$guest = Guest::model()->findByAttributes(array('user_id'=>$model->id));
 			$tour_guests = TourGuest::model()->with('tour','seat')->findAllByAttributes(array('guest_id'=>$guest->id),array('order'=>'t.order_date asc,seat.begin_time asc'));
 			if($tour_guests===null){
 				$tour_guests = array();
@@ -734,6 +734,14 @@ public  function actionGuestDeleteNew($id)
 				$guest_wishlists = array();
 			}
 		}
+		
+		if($model->tour_status==0)
+		{
+			$tour_users = array();
+			$wishlists = array();
+			$tour_guests = array();
+			$guest_wishlists = array();
+			} 
 		
 		
 		$this->render('email_summary',array('tour_users'=>$tour_users,

@@ -54,6 +54,11 @@ class ReportController extends Controller
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
 						'actions'=>array('dmc','newRegistration','declined','cancelled'),
 						'users'=>array('@'),
+						'expression' => '$user->isAdmin && $user->name=="claire"'
+				),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+						'actions'=>array('dmc','newRegistration','declined','cancelled'),
+						'users'=>array('@'),
 						'expression' => '$user->isAdmin && $user->name=="DMC"'
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions

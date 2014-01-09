@@ -11,7 +11,7 @@
 
 <p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
+<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX</p> 
 
@@ -31,7 +31,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
+<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX</p> 
 
@@ -51,7 +51,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
+<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX </p> 
 
@@ -71,7 +71,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. </p>
+<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX  </p>  
 
@@ -106,7 +106,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration, housing and travel requirements by clicking on the accept or decline options below by Friday, February 15th 2014. </b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process.</p>
+<p style="word-wrap:break-word;font-family:arial;">Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">Once you have completed your registration, you will receive a separate email with details of the tours and activities available to you outlining the next steps. We highly recommend you complete your tours and activities selections as soon as possible as some tours may get booked up quickly. Tours and Activities bookings will close on XXXXX </p> 
 

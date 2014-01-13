@@ -17,7 +17,8 @@
 					<td>Credit Security Code</td>
 					<td>Guest full name</td>
 					<td>Comments fields</td>
-					<td>Check in /out dates</td>
+					<td>Check in date</td>
+					<td>Check out date</td>
 					<td>Type </td>
 					<td>Room type </td>
 					<td>One bed / Two beds</td>
@@ -36,7 +37,8 @@
 					<td><?php echo $user->csv_number;?></td>
 					<td><?php echo empty($user->guest)?'':$user->guest->first_name . ' ' . $user->guest->last_name;?></td>
 					<td><?php echo CHtml::encode($user->comment);?></td>
-					<td><?php echo $user->hotel_arrival_date . '/' . $user->hotel_departure_date;?></td>
+					<td><?php echo $user->hotel_arrival_date;?></td>
+					<td><?php echo $user->hotel_departure_date;?></td>
 					<td><?php echo $user->type;?></td>
 					<td><?php echo $user->hotel_type;?></td>
 					<td><?php echo $user->room_type;?></td>

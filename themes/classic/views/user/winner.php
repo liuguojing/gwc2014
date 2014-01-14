@@ -431,4 +431,7 @@
 			
 		 }
 	}
+	$(document).ready(function() { 
+		user_sex('<?php echo $model->crew_menu_choice;?>');
+	}); 
 	</script>

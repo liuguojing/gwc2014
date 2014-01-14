@@ -222,9 +222,9 @@
 							$total = 8;
 							$fill = 0;
 							if($model->type=='Operating Committee'){
-								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue,hotel_type,hotel_confirmation_number');
+								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue,hotel_confirmation_number');
 							}else{
-								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue,credit_card_number,credit_card_type,credit_card_expiration_date,cardholders_name,hotel_type,hotel_confirmation_number');
+								$attributes  = explode(',','room_type,hotel_arrival_date,hotel_departure_date,hotel_venue,hotel_confirmation_number');
 							}
 							foreach($attributes as $attribute){
 								if(!empty($model->$attribute))

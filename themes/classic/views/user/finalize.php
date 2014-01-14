@@ -7,7 +7,7 @@
 				<?php if($model->type == 'Top Achievers' || $model->type =='Eagles'){?>
 				<p>Your request for travel has been sent to the dedicated Winners Circle American Express team.</P>
 				<p>American Express will send a receipt of request within 24 hours. A proposed itinerary will be e-mailed within 5 working days. All correspondence will be managed within the GMT time zone. Normal office working hours are between 9am and 5pm GMT</P>
-				<p><b>You are now able to peruse and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Tours please contact <a href="mailto:WinnersCircle2014@ideventsaustralia.com">WinnersCircle2014@ideventsaustralia.com</a>.</b></P>
+				<p><b>You are now able to peruse and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Tours please contact <a href="mailto:WinnersCircle2013@ideventsaustralia.com">WinnersCircle2013@ideventsaustralia.com</a>.</b></P>
 				<p>For any <b>accommodation</b> or <b>registration</b> queries please email: <a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a> </p>
 				<p>For any <b>travel</b> related queries please email: <a href="mailto:winnerscircletravel@aexp.com">winnerscircletravel@aexp.com</a></p>
 				<p>For all other queries please contact <a href="mailto:cindy.rosado@gartner.com">cindy.rosado@gartner.com</a> </p>
@@ -19,7 +19,7 @@
 				<?php }elseif($model->type == 'Host GEN' || $model->type == 'Host GVP' || $model->type =='Winners'){?>
 				<p>Your request for travel has been sent to the dedicated Winners Circle American Express team.</P>
 				<p>American Express will send a receipt of request within 24 hours. A proposed itinerary will be e-mailed within 5 working days. All correspondence will be managed within the GMT time zone. Normal office working hours are between 9am and 5pm GMT</P>
-				<p><b>You are now able to peruse and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Tours please contact <a href="mailto:WinnersCircle2014@ideventsaustralia.com">WinnersCircle2014@ideventsaustralia.com</a>.</b>></P>
+				<p><b>You are now able to peruse and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Tours please contact <a href="mailto:WinnersCircle2013@ideventsaustralia.com">WinnersCircle2013@ideventsaustralia.com</a>.</b>></P>
 				<p>For any <b>accommodation</b> or <b>registration</b> queries please email: <a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a> </p>
 				<p>For any <b>travel</b> related queries please email: <a href="mailto:winnerscircletravel@aexp.com">winnerscircletravel@aexp.com</a></p>
 				<p>We look forward to seeing you in Sydney!</p>
@@ -29,6 +29,7 @@
 				
 				<?php }elseif($model->type == 'Operating Committee'){?>
 				<p>Marisa Kazi from American Express will be in contact with you to understand your travel requirements.  Alternatively please contact her on: <a href="mailto:ax1gartnervip@aexp.com">ax1gartnervip@aexp.com</a>  telephone: 800-872-9952 option 6. </P>
+				<p><b>You are now able to peruse and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Tours please contact <a href="mailto:amy.repik@gartner.com">Amy Repik</a>.</b></P>
 				<p>For any <b>Accommodation, Registration or Tours and Activities</b> queries please email: <a href="mailto:amy.repik@gartner.com">Amy Repik</a> </p>
 				<p>We look forward to seeing you in Sydney!</p>
 				<p style="margin-top:24px;">Winners Circle Events Team</P>

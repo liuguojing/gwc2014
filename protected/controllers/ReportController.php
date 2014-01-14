@@ -44,7 +44,7 @@ class ReportController extends Controller
 								'galatable','printers','dmc','newRegistration','declined','cancelled','amex','users','dmcdownload','traveluser',
 								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown'),
 						'users'=>array('@'),
-						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="YYO" || $user->name=="Caroline" || $user->name=="Dickie")'
+						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="Tony" || $user->name=="Caroline" || $user->name=="Dickie")'
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
 						'actions'=>array('transfer','arrival','departure','dmcdownload','amex','traveluser'),

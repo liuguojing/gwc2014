@@ -231,7 +231,7 @@
 					</tbody>
 				</table>
 				<?php }?>
-				<?php if($model->type!='Crew'){?>
+				<?php if($model->type!='Crew' && $model->type!='Gartner Crew'){?>
 				<table class="table table-bordered table-hover table-striped">
 					<caption>
 					<h2><?php echo CHtml::link('Additional Information',array('user/tours'))?></h2>

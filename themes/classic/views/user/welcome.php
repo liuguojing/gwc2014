@@ -18,7 +18,7 @@
 						<?php }else{?>
 						<p style="color:#fff;font-size:18px;line-height:20px;margin:10px;">
 						Congratulations on qualifying for Winners Circle 2013 in Sydney<br><br>
-						Please note that registration will take approximately 10 minutes to complete and you will need to enter passport/US Identity card and credit card details for yourself and your significant other in order to complete the registration process. <br/><br/>
+						Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process. <br/><br/>
 						If you have any queries, please email <a href="mailto:winners@corporatereg.com" style="color:#fff">winners@corporatereg.com</a> <br><br>
 						Please press proceed to start registering.<br><br>
 						</p>

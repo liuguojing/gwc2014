@@ -57,15 +57,14 @@
 									$step = 1;
 								}elseif($active == 'winner'){
 									$step = 2;
-								}elseif($active == 'tours'){
-									$step = 4;
+								//}elseif($active == 'tours'){
+								//	$step = 4;
 								}elseif($active == 'summary'){
-							  		$step = 5;
+							  		$step = 3;
 							  	}?>
 						<li<?php if($active == 'welcome'){echo ' class="active"';}?>><?php echo CHtml::link('Welcome',array('user/welcome'));?></li>
-						<li<?php if($active == 'winner'){ echo ' class="active"';}?>><?php echo $step>1?CHtml::link('Gartner Crew Information',array('user/winner')):CHtml::link('Gartner Crew Information','###');?></li>
-						<li<?php if($active == 'tours'){  echo ' class="active"';}?>><?php echo $step>3?CHtml::link('Additional Information',array('user/tours')):CHtml::link('Additional Information','###');?></li>
-						<li<?php if($active == 'summary'){echo ' class="active"';}?>><?php echo $step>4?CHtml::link('Review',array('user/summary')):CHtml::link('Review','###');?></li>
+						<li<?php if($active == 'winner'){ echo ' class="active"';}?>><?php echo $step>1?CHtml::link('Gartner Crew Information',array('user/winner')):CHtml::link('Gartner Crew Information','###');?></li>					
+						<li<?php if($active == 'summary'){echo ' class="active"';}?>><?php echo $step>2?CHtml::link('Review',array('user/summary')):CHtml::link('Review','###');?></li>
 					<?php }elseif(isset($this->user) && $this->user->type=='Operating Committee'){
 							  	$active = Yii::app()->getController()->getAction()->id;
 							  	$step=1;

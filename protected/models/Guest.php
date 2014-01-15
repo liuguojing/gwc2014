@@ -67,7 +67,7 @@ class Guest extends TrackStarActiveRecord
 			array('id,user_id','unsafe'),
 			// The following rule is used by search().
 			 // Please remove those attributes that should not be searched.
-             array('id, user_id, first_name, last_name, relationship, telephone_number, email, date_of_birth, dietary_requirements, passport, special_requests, nationality, departure_date, return_date, airport_name, airport_code, hotel_arrival_date, hotel_departure_date, room_type, created_at, created_by, updated_at, updated_by, ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date, ga_redress_number, destination_city, preferred_seat_request, preferred_airline_frequent_flyer_number, other, need_visa, visa_letter, checked, hotel_venue, team_dinner, team_dinner_menu, team_dinner_dietary, gala_dinner, gala_dinner_menu, gala_dinner_dietary, dietary_comment, frequent_flyer_number, preferred_airline, fi_status, fi_adate, fi_adate1, fi_aflight1, fi_afrom1, fi_ato1, fi_adep1, fi_aarr1, fi_adate2, fi_aflight2, fi_afrom2, fi_ato2, fi_adep2, fi_aarr2, fi_adate3, fi_aflight3, fi_afrom3, fi_ato3, fi_adep3, fi_aarr3, fi_ddate, fi_ddate1, fi_dflight1, fi_dfrom1, fi_dto1, fi_ddep1, fi_darr1, fi_ddate2, fi_dflight2, fi_dfrom2, fi_dto2, fi_ddep2, fi_darr2, fi_ddate3, fi_dflight3, fi_dfrom3, fi_dto3, fi_ddep3, fi_darr3, has_checkin, headset, has_gift, checkin_at, gift_at', 'safe', 
+             array('id, user_id, first_name, last_name, relationship, telephone_number, email,flight_price, date_of_birth, dietary_requirements, passport, special_requests, nationality, departure_date, return_date, airport_name, airport_code, hotel_arrival_date, hotel_departure_date, room_type, created_at, created_by, updated_at, updated_by, ga_passport, ga_dateofbirth, ga_firstname, ga_lastname, ga_gender, ga_card_number, ga_card_country, ga_card_expiration_date, ga_card_issue_date, ga_redress_number, destination_city, preferred_seat_request, preferred_airline_frequent_flyer_number, other, need_visa, visa_letter, checked, hotel_venue, team_dinner, team_dinner_menu, team_dinner_dietary, gala_dinner, gala_dinner_menu, gala_dinner_dietary, dietary_comment, frequent_flyer_number, preferred_airline, fi_status, fi_adate, fi_adate1, fi_aflight1, fi_afrom1, fi_ato1, fi_adep1, fi_aarr1, fi_adate2, fi_aflight2, fi_afrom2, fi_ato2, fi_adep2, fi_aarr2, fi_adate3, fi_aflight3, fi_afrom3, fi_ato3, fi_adep3, fi_aarr3, fi_ddate, fi_ddate1, fi_dflight1, fi_dfrom1, fi_dto1, fi_ddep1, fi_darr1, fi_ddate2, fi_dflight2, fi_dfrom2, fi_dto2, fi_ddep2, fi_darr2, fi_ddate3, fi_dflight3, fi_dfrom3, fi_dto3, fi_ddep3, fi_darr3, has_checkin, headset, has_gift, checkin_at, gift_at', 'safe', 
              		'on'=>'search'),
         	array('first_name,last_name,','required',
         			'on'=>'winner'),	
@@ -182,7 +182,7 @@ class Guest extends TrackStarActiveRecord
 				'fi_darr3'=>'Departure Arr',
 				'headset'=>'Guest Gift Collection',
 				'has_checkin'=>'Guest Checked-in',
-				
+				'flight_price'=>'flight price',
 				'no_gala_dinner'=>'Guest Not Attending Gala Dinner',
 				'visa_status'=>'Guest Visa Status',
 		        'driving'=>'Driving',
@@ -254,9 +254,9 @@ class Guest extends TrackStarActiveRecord
 				Spiced Seared Tuna
 				Wakami Salad, Yuzo Ice, Sesame Ice
 	
-				Entrée
-				Up Side-Down “Cottage Pie”
-				“Guinness” Glazed Beef Short Rib, Truffled Mashed Potato, White Cheddar Gratin,
+				Entr茅e
+				Up Side-Down 鈥淐ottage Pie鈥�
+				鈥淕uinness鈥� Glazed Beef Short Rib, Truffled Mashed Potato, White Cheddar Gratin,
 				Pickled Root Vegetables
 	
 				Dessert
@@ -265,9 +265,9 @@ class Guest extends TrackStarActiveRecord
 				Spiced Seared Tuna
 				Wakami Salad, Yuzo Ice, Sesame Ice
 	
-				Entrée
+				Entr茅e
 	
-				Baingan Bharta “Open Faced Ravioli” (v) (Vegan)
+				Baingan Bharta 鈥淥pen Faced Ravioli鈥� (v) (Vegan)
 				Smoked Eggplant Pulp, Sweet Garlic, Red Chili, Turmeric, Cumin, Fresh Cilantro
 	
 	
@@ -277,7 +277,7 @@ class Guest extends TrackStarActiveRecord
 				Spiced Seared Tuna
 				Wakami Salad, Yuzo Ice, Sesame Ice
 	
-				Entrée
+				Entr茅e
 	
 				Miso Black Cod
 				Succotash (no chorizo), Cranberry Bean, Pickled Root Vegetable, Leon Allioli

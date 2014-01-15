@@ -291,7 +291,7 @@
 <td><?php echo $user->guest->fi_dto3?></td>                        
 <td><?php echo $user->guest->fi_ddep3?></td>                       
 <td><?php echo $user->guest->fi_darr3?></td>                       
-	<td></td>
+<td><?php echo $user->guest->flight_price?></td>
 </tr>
 <?php }}?>
 

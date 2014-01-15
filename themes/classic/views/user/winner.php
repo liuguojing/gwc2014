@@ -326,12 +326,12 @@
 	<script>
 	$(function() {
 		$( "#User_ga_dateofbirth" ).datepicker({
-			defaultDate:'c',
+			defaultDate:'c-10',
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			yearRange: 'c-60:c',
+			yearRange: 'c-60:c-10',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_dateofbirth" ).datepicker("getDate"))!=dateText){

@@ -13,13 +13,13 @@
 						If you have any questions regarding your registration please contact <a href="mailto:zoe.venning-pridham@gartner.com">Zoe Venning-Pridham</a>  in the Winners Circle Events Team.<br/><br/>
 						<?php }elseif($user->type=='Host GEN'||$user->type=='Host GVP'||$user->type=='Host Winners'){?>
 						Thank you.  Your information for Winners Circle is now completed. <br/>
-						If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporatereg.com">Winners Circle Events Team </a>.<br/><br/>
+						If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporate-reg.com">Winners Circle Events Team </a>.<br/><br/>
 						<?php }elseif($user->type=='Operating Committee'){?>
 						Thank you.  Your information for Winners Circle is now completed. <br/>
-						If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporatereg.com">Winners Circle Events Team </a>.<br/><br/>
+						If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporate-reg.com">Winners Circle Events Team </a>.<br/><br/>
 						<?php }elseif($user->type=='Gartner Crew'||$user->type=='Crew'){?>
 						Thank you.  Your information for Winners Circle is now completed. <br/>
-						If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporatereg.com">Winners Circle Events Team </a>.<br/><br/>
+						If you have any questions regarding your registration please do contact the <a href="mailto:winners@corporate-reg.com">Winners Circle Events Team </a>.<br/><br/>
 						<span style="color:#fff">Winners Circle Events Leadership Team</span>
 						<?php }?>
 						</p>

@@ -1,0 +1,1 @@
+ALTER TABLE `gwc2014`.`guests` ADD COLUMN `flight_price` VARCHAR(100) NULL AFTER `tour`; 

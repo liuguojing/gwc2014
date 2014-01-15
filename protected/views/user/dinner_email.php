@@ -35,7 +35,7 @@
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners Circle Registration Team</p>
 
-<p style="word-wrap:break-word;font-family:arial;"><a href="mailto:winners@corporatereg.com">winners@corporatereg.com</a></p>
+<p style="word-wrap:break-word;font-family:arial;"><a href="mailto:winners@corporate-reg.com">winners@corporate-reg.com</a></p>
 
 <div style="clear:both"></div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>

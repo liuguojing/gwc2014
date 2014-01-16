@@ -26,7 +26,7 @@
 				<div class="span6">
 				<legend><b>Winner Team Dinner</b></legend>
 					<div class="control-group">
-						<b>To help us with the organisation for the Team Dinner.Further details regarding the Team Dinner will be emailed to you at a later date.</b><br/>
+						<b>To help us with the organisation of the Team Dinner, please select from the options below.  Further details regarding the Team Dinner will be emailed to you at a later date.</b><br/>
 					</div>
 					<div class="control-group <?php if($model->getError('team_dinner_menu')){ echo 'error';}?>">
 						<label class="" for="User_team_dinner_menu">
@@ -37,7 +37,7 @@
 					</div>
 					<legend><b>Winner Gala Dinner</b></legend>
 					<div class="control-group" style="min-height:80px;">
-						<b>To help us with the organisation for the Gala Dinner.Further details regarding the Gala Dinner will be emailed to you at a later date.</b>
+						<b>To help us with the organisation of the Gala Dinner, please select from the options below.  Further details regarding the Gala Dinner will be emailed to you at a later date.</b>
 					</div>
 					
 					<div class="control-group <?php if($model->getError('gala_dinner_menu')){ echo 'error';}?>" style="min-height:80px;">

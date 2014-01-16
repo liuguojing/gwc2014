@@ -228,7 +228,7 @@
 				<div class="control-group <?php if($model->getError('times')){ echo 'error';}?>">
 					<label class="control-label" for="User_times"><?php echo $model->getAttributeLabel('times')?>:<span class="required">*</span></label>
 					<div class="controls">
-						<?php echo $form->dropDownList($model,'times',User::model()->numberList(),array('placeholder'=>$model->getAttributeLabel('times'))); ?>
+						<?php echo $form->dropDownList($model,'times',User::model()->numberListPlus(),array('placeholder'=>$model->getAttributeLabel('times'))); ?>
 						<?php if($model->getError('times')){?><span class="help-inline"><?php echo $model->getError('times')?></span><?php }?>
 					</div>
 				</div>
@@ -326,12 +326,12 @@
 	<script>
 	$(function() {
 		$( "#User_ga_dateofbirth" ).datepicker({
-			defaultDate:'c-10',
+			defaultDate: new Date(),
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			yearRange: 'c-60:c-10',
+			yearRange: '1940:2004',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#User_ga_dateofbirth" ).datepicker("getDate"))!=dateText){
@@ -356,12 +356,12 @@
 			numberOfMonths: 1,
 		});
 		$( "#Guest_ga_dateofbirth" ).datepicker({
-			defaultDate:'c' ,
+			defaultDate: new Date(),
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
 			dateFormat: 'M/dd/yy',
-			yearRange: 'c-60:c',
+			yearRange: '1940:2004',
 			onClose: function(dateText, inst) {
 				try{
 					if($.datepicker.formatDate('M/dd/yy',$( "#Guest_ga_dateofbirth" ).datepicker("getDate"))!=dateText){

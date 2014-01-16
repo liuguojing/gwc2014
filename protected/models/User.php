@@ -897,7 +897,7 @@ class User extends TrackStarActiveRecord
 			'Europe Sales'=>'Europe Sales',
 			'Event Sales'=>'Event Sales',
 			'Operating Committee'=>'Operating Committee',
-			'Japan Sales '=>'Japan Sales ',
+			'Japan Sales'=>'Japan Sales',
 		);
 	}
 	public function menuList(){

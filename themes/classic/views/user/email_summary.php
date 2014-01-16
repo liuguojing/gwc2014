@@ -545,9 +545,7 @@
 		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
-		          	}  if($tmpTime<'2014-04-1310:00' && $tourTime > '2014-04-1210:00'){ ?>
-		          		<tr><td></td><td>10:00 – 11:00</td><td><b>Tour</b></td></tr>
-		          	<?php 
+		          	
 		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ ?>
 		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
 		          	<?php
@@ -586,9 +584,7 @@
 		          	}  if($tourTime < '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
-		          	}  if($tourTime < '2014-04-1210:00'){ ?>
-		          		<tr><td></td><td>10:00 – 11:00</td><td><b>Tour</b></td></tr>
-		          	<?php 
+		          	
 		          	}  if($tourTime < '2014-04-1318:00'){ ?>
 		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
 		          	<?php
@@ -634,9 +630,7 @@
 		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
-		          	}  if($tmpTime<'2014-04-1310:00' && $tourTime > '2014-04-1210:00'){ ?>
-		          		<tr><td></td><td>10:00 – 11:00</td><td><b>Tour</b></td></tr>
-		          	<?php 
+		          	
 		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ ?>
 		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
 		          	<?php
@@ -677,9 +671,7 @@
 		          	}  if($tourTime < '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
-		          	}  if($tourTime < '2014-04-1210:00'){ ?>
-		          		<tr><td></td><td>10:00 – 11:00</td><td><b>Tour</b></td></tr>
-		          	<?php 
+		          	
 		          	}  if($tourTime < '2014-04-1318:00'){ ?>
 		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
 		          	<?php

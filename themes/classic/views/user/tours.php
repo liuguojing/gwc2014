@@ -55,6 +55,7 @@
 					<div class="control-group">
 					<b></b><br/>
 					<b></b><br/>
+					<b></b><br/>
 					</div>
 					<div class="control-group <?php if($guest->getError('team_dinner_menu')){ echo 'error';}?>" style="min-height:80px;">
 						<label class="" for="Guest_team_dinner_menu">

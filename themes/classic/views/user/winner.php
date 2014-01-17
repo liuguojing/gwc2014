@@ -326,7 +326,7 @@
 	<script>
 	$(function() {
 		$( "#User_ga_dateofbirth" ).datepicker({
-			defaultDate: new Date(),
+			defaultDate: '-74y',
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,
@@ -356,7 +356,7 @@
 			numberOfMonths: 1,
 		});
 		$( "#Guest_ga_dateofbirth" ).datepicker({
-			defaultDate: new Date(),
+			defaultDate: '-74y',
 			changeMonth: true,
 			changeYear: true,
 			numberOfMonths: 1,

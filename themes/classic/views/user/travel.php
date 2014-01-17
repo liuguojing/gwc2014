@@ -6,16 +6,16 @@ if(in_array($model->type,array('Top Achievers','Eagles','Operating Committee')))
 	$minDate = 'Apr/10/2014';
 	$maxDate = "Apr/14/2014";
 }
-if(empty($model->departure_date)){
+if(isset($model->departure_date)){
 	$model->departure_date = $minDate;
 }
-if(empty($model->return_date)){
+if(isset($model->return_date)){
 	$model->return_date = $maxDate;
 }
-if(empty($guest->departure_date)){
+if(isset($guest->departure_date)){
 	$guest->departure_date = $minDate;
 }
-if(empty($guest->return_date)){
+if(isset($guest->return_date)){
 	$guest->return_date = $maxDate;
 }
 ?>

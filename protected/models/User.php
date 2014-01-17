@@ -889,15 +889,16 @@ class User extends TrackStarActiveRecord
 			'Americas Major Accounts – Northwest EU'=>'Americas Major Accounts – Northwest EU',
 			'Americas Major Accounts – South EU'=>'Americas Major Accounts – South EU',
 			'Americas Major Accounts – Brazil Sales'=>'Americas Major Accounts – Brazil Sales',
+			'Americas Major Accounts – Supply Chain'=>'Americas Major Accounts – Supply Chain',
 			'Americas SAO'=>'Americas SAO',
 			'Americas SMB'=>'Americas SMB',
 			'Asia'=>'Asia',
 			'Emerging Markets – India & CEEMEA'=>'Emerging Markets – India & CEEMEA',
 			'Client Partner Group'=>'Client Partner Group',
 			'Europe Sales'=>'Europe Sales',
-			'Event Sales'=>'Event Sales',
-			'Operating Committee'=>'Operating Committee',
+			'Event Sales'=>'Event Sales',			
 			'Japan Sales'=>'Japan Sales',
+			'Specialists'=>'Specialists',
 		);
 	}
 	public function menuList(){

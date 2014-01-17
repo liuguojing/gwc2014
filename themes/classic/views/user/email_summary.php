@@ -1,3 +1,53 @@
+<?php
+
+if (in_array($model->team_dinner,array('Americas Major Accounts – EU Public Sector','Americas Major Accounts – HTTP East','Americas Major Accounts – HTTP West','Americas Major Accounts – Northeast EU/Invest','Americas Major Accounts – Northwest EU','Americas Major Accounts – South EU','Americas Major Accounts – Brazil Sales','Americas Major Accounts – Supply Chain','Americas SAO')))
+{$hotel_assign='Sheraton';
+ 	$team_dinner='Friday April 11 2014';
+ 	$gala_dinner='Sunday April 13 2014';
+ 	$night_f='Team Dinner';
+ 	$night_s='Gala Dinner and Awards';
+	 }
+
+if (in_array($model->team_dinner,array('Europe Sales','Event Sales')))
+{$hotel_assign='Hilton'; 
+if ($model->team_dinner=='Europe Sales')
+{
+$team_dinner='Sunday April 13 2014';
+$gala_dinner='Friday April 11 2014';
+$night_s='Team Dinner';
+ 	$night_f='Gala Dinner and Awards';
+	}
+else
+{$team_dinner='Friday April 11 2014';
+$gala_dinner='Sunday April 13 2014';
+	$night_f='Team Dinner';
+ 	$night_s='Gala Dinner and Awards';
+	}
+	}
+
+
+if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Markets – India & CEEMEA','Client Partner Group','Japan Sales','Specialists')))
+{$hotel_assign='Shangri-La';
+	if (in_array($model->team_dinner,array('Americas SMB','Asia','Emerging Markets – India & CEEMEA','Client Partner Group','Japan Sales')))
+	{
+		$team_dinner='Sunday April 13 2014';
+$gala_dinner='Friday April 11 2014';
+$night_s='Team Dinner';
+ 	$night_f='Gala Dinner and Awards';
+		}
+  else
+  {
+  	$team_dinner='Friday April 11 2014';
+$gala_dinner='Sunday April 13 2014';
+$night_f='Team Dinner';
+ 	$night_s='Gala Dinner and Awards';
+  	}
+	
+	
+	 }
+?>
+
+
 <style>
 #User_team_dinner_menu label{width:400px;} 
 #Guest_team_dinner_menu label{width:400px;} 
@@ -533,8 +583,8 @@
 		          	}  if($tmpTime<'2014-04-1108:00' && $tourTime > '2014-04-1108:00'){ ?>
 		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
-		          	}  if($tmpTime<'2014-04-1118:00' && $tourTime > '2014-04-1118:00'){ ?>
-		          		<tr><td></td><td>18:00pm – 22:00</td><td><b>Team Dinner</b></td></tr>
+		          	}  if($tmpTime<'2014-04-1118:00' && $tourTime > '2014-04-1118:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
@@ -546,8 +596,8 @@
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
-		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ ?>
-		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
+		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>";   ?>
 		          	<?php
 		          	} ?>
 		          	<tr><td></td><td>
@@ -572,8 +622,8 @@
 		          	}  if($tourTime < '2014-04-1108:00'){ ?>
 		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
-		          	}  if($tourTime < '2014-04-1118:00'){ ?>
-		          		<tr><td></td><td>18:00 – 22:00</td><td><b>Team Dinner</b></td></tr>
+		          	}  if($tourTime < '2014-04-1118:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>"; ?>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
@@ -585,8 +635,8 @@
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
-		          	}  if($tourTime < '2014-04-1318:00'){ ?>
-		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
+		          	}  if($tourTime < '2014-04-1318:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>"; ?>
 		          	<?php
 		          	} ?>
 		</table>
@@ -618,8 +668,8 @@
 		          	}  if($tmpTime<'2014-04-1108:00' && $tourTime > '2014-04-1108:00'){ ?>
 		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
-		          	}  if($tmpTime<'2014-04-1118:00' && $tourTime > '2014-04-1118:00'){ ?>
-		          		<tr><td></td><td>18:00 – 22:00</td><td><b>Team Dinner</b></td></tr>
+		          	}  if($tmpTime<'2014-04-1118:00' && $tourTime > '2014-04-1118:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
@@ -631,8 +681,8 @@
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
-		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ ?>
-		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
+		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>";   ?>
 		          	<?php
 		          	} ?>
 		          	<tr><td></td><td>
@@ -659,8 +709,8 @@
 		          	}  if($tourTime < '2014-04-1108:00'){ ?>
 		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
-		          	}  if($tourTime < '2014-04-1118:00'){ ?>
-		          		<tr><td></td><td>18:00 – 22:00</td><td><b>Team Dinner</b></td></tr>
+		          	}  if($tourTime < '2014-04-1118:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
@@ -672,8 +722,8 @@
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
-		          	}  if($tourTime < '2014-04-1318:00'){ ?>
-		          		<tr><td></td><td>18:00 – 23:00</td><td><b>Gala Dinner and Awards</b></td></tr>
+		          	}  if($tourTime < '2014-04-1318:00'){ 
+		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>"; ?>
 		          	<?php
 		          	} ?>
 		</table>

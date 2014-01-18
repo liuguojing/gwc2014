@@ -3,7 +3,7 @@ $hotel_assign="Sheraton";
 $team_dinner='Friday April 11 2014';
  	$gala_dinner='Sunday April 13 2014';
 
-if (in_array($model->team_dinner,array('Americas Major Accounts 每 EU Public Sector','Americas Major Accounts 每 HTTP East','Americas Major Accounts 每 HTTP West','Americas Major Accounts 每 Northeast EU/Invest','Americas Major Accounts 每 Northwest EU','Americas Major Accounts 每 South EU','Americas Major Accounts 每 Brazil Sales','Americas Major Accounts 每 Supply Chain','Americas SAO')))
+if (in_array($model->team_dinner,array('Americas Major Accounts - EU Public Sector','Americas Major Accounts - HTTP East','Americas Major Accounts - HTTP West','Americas Major Accounts - Northeast EU/Invest','Americas Major Accounts - Northwest EU','Americas Major Accounts - South EU','Americas Major Accounts - Brazil Sales','Americas Major Accounts - Supply Chain','Americas SAO')))
 {$hotel_assign='Sheraton';
  	$team_dinner='Friday April 11 2014';
  	$gala_dinner='Sunday April 13 2014';
@@ -23,9 +23,9 @@ $gala_dinner='Sunday April 13 2014';
 	}
 
 
-if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Markets 每 India & CEEMEA','Client Partner Group','Japan Sales','Specialists')))
+if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales','Specialists')))
 {$hotel_assign='Shangri-La';
-	if (in_array($model->team_dinner,array('Americas SMB','Asia','Emerging Markets 每 India & CEEMEA','Client Partner Group','Japan Sales')))
+	if (in_array($model->team_dinner,array('Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
 	{
 		$team_dinner='Sunday April 13 2014';
 $gala_dinner='Friday April 11 2014';
@@ -143,7 +143,7 @@ $gala_dinner='Sunday April 13 2014';
 
 <p style="word-wrap:break-word;font-family:arial;">To book your travel to Winners Circle, please contact <a href="mailto:ax1gartnervip@aexp.com">Marisa Kazi</a> from American Express.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration or to book your tours and activities please contact <a href="mailto:amy.repik@gartner.com">Amy Repik</a>. </p> 
+<p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration or to book your tours and activities please contact <a href="mailto:Sophie.nealon@gartner.com">Sophie Nealon</a>. </p> 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 <p style="word-wrap:break-word;font-family:arial;">Thank you, </p>
 <p style="word-wrap:break-word;font-family:arial;">Winners Circle Events Team</p>

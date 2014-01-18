@@ -1,6 +1,6 @@
 <?php
 
-if (in_array($model->team_dinner,array('Americas Major Accounts – EU Public Sector','Americas Major Accounts – HTTP East','Americas Major Accounts – HTTP West','Americas Major Accounts – Northeast EU/Invest','Americas Major Accounts – Northwest EU','Americas Major Accounts – South EU','Americas Major Accounts – Brazil Sales','Americas Major Accounts – Supply Chain','Americas SAO')))
+if (in_array($model->team_dinner,array('Americas Major Accounts - EU Public Sector','Americas Major Accounts - HTTP East','Americas Major Accounts - HTTP West','Americas Major Accounts - Northeast EU/Invest','Americas Major Accounts - Northwest EU','Americas Major Accounts - South EU','Americas Major Accounts - Brazil Sales','Americas Major Accounts - Supply Chain','Americas SAO')))
 {$hotel_assign='Sheraton';
  	$team_dinner='Friday April 11 2014';
  	$gala_dinner='Sunday April 13 2014';
@@ -26,9 +26,9 @@ $gala_dinner='Sunday April 13 2014';
 	}
 
 
-if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Markets – India & CEEMEA','Client Partner Group','Japan Sales','Specialists')))
+if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales','Specialists')))
 {$hotel_assign='Shangri-La';
-	if (in_array($model->team_dinner,array('Americas SMB','Asia','Emerging Markets – India & CEEMEA','Client Partner Group','Japan Sales')))
+	if (in_array($model->team_dinner,array('Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
 	{
 		$team_dinner='Sunday April 13 2014';
 $gala_dinner='Friday April 11 2014';
@@ -572,32 +572,32 @@ $night_f='Team Dinner';
 		          	<?php
 		          	}  if($tmpTime<'2014-04-1011:00' && $tourTime > '2014-04-1011:00'&&($user->type=='Top Achievers'||$user->type=='Operating Committee')){ 
 		          	?>
-		          		<tr><td></td><td>11:00 – 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
+		          		<tr><td></td><td>11:00 - 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
 		          	<?php
 		          	}  if($tmpTime<'2014-04-1018:00' && $tourTime > '2014-04-1018:00'){ ?>
-		          		<tr><td></td><td>18:00 – 22:00</td><td><b>Welcome Reception</b></td></tr>
+		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1100:00' && $tourTime > '2014-04-1100:00'){ ?>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1108:00' && $tourTime > '2014-04-1108:00'){ ?>
-		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
+		          		<tr><td></td><td>8:00 - 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1118:00' && $tourTime > '2014-04-1118:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>";  ?>
+		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1219:00' && $tourTime > '2014-04-1219:00'){ ?>
-		          		<tr><td></td><td>19:00 – 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
+		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
 		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>";   ?>
+		          		echo "<tr><td></td><td>18:00 - 23:00</td><td><b>$night_s</b></td></tr>";   ?>
 		          	<?php
 		          	} ?>
 		          	<tr><td></td><td>
@@ -611,32 +611,32 @@ $night_f='Team Dinner';
 		          	<?php
 		          	}  if($tourTime < '2014-04-1011:00'&&($user->type=='Top Achievers'||$user->type=='Operating Committee')){ 
 		          	?>
-		          		<tr><td></td><td>11:00 – 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
+		          		<tr><td></td><td>11:00 - 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
 		          	<?php
 		          	}  if($tourTime < '2014-04-1018:00'){ ?>
-		          		<tr><td></td><td>18:00 – 22:00</td><td><b>Welcome Reception</b></td></tr>
+		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1100:00'){ ?>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1108:00'){ ?>
-		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
+		          		<tr><td></td><td>8:00 - 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1118:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>"; ?>
+		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>"; ?>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1219:00'){ ?>
-		          		<tr><td></td><td>19:00 – 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
+		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
 		          	}  if($tourTime < '2014-04-1318:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>"; ?>
+		          		echo "<tr><td></td><td>18:00 - 23:00</td><td><b>$night_s</b></td></tr>"; ?>
 		          	<?php
 		          	} ?>
 		</table>
@@ -657,32 +657,32 @@ $night_f='Team Dinner';
 		          	<?php
 		          	}  if($tmpTime<'2014-04-1011:00' && $tourTime > '2014-04-1011:00'&&($user->type=='Top Achievers'||$user->type=='Operating Committee')){ 
 		          	?>
-		          		<tr><td></td><td>11:00 – 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
+		          		<tr><td></td><td>11:00 - 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
 		          	<?php
 		          	}  if($tmpTime<'2014-04-1018:00' && $tourTime > '2014-04-1018:00'){ ?>
-		          		<tr><td></td><td>18:00 – 22:00</td><td><b>Welcome Reception</b></td></tr>
+		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1100:00' && $tourTime > '2014-04-1100:00'){ ?>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1108:00' && $tourTime > '2014-04-1108:00'){ ?>
-		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
+		          		<tr><td></td><td>8:00 - 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1118:00' && $tourTime > '2014-04-1118:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>";  ?>
+		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1219:00' && $tourTime > '2014-04-1219:00'){ ?>
-		          		<tr><td></td><td>19:00 – 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
+		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
 		          	}  if($tmpTime<'2014-04-1318:00' && $tourTime > '2014-04-1318:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>";   ?>
+		          		echo "<tr><td></td><td>18:00 - 23:00</td><td><b>$night_s</b></td></tr>";   ?>
 		          	<?php
 		          	} ?>
 		          	<tr><td></td><td>
@@ -698,32 +698,32 @@ $night_f='Team Dinner';
 		          	<?php
 		          	}  if($tourTime < '2014-04-1011:00'&&($user->type=='Top Achievers'||$user->type=='Operating Committee')){ 
 		          	?>
-		          		<tr><td></td><td>11:00 – 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
+		          		<tr><td></td><td>11:00 - 15:00</td><td><b>Top Achiever Lunch</b></td></tr>
 		          	<?php
 		          	}  if($tourTime < '2014-04-1018:00'){ ?>
-		          		<tr><td></td><td>18:00 – 22:00</td><td><b>Welcome Reception</b></td></tr>
+		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1100:00'){ ?>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1108:00'){ ?>
-		          		<tr><td></td><td>8:00 – 10:00</td><td><b>Welcome Kick Off</b></td></tr>
+		          		<tr><td></td><td>8:00 - 10:00</td><td><b>Welcome Kick Off</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1118:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 22:00</td><td><b>$night_f</b></td></tr>";  ?>
+		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1200:00'){ ?>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1219:00'){ ?>
-		          		<tr><td></td><td>19:00 – 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
+		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1300:00'){ ?>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
 		          	}  if($tourTime < '2014-04-1318:00'){ 
-		          		echo "<tr><td></td><td>18:00 – 23:00</td><td><b>$night_s</b></td></tr>"; ?>
+		          		echo "<tr><td></td><td>18:00 - 23:00</td><td><b>$night_s</b></td></tr>"; ?>
 		          	<?php
 		          	} ?>
 		</table>

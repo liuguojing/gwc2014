@@ -1,5 +1,8 @@
 <?php
 
+ 	$night_f='Team Dinner';
+ 	$night_s='Gala Dinner and Awards';
+
 if (in_array($model->team_dinner,array('Americas Major Accounts - EU Public Sector','Americas Major Accounts - HTTP East','Americas Major Accounts - HTTP West','Americas Major Accounts - Northeast EU/Invest','Americas Major Accounts - Northwest EU','Americas Major Accounts - South EU','Americas Major Accounts - Brazil Sales','Americas Major Accounts - Supply Chain','Americas SAO')))
 {$hotel_assign='Sheraton';
  	$team_dinner='Friday April 11 2014';

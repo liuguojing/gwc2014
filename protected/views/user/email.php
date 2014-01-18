@@ -1,26 +1,26 @@
 <?php
 $hotel_assign="Sheraton";
 $team_dinner='Friday April 11 2014';
- 	$gala_dinner='Sunday April 13 2014';
+$gala_dinner='Sunday April 13 2014';
 
 if (in_array($model->team_dinner,array('Americas Major Accounts - EU Public Sector','Americas Major Accounts - HTTP East','Americas Major Accounts - HTTP West','Americas Major Accounts - Northeast EU/Invest','Americas Major Accounts - Northwest EU','Americas Major Accounts - South EU','Americas Major Accounts - Brazil Sales','Americas Major Accounts - Supply Chain','Americas SAO')))
-{$hotel_assign='Sheraton';
- 	$team_dinner='Friday April 11 2014';
- 	$gala_dinner='Sunday April 13 2014';
-	 }
-
-if (in_array($model->team_dinner,array('Europe Sales','Event Sales'))
-{$hotel_assign='Hilton'; 
-if ($model->team_dinner=='Europe Sales'))
 {
-$team_dinner='Sunday April 13 2014';
-$gala_dinner='Friday April 11 2014';	}
-else
-{$team_dinner='Friday April 11 2014';
-$gala_dinner='Sunday April 13 2014';
-	
-	}
-	}
+	$hotel_assign='Sheraton';
+	$team_dinner='Friday April 11 2014';
+	$gala_dinner='Sunday April 13 2014';
+}
+
+if (in_array($model->team_dinner,array('Europe Sales','Event Sales'))){
+	$hotel_assign='Hilton'; 
+	if ($model->team_dinner=='Europe Sales') {
+	$team_dinner='Sunday April 13 2014';
+	$gala_dinner='Friday April 11 2014';	
+}else{
+	$team_dinner='Friday April 11 2014';
+	$gala_dinner='Sunday April 13 2014';
+
+}
+}
 
 
 if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales','Specialists')))
@@ -28,16 +28,16 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 	if (in_array($model->team_dinner,array('Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
 	{
 		$team_dinner='Sunday April 13 2014';
-$gala_dinner='Friday April 11 2014';
-		}
-  else
-  {
-  	$team_dinner='Friday April 11 2014';
-$gala_dinner='Sunday April 13 2014';
-  	}
-	
-	
-	 }
+		$gala_dinner='Friday April 11 2014';
+	}
+	else
+	{
+		$team_dinner='Friday April 11 2014';
+		$gala_dinner='Sunday April 13 2014';
+	}
+
+
+}
 ?>
 
 

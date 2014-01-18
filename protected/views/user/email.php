@@ -56,9 +56,9 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and their team dinner on <?php echo $team_dinner;?>.</p> 
+<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
-<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda,, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
+<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
@@ -77,9 +77,9 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and their team dinner on <?php echo $team_dinner;?>.</p> 
+<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
-<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda,, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
+<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
@@ -99,9 +99,9 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and their team dinner on <?php echo $team_dinner;?>.</p> 
+<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
-<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda,, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
+<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
@@ -121,11 +121,11 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and their team dinner on <?php echo $team_dinner;?>.</p> 
+<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
 <p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> in the Winners Circle Events Team. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda,, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
+<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 
@@ -159,11 +159,11 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and their team dinner on <?php echo $team_dinner;?>.</p> 
+<p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
 <p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration please contact <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> in the Winners Circle Events Team. </p>
 
-<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda,, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
+<p style="word-wrap:break-word;font-family:arial;">To learn more about this year's event and to view the agenda, please click <a href="http://www.gartnerwinnerscircle.com/Sydney/agenda/">here</a> for the Winners Circle website using: User Name - gartner; Password - winners</p>
 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
 

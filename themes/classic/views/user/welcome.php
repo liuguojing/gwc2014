@@ -10,11 +10,27 @@
 						Dear <?php echo $user->first_name;?>:
 						<br/><br/>
 						<?php if($user->type=='Operating Committee'){?>
-						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:Amy.repik@gartner.com" style="color:#fff">Amy.repik@gartner.com</a>
+						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:Sophie.nealon@gartner.com">Sophie Nealon</a>
 						<?php }elseif($user->type=='Gartner Crew'){?>
 						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:zoe.venning-pridham@gartner.com" style="color:#fff">zoe.venning-pridham@gartner.com</a>
 						<?php }elseif($user->type=='Crew'){?>
 						Please press proceed to register for Winners Circle 2013. If you have any queries regarding your registration please email <a href="mailto:zoe.venning-pridham@gartner.com" style="color:#fff">zoe.venning-pridham@gartner.com</a>
+						<?php }elseif($user->type=='Eagles'){?>
+						<p style="color:#fff;font-size:18px;line-height:20px;margin:10px;">
+						Congratulations on qualifying for Winners Circle 2013 in Sydney<br><br>
+						Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process. <br/><br/>
+						If you have any queries, please email <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> <br><br>
+						Please press proceed to start registering.<br><br>
+						</p>
+					
+						<?php }elseif($user->type=='Top Achievers'){?>
+						<p style="color:#fff;font-size:18px;line-height:20px;margin:10px;">
+						Congratulations on qualifying for Winners Circle 2013 in Sydney<br><br>
+						Please note that registration will take approximately 10 minutes to complete and you will need to enter passport and credit card details for yourself and your significant other in order to complete the registration process. <br/><br/>
+						If you have any queries, please email <a href="mailto:cindy.rosado@gartner.com">Cindy Rosado</a> <br><br>
+						Please press proceed to start registering.<br><br>
+						</p>
+						
 						<?php }else{?>
 						<p style="color:#fff;font-size:18px;line-height:20px;margin:10px;">
 						Congratulations on qualifying for Winners Circle 2013 in Sydney<br><br>

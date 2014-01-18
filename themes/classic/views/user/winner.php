@@ -31,7 +31,7 @@
 					'enableAjaxValidation'=>false,
 					'htmlOptions'=>array('class'=>'form-horizontal'),
 				)); ?>
-				<legend><b><?php echo $title;?></b></legend>
+				
 				<p class="alert alert-warning">Please note any fields with a <span class="required">*</span> are mandatory</p>
 				<div class="control-group <?php if($model->getError('first_name')){ echo 'error';}?>">
 					<label class="control-label" for="User_first_name"><?php echo $model->getAttributeLabel('first_name')?>:</label>

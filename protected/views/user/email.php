@@ -50,13 +50,13 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 <?php if($model->type=="Winners"){?>
 <p style="word-wrap:break-word;font-family:arial;"><b>Congratulations on qualifying for Winners Circle 2013!  You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April 10-14 2014.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
 <p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event.  Once you have registered you will be able to book your Tours and Activities. Please register as soon as possible to ensure you receive your first choice of Tours and Activities.  The booking system will close Friday February 21 2014.  It will take you approximately 10 minutes to register and you will need to enter passport and credit card details for you and your guest.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
+<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <b><?php echo $hotel_assign;?> Hotel</b>. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
@@ -73,13 +73,13 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 <?php }elseif($model->type=="Host GEN"){?>
 <p style="word-wrap:break-word;font-family:arial;"><b>Congratulations on qualifying for Winners Circle 2013!  You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April 10-14 2014.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event.  Once you have registered you will be able to book your Tours and Activities. Please register as soon as possible to ensure you receive your first choice of Tours and Activities.  The booking system will close Friday February 21 2014.  It will take you approximately 10 minutes to register and you will need to enter passport and credit card details for you and your guest.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
+<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <b><?php echo $hotel_assign;?> Hotel</b>. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
@@ -97,13 +97,13 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 <?php }elseif($model->type=="Host GVP"){?>
 <p style="word-wrap:break-word;font-family:arial;"><b>Congratulations on qualifying for Winners Circle 2013!  You and your significant other are invited to celebrate your hard work and success in Sydney, Australia from April 10-14 2014.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event.  Once you have registered you will be able to book your Tours and Activities. Please register as soon as possible to ensure you receive your first choice of Tours and Activities.  The booking system will close Friday February 21 2014.  It will take you approximately 10 minutes to register and you will need to enter passport and credit card details for you and your guest.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
+<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <b><?php echo $hotel_assign;?> Hotel</b>. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
@@ -119,15 +119,15 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 </p>
 
 <?php }elseif($model->type=="Top Achievers"){?>
-<p style="word-wrap:break-word;font-family:arial;"><b>Congratulations on qualifying for Winners Circle 2013!  You and your significant other are invited to celebrate your hard work and success in Sydney, Australia.  As a Top Achiever you are invited to arrive on Wednesday, April 9 2014. This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday 10.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Congratulations on qualifying for Winners Circle 2013!  You and your significant other are invited to celebrate your hard work and success in Sydney, Australia.  As a Top Achiever you are invited to arrive on Wednesday, April 9 2014. This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday 10. You will receive further information regarding the Top Achievers Lunch nearer the event.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event.  Once you have registered you will be able to book your Tours and Activities. Please register as soon as possible to ensure you receive your first choice of Tours and Activities.  The booking system will close Friday February 21 2014.  It will take you approximately 10 minutes to register and you will need to enter passport and credit card details for you and your guest.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
+<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <b><?php echo $hotel_assign;?> Hotel</b>. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 
@@ -145,11 +145,16 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 </p>
 
 <?php }elseif($model->type=="Operating Committee"){?>
-<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate in Sydney, Australia.  As a member of the Operating Committee you are invited to arrive on Wednesday, April 9th 2014.  This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday, April 10th 2014.</p>
+<p style="word-wrap:break-word;font-family:arial;">You and your significant other are invited to celebrate in Sydney, Australia.  As a member of the Operating Committee you are invited to arrive on Wednesday, April 9th 2014.  This will give you an extra day to explore Sydney and also attend the Top Achievers Lunch on Thursday, April 10th 2014. You will receive further information regarding the Top Achievers Lunch nearer the event.</p>
+
+<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
+
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24th 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
+
 
 <p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration and housing requirements by clicking on the accept or decline options below by Friday, February 21st 2014. </b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">To book your travel to Winners Circle, please contact <a href="mailto:ax1gartnervip@aexp.com">Marisa Kazi</a> from American Express.</p>
+<p style="word-wrap:break-word;font-family:arial;">To book your travel to Winners Circle, please contact <a href="mailto:Ax1gartnervip@service.americanexpress.com">Marisa Kazi</a> from American Express.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration or to book your tours and activities please contact <a href="mailto:Sophie.nealon@gartner.com">Sophie Nealon</a>. </p> 
 <p style="word-wrap:break-word;font-family:arial;">We look forward to seeing you in Sydney! </p>
@@ -161,13 +166,13 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 <?php }elseif($model->type=="Eagles"){?>
 <p style="word-wrap:break-word;font-family:arial;"><b>Congratulations on qualifying for Winners Circle 2013!  You and your significant other are invited to celebrate your hard work and success in Sydney, Australia.  As an Eagle Winner you are invited to arrive on April 9 2014. This will give you an extra day to explore Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event.  Once you have registered you will be able to book your Tours and Activities. Please register as soon as possible to ensure you receive your first choice of Tours and Activities.  The booking system will close Friday February 21 2014.  It will take you approximately 10 minutes to register and you will need to enter passport and credit card details for you and your guest.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 
-<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <?php echo $hotel_assign;?> hotel. </p>
+<p style="word-wrap:break-word;font-family:arial;">The Winners group will be split between three hotels this year.  You and your guest will be staying with the <?php echo $model->team_dinner;?> team at the <b><?php echo $hotel_assign;?> Hotel</b>. </p>
 
 <p style="word-wrap:break-word;font-family:arial;">This year's Gala Dinner will be held at the stylish Star Ballroom and to accommodate our exceptionally high number of Winners we will be splitting the group and running two Gala Dinners.  <b>The <?php echo $model->team_dinner;?> team will attend the Gala Dinner on <?php echo $gala_dinner;?> and the Team Dinner on <?php echo $team_dinner;?></b>.</p> 
 

@@ -28,7 +28,7 @@
 				<p>To view your Information Summary please <?php echo CHtml::link('click here',Yii::app()->request->hostInfo.Yii::app()->request->baseUrl.'/index.php/user/emailSummary?email='.$model->email)?>. </p>
 				
 				<?php }elseif($model->type == 'Operating Committee'){?>
-				<p>Marisa Kazi from American Express will be in contact with you to understand your travel requirements.  Alternatively please contact her on: <a href="mailto:ax1gartnervip@aexp.com">ax1gartnervip@aexp.com</a>  telephone: 800-872-9952 option 6. </P>
+				<p>Marisa Kazi from American Express will be in contact with you to understand your travel requirements.  Alternatively please contact her on: <a href="mailto:Ax1gartnervip@service.americanexpress.com">Ax1gartnervip@service.americanexpress.com</a>  telephone: 800-872-9952 option 6. </P>
 				<p><b>You are now able to view and book the Tours and Activities available to you in Sydney.  Please click <a href="https://app.corporate-reg.com/sydney_tour/index.php/site/login" target="_blank">here</a> to proceed.  User Name - (user email address), Password - winners.  For all queries relating to Accommodation, Registration or Tours, please contact <a href="mailto:Sophie.nealon@gartner.com">Sophie Nealon</a>.</b></P>
 				
 				<p>We look forward to seeing you in Sydney!</p>

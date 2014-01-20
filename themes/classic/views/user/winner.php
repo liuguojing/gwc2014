@@ -169,7 +169,7 @@
 					    Please indicate the team dinner you would like to attend (this should be the team you were in when you qualified):<span class="required">*</span>
 					</label>
 					<div class="controls">
-					    <?php $options = $model->type=='Gartner Crew'?array('readonly'=>'true'):array();
+					    <?php $options = array('readonly'=>'true');
 					    echo $form->dropDownList($model,'team_dinner',$model->teamDinnerList(),$options)?>
 					    <?php if($model->getError('team_dinner')){?><span class="help-inline"><?php echo $model->getError('team_dinner')?></span><?php }?>
 					</div>

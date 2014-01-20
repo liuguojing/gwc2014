@@ -79,6 +79,9 @@
 						<li<?php if(Yii::app()->getController()->id == 'admin' && Yii::app()->getController()->getAction()->id != 'password'){echo ' class="active"';}?>><?php echo CHtml::link('Admins',array('admin/admin'));?></li>
 						<li<?php if(Yii::app()->getController()->id == 'admin' && Yii::app()->getController()->getAction()->id == 'password'){echo ' class="active"';}?>><?php echo CHtml::link('Change Password',array('admin/password'));?></li>
 						<?php }?>
+						<?php if(!Yii::app()->user->isGuest && (Yii::app()->user->name=='client')){?>
+						<li<?php if(Yii::app()->getController()->id == 'report'){echo ' class="active"';}?>><?php echo CHtml::link('Home',array('report/index'));?></li>						
+						<?php }?>
 						<?php if(!Yii::app()->user->isGuest && Yii::app()->user->name =='onsite'){?>
 						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('index','search','guestCheckin','checkin'))){echo ' class="active"';}?>><?php echo CHtml::link('Check-in Portal',array('onsite/search'));?></li>
 						<li<?php if(Yii::app()->getController()->id == 'onsite' && in_array($active,array('searchGift','guestGift','gift'))){echo ' class="active"';}?>><?php echo CHtml::link('Bose Gift Redemption',array('onsite/searchGift'));?></li>

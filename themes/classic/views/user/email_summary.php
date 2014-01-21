@@ -581,6 +581,7 @@ $night_f='Team Dinner';
 		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1100:00' && $tourTime > '2014-04-1100:00'){ ?>
+		          		<tr><td></td><td>22:30 - 24:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1108:00' && $tourTime > '2014-04-1108:00'){ ?>
@@ -590,12 +591,14 @@ $night_f='Team Dinner';
 		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1219:00' && $tourTime > '2014-04-1219:00'){ ?>
 		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
@@ -620,6 +623,7 @@ $night_f='Team Dinner';
 		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1100:00'){ ?>
+		          		<tr><td></td><td>22:30 - 24:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1108:00'){ ?>
@@ -629,12 +633,14 @@ $night_f='Team Dinner';
 		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>"; ?>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1200:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1219:00'){ ?>
 		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1300:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
@@ -642,6 +648,7 @@ $night_f='Team Dinner';
 		          		echo "<tr><td></td><td>18:00 - 23:00</td><td><b>$night_s</b></td></tr>"; ?>
 		          	<?php
 		          	} ?>
+		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		</table>
 	</div>
 	<!-- guest -->
@@ -666,6 +673,7 @@ $night_f='Team Dinner';
 		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1100:00' && $tourTime > '2014-04-1100:00'){ ?>
+		          		<tr><td></td><td>22:30 - 24:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1108:00' && $tourTime > '2014-04-1108:00'){ ?>
@@ -675,12 +683,14 @@ $night_f='Team Dinner';
 		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1200:00' && $tourTime > '2014-04-1200:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1219:00' && $tourTime > '2014-04-1219:00'){ ?>
 		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tmpTime<'2014-04-1300:00' && $tourTime > '2014-04-1300:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
@@ -707,6 +717,7 @@ $night_f='Team Dinner';
 		          		<tr><td></td><td>18:00 - 22:00</td><td><b>Welcome Reception</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1100:00'){ ?>
+		          		<tr><td></td><td>22:30 - 24:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Friday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1108:00'){ ?>
@@ -716,12 +727,14 @@ $night_f='Team Dinner';
 		          		echo "<tr><td></td><td>18:00 - 22:00</td><td><b>$night_f</b></td></tr>";  ?>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1200:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Saturday</td><td></td><td></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1219:00'){ ?>
 		          		<tr><td></td><td>19:00 - 23:00</td><td><b>Theme Party Fright Night</b></td></tr>
 		          	<?php 
 		          	}  if($tourTime < '2014-04-1300:00'){ ?>
+		          		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		          		<tr><td>Sunday</td><td></td><td></td></tr>
 		          	<?php 
 		          	
@@ -729,6 +742,7 @@ $night_f='Team Dinner';
 		          		echo "<tr><td></td><td>18:00 - 23:00</td><td><b>$night_s</b></td></tr>"; ?>
 		          	<?php
 		          	} ?>
+		<tr><td></td><td>23:00 - 02:00</td><td><b>Circle Club</b></td></tr>
 		</table>
 	</div>
 	<?php }?>

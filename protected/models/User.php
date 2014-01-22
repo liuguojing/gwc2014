@@ -498,19 +498,21 @@ class User extends TrackStarActiveRecord
     public function getLadiesOptions()
     {
     	return array(
-    	        ''=>'Please select',
-				'UK 8'=>'UK 8',
-				'UK 10'=>'UK 10',
-				'UK 12'=>'UK 12',
-				'UK 14'=>'UK 14',
-				'UK 16'=>'UK 16',
-				'UK 18'=>'UK 18',
-				'US 4'=>'US 4',
-				'US 6'=>'US 6',
-				'US 8'=>'US 8',
-				'US 10'=>'US 10',
-				'US 12'=>'US 12',
-				'US 14'=>'US 14',
+    	        ""=>"Please select",				
+				"UK Small 10 - 32\""=>"UK Small 10 - 32\"",
+				"UK Med 12 - 34\""=>"UK Med 12 - 34\"",
+				"UK Large 14 - 36\""=>"UK Large 14 - 36\"",
+				"UK XL 16 - 38\""=>"UK XL 16 - 38\"",
+				"UK 2XL 18 - 40\""=>"UK 2XL 18 - 40\"",
+				"UK 3XL 20 - 42\""=>"UK 3XL 20 - 42\"",
+				"UK 4XL 22 - 44\""=>"UK 4XL 22 - 44\"",
+				"US Small 6 - 32\""=>"US Small 6 - 32\"",
+				"US Med 8 - 34\""=>"US Med 8 - 34\"",
+				"US Large 10 - 36\""=>"US Large 10 - 36\"",
+				"US XL 12 - 38\""=>"US XL 12 - 38\"",
+				"US 2XL 14 - 40\""=>"US 2XL 14 - 40\"",
+				"US 3XL 16 - 42\""=>"US 3XL 16 - 42\"",
+				"US 4XL 18 - 44\""=>"US 4XL 18 - 44\"",
 				);
     }
     
@@ -518,12 +520,14 @@ class User extends TrackStarActiveRecord
     {
     	return array(
     	        ''=>'Please select',
-				'36'=>'36',
-				'38'=>'38',
-				'40'=>'40',
-				'42'=>'42',
-				'44'=>'44',
-				'46'=>'46',
+				"S - 36/38\""=>"S - 36/38\"",
+				"M - 40\""=>"M - 40\"",
+				"L - 42\""=>"L - 42\"",
+				"XL - 44\""=>"XL - 44\"",
+				"2XL - 46/48\""=>"2XL - 46/48\"",
+				"3XL - 50/52\""=>"3XL - 50/52\"",
+			  "XL* - 54\""=>"XL* - 54\"",
+			  "5XL* - 56/58\""=>"5XL* - 56/58\"",
 				);
     }
 	public function getHasGuestText(){

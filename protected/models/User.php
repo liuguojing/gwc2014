@@ -1356,12 +1356,13 @@ Roasted Pineapple Cheesecake');
 	public function getBillingInstructionByType($type){
 		$arr = array(
 			"Operating Committee"=>"Room ,tax, hotel fee  & Incidentals to Master acct. ",
-			'Host GVP'=>'For core dates (10th - 13th April Inclusive)Room ,tax, hotel fee to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
-			'Host Gen'=>'For core dates (10th - 13th April Inclusive)Room ,tax, hotel fee to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
-			'Top Achievers'=>'For core dates (9th -13th April Inclusive) Room ,tax, hotel fee to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
-			'Eagles'=>'For core dates(9th - 13th April Inclusive) Room ,tax, hotel fee to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
-			'Winners'=>'For core dates (10th - 13th April Inclusive) Room ,tax, hotel fee to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
-			'Crew'=>'Room, tax, hotel fee to Master acct.  Guest to pay for own incidentals. ',
+			'Host GVP'=>'For core dates & 9th April (10th - 14th April )Room  & Tax Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
+			'Host Gen'=>'For core dates (10th - 14th April)Room & Tax to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
+			'Top Achievers'=>'For core dates (9th -14th April) Room & Tax to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
+			'Eagles'=>'For core dates (9th -14th April) Room & Tax to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
+			'Winners'=>'For core dates (10th - 14th April )Room  & Tax Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
+			'Crew'=>'Room & Tax to Master acct.  Guest to pay for own incidentals. ',
+			'Gartner Crew'=>'Room & Tax to Master acct.  Guest to pay for own incidentals. ',
 			);
 		return isset($arr[$type])?$arr[$type]:'';
 	}

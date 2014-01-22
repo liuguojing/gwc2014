@@ -1357,7 +1357,7 @@ Roasted Pineapple Cheesecake');
 		$arr = array(
 			"Operating Committee"=>"Room ,tax, hotel fee  & Incidentals to Master acct. ",
 			'Host GVP'=>'For core dates & 9th April (10th - 14th April )Room  & Tax Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
-			'Host Gen'=>'For core dates (10th - 14th April)Room & Tax to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
+			'Host GEN'=>'For core dates (10th - 14th April)Room & Tax to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
 			'Top Achievers'=>'For core dates (9th -14th April) Room & Tax to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
 			'Eagles'=>'For core dates (9th -14th April) Room & Tax to Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',
 			'Winners'=>'For core dates (10th - 14th April )Room  & Tax Master acct.  Guest to pay for own incidentals. Extended dates either side at guests own expense.',

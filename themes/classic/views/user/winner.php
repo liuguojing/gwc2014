@@ -186,7 +186,7 @@
 				
 				
 				
-				<div class="control-group <?php if($model->getError('crew_unifrom_size')){ echo 'error';}?>" <?php if($model->type!='Gartner Crew'&&$model->type!='Crew'){echo ' hidden';}?> ">
+				<div class="control-group <?php if($model->getError('crew_unifrom_size')){ echo 'error';}?> <?php if($model->type!='Gartner Crew'&&$model->type!='Crew'){echo ' hidden';}?> ">
 					<label class="control-label" for="User_crew_unifrom_size">
 					    Please advise your shirt size for your uniform:<span class="required">*</span>
 					    
@@ -195,12 +195,12 @@
 			            <?php echo $form->radioButtonList($model,'crew_menu_choice',$model->getSexOptions(),array('onchange'=>'user_sex(this.value)','separator' => '', 'template' => '<label class="checkbox">{input} {label} </label>', 'style'=>'float:left;margin-left:-20px;', 'labelOptions' => array('style' => 'display:inline;margin-bottom:5px'))); ?>
 		            </div>
 		         
-					<div class="controls" id="user_ladies" <?php if($model->crew_menu_choice=="Mens"){echo 'hidden';}?>>
+					<div class="controls <?php if($model->crew_menu_choice=="Mens"){echo 'hidden';}?>" id="user_ladies" >
 					    <?php echo $form->dropDownList($model,'crew_unifrom_size',$model->getLadiesOptions(),array('id'=>'La1'));?>
 					    <?php if($model->getError('crew_unifrom_size')){?><span class="help-inline"><?php echo $model->getError('crew_unifrom_size')?></span><?php }?>
 					</div>
 					
-					<div class="controls" id="user_mens" <?php if($model->crew_menu_choice!='Mens'){echo 'hidden';}?>>
+					<div class="controls <?php if($model->crew_menu_choice!='Mens'){echo 'hidden';}?>" id="user_mens" >
 					    <?php echo $form->dropDownList($model,'crew_unifrom_size',$model->getMensOptions(),array('id'=>'La2'));?>
 					    <?php if($model->getError('crew_unifrom_size')){?><span class="help-inline"><?php echo $model->getError('crew_unifrom_size')?></span><?php }?>
 					</div>
@@ -417,6 +417,7 @@
 		 if(value=='Ladies')
 		 {
 			 $('#user_ladies').show();
+			 $('#user_ladies').removeClass("hidden");
 			 $("#La1").removeAttr("disabled", "disabled");
 			 $('#user_mens').hide();
 			 $("#La2").attr("disabled", "disabled");
@@ -424,6 +425,7 @@
 		 else if(value=='Mens')
 		 {
 			 $('#user_mens').show();
+			 $('#user_mens').removeClass("hidden");
 			 $("#La2").removeAttr("disabled", "disabled");
 			$('#user_ladies').hide();
 			$("#La1").attr("disabled", "disabled");

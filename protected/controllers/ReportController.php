@@ -608,7 +608,11 @@ class ReportController extends Controller
 	public function actionAmex(){
 		$this->layout = '//layouts/export';
 		$filename = 'AMEX_Travel_List';
-		$users = User::model()->with('guest')->findAll("status = 1 and type <>'Operating Committee'");
+		$criteria = new CDbCriteria();
+		$criteria->addNotInCondition('type', array('Operating Committee'));
+		$criteria->order = 't.created_at';
+		$criteria->addColumnCondition(array('status'=>1));
+		$users = User::model()->with('guest')->findAll($criteria);
 		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
 		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
 		header("Content-Transfer-Encoding: binary");

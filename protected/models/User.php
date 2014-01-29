@@ -897,7 +897,7 @@ class User extends TrackStarActiveRecord
 			'Americas SAO'=>'Americas SAO',
 			'Americas SMB'=>'Americas SMB',
 			'Asia'=>'Asia',
-			'Emerging Markets - India & CEEMEA'=>'Emerging Markets - India & CEEMEA',
+			'Emerging Markets - India & CEEMEA'=>'Emerging Markets',
 			'Client Partner Group'=>'Client Partner Group',
 			'Europe Sales'=>'Europe Sales',
 			'Event Sales'=>'Event Sales',			

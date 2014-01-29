@@ -15,13 +15,16 @@ function formatCost($cost){
 					<td>Work State</td>
 					<td>Work Zip Code</td>
 					<td>Work Country</td>
+					<td>Tel Number</td>
 					<td>Mobile Number</td>
 					<td>Credit Card type</td>
 					<td>Credit Number</td>
 					<td>Credit Expiry Eate</td>
 					<td>Credit Security Code</td>
 					<td>Guest full name</td>
+					<td>Winners Comments</td>
 					<td>Comments fields</td>
+					<td>Hotel Venue</td>
 					<td>Check in date</td>
 					<td>Check out date</td>
 					<td>Type </td>
@@ -42,13 +45,16 @@ function formatCost($cost){
 					<td><?php echo $user->work_state;?></td>
 					<td><?php echo $user->work_zip_code;?></td>
 					<td><?php echo $user->work_country;?></td>
+					<td><?php echo $user->daytime_phone;?></td>
 					<td><?php echo $user->telephone_number_cell;?></td>
 					<td><?php echo $user->credit_card_type;?></td>
 					<td><?php echo $user->credit_card_number;?></td>
 					<td><?php echo $user->credit_card_expiration_date;?></td>
 					<td><?php echo $user->csv_number;?></td>
 					<td><?php echo empty($user->guest)?'':$user->guest->first_name . ' ' . $user->guest->last_name;?></td>
+					<td><?php echo $user->requirements;?></td>
 					<td><?php echo CHtml::encode($user->comment);?></td>
+					<td><?php echo $user->hotel_venue;?></td>
 					<td><?php echo $user->hotel_arrival_date;?></td>
 					<td><?php echo $user->hotel_departure_date;?></td>
 					<td><?php echo $user->type;?></td>

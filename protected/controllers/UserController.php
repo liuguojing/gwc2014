@@ -29,7 +29,7 @@ class UserController extends Controller
 	{
 		return array(
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-						'actions'=>array('welcome','decline','visa','teamdinnermenu','galadinnermenu','emailSummary','create','emailDinner','dinnerEmail','hotelEmail','FinEmail'),
+						'actions'=>array('welcome','decline','visa','teamdinnermenu','galadinnermenu','emailSummary','create','emailDinner','dinnerEmail','hotelEmail','FinEmail','VisaEmail','RemEmail'),
 						'users'=>array('*'),
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -932,6 +932,51 @@ public  function actionGuestDeleteNew($id)
 				if($model->status==1){
 					$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';
 					$this->sendMail($model->email,$title,$model,'finalize_mail','');
+					echo "OK <br/>";
+					Yii::log('sent '.$model->email . "\t" . " OK",'error');
+				}else{
+					echo 'OC error<br/>';
+				}
+			}catch (Exception $e){
+				Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');
+			}
+		}
+		echo 'ok';
+		Yii::app()->end();
+	}
+	
+		public function actionRemEmail($ids){
+		$id_arr = explode(',',$ids);
+		set_time_limit(0);
+		foreach($id_arr as $id){
+			try{
+				$model = $this->loadModel(intval(trim($id)));
+				if($model->status==1){
+					$title = 'REMINDER: Gartner Winners Circle 2013, Sydney; Registration Invitation';
+					$this->sendMail($model->email,$title,$model,'email','');
+					echo "OK <br/>";
+					Yii::log('sent '.$model->email . "\t" . " OK",'error');
+				}else{
+					echo 'OC error<br/>';
+				}
+			}catch (Exception $e){
+				Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');
+			}
+		}
+		echo 'ok';
+		Yii::app()->end();
+	}
+	
+	
+		public function actionVisaEmail($ids){
+		$id_arr = explode(',',$ids);
+		set_time_limit(0);
+		foreach($id_arr as $id){
+			try{
+				$model = $this->loadModel(intval(trim($id)));
+				if($model->status==1){
+					$title = 'Gartner Winners Circle 2013, Sydney; Visa Information';
+					$this->sendMail($model->email,$title,$model,'visa_mail','');
 					echo "OK <br/>";
 					Yii::log('sent '.$model->email . "\t" . " OK",'error');
 				}else{

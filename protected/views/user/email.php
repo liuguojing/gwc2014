@@ -75,7 +75,7 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 
 <p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. We urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 
@@ -99,7 +99,7 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 
 <p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. We urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 
@@ -149,7 +149,7 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 
 <p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24th 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. We urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 
 <p style="word-wrap:break-word;font-family:arial;"><b>You will need to complete your registration and housing requirements by clicking on the accept or decline options below by Friday, February 21st 2014. </b></p>
@@ -168,7 +168,7 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 
 <p style="word-wrap:break-word;font-family:arial;"><b>Please read this email carefully, it contains important information about your time in Sydney.</b></p>
 
-<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. This registration has been sent to you as a Priority Registration to allow you advance booking on your travel and Tours and Activities. <b>General registration for all other Winners opens on Friday January 24 2014</b>, we urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
+<p style="word-wrap:break-word;font-family:arial;">Below is your link to register for this exciting event. We urge you to register as quickly as possible to take advantage of Travel, Tours and Activities availability.</p>
 
 <p style="word-wrap:break-word;font-family:arial;">If you are unable to attend please click on the decline button below and advise of the reason you are unable to attend.</p>
 

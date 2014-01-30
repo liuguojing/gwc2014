@@ -62,7 +62,7 @@
 					<td><?php echo $guest->first_name;?></td>
 					<td><?php echo $guest->last_name;?></td>
 					<td><?php echo $guest->updated_at;?></td>
-					<td>G<?php echo $guest->id;?></td>
+					<td>W<?php echo $guest->user_id;?>G</td>
 					<td><?php echo $guest->user->email;?></td>
 					<td>Guest</td>
 					<td><?php echo $guest->ga_card_number;?></td>

@@ -190,11 +190,13 @@ To see Gartner's Winners Circle travel policy, please <a href="<?php echo $this-
 </p>
 
 <?php }elseif($model->type=='Crew'||$model->type=="Gartner Crew") {?>
-<p style="word-wrap:break-word;font-family:arial;">Thank you for being a part of the Gartner Winners Circle Event Crew, Sydney April 2014.</p>
+<p style="word-wrap:break-word;font-family:arial;">Thank you for being a part of the Gartner Winners Circle Event Team, Sydney April 2014.</p>
  
-<p style="word-wrap:break-word;font-family:arial;">Please can you register for the event and advise your details. Your travel arrangements should already be either in progress or completed.  </p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Please register for the event by clicking on the 'accept' option below no later than Friday, February 7th 2014. </b></p>
 
-<p style="word-wrap:break-word;font-family:arial;"><b>All crew must be registered for Winners Circle. Please complete your details by clicking on the 'accept' option below no later than Friday, January 25th 2014.</b></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Flights:</b><br/>We will be booking your flights for you through our dedicated Winners Circle Travel team. We would like you to arrive the morning of Sunday, April 6th 2014, ready to start work Monday, April 7th and depart on Tuesday, April 15th 2014. Please note in order to keep costs to a minimum we would like to confirm all crew flights by Friday, February 7th, 2014, so that we have all the crew flights booked before the Winners start booking.   If you have your manager's approval to take PTO and extend your stay, the travel team will be able to assist you with your travel plans.  NB there may be a charge for any personal travel, Amex Travel will advise of these charges.</p>
+
+<p style="word-wrap:break-word;font-family:arial;"><b>Accommodation:</b><br/>Accommodation will be booked for you from Sunday, April 6th - Monday, April 14th inclusive (departing Tuesday, April 15th).  If you would like to extend your stay in your resident hotel the Housing team will be able to assist you with this. </p>
  
 <p style="word-wrap:break-word;font-family:arial;">If you have any questions regarding your registration or the event then please contact <a href="mailto:zoe.venning-pridham@gartner.com">Zoe Venning-Pridham</a>.</p>
  

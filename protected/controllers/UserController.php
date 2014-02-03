@@ -951,13 +951,13 @@ public  function actionGuestDeleteNew($id)
 		foreach($id_arr as $id){
 			try{
 				$model = $this->loadModel(intval(trim($id)));
-				if($model->status==1){
+				if($model->status==0){
 					$title = 'REMINDER: Gartner Winners Circle 2013, Sydney; Registration Invitation';
 					$this->sendMail($model->email,$title,$model,'email','');
 					echo "OK <br/>";
 					Yii::log('sent '.$model->email . "\t" . " OK",'error');
 				}else{
-					echo 'OC error<br/>';
+					echo 'Have registered<br/>';
 				}
 			}catch (Exception $e){
 				Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');

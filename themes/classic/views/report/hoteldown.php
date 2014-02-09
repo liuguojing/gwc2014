@@ -7,6 +7,7 @@ function formatCost($cost){
 ?>
 			<table border=1 width=100%>
 				<tr>
+					<td>ID</td>
 					<td>Winner First name</td>
 					<td>Winner Last name</td>
 					<td>Work Address 1</td>
@@ -37,6 +38,7 @@ function formatCost($cost){
 				</tr>
 				<?php foreach ($users as $user){?>
 				<tr>
+					<td><?php echo $user->id;?></td>
 					<td><?php echo $user->first_name;?></td>
 					<td><?php echo $user->last_name;?></td>
 					<td><?php echo $user->work_address1;?></td>

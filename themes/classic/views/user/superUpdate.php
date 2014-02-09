@@ -180,6 +180,14 @@ $undisabled = array('separator' => '', 'template' => '<li class="q6" style="list
 						<?php if($model->getError('preferred_name')){?><span class="help-inline"><?php echo $model->getError('preferred_name')?></span><?php }?>
 					</div>
 				</div>
+				<div class="control-group <?php if($model->getError('ga_dateofbirth')){ echo 'error';}?>">
+					<label class="control-label" for="User_ga_dateofbirth"><?php echo $model->getAttributeLabel('ga_dateofbirth')?>:<span class="required">*</span></label>
+					<div class="controls">
+						<?php echo $form->textField($model,'ga_dateofbirth',array('placeholder'=>'Gartner Winner Date of Birth')); ?>
+						<?php if($model->getError('ga_dateofbirth')){?><span class="help-inline"><?php echo $model->getError('ga_dateofbirth')?></span><?php }?>
+					</div>
+				</div>
+				
 				<div class="control-group <?php if($model->getError('email')){ echo 'error';}?>">
 					<label class="control-label" for="User_email"><?php echo $model->getAttributeLabel('email')?>:<span class="required">*</span></label>
 					<div class="controls">
@@ -378,6 +386,13 @@ $undisabled = array('separator' => '', 'template' => '<li class="q6" style="list
 								<?php if($guest->getError('last_name')){?><span class="help-inline"><?php echo $guest->getError('last_name')?></span><?php }?>
 							</div>
 						</div>
+						<div class="control-group <?php if($guest->getError('ga_dateofbirth')){ echo 'error';}?>">
+							<label class="control-label" for="Guest_ga_dateofbirth"><?php echo $guest->getAttributeLabel('ga_dateofbirth')?>:<span class="required">*</span></label>
+							<div class="controls">
+								<?php echo $form->textField($guest,'ga_dateofbirth',array('placeholder'=>'Guest Date of Birth')); ?>
+								<?php if($guest->getError('ga_dateofbirth')){?><span class="help-inline"><?php echo $guest->getError('ga_dateofbirth')?></span><?php }?>
+							</div>
+						</div>
 						<div class="control-group">
 							<label class="control-label" for="User_team_dinner_dietary">
 							    Does your guest have any dietary requirements
@@ -518,7 +533,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 					</div>
 					<div class="control-group <?php if($model->getError('destination_city')){ echo 'error';}?>">
 						<label class="" for="User_destination_city"><?php echo $model->getAttributeLabel('destination_city')?>: <span class="required">*</span></label>
-						<?php echo $form->textField($model,'destination_city',array('readonly'=>'readonly')); ?>
+						<?php echo $form->textField($model,'destination_city',array('placeholder'=>$model->getAttributeLabel('destination_city'))); ?>
 						<?php if($model->getError('destination_city')){?><span class="help-inline"><?php echo $model->getError('destination_city')?></span><?php }?>
 					</div>
 					<div class="control-group <?php if($model->getError('preferred_seat_request')){ echo 'error';}?>">
@@ -663,7 +678,7 @@ Once registered, you will receive a suggested air itinerary within 5 working day
 						</div>
 						<div class="control-group <?php if($guest->getError('destination_city')){ echo 'error';}?>">
 							<label class="" for="Guest_destination_city"><?php echo $guest->getAttributeLabel('destination_city')?>: <span class="required">*</span></label>
-							<?php echo $form->textField($guest,'destination_city',array('readonly'=>'readonly')); ?>
+							<?php echo $form->textField($guest,'destination_city',array('placeholder'=>$guest->getAttributeLabel('destination_city'))); ?>
 							<?php if($guest->getError('destination_city')){?><span class="help-inline"><?php echo $guest->getError('destination_city')?></span><?php }?>
 						</div>
 						<div class="control-group <?php if($guest->getError('preferred_seat_request')){ echo 'error';}?>">
@@ -943,12 +958,12 @@ function showDiv(id){
 }
 $(function() {
 	$( "#User_ga_dateofbirth" ).datepicker({
-		defaultDate: "April/16/1992",
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1,
-		dateFormat: 'M/dd/yy',
-		maxDate: 'Apr/16/1992',
+		defaultDate: '-74y',
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			dateFormat: 'M/dd/yy',
+			yearRange: '1940:1993',	
 	});
 	$( "#User_ga_card_expiration_date" ).datepicker({
 		changeMonth: true,
@@ -963,12 +978,13 @@ $(function() {
 		dateFormat: 'M/dd/yy',
 	});
 	$( "#Guest_ga_dateofbirth" ).datepicker({
-		defaultDate: "01/01/1992",
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1,
-		dateFormat: 'M/dd/yy',
-		maxDate: 'Apr/16/1992',
+		defaultDate: '-74y',
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			dateFormat: 'M/dd/yy',
+			yearRange: '1940:1993',
+		
 	});
 	$( "#Guest_ga_card_expiration_date" ).datepicker({
 		changeMonth: true,

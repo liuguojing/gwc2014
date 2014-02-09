@@ -5,3 +5,4 @@ protected/runtime/
 *.DS_Store
 
 uploads/*
+protected/config/

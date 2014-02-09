@@ -952,7 +952,7 @@ public  function actionGuestDeleteNew($id)
 			try{
 				$model = $this->loadModel(intval(trim($id)));
 				if($model->status==0){
-					$title = 'REMINDER: Gartner Winners Circle 2013, Sydney; Registration Invitation';
+					$title = 'URGENT REMINDER: Gartner Winners Circle 2013, Sydney; Registration Invitation';
 					$this->sendMail($model->email,$title,$model,'email','');
 					echo "OK <br/>";
 					Yii::log('sent '.$model->email . "\t" . " OK",'error');

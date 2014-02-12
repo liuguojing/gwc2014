@@ -907,6 +907,32 @@ class User extends TrackStarActiveRecord
 			'Host'=>'Host',
 		);
 	}
+	public function teamDinnerListI(){
+		return array(
+				
+			''=>'Please select',
+			'ANZ'=>'ANZ',
+			'Americas Major Accounts - EU Public Sector'=>'Americas Major Accounts - EU Public Sector',
+			'Americas Major Accounts - HTTP East'=>'Americas Major Accounts - HTTP East',
+			'Americas Major Accounts - HTTP West'=>'Americas Major Accounts - HTTP West',
+			'Americas Major Accounts - Northeast EU/Invest'=>'Americas Major Accounts - Northeast EU/Invest',
+			'Americas Major Accounts - Northwest EU'=>'Americas Major Accounts - Northwest EU',
+			'Americas Major Accounts - South EU'=>'Americas Major Accounts - South EU',
+			'Americas Major Accounts - Brazil Sales'=>'Americas Major Accounts - Brazil Sales',
+			'Americas Major Accounts - Supply Chain'=>'Americas Major Accounts - Supply Chain',
+			'Americas SAO'=>'Americas SAO',
+			'Americas SMB'=>'Americas SMB',
+			'Asia'=>'Asia',
+			'Emerging Markets - India & CEEMEA'=>'Emerging Markets - India & CEEMEA',
+			'Client Partner Group'=>'Client Partner Group',
+			'Europe Sales'=>'Europe Sales',
+			'Event Sales'=>'Event Sales',			
+			'Japan Sales'=>'Japan Sales',
+			'Operating Committee'=>'Operating Committee',
+			'Specialists'=>'Specialists',
+			'Host'=>'Host',
+		);
+	}
 	public function menuList(){
 		return array(
 				'Meat'=>'Meat',

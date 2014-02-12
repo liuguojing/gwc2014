@@ -77,12 +77,16 @@ foreach($guests as $guest){
 					</caption>
 					<thead>
 						<tr>
+							<th colspan=5>Friday</th>
+						</tr>
+						<tr>
 							<th>Type</th><th>Total</th><th>Meat</th><th>Fish</th><th>Vegetarian</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach(User::model()->teamDinnerList() as $key=>$teamdinner){
-								if(!empty($key)){?>
+						<?php foreach(User::model()->teamDinnerListI() as $key=>$teamdinner){
+								if(!empty($key)){
+							  if (!in_array($teamdinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales'))){ 		?>
 						<tr>
 							<td><?php echo $teamdinner?>
 							</td><td><?php echo isset($total[$teamdinner])?CHtml::link($total[$teamdinner],array('report/exportTeamDietary','team_dinner'=>$teamdinner,'team_dinner_menu'=>'')):0?></td>
@@ -90,7 +94,29 @@ foreach($guests as $guest){
 							<td><?php echo isset($fish[$teamdinner])?CHtml::link($fish[$teamdinner],array('report/exportTeamDietary','team_dinner'=>$teamdinner,'team_dinner_menu'=>'Fish')):0?></td>
 							<td><?php echo isset($vegetarian[$teamdinner])?CHtml::link($vegetarian[$teamdinner],array('report/exportTeamDietary','team_dinner'=>$teamdinner,'team_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
-						<?php }}?>
+						<?php }}}?>
+					</tbody>
+					
+					<thead>
+						<tr>
+							<th colspan=5>Sunday</th>
+						</tr>
+						<tr>
+							<th>Type</th><th>Total</th><th>Meat</th><th>Fish</th><th>Vegetarian</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach(User::model()->teamDinnerListI() as $key=>$teamdinner){
+								if(!empty($key)){
+							  if (in_array($teamdinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales'))){ 		?>
+						<tr>
+							<td><?php echo $teamdinner?>
+							</td><td><?php echo isset($total[$teamdinner])?CHtml::link($total[$teamdinner],array('report/exportTeamDietary','team_dinner'=>$teamdinner,'team_dinner_menu'=>'')):0?></td>
+							<td><?php echo isset($meat[$teamdinner])?CHtml::link($meat[$teamdinner],array('report/exportTeamDietary','team_dinner'=>$teamdinner,'team_dinner_menu'=>'Meat')):0?></td>
+							<td><?php echo isset($fish[$teamdinner])?CHtml::link($fish[$teamdinner],array('report/exportTeamDietary','team_dinner'=>$teamdinner,'team_dinner_menu'=>'Fish')):0?></td>
+							<td><?php echo isset($vegetarian[$teamdinner])?CHtml::link($vegetarian[$teamdinner],array('report/exportTeamDietary','team_dinner'=>$teamdinner,'team_dinner_menu'=>'Vegetarian')):0?></td>
+						</tr>
+						<?php }}}?>
 					</tbody>
 				</table>
 			</div>

@@ -716,7 +716,13 @@ class ReportController extends Controller
 	public function actionExportTeamDietary($team_dinner='',$dietary='',$team_dinner_menu='',$table_no=''){
 		$criteria = new CDbCriteria();
 		if(!empty($team_dinner)){
-			$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));
+			if ($team_dinner=='Sunday') 
+			{
+		$criteria->addInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 elseif ($team_dinner=='Friday')
+		 {$criteria->addNotInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 else 
+		 {$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));}
 		}
 		if(!empty($dietary)){
 			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
@@ -734,7 +740,13 @@ class ReportController extends Controller
 		
 		$criteria = new CDbCriteria();
 		if(!empty($team_dinner)){
-			$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));
+			if ($team_dinner=='Sunday') 
+			{
+		$criteria->addInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 elseif ($team_dinner=='Friday')
+		 {$criteria->addNotInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 else 
+		 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));}
 		}
 		if(!empty($dietary)){
 			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
@@ -814,6 +826,7 @@ class ReportController extends Controller
 		if(!empty($team_dinner)){
 			if($team_dinner=='VIP'){
 				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
 				$criteria->addNotInCondition('type', array('Crew'));
 			}elseif($team_dinner=='Gartner Crew'){
 				$criteria->addColumnCondition(array('type'=>'Gartner Crew'));
@@ -821,9 +834,23 @@ class ReportController extends Controller
 				$criteria->addNotInCondition('type', array('Crew'));
 			}elseif($team_dinner=="Crew"){
 				$criteria->addInCondition('type', array('Crew'));
+			}elseif($team_dinner=='VIP1'){
+				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addNotInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
+				$criteria->addNotInCondition('type', array('Crew'));
 			}else{
-				$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));
-				$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				
+				if ($team_dinner=='Friday') 
+					{
+				$criteria->addInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				 elseif ($team_dinner=='Sunday')
+				 {$criteria->addNotInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				 else 
+				 {$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));
+				 	$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				 	}
+				
+				
 				$criteria->addNotInCondition('type', array('Gartner Crew,Crew'));
 			}
 		}
@@ -848,9 +875,25 @@ class ReportController extends Controller
 		if(!empty($team_dinner)){
 			if($team_dinner=='VIP'){
 				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
+				
+
+			}elseif($team_dinner=='VIP1'){
+				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addNotInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
+				
 			}else{
-				$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));
-				$criteria->addNotInCondition('user.gala_dinner_vip', array('Gala Dinner VIP'));
+				
+				if ($team_dinner=='Friday') 
+					{
+				$criteria->addInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				 elseif ($team_dinner=='Sunday')
+				 {$criteria->addNotInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				 else 
+				 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));}
+				
+				$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				
 			}
 		}
 		

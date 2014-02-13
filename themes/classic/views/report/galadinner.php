@@ -153,7 +153,7 @@ foreach($users as $user){
 foreach($guests as $guest){
 	if($guest->gala_dinner_menu == 'Meat'){
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
 			{
 			if(isset($cottagePie['VIP'])){
 				$cottagePie['VIP']++;
@@ -179,7 +179,7 @@ foreach($guests as $guest){
 		}
 	}elseif($guest->gala_dinner_menu == 'Fish'){
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
 			{
 			if(isset($cod['VIP'])){
 				$cod['VIP']++;
@@ -205,7 +205,7 @@ foreach($guests as $guest){
 		}
 	}elseif($guest->gala_dinner_menu == 'Vegetarian'){
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
 			{
 			if(isset($ravioli['VIP'])){
 				$ravioli['VIP']++;
@@ -232,7 +232,7 @@ foreach($guests as $guest){
 	}
 	
 	if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-		if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+		if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
 			{
 			if(isset($total['VIP'])){
 				$total['VIP']++;
@@ -280,9 +280,21 @@ foreach($guests as $guest){
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach(User::model()->teamDinnerListI() as $key=>$teamdinner){
+						<?php 
+									$total1=0;
+							  	$total2=0;
+							  	$total3=0;
+							  	$total4=0;
+						
+						foreach(User::model()->teamDinnerListI() as $key=>$teamdinner){
 							if(!empty($key)){
-							if (in_array($teamdinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales'))){ 	?>
+							if (in_array($teamdinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales'))){ 
+								  $total1+=isset($total[$teamdinner])?$total[$teamdinner]:0;
+							  	$total2+=isset($cottagePie[$teamdinner])?$cottagePie[$teamdinner]:0;
+							  	$total3+=isset($cod[$teamdinner])?$cod[$teamdinner]:0;
+							  	$total4+=isset($ravioli[$teamdinner])?$ravioli[$teamdinner]:0;
+								
+									?>
 						<tr>
 							<td><?php echo $teamdinner?></td>
 							<td><?php echo isset($total[$teamdinner])?CHtml::link($total[$teamdinner],array('report/exportGalaDietary','team_dinner'=>$teamdinner,'gala_dinner_menu'=>'')):0?></td>
@@ -290,7 +302,14 @@ foreach($guests as $guest){
 							<td><?php echo isset($cod[$teamdinner])?CHtml::link($cod[$teamdinner],array('report/exportGalaDietary','team_dinner'=>$teamdinner,'gala_dinner_menu'=>'Fish')):0?></td>
 							<td><?php echo isset($ravioli[$teamdinner])?CHtml::link($ravioli[$teamdinner],array('report/exportGalaDietary','team_dinner'=>$teamdinner,'gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
-						<?php }}}?>
+						<?php }}}
+									$total1+=isset($total['VIP'])?$total['VIP']:0;
+							  	$total2+=isset($cottagePie['VIP'])?$cottagePie['VIP']:0;
+							  	$total3+=isset($cod['VIP'])?$cod['VIP']:0;
+							  	$total4+=isset($ravioli['VIP'])?$ravioli[$teamdinner]:0;
+						
+						
+						?>
 						<tr>
 							<td><?php echo "VIP"?></td>
 							<td><?php echo isset($total['VIP'])?CHtml::link($total['VIP'],array('report/exportGalaDietary','team_dinner'=>'VIP','gala_dinner_menu'=>'')):0?></td>
@@ -306,6 +325,16 @@ foreach($guests as $guest){
 							<td><?php echo isset($ravioli['Gartner Crew'])?CHtml::link($ravioli['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
 							-->
+							
+							<tr>
+							<td><?php echo "Subtotal"?></td>
+							<td><?php echo isset($total1)?CHtml::link($total1,array('report/exportGalaDietary','team_dinner'=>'Friday','gala_dinner_menu'=>'')):0?></td>
+							<td><?php echo isset($total2)?CHtml::link($total2,array('report/exportGalaDietary','team_dinner'=>'Friday','gala_dinner_menu'=>'Meat')):0?></td>
+							<td><?php echo isset($total3)?CHtml::link($total3,array('report/exportGalaDietary','team_dinner'=>'Friday','gala_dinner_menu'=>'Fish')):0?></td>
+							<td><?php echo isset($total4)?CHtml::link($total4,array('report/exportGalaDietary','team_dinner'=>'Friday','gala_dinner_menu'=>'Vegetarian')):0?></td>
+						</tr>
+							
+							
 					</tbody>
 					<thead>
 						<tr>
@@ -316,9 +345,23 @@ foreach($guests as $guest){
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach(User::model()->teamDinnerListI() as $key=>$teamdinner){
+						<?php 
+						$total1=0;
+							  	$total2=0;
+							  	$total3=0;
+							  	$total4=0;
+
+						
+						foreach(User::model()->teamDinnerListI() as $key=>$teamdinner){
 							if(!empty($key)){
-							if (!in_array($teamdinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales'))){ 	?>
+							if (!in_array($teamdinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales'))){ 	
+								 $total1+=isset($total[$teamdinner])?$total[$teamdinner]:0;
+							  	$total2+=isset($cottagePie[$teamdinner])?$cottagePie[$teamdinner]:0;
+							  	$total3+=isset($cod[$teamdinner])?$cod[$teamdinner]:0;
+							  	$total4+=isset($ravioli[$teamdinner])?$ravioli[$teamdinner]:0;
+								
+								
+								?>
 						<tr>
 							<td><?php echo $teamdinner?></td>
 							<td><?php echo isset($total[$teamdinner])?CHtml::link($total[$teamdinner],array('report/exportGalaDietary','team_dinner'=>$teamdinner,'gala_dinner_menu'=>'')):0?></td>
@@ -326,13 +369,19 @@ foreach($guests as $guest){
 							<td><?php echo isset($cod[$teamdinner])?CHtml::link($cod[$teamdinner],array('report/exportGalaDietary','team_dinner'=>$teamdinner,'gala_dinner_menu'=>'Fish')):0?></td>
 							<td><?php echo isset($ravioli[$teamdinner])?CHtml::link($ravioli[$teamdinner],array('report/exportGalaDietary','team_dinner'=>$teamdinner,'gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
-						<?php }}}?>
+						<?php }}}
+						$total1+=isset($total['VIP'])?$total['VIP']:0;
+							  	$total2+=isset($cottagePie['VIP'])?$cottagePie['VIP']:0;
+							  	$total3+=isset($cod['VIP'])?$cod['VIP']:0;
+							  	$total4+=isset($ravioli['VIP'])?$ravioli[$teamdinner]:0;
+							
+						?>
 						<tr>
 							<td><?php echo "VIP"?></td>
-							<td><?php echo isset($total['VIP1'])?CHtml::link($total['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP','gala_dinner_menu'=>'')):0?></td>
-							<td><?php echo isset($cottagePie['VIP1'])?CHtml::link($cottagePie['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP','gala_dinner_menu'=>'Meat')):0?></td>
-							<td><?php echo isset($cod['VIP1'])?CHtml::link($cod['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP','gala_dinner_menu'=>'Fish')):0?></td>
-							<td><?php echo isset($ravioli['VIP1'])?CHtml::link($ravioli['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP','gala_dinner_menu'=>'Vegetarian')):0?></td>
+							<td><?php echo isset($total['VIP1'])?CHtml::link($total['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP1','gala_dinner_menu'=>'')):0?></td>
+							<td><?php echo isset($cottagePie['VIP1'])?CHtml::link($cottagePie['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP1','gala_dinner_menu'=>'Meat')):0?></td>
+							<td><?php echo isset($cod['VIP1'])?CHtml::link($cod['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP1','gala_dinner_menu'=>'Fish')):0?></td>
+							<td><?php echo isset($ravioli['VIP1'])?CHtml::link($ravioli['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP1','gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
 					<!--	<tr>
 							<td><?php echo "Gartner Crew"?></td>
@@ -342,6 +391,14 @@ foreach($guests as $guest){
 							<td><?php echo isset($ravioli['Gartner Crew'])?CHtml::link($ravioli['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
 							-->
+							
+							<tr>
+							<td><?php echo "Subtotal"?></td>
+							<td><?php echo isset($total1)?CHtml::link($total1,array('report/exportGalaDietary','team_dinner'=>'Sunday','gala_dinner_menu'=>'')):0?></td>
+							<td><?php echo isset($total2)?CHtml::link($total2,array('report/exportGalaDietary','team_dinner'=>'Sunday','gala_dinner_menu'=>'Meat')):0?></td>
+							<td><?php echo isset($total3)?CHtml::link($total3,array('report/exportGalaDietary','team_dinner'=>'Sunday','gala_dinner_menu'=>'Fish')):0?></td>
+							<td><?php echo isset($total4)?CHtml::link($total4,array('report/exportGalaDietary','team_dinner'=>'Sunday','gala_dinner_menu'=>'Vegetarian')):0?></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

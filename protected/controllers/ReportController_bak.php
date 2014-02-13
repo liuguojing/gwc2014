@@ -42,14 +42,19 @@ class ReportController extends Controller
 						'actions'=>array('winner','travel','hotel','tours','summary','registation',
 								'housing','transfer','arrival','departure','dietary','download','teamdinner','galadinner',
 								'galatable','printers','dmc','newRegistration','declined','cancelled','amex','users','dmcdownload','traveluser',
-								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser'),
+								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown'),
 						'users'=>array('@'),
-						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="YYO" || $user->name=="Caroline" || $user->name=="Dickie")'
+						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="Tony" || $user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="Jem")'
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
 						'actions'=>array('transfer','arrival','departure','dmcdownload','amex','traveluser'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin && $user->name=="Amex"'
+				),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+						'actions'=>array('dmc','newRegistration','declined','cancelled'),
+						'users'=>array('@'),
+						'expression' => '$user->isAdmin && $user->name=="claire"'
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
 						'actions'=>array('dmc','newRegistration','declined','cancelled'),
@@ -603,7 +608,11 @@ class ReportController extends Controller
 	public function actionAmex(){
 		$this->layout = '//layouts/export';
 		$filename = 'AMEX_Travel_List';
-		$users = User::model()->with('guest')->findAll("status = 1 and type <>'Operating Committee'");
+		$criteria = new CDbCriteria();
+		$criteria->addNotInCondition('type', array('Operating Committee'));
+		$criteria->order = 't.created_at';
+		$criteria->addColumnCondition(array('status'=>1));
+		$users = User::model()->with('guest')->findAll($criteria);
 		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
 		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
 		header("Content-Transfer-Encoding: binary");
@@ -1281,6 +1290,20 @@ class ReportController extends Controller
 		$this->render('hotel_report');
 	}
 	
+	public function actionHoteldown(){
+		$this->layout = '//layouts/export';
+		$filename = 'Hotel Information Download';
+		$criteria = new CDbCriteria();
+		$criteria->addCondition('t.status = 1');
+		
+		$users = User::model()->with('guest')->findAll($criteria);
+		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
+		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
+		header("Content-Transfer-Encoding: binary");
+		header("Pragma: public");
+		header("Cache-Control: public");
+		$this->render('hoteldown',array('users'=>$users));
+	}
 
 }
 

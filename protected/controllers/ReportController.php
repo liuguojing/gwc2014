@@ -178,7 +178,7 @@ class ReportController extends Controller
 		$cirteria->order = 'team_dinner asc';
 		$users = User::model()->findAll($cirteria);
 		$cirteria = new CDbCriteria;
-		$cirteria->addCondition('t.gala_dinner_menu is not null and user.team_dinner is not null and user.status = 1 and user.has_guest = 1');
+		$cirteria->addCondition('user.team_dinner is not null and user.status = 1 and user.has_guest = 1');
 		$cirteria->order = 'user.team_dinner asc';
 		$guests = Guest::model()->with('user')->findAll($cirteria);
 		$this->render('galadinner',array('users'=>$users,'guests'=>$guests));
@@ -520,11 +520,11 @@ class ReportController extends Controller
 	
 	public function actionTeamdinner(){
 		$criteria = new CDbCriteria;
-		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.status = 1");
+		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.status = 1 and t.type<>'Operating Committee'");
 		$criteria->order = 'team_dinner asc';
 		$users = User::model()->findAll($criteria);
 		$criteria = new CDbCriteria;
-		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.status = 1 and user.has_guest = 1 ");
+		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.status = 1 and user.has_guest = 1  and user.type<>'Operating Committee'");
 		$criteria->order = 'user.team_dinner asc';
 		$guests = Guest::model()->with('user')->findAll($criteria);
 		$this->render('teamdinner',array('users'=>$users,'guests'=>$guests));
@@ -826,7 +826,8 @@ class ReportController extends Controller
 		if(!empty($team_dinner)){
 			if($team_dinner=='VIP'){
 				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
-				$criteria->addInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
+				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");
+				
 				$criteria->addNotInCondition('type', array('Crew'));
 			}elseif($team_dinner=='Gartner Crew'){
 				$criteria->addColumnCondition(array('type'=>'Gartner Crew'));
@@ -836,22 +837,22 @@ class ReportController extends Controller
 				$criteria->addInCondition('type', array('Crew'));
 			}elseif($team_dinner=='VIP1'){
 				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
-				$criteria->addNotInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
+				$criteria->addCondition("(t.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");
 				$criteria->addNotInCondition('type', array('Crew'));
 			}else{
 				
 				if ($team_dinner=='Friday') 
 					{
-				$criteria->addInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");}
 				 elseif ($team_dinner=='Sunday')
-				 {$criteria->addNotInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				 {$criteria->addCondition("(t.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");}
 				 else 
 				 {$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));
 				 	$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
 				 	}
 				
 				
-				$criteria->addNotInCondition('type', array('Gartner Crew,Crew'));
+				$criteria->addNotInCondition('type', array('Gartner Crew','Crew'));
 			}
 		}
 		
@@ -874,25 +875,27 @@ class ReportController extends Controller
 		$criteria = new CDbCriteria();
 		if(!empty($team_dinner)){
 			if($team_dinner=='VIP'){
-				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
-				$criteria->addInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
+				$criteria->addCondition("user.gala_dinner_vip='Gala Dinner VIP'");
+				$criteria->addCondition("(user.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");
 				
 
 			}elseif($team_dinner=='VIP1'){
-				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
-				$criteria->addNotInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));
+				$criteria->addCondition("user.gala_dinner_vip='Gala Dinner VIP'");
+				$criteria->addCondition("(user.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");
 				
 			}else{
 				
 				if ($team_dinner=='Friday') 
 					{
-				$criteria->addInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				$criteria->addCondition("(user.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");}
 				 elseif ($team_dinner=='Sunday')
-				 {$criteria->addNotInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+				 {$criteria->addCondition("(user.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");}
 				 else 
-				 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));}
+				 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));
+				 	$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				 	}
 				
-				$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				
 				
 			}
 		}

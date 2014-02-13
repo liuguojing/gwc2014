@@ -60,6 +60,25 @@ class Controller extends CController
 		$result = $ses->sendEmail($m);
 		Yii::log("ses sending email\t" . $to . "\t" . CJSON::encode($result),'info');
 	}
+	public function sendMailCC($to,$title,$user,$view='email',$cc="") {
+		require_once Yii::app()->basePath . '/extensions/ses/ses.php';
+		$ses = new SimpleEmailService(Yii::app()->params['ses']['accessKey'], Yii::app()->params['ses']['secretKey']);
+		$m = new SimpleEmailServiceMessage();
+		$m->addReplyTo(Yii::app()->params['ses']['replyTo']);
+		$m->setReturnPath(Yii::app()->params['ses']['returnPath']);
+		$m->addTo($to);
+		$m->addCC($cc);
+		$m->setFrom(Yii::app()->params['ses']['from']);
+		$m->setSubject($title);
+		$m->setMessageFromString(NULL, Yii::app()->controller->renderPartial('application.views.user.'.$view, array('model'=>$user), true));
+
+		// 再这里设置标题和内容编码
+		$m->setSubjectCharset('UTF-8');
+		$m->setMessageCharset('UTF-8');
+
+		$result = $ses->sendEmail($m);
+		Yii::log("ses sending email\t" . $to . "\t" . CJSON::encode($result),'info');
+	}
 	public function init(){
 		if(!Yii::app()->user->isGuest){
 			$this->user = User::model()->findByPk(Yii::app()->user->id);

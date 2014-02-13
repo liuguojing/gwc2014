@@ -952,8 +952,8 @@ public  function actionGuestDeleteNew($id)
 			try{
 				$model = $this->loadModel(intval(trim($id)));
 				if($model->status==0){
-					$title = 'URGENT REMINDER: Gartner Winners Circle 2013, Sydney; Registration Invitation';
-					$this->sendMail($model->email,$title,$model,'email','');
+					$title = 'Winners Circle Registration Deadline - Friday February 21, 2014';
+					$this->sendMailCC($model->email,$title,$model,'chase_email',$model->passport);
 					echo "OK <br/>";
 					Yii::log('sent '.$model->email . "\t" . " OK",'error');
 				}else{

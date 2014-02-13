@@ -11,7 +11,7 @@ $total = array();
 foreach($users as $user){
 	if($user->gala_dinner_menu == 'Meat'){
 		if($user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 			{
 			if(isset($cottagePie['VIP'])){
 				$cottagePie['VIP']++;
@@ -19,7 +19,7 @@ foreach($users as $user){
 				$cottagePie['VIP']=1;
 			}
 		  }
-		  else
+		  if (!in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 		  {
 		  	if(isset($cottagePie['VIP1'])){
 				$cottagePie['VIP1']++;
@@ -46,7 +46,7 @@ foreach($users as $user){
 	}elseif($user->gala_dinner_menu == 'Fish'){
 		if($user->gala_dinner_vip=='Gala Dinner VIP'){
 			
-			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 			{
 			if(isset($cod['VIP'])){
 				$cod['VIP']++;
@@ -54,7 +54,7 @@ foreach($users as $user){
 				$cod['VIP']=1;
 			}
 		  }
-		  else
+		  if (!in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 		  {
 		  	if(isset($cod['VIP1'])){
 				$cod['VIP1']++;
@@ -80,7 +80,7 @@ foreach($users as $user){
 		}
 	}elseif($user->gala_dinner_menu == 'Vegetarian'){
 		if($user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 			{
 			if(isset($ravioli['VIP'])){
 				$ravioli['VIP']++;
@@ -88,7 +88,7 @@ foreach($users as $user){
 				$ravioli['VIP']=1;
 			}
 		  }
-		  else
+		  if (!in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 		  {
 		  	if(isset($ravioli['VIP1'])){
 				$ravioli['VIP1']++;
@@ -115,7 +115,7 @@ foreach($users as $user){
 	}
 	
 	if($user->gala_dinner_vip=='Gala Dinner VIP'){
-		if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+		if (in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 			{
 			if(isset($total['VIP'])){
 				$total['VIP']++;
@@ -123,7 +123,7 @@ foreach($users as $user){
 				$total['VIP']=1;
 			}
 		  }
-		  else
+		  if (!in_array($user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $user->type=='Operating Committee')
 		  {
 		  	if(isset($total['VIP1'])){
 				$total['VIP1']++;
@@ -153,7 +153,7 @@ foreach($users as $user){
 foreach($guests as $guest){
 	if($guest->gala_dinner_menu == 'Meat'){
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 			{
 			if(isset($cottagePie['VIP'])){
 				$cottagePie['VIP']++;
@@ -161,7 +161,7 @@ foreach($guests as $guest){
 				$cottagePie['VIP']=1;
 			}
 		  }
-		  else
+		  if (!in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 		  {
 		  	if(isset($cottagePie['VIP1'])){
 				$cottagePie['VIP1']++;
@@ -179,7 +179,7 @@ foreach($guests as $guest){
 		}
 	}elseif($guest->gala_dinner_menu == 'Fish'){
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 			{
 			if(isset($cod['VIP'])){
 				$cod['VIP']++;
@@ -187,7 +187,7 @@ foreach($guests as $guest){
 				$cod['VIP']=1;
 			}
 		  }
-		  else
+		  if (!in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 		  {
 		  	if(isset($cod['VIP1'])){
 				$cod['VIP1']++;
@@ -205,7 +205,7 @@ foreach($guests as $guest){
 		}
 	}elseif($guest->gala_dinner_menu == 'Vegetarian'){
 		if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+			if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 			{
 			if(isset($ravioli['VIP'])){
 				$ravioli['VIP']++;
@@ -213,7 +213,7 @@ foreach($guests as $guest){
 				$ravioli['VIP']=1;
 			}
 		  }
-		  else
+		  if (!in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 		  {
 		  	if(isset($ravioli['VIP1'])){
 				$ravioli['VIP1']++;
@@ -232,7 +232,7 @@ foreach($guests as $guest){
 	}
 	
 	if($guest->user->gala_dinner_vip=='Gala Dinner VIP'){
-		if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')))
+		if (in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 			{
 			if(isset($total['VIP'])){
 				$total['VIP']++;
@@ -240,7 +240,7 @@ foreach($guests as $guest){
 				$total['VIP']=1;
 			}
 		  }
-		  else
+		if (!in_array($guest->user->team_dinner,array('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales')) or $guest->user->type=='Operating Committee')
 		  {
 		  	if(isset($total['VIP1'])){
 				$total['VIP1']++;
@@ -306,7 +306,7 @@ foreach($guests as $guest){
 									$total1+=isset($total['VIP'])?$total['VIP']:0;
 							  	$total2+=isset($cottagePie['VIP'])?$cottagePie['VIP']:0;
 							  	$total3+=isset($cod['VIP'])?$cod['VIP']:0;
-							  	$total4+=isset($ravioli['VIP'])?$ravioli[$teamdinner]:0;
+							  	$total4+=isset($ravioli['VIP'])?$ravioli['VIP']:0;
 						
 						
 						?>
@@ -370,10 +370,10 @@ foreach($guests as $guest){
 							<td><?php echo isset($ravioli[$teamdinner])?CHtml::link($ravioli[$teamdinner],array('report/exportGalaDietary','team_dinner'=>$teamdinner,'gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
 						<?php }}}
-						$total1+=isset($total['VIP'])?$total['VIP']:0;
-							  	$total2+=isset($cottagePie['VIP'])?$cottagePie['VIP']:0;
-							  	$total3+=isset($cod['VIP'])?$cod['VIP']:0;
-							  	$total4+=isset($ravioli['VIP'])?$ravioli[$teamdinner]:0;
+						$total1+=isset($total['VIP1'])?$total['VIP1']:0;
+							  	$total2+=isset($cottagePie['VIP1'])?$cottagePie['VIP1']:0;
+							  	$total3+=isset($cod['VIP1'])?$cod['VIP1']:0;
+							  	$total4+=isset($ravioli['VIP1'])?$ravioli['VIP1']:0;
 							
 						?>
 						<tr>

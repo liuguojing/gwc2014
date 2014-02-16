@@ -3,7 +3,7 @@ function formatCost($cost){
 	$format = new CNumberFormatter('EN');
 	return $format->format('#,##0.00', $cost);
 }
-
+$date_number=0;
 ?>
 <div class="container top">
 		<div class="row">
@@ -78,7 +78,7 @@ function formatCost($cost){
 						<tr>
 							<th width="140px"></th>
 							<?php foreach($dates as $date){?>
-							<th><?php echo date('M/d/Y',strtotime($date));?></th>
+							<th><?php echo date('M/d/Y',strtotime($date));$date_number++;?></th>
 							<?php }?>
 							<th>Total</th>
 							<th>Attriton Rate</th>
@@ -88,7 +88,11 @@ function formatCost($cost){
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($blocks as $type=>$block){?>
+						<?php
+						$tmpPTotal = 0;
+						$tmpOTotal = 0;
+						
+						 foreach($blocks as $type=>$block){?>
 						<tr class="">
 							<td><?php echo empty($type)?"untitled":$type;?></td>
 							<?php 
@@ -105,21 +109,23 @@ function formatCost($cost){
 							<td></td>
 							<td></td>
 						</tr>
-						
+						<?php $tmpOTotal+= $attritonRates[$type] * $tmpTotal; ?>
 						<tr class="">
 							<td>Pickup</td>
 							<?php 
 								$tmpTotal = 0;
 								foreach($dates as $date){?>
 							<td><?php if (isset($totalResult[$hotelType][$date])){ echo $totalResult[$hotelType][$date];$tmpTotal+=$totalResult[$hotelType][$date];}else{echo 0;};?></td>
-							<?php }?>
+							<?php 
+							
+							}?>
 							<td><?php echo $tmpTotal;?></td>
 							<td></td>
 							<td></td>
 							<td><?php echo isset($sellRates[$type])?"$".$sellRates[$type]:0?></td>
 							<td><?php echo isset($sellRates[$type])?"$".formatCost($sellRates[$type] * $tmpTotal):0?></td>
 						</tr>
-						
+						<?php $tmpPTotal+= $sellRates[$type] * $tmpTotal; ?>
 						<tr class="success">
 							<td>Total +/-</td>
 							<?php 
@@ -133,6 +139,7 @@ function formatCost($cost){
 								$pickup_number = isset($totalResult[$hotelType][$date])?$totalResult[$hotelType][$date]:0;
 								$tmpTotal += $block_number - $pickup_number;
 								echo $block_number - $pickup_number;
+								
 								?>
 							</td>
 							<?php }?>
@@ -143,7 +150,7 @@ function formatCost($cost){
 							<td></td>
 						</tr>
 						<?php }?>
-						
+						<tr><td colspan=<?php echo $date_number+3 ?>>Total</td><td><?php echo "$".formatCost($tmpOTotal);?></td><td></td><td><?php echo "$".formatCost($tmpPTotal);?></td></tr>
 					</tbody>
 				</table>
 			</div>

@@ -113,10 +113,12 @@ class ReportController extends Controller
 	{
 		$teamDinners = array();
 		$galaDinners = array();
+		$vip =array();
+		$vip1 =array();
 		$dbCommand = Yii::app()->db->createCommand("SELECT team_dinner, team_dinner_dietary, count(1) AS num FROM 
-				( SELECT team_dinner_dietary, team_dinner FROM users WHERE team_dinner IS NOT NULL AND team_dinner <> '' and status = 1
+				( SELECT team_dinner_dietary, team_dinner FROM users WHERE team_dinner IS NOT NULL AND team_dinner <> '' and status = 1 and type not in ('Gartner Crew','Crew','Operating Committee')
 				UNION ALL 
-				SELECT g.team_dinner_dietary, g.team_dinner FROM guests g,users user WHERE g.team_dinner IS NOT NULL AND g.team_dinner <> ''  and g.user_id= user.id and user.status = 1 and user.has_guest = 1 
+				SELECT g.team_dinner_dietary, user.team_dinner FROM guests g,users user WHERE user.team_dinner IS NOT NULL AND user.team_dinner <> ''  and g.user_id= user.id and user.status = 1 and user.has_guest = 1  and user.type not in ('Gartner Crew','Crew','Operating Committee')
 				) AS a GROUP BY team_dinner, team_dinner_dietary ORDER BY team_dinner, team_dinner_dietary");
 		$result = $dbCommand->queryAll();
 		if(isset($result)){
@@ -127,18 +129,18 @@ class ReportController extends Controller
 
 
 		$dbCommand = Yii::app()->db->createCommand("select gala_dinner_dietary,count(1)  num,team_dinner from
-				(select team_dinner_dietary as gala_dinner_dietary,team_dinner from users where status = 1 and team_dinner IS NOT NULL AND team_dinner <> '' and gala_dinner_vip <> 'Gala Dinner VIP' 
-				union all select g.team_dinner_dietary as gala_dinner_dietary,g.team_dinner from guests g,users u where g.user_id = u.id and u.status = 1 and u.has_guest = 1 and 
-				g.team_dinner IS NOT NULL AND g.team_dinner <> '' and u.gala_dinner_vip <>'Gala Dinner VIP'
+				(select team_dinner_dietary as gala_dinner_dietary,team_dinner from users where status = 1 and team_dinner IS NOT NULL AND team_dinner <> '' and gala_dinner_vip <> 'Gala Dinner VIP' and type not in ('Gartner Crew','Crew')
+				union all select g.team_dinner_dietary as gala_dinner_dietary,u.team_dinner from guests g,users u where g.user_id = u.id and u.status = 1 and u.has_guest = 1 and 
+				u.team_dinner IS NOT NULL AND u.team_dinner <> '' and u.gala_dinner_vip <>'Gala Dinner VIP'
 		) as a
 				group by team_dinner,gala_dinner_dietary order by team_dinner,gala_dinner_dietary ");
 		$gala = $dbCommand->queryAll();
 		
-		$dbCommand = Yii::app()->db->createCommand("select gala_dinner_dietary,count(1) as num,team_dinner  from
-				(select team_dinner_dietary as gala_dinner_dietary,team_dinner from users where status = 1 and team_dinner IS NOT NULL AND team_dinner <> '' and gala_dinner_vip = 'Gala Dinner VIP' 
-				union all select g.team_dinner_dietary as gala_dinner_dietary,g.team_dinner from guests g,users u where g.user_id = u.id  and u.status = 1 and u.has_guest = 1  and g.team_dinner IS NOT NULL AND g.team_dinner <> '' and u.gala_dinner_vip = 'Gala Dinner VIP'
+		$dbCommand = Yii::app()->db->createCommand("select gala_dinner_dietary,count(1) as num  from
+				(select team_dinner_dietary as gala_dinner_dietary,team_dinner from users where status = 1 and team_dinner IS NOT NULL AND team_dinner <> '' and gala_dinner_vip = 'Gala Dinner VIP' and type not in ('Gartner Crew','Crew') and (team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or type='Operating Committee')
+				union all select g.team_dinner_dietary as gala_dinner_dietary,u.team_dinner from guests g,users u where g.user_id = u.id  and u.status = 1 and u.has_guest = 1  and u.team_dinner IS NOT NULL AND u.team_dinner <> '' and u.gala_dinner_vip = 'Gala Dinner VIP' and (u.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or u.type='Operating Committee')
 		) as a
-				group by team_dinner,gala_dinner_dietary order by team_dinner,gala_dinner_dietary ");
+				group by gala_dinner_dietary order by team_dinner,gala_dinner_dietary ");
 		$gala_vip = $dbCommand->queryAll();
 		if(isset($gala)){
 			foreach($gala as $item){
@@ -147,7 +149,19 @@ class ReportController extends Controller
 		}
 		if(isset($gala_vip)){
 			foreach($gala_vip as $item){
-				$galaDinners['Vip'][$item['gala_dinner_dietary']] = $item['num'];
+				$galaDinners['VIP'][$item['gala_dinner_dietary']] = $item['num'];
+			}
+		}
+		$dbCommand = Yii::app()->db->createCommand("select gala_dinner_dietary,count(1) as num  from
+				(select team_dinner_dietary as gala_dinner_dietary,team_dinner from users where status = 1 and team_dinner IS NOT NULL AND team_dinner <> '' and gala_dinner_vip = 'Gala Dinner VIP' and type not in ('Gartner Crew','Crew') and (team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or type='Operating Committee')
+				union all select g.team_dinner_dietary as gala_dinner_dietary,u.team_dinner from guests g,users u where g.user_id = u.id  and u.status = 1 and u.has_guest = 1  and u.team_dinner IS NOT NULL AND u.team_dinner <> '' and u.gala_dinner_vip = 'Gala Dinner VIP' and (u.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or u.type='Operating Committee')
+		) as a
+				group by gala_dinner_dietary order by team_dinner,gala_dinner_dietary ");
+		$gala_vip1 = $dbCommand->queryAll();
+		
+		if(isset($gala_vip1)){
+			foreach($gala_vip1 as $item){
+				$galaDinners['VIP1'][$item['gala_dinner_dietary']] = $item['num'];
 			}
 		}
 		$this->render('dietary',array('teamDinners'=>$teamDinners,'galaDinners'=>$galaDinners));
@@ -178,7 +192,7 @@ class ReportController extends Controller
 		$cirteria->order = 'team_dinner asc';
 		$users = User::model()->findAll($cirteria);
 		$cirteria = new CDbCriteria;
-		$cirteria->addCondition('t.gala_dinner_menu is not null and user.team_dinner is not null and user.status = 1 and user.has_guest = 1');
+		$cirteria->addCondition('user.team_dinner is not null and user.status = 1 and user.has_guest = 1');
 		$cirteria->order = 'user.team_dinner asc';
 		$guests = Guest::model()->with('user')->findAll($cirteria);
 		$this->render('galadinner',array('users'=>$users,'guests'=>$guests));
@@ -734,7 +748,7 @@ class ReportController extends Controller
 			$criteria->addInCondition('t.table_no', explode(',',$table_no));
 		}
 		$criteria->addColumnCondition(array('status'=>'1'));
-		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> ''");
+		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.type not in ('Gartner Crew','Crew','Operating Committee')");
 		$criteria->order = "t.id desc";
 		$users = User::model()->findAll($criteria);
 		
@@ -758,7 +772,7 @@ class ReportController extends Controller
 			$criteria->addInCondition('user.table_no', explode(',',$table_no));
 		}
 		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1));
-		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> ''");
+		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.type not in ('Gartner Crew','Crew','Operating Committee')");
 		$criteria->order = "t.id desc";
 		$guests = Guest::model()->with('user')->findAll($criteria);
 		
@@ -852,7 +866,7 @@ class ReportController extends Controller
 				 	}
 				
 				
-				$criteria->addNotInCondition('type', array('Gartner Crew,Crew'));
+				$criteria->addNotInCondition('type', array('Gartner Crew','Crew'));
 			}
 		}
 		
@@ -875,12 +889,12 @@ class ReportController extends Controller
 		$criteria = new CDbCriteria();
 		if(!empty($team_dinner)){
 			if($team_dinner=='VIP'){
-				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addCondition("user.gala_dinner_vip='Gala Dinner VIP'");
 				$criteria->addCondition("(user.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");
 				
 
 			}elseif($team_dinner=='VIP1'){
-				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addCondition("user.gala_dinner_vip='Gala Dinner VIP'");
 				$criteria->addCondition("(user.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");
 				
 			}else{
@@ -891,9 +905,11 @@ class ReportController extends Controller
 				 elseif ($team_dinner=='Sunday')
 				 {$criteria->addCondition("(user.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");}
 				 else 
-				 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));}
+				 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));
+				 	$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				 	}
 				
-				$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				
 				
 			}
 		}

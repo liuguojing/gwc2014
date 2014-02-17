@@ -829,7 +829,9 @@ public  function actionGuestDeleteNew($id)
 		}else{
 			$title = 'Gartner Winners Circle 2013, Sydney; Registration Confirmation';
 		}
+		if($model->type!='Crew'){
 		$this->sendMail($model->email,$title,$model,'finalize_mail');
+	}
 		$this->render('finalize',array('model'=>$model));
 	}
 

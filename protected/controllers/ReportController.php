@@ -278,6 +278,7 @@ class ReportController extends Controller
 	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
 	(
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
+	and a.is_master=1
 	AND b.hotel_name=:hotel_name
 	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
 	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
@@ -309,6 +310,7 @@ class ReportController extends Controller
 	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
 	(
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
+	and a.is_master=1
 	AND b.hotel_name=:hotel_name
 	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
 	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
@@ -340,6 +342,7 @@ class ReportController extends Controller
 	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
 	(
 	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
+	and a.is_master=1
 	AND b.hotel_name=:hotel_name
 	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
 	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
@@ -377,13 +380,13 @@ class ReportController extends Controller
 				'hotel'=>$hotel));
 		}else {
 		set_time_limit(0);
-		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name )"
+		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name and is_master=1)"
 				,array(':hotel_name'=>$hotel));
 		$dateArr = array();
 		$typeResult = array();
 		$totalResult = array();
-		$min_date = '2014-04-08';
-		$max_date = '2014-04-13';
+//		$min_date = '2014-04-08';
+//		$max_date = '2014-04-13';
 		foreach($users as $user){
 			$from_date = $user->hotel_arrival_date;
 			$end_date = $user->hotel_departure_date;
@@ -397,7 +400,10 @@ class ReportController extends Controller
 			// 				}
 			// 				$end_date = "Apr/21/2013";
 			// 			}
-	
+	                $room1=Room::model()->findBySql("SELECT max(date) as date from rooms where hotel_id in (select id from hotels where concat(hotel_name,' - ' ,name)=:hotel_name) AND is_master =1",array(':hotel_name'=>$user->hotel_type));
+			$room2=Room::model()->findBySql("SELECT min(date) as date from rooms where hotel_id in (select id from hotels where concat(hotel_name,' - ' ,name)=:hotel_name) AND is_master =1",array(':hotel_name'=>$user->hotel_type));
+	                $max_date = $room1->date;
+	                $min_date = $room2->date;
 			$from_date =  $this->strtodate($from_date);
 			$end_date =  $this->strtodate($end_date);
 			$from_date = $from_date>=$min_date?$from_date:$min_date;

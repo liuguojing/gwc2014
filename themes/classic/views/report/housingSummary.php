@@ -26,29 +26,29 @@ function formatCost($cost){
 					<thead>
 						<tr>
 							<th>Hotel Name</th>
-							<th>Total</th>
+							
 							<th>Pick-up Total</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>Shangri-La</td>
-							<td><?php echo "$".formatCost($ShangriLa_total1)?></td>
+							
 							<td><?php echo "$".formatCost($ShangriLa_total2)?></td>
 						</tr>
 						<tr>
 							<td>Hilton</td>
-							<td><?php echo "$".formatCost($Hilton_total1)?></td>
+							
 							<td><?php echo "$".formatCost($Hilton_total2)?></td>
 						</tr>
 						<tr>
 							<td>Sheraton</td>
-							<td><?php echo "$".formatCost($Sheraton_total1)?></td>
+							
 							<td><?php echo "$".formatCost($Sheraton_total2)?></td>
 						</tr>
 						<tr class="success">
 							<td>Total</td>
-							<td><?php echo "$".formatCost($total1)?></td>
+							
 							<td><?php echo "$".formatCost($total2)?></td>
 						</tr>
 					</tbody>

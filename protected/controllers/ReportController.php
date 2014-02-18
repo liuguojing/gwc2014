@@ -272,7 +272,7 @@ class ReportController extends Controller
 	public function actionHousingMaster($hotel='summary')
 	{
 		if($hotel=="summary"){
-	/*		$ShangriLa = User::model()->findBySql("
+			$ShangriLa = User::model()->findBySql("
 			SELECT id,ifnull(email,0) email FROM
 (
 	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
@@ -301,39 +301,8 @@ class ReportController extends Controller
 	FROM users t LEFT JOIN hotels c
 	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
 	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
-) b",array(':hotel_name'=>'Shangri-La',':hotel_name_like'=>'Shangri-La%'));  */
-    $room_date_whole=array();
-    $room_rate_whole=array();
-    $result_s=0;
-    $dbCommand = Yii::app()->db->createCommand("SELECT concat(h.hotel_name,' - ' ,h.name) as name, h.sell_rate as sell_rate, datediff(STR_TO_DATE(max(r.date), '%b/%d/%Y'),STR_TO_DATE(min(r.date), '%b/%d/%Y')) as date_number  from rooms r,hotels h where r.hotel_id=h.id AND r.is_master =1 group by concat(h.hotel_name,' - ' ,h.name), h.sell_rate");
-		$all_room_dates = $dbCommand->queryAll();
-		if(isset($all_room_dates)){
-			foreach($all_room_dates as $item){
-					$room_date_whole[$item['name']]=$item['date_number'];
-					$room_rate_whole[$item['name']]=$item['sell_rate'];
-			}
-		}
-		$ShangriLa = User::model()->findBySql("select id,datediff(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y'))  as email,hotel_type from users where status=1 and hotel_type LIKE :hotel_name_like",array(':hotel_name_like'=>'Shangri-La%'));
-    foreach($ShangriLa as $user){
-    if (isset($room_date_whole[$user['hotel_type']]))
-     { $tmpdatenumber=$room_date_whole[$user['hotel_type']];}
-    else
-     { $tmpdatenumber=0; }
-    if (isset($room_rate_whole[$user['hotel_type']]))
-     { $tmpratenumber=$room_rate_whole[$user['hotel_type']];}
-    else
-     { $tmpratenumber=0; }
-    	if ($user['email']>=$tmpdatenumber)
-    	{
-    		$result_s+=$tmpdatenumber*$tmpratenumber;
-    		}
-    	else
-    	{
-    		$result_s+=$user['email']*$tmpratenumber;
-    		}
-    	
+) b",array(':hotel_name'=>'Shangri-La',':hotel_name_like'=>'Shangri-La%'));
 
-  }
 			$Hilton = User::model()->findBySql("
 			SELECT id,ifnull(email,0) email FROM
 (
@@ -397,8 +366,8 @@ class ReportController extends Controller
 ) b",array(':hotel_name'=>'Sheraton',':hotel_name_like'=>'Sheraton%'));
 
 			$this->render('housingSummary',
-				array('ShangriLa_total1'=>0,
-				'ShangriLa_total2'=>$result_s,
+				array('ShangriLa_total1'=>$ShangriLa->id,
+				'ShangriLa_total2'=>$ShangriLa->email,
 				'Hilton_total1'=>$Hilton->id,
 				'Hilton_total2'=>$Hilton->email,
 				'Sheraton_total1'=>$Sheraton->id,
@@ -413,13 +382,12 @@ class ReportController extends Controller
 		$dateArr = array();
 		$typeResult = array();
 		$totalResult = array();
-		//$min_date = '2014-04-08';
-		//$max_date = '2014-04-13';
-		
+		$min_date = '2014-04-08';
+		$max_date = '2014-04-13';
 		foreach($users as $user){
 			$from_date = $user->hotel_arrival_date;
 			$end_date = $user->hotel_departure_date;
-	    
+	
 			//如果是非标准时间
 			// 			if($user->hotel_venue == 'I will be making my own arrangements'){
 			// 				if(in_array($user->type,array('Top Achievers','Eagles','Operating Committee'))){
@@ -429,22 +397,11 @@ class ReportController extends Controller
 			// 				}
 			// 				$end_date = "Apr/21/2013";
 			// 			}
-	    
-	    $roomtype = Room::model()->findAllBySql("SELECT max(date) as date from rooms where hotel_id in (select id from hotels where concat(hotel_name,' - ' ,name)=:hotel_name) AND is_master =1" 
-	       ,array(':hotel_name'=>$user->hotel_type));
-	    foreach ($roomtype as $tempdate){
-	      $max_date =$tempdate->date;
-	    }
-	    $roomtype1 = Room::model()->findAllBySql("SELECT min(date) as date from rooms where hotel_id in (select id from hotels where concat(hotel_name,' - ' ,name)=:hotel_name) AND is_master =1" 
-	       ,array(':hotel_name'=>$user->hotel_type));
-	    foreach ($roomtype1 as $tempdate){
-	      $min_date =$tempdate->date;
-	    }
-	    
+	
 			$from_date =  $this->strtodate($from_date);
 			$end_date =  $this->strtodate($end_date);
 			$from_date = $from_date>=$min_date?$from_date:$min_date;
-			$end_date = $end_date<=$max_date?$end_date:$max_date;
+			$end_date = $end_date>=$max_date?$end_date:$max_date;
 	
 			$tmpDate = $from_date;
 			while($tmpDate < $end_date ){

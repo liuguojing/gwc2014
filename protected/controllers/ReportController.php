@@ -380,7 +380,13 @@ class ReportController extends Controller
 				'hotel'=>$hotel));
 		}else {
 		set_time_limit(0);
-		$users = User::model()->findAllBySql("select * from users t where t.status = 1 and t.hotel_type in (select concat(hotel_name,' - ' ,name) from hotels where hotel_name=:hotel_name and is_master=1)"
+		$users = User::model()->findAllBySql("SELECT t.hotel_arrival_date,t.hotel_departure_date,t.hotel_type,
+(SELECT MAX(DATE) AS DATE FROM rooms WHERE hotel_id IN (SELECT id FROM hotels WHERE CONCAT(hotel_name,' - ' ,NAME)=t.hotel_type) AND is_master =1) AS first_name,
+(SELECT MIN(DATE) AS DATE FROM rooms WHERE hotel_id IN (SELECT id FROM hotels WHERE CONCAT(hotel_name,' - ' ,NAME)=t.hotel_type) AND is_master =1) AS last_name		
+FROM users t 
+WHERE 
+t.status = 1 
+AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hotel_name=:hotel_name)"
 				,array(':hotel_name'=>$hotel));
 		$dateArr = array();
 		$typeResult = array();
@@ -400,10 +406,9 @@ class ReportController extends Controller
 			// 				}
 			// 				$end_date = "Apr/21/2013";
 			// 			}
-	                $room1=Room::model()->findBySql("SELECT max(date) as date from rooms where hotel_id in (select id from hotels where concat(hotel_name,' - ' ,name)=:hotel_name) AND is_master =1",array(':hotel_name'=>$user->hotel_type));
-			$room2=Room::model()->findBySql("SELECT min(date) as date from rooms where hotel_id in (select id from hotels where concat(hotel_name,' - ' ,name)=:hotel_name) AND is_master =1",array(':hotel_name'=>$user->hotel_type));
-	                $max_date = $room1->date;
-	                $min_date = $room2->date;
+	               
+	                $max_date = $this->strtodate($user->first_name);
+	                $min_date = $this->strtodate($user->last_name);
 			$from_date =  $this->strtodate($from_date);
 			$end_date =  $this->strtodate($end_date);
 			$from_date = $from_date>=$min_date?$from_date:$min_date;

@@ -533,11 +533,11 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 	
 	public function actionTeamdinner(){
 		$criteria = new CDbCriteria;
-		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.status = 1 and t.type<>'Operating Committee'");
+		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.status = 1 and t.type not in ('Crew','Gartner Crew','Operating Committee')");
 		$criteria->order = 'team_dinner asc';
 		$users = User::model()->findAll($criteria);
 		$criteria = new CDbCriteria;
-		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.status = 1 and user.has_guest = 1  and user.type<>'Operating Committee'");
+		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.status = 1 and user.has_guest = 1  and user.type not in ('Crew','Gartner Crew','Operating Committee')");
 		$criteria->order = 'user.team_dinner asc';
 		$guests = Guest::model()->with('user')->findAll($criteria);
 		$this->render('teamdinner',array('users'=>$users,'guests'=>$guests));

@@ -379,8 +379,8 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 		$dateArr = array();
 		$typeResult = array();
 		$totalResult = array();
-//		$min_date = '2014-04-08';
-//		$max_date = '2014-04-13';
+// 		$min_date = '2014-04-10';
+// 		$max_date = '2014-04-13';
 		foreach($users as $user){
 			$from_date = $user->hotel_arrival_date;
 			$end_date = $user->hotel_departure_date;
@@ -400,7 +400,7 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 			$from_date =  $this->strtodate($from_date);
 			$end_date =  $this->strtodate($end_date);
 			$from_date = $from_date>=$min_date?$from_date:$min_date;
-			$end_date = $end_date>=$max_date?$end_date:$max_date;
+			$end_date = $end_date>=$max_date?$max_date:$end_date;
 	
 			$tmpDate = $from_date;
 			while($tmpDate < $end_date ){

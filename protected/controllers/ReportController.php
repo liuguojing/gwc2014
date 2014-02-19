@@ -273,109 +273,97 @@ class ReportController extends Controller
 	{
 		if($hotel=="summary"){
 			$ShangriLa = User::model()->findBySql("
-			SELECT id,ifnull(email,0) email FROM
+			SELECT SUM(
+	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*s.`sell_rate` ) AS email
+	 FROM 
+(SELECT a.id,
+CASE WHEN hotel_arrival_date>=mindate THEN hotel_arrival_date ELSE mindate END hotel_arrival_date,
+CASE WHEN hotel_departure_date<=maxdate THEN hotel_departure_date ELSE maxdate END hotel_departure_date
+FROM 
+ (
+SELECT a.id , b.hotel_departure_date,b.hotel_arrival_date FROM
 (
-	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
-	(
-	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
-	and a.is_master=1
-	AND b.hotel_name=:hotel_name
-	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
-	) a LEFT JOIN 
-	(
-	SELECT 
-	DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')) number,t.hotel_type
-	FROM users t  WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
-	) b 
-	ON a.hotel_type=b.hotel_type
-	LEFT JOIN hotels c
-	ON a.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME)
+SELECT * FROM v_hotel_room_info s WHERE s.hotel_name=:hotel_name
+) a,
+users b
+WHERE a.hotel_type=b.hotel_type AND b.status=1
 ) a,
 (
-	SELECT 
-	sum(
-	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*c.sell_rate ) as email
-	FROM users t LEFT JOIN hotels c
-	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
-	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
-) b",array(':hotel_name'=>'Shangri-La',':hotel_name_like'=>'Shangri-La%'));
+SELECT s.id, MAX(DATE) maxdate,MIN(DATE) mindate FROM `rooms` r,
+v_hotel_room_info s
+WHERE s.hotel_name=:hotel_name AND r.hotel_id = s.id AND r.is_master=1
+GROUP BY id
+ ) b WHERE a.id=b.id
+ 
+ 
+ )a,
+  v_hotel_room_info s WHERE a.id=s.id",array(':hotel_name'=>'Shangri-La'));
 
 			$Hilton = User::model()->findBySql("
-			SELECT id,ifnull(email,0) email FROM
+			SELECT SUM(
+	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*s.`sell_rate` ) AS email
+	 FROM 
+(SELECT a.id,
+CASE WHEN hotel_arrival_date>=mindate THEN hotel_arrival_date ELSE mindate END hotel_arrival_date,
+CASE WHEN hotel_departure_date<=maxdate THEN hotel_departure_date ELSE maxdate END hotel_departure_date
+FROM 
+ (
+SELECT a.id , b.hotel_departure_date,b.hotel_arrival_date FROM
 (
-	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
-	(
-	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
-	and a.is_master=1
-	AND b.hotel_name=:hotel_name
-	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
-	) a LEFT JOIN 
-	(
-	SELECT 
-	DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')) number,t.hotel_type
-	FROM users t  WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
-	) b 
-	ON a.hotel_type=b.hotel_type
-	LEFT JOIN hotels c
-	ON a.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME)
+SELECT * FROM v_hotel_room_info s WHERE s.hotel_name=:hotel_name
+) a,
+users b
+WHERE a.hotel_type=b.hotel_type AND b.status=1
 ) a,
 (
-	SELECT 
-	sum(
-	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*c.sell_rate ) as email
-	FROM users t LEFT JOIN hotels c
-	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
-	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
-) b",array(':hotel_name'=>'Hilton',':hotel_name_like'=>'Hilton%'));
+SELECT s.id, MAX(DATE) maxdate,MIN(DATE) mindate FROM `rooms` r,
+v_hotel_room_info s
+WHERE s.hotel_name=:hotel_name AND r.hotel_id = s.id AND r.is_master=1
+GROUP BY id
+ ) b WHERE a.id=b.id
+ 
+ 
+ )a,
+  v_hotel_room_info s WHERE a.id=s.id",array(':hotel_name'=>'Hilton',':hotel_name_like'=>'Hilton%'));
 
 			$Sheraton = User::model()->findBySql("
-			SELECT id,ifnull(email,0) email FROM
+			SELECT SUM(
+	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*s.`sell_rate` ) AS email
+	 FROM 
+(SELECT a.id,
+CASE WHEN hotel_arrival_date>=mindate THEN hotel_arrival_date ELSE mindate END hotel_arrival_date,
+CASE WHEN hotel_departure_date<=maxdate THEN hotel_departure_date ELSE maxdate END hotel_departure_date
+FROM 
+ (
+SELECT a.id , b.hotel_departure_date,b.hotel_arrival_date FROM
 (
-	SELECT IFNULL(SUM((a.number-IFNULL(b.number,0))*c.attriton_rate),0) as id FROM 
-	(
-	SELECT CONCAT(b.hotel_name,' - ',b.NAME) hotel_type,SUM(a.number) number  FROM rooms a,hotels b  WHERE a.hotel_id=b.id
-	and a.is_master=1
-	AND b.hotel_name=:hotel_name
-	AND a.date>=(SELECT MIN(hotel_arrival_date) FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	AND a.date<=(SELECT DATE_FORMAT(DATE_ADD(STR_TO_DATE(MAX(hotel_departure_date), '%b/%d/%Y'),INTERVAL -1 DAY), '%b/%d/%Y') FROM users t WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like) 
-	GROUP BY CONCAT(b.hotel_name,' - ',b.NAME)
-	) a LEFT JOIN 
-	(
-	SELECT 
-	DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')) number,t.hotel_type
-	FROM users t  WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
-	) b 
-	ON a.hotel_type=b.hotel_type
-	LEFT JOIN hotels c
-	ON a.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME)
+SELECT * FROM v_hotel_room_info s WHERE s.hotel_name=:hotel_name
+) a,
+users b
+WHERE a.hotel_type=b.hotel_type AND b.status=1
 ) a,
 (
-	SELECT 
-	sum(
-	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*c.sell_rate ) as email
-	FROM users t LEFT JOIN hotels c
-	on t.hotel_type = CONCAT(c.hotel_name,' - ',c.NAME) 
-	WHERE t.status = 1 AND t.hotel_type LIKE :hotel_name_like
-) b",array(':hotel_name'=>'Sheraton',':hotel_name_like'=>'Sheraton%'));
+SELECT s.id, MAX(DATE) maxdate,MIN(DATE) mindate FROM `rooms` r,
+v_hotel_room_info s
+WHERE s.hotel_name=:hotel_name AND r.hotel_id = s.id AND r.is_master=1
+GROUP BY id
+ ) b WHERE a.id=b.id
+ 
+ 
+ )a,
+  v_hotel_room_info s WHERE a.id=s.id",array(':hotel_name'=>'Sheraton'));
 
 			$this->render('housingSummary',
-				array('ShangriLa_total1'=>$ShangriLa->id,
+				array('ShangriLa_total1'=>0,
 				'ShangriLa_total2'=>$ShangriLa->email,
-				'Hilton_total1'=>$Hilton->id,
+				'Hilton_total1'=>0,
 				'Hilton_total2'=>$Hilton->email,
-				'Sheraton_total1'=>$Sheraton->id,
+				'Sheraton_total1'=>0,
 				'Sheraton_total2'=>$Sheraton->email,
-				'total1'=>$ShangriLa->id+$Hilton->id+$Sheraton->id,
+				'total1'=>0,
 				'total2'=>$ShangriLa->email+$Hilton->email+$Sheraton->email,
 				'hotel'=>$hotel));
 		}else {

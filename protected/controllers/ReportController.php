@@ -355,15 +355,42 @@ GROUP BY id
  
  )a,
   v_hotel_room_info s WHERE a.id=s.id",array(':hotel_name'=>'Sheraton'));
+			
+    $roomsum = Hotel::model()->findAllBySql("SELECT hotel_name, SUM( b.number * b.attriton_rate ) as attriton_rate 
+FROM (
+
+SELECT h.hotel_name, r.number, h.attriton_rate
+FROM `hotels` h, rooms r
+WHERE h.id = r.hotel_id
+AND r.is_master =1
+)b
+GROUP BY b.hotel_name");
+    $total1=0;
+    $total2=0;
+    $total3=0;
+  
+    foreach ($roomsum as $room)
+    {
+
+    	if($room->hotel_name=='Shangri-La'){
+    		$total1=$room->attriton_rate;
+    	}
+    	else if($room->hotel_name=='Hilton'){
+    		$total2=$room->attriton_rate;
+    	}
+    	else if($room->hotel_name=='Sheraton'){
+    		$total3=$room->attriton_rate;
+    	}
+    }		
 
 			$this->render('housingSummary',
-				array('ShangriLa_total1'=>0,
+				array('ShangriLa_total1'=>$total1,
 				'ShangriLa_total2'=>$ShangriLa->email,
-				'Hilton_total1'=>0,
+				'Hilton_total1'=>$total2,
 				'Hilton_total2'=>$Hilton->email,
-				'Sheraton_total1'=>0,
+				'Sheraton_total1'=>$total3,
 				'Sheraton_total2'=>$Sheraton->email,
-				'total1'=>0,
+				'total1'=>$total1+$total2+$total3,
 				'total2'=>$ShangriLa->email+$Hilton->email+$Sheraton->email,
 				'hotel'=>$hotel));
 		}else {

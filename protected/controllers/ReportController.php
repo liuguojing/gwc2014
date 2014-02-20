@@ -34,7 +34,7 @@ class ReportController extends Controller
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
 						'actions'=>array('visa','index','onsiteAttended','onsiteGaladinner','onsiteTeamdinner',
 								'onsiteGalatable','gift','ipad','onsiteUsers','onsiteExportGalaDietary',
-								'onsiteExportTeamDietary','onsiteMeal','onsiteLibbys','onsiteExportLibbys','attendedDownload','noShowDownload'),
+								'onsiteExportTeamDietary','onsiteMeal','onsiteLibbys','onsiteExportLibbys','attendedDownload','noShowDownload','hoteldown'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin'
 				),
@@ -42,7 +42,7 @@ class ReportController extends Controller
 						'actions'=>array('winner','travel','hotel','tours','summary','registation',
 								'housing','transfer','arrival','departure','dietary','download','teamdinner','galadinner',
 								'galatable','printers','dmc','newRegistration','declined','cancelled','amex','users','dmcdownload','traveluser',
-								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown'),
+								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown','dietaryhotel','ExportHotelDietary'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="Tony" || $user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="Jem")'
 				),
@@ -166,6 +166,25 @@ class ReportController extends Controller
 		}
 		$this->render('dietary',array('teamDinners'=>$teamDinners,'galaDinners'=>$galaDinners));
 	}
+	public function actionDietaryHotel()
+	{
+		$teamDinners = array();
+		
+		$dbCommand = Yii::app()->db->createCommand("SELECT team_dinner, team_dinner_dietary, count(1) AS num FROM 
+				( SELECT team_dinner_dietary, left( hotel_type, instr( hotel_type, ' - ' ) -1 ) as team_dinner  FROM users WHERE hotel_type IS NOT NULL AND hotel_type <> '' and status = 1 and type not in ('Gartner Crew','Crew')
+				UNION ALL 
+				SELECT g.team_dinner_dietary, left( user.hotel_type, instr( user.hotel_type, ' - ' ) -1 ) as team_dinner  FROM guests g,users user WHERE user.hotel_type IS NOT NULL AND user.hotel_type <> ''  and g.user_id= user.id and user.status = 1 and user.has_guest = 1  and user.type not in ('Gartner Crew','Crew')
+				) AS a GROUP BY team_dinner, team_dinner_dietary ORDER BY team_dinner, team_dinner_dietary");
+		$result = $dbCommand->queryAll();
+		if(isset($result)){
+			foreach($result as $item){
+				$teamDinners[$item['team_dinner']][$item['team_dinner_dietary']]=$item['num'];
+			}
+		}
+
+
+		$this->render('dietaryhotel',array('teamDinners'=>$teamDinners));
+	}
 
 	public function actionDownload()
 	{
@@ -275,7 +294,7 @@ class ReportController extends Controller
 			$ShangriLa = User::model()->findBySql("
 			SELECT SUM(
 	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*s.`sell_rate` ) AS email
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y'))+1)*s.`sell_rate` ) AS email
 	 FROM 
 (SELECT a.id,
 CASE WHEN hotel_arrival_date>=mindate THEN hotel_arrival_date ELSE mindate END hotel_arrival_date,
@@ -303,7 +322,7 @@ GROUP BY id
 			$Hilton = User::model()->findBySql("
 			SELECT SUM(
 	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*s.`sell_rate` ) AS email
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y'))+1)*s.`sell_rate` ) AS email
 	 FROM 
 (SELECT a.id,
 CASE WHEN hotel_arrival_date>=mindate THEN hotel_arrival_date ELSE mindate END hotel_arrival_date,
@@ -331,7 +350,7 @@ GROUP BY id
 			$Sheraton = User::model()->findBySql("
 			SELECT SUM(
 	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y')))*s.`sell_rate` ) AS email
+	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y'))+1)*s.`sell_rate` ) AS email
 	 FROM 
 (SELECT a.id,
 CASE WHEN hotel_arrival_date>=mindate THEN hotel_arrival_date ELSE mindate END hotel_arrival_date,
@@ -430,7 +449,7 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 			$end_date = $end_date>=$max_date?$max_date:$end_date;
 	
 			$tmpDate = $from_date;
-			while($tmpDate < $end_date ){
+			while($tmpDate <= $end_date ){
 				if(!in_array($tmpDate,$dateArr)){
 					$dateArr[]=$tmpDate;
 				}
@@ -799,6 +818,52 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 		}
 		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1));
 		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.type not in ('Gartner Crew','Crew','Operating Committee')");
+		$criteria->order = "t.id desc";
+		$guests = Guest::model()->with('user')->findAll($criteria);
+		
+		$this->layout = '//layouts/export';
+		$filename = 'Team_Dietary.xls';
+		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
+		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
+		header("Content-Transfer-Encoding: binary");
+		header("Pragma: public");
+		header("Cache-Control: public");
+		$this->render('export_team_dietary',array('users'=>$users,'guests' => $guests));
+		
+	}
+	
+	public function actionExportHotelDietary($hotel='',$dietary='',$team_dinner_menu='',$table_no=''){
+		$criteria = new CDbCriteria();
+		if(!empty($hotel)){
+
+		$criteria->addSearchCondition('t.hotel_type',$hotel );
+		
+		}
+		 if(!empty($team_dinner_menu)){
+			$criteria->addInCondition('t.team_dinner_menu', explode(',',$team_dinner_menu));
+		}
+		if(!empty($dietary)){
+			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
+		}
+		$criteria->addColumnCondition(array('status'=>'1'));
+		$criteria->addCondition("t.hotel_type is not null and t.hotel_type <> '' and t.type not in ('Gartner Crew','Crew')");
+		$criteria->order = "t.id desc";
+		$users = User::model()->findAll($criteria);
+		
+		$criteria = new CDbCriteria();
+		if(!empty($hotel)){
+		
+		$criteria->addSearchCondition('user.hotel_type',$hotel );
+		
+		}
+		if(!empty($dietary)){
+			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
+		}
+		if(!empty($team_dinner_menu)){
+			$criteria->addInCondition('t.team_dinner_menu', explode(',',$team_dinner_menu));
+		}
+		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1));
+		$criteria->addCondition("user.hotel_type is not null and user.hotel_type <> '' and user.type not in ('Gartner Crew','Crew')");
 		$criteria->order = "t.id desc";
 		$guests = Guest::model()->with('user')->findAll($criteria);
 		
@@ -1376,11 +1441,16 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 		$this->render('hotel_report');
 	}
 	
-	public function actionHoteldown(){
+	public function actionHoteldown($hotel='all'){
 		$this->layout = '//layouts/export';
 		$filename = 'Hotel Information Download';
 		$criteria = new CDbCriteria();
 		$criteria->addCondition('t.status = 1');
+		if ($hotel!='all')
+		{
+			$criteria->addSearchCondition('t.hotel_type',$hotel);
+			
+			}
 		
 		$users = User::model()->with('guest')->findAll($criteria);
 		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件

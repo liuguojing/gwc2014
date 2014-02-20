@@ -8,6 +8,7 @@
 	<td>Menu</td>
 	<td>Dietary</td>
 	<td>Other Dietary Comment</td>
+	<td>Hotel</td>
 </tr>
 
 <?php foreach($users as $user){?>
@@ -20,6 +21,7 @@
 	<td><?php echo $user->team_dinner_menu?></td>
 	<td><?php echo $user->team_dinner_dietary;?></td>
 	<td><?php echo $user->dietary_comment;?></td>
+	<td><?php echo $user->hotel_type;?></td>
 </tr>
 <?php }
 foreach($guests as $guest){?>
@@ -32,6 +34,7 @@ foreach($guests as $guest){?>
 	<td><?php echo $guest->team_dinner_menu?></td>
 	<td><?php echo $guest->team_dinner_dietary;?></td>
 	<td><?php echo $guest->dietary_comment;?></td>
+	<td><?php echo $guest->user->hotel_type;?></td>
 </tr>
 <?php }?>
 

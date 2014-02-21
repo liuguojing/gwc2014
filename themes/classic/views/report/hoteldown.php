@@ -7,6 +7,8 @@ function formatCost($cost){
 ?>
 			<table border=1 width=100%>
 				<tr>
+					<td>Update Status</td>
+					<td>Update Comment</td>
 					<td>ID</td>
 					<td>Winner First name</td>
 					<td>Winner Last name</td>
@@ -23,8 +25,7 @@ function formatCost($cost){
 					<td>Credit Expiry Eate</td>
 					<td>Credit Security Code</td>
 					<td>Guest full name</td>
-					<td>Winners Comments</td>
-					<td>Comments fields</td>
+					<td>Winners Comments</td>					
 					<td>Hotel Venue</td>
 					<td>Check in date</td>
 					<td>Check out date</td>
@@ -38,6 +39,8 @@ function formatCost($cost){
 				</tr>
 				<?php foreach ($users as $user){?>
 				<tr>
+					<td><?php echo $user->travel_comment_status;?></td>
+					<td><?php echo $user->travel_comment;?></td>					
 					<td><?php echo $user->id;?></td>
 					<td><?php echo $user->first_name;?></td>
 					<td><?php echo $user->last_name;?></td>
@@ -54,8 +57,7 @@ function formatCost($cost){
 					<td><?php echo $user->credit_card_expiration_date;?></td>
 					<td><?php echo $user->csv_number;?></td>
 					<td><?php echo empty($user->guest)?'':$user->guest->first_name . ' ' . $user->guest->last_name;?></td>
-					<td><?php echo $user->requirements;?></td>
-					<td><?php echo CHtml::encode($user->comment);?></td>
+					<td><?php echo $user->requirements;?></td>					
 					<td><?php echo $user->hotel_venue;?></td>
 					<td><?php echo $user->hotel_arrival_date;?></td>
 					<td><?php echo $user->hotel_departure_date;?></td>

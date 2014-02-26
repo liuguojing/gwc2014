@@ -49,7 +49,7 @@
 						<tr>
 							<td>Total</td>
 							<?php foreach($dates as $date){?>
-							<th><?php echo isset($total[$date])?CHtml::link($total[$date],array('report/traveluser','type'=>User::model()->types,'fi_ddate'=>'all','travelType'=>'dep')):'0';?></th>
+							<th><?php echo isset($total[$date])?CHtml::link($total[$date],array('report/traveluser','type'=>'all','fi_ddate'=>$date,'travelType'=>'dep')):'0';?></th>
 							<?php }?>
 					</tbody>
 				</table>

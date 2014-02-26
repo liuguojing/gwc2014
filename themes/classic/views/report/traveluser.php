@@ -135,7 +135,7 @@
 	<td><?php echo $user->frequent_flyer_number?></td>
 	<td><?php echo $user->other?></td>
 	<td><?php echo $user->destination_city;?> </td>
-	<td><?php echo $user->hotel?></td>
+	<td><?php echo substr($user->hotel_type,0,strpos($user->hotel_type,' - '));?></td>
 	<td><?php echo $user->updated_at;?></td>
 	<td><?php echo $user->date_of_birth;?></td>
 	<td><?php echo $user->has_guest==1?'Yes':'No';?></td>
@@ -246,7 +246,7 @@
 	<td><?php echo $user->guest->frequent_flyer_number?></td>
 	<td><?php echo $user->other?></td>
 	<td><?php echo $user->destination_city;?> </td>
-	<td><?php echo $user->hotel?></td>
+	<td><?php echo substr($user->hotel_type,0,strpos($user->hotel_type,' - '));?></td>
 	<td><?php echo $user->updated_at;?></td>
 	<td><?php echo $user->guest->date_of_birth;?></td>
 	<td><?php echo 'Yes'?></td>

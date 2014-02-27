@@ -36,6 +36,7 @@ function formatCost($cost){
 					<td>Room Rate</td>					
 					<td>Billing Instruction</td>
 					<td>Hotel Confirmation Number</td>
+					<td>Extention Nights Rate</td>
 				</tr>
 				<?php foreach ($users as $user){?>
 				<tr>
@@ -73,7 +74,8 @@ function formatCost($cost){
 		            else {echo '';}
 		 ?></td>
 					<td><?php echo $user->billing_instruction;?></td>
-					<td></td>
+					<td><?php echo $user->hotel_confirmation_number;?></td>
+					<td><?php echo $user->dietary_commnet;?></td>
 					
 				<?php }?>
 			</table>

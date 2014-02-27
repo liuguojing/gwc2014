@@ -65,7 +65,7 @@
 	<td><?php echo $user->last_name?></td>
 	<td><?php echo $user->email?></td>
 	<td><?php echo $user->telephone_number_cell?></td>
-	<td><?php echo $user->hotel?></td>
+	<td><?php echo substr($user->hotel_type,0,strpos($user->hotel_type,' - '));?></td>
 	<td><?php echo $user->destination_city;?> </td>
 
 	<td><?php echo $user->fi_status?></td>
@@ -116,7 +116,7 @@
 	<td><?php echo $user->guest->ga_lastname?></td>
 	<td></td>
 	<td></td>
-	<td><?php echo $user->hotel?></td>
+	<td><?php echo substr($user->hotel_type,0,strpos($user->hotel_type,' - '));?></td>
 	<td><?php echo $user->destination_city;?> </td>
 	<td><?php echo $user->guest->fi_status?></td>
 	<td><?php echo $user->guest->fi_adate1?></td>

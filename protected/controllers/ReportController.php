@@ -881,7 +881,13 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 	public function actionOnsiteExportTeamDietary($team_dinner='',$dietary='',$team_dinner_menu='',$table_no=''){
 		$criteria = new CDbCriteria();
 		if(!empty($team_dinner)){
-			$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));
+			if ($team_dinner=='Sunday') 
+			{
+		$criteria->addInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 elseif ($team_dinner=='Friday')
+		 {$criteria->addNotInCondition('t.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 else 
+		 {$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));}
 		}
 		if(!empty($dietary)){
 			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
@@ -893,13 +899,19 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 			$criteria->addInCondition('t.table_no', explode(',',$table_no));
 		}
 		$criteria->addColumnCondition(array('status'=>'1','t.has_checkin'=>1,'t.no_gala_dinner'=>0));
-		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> ''");
+		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.type not in ('Gartner Crew','Crew','Operating Committee')");
 		$criteria->order = "t.id desc";
 		$users = User::model()->findAll($criteria);
-	
+		
 		$criteria = new CDbCriteria();
 		if(!empty($team_dinner)){
-			$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));
+			if ($team_dinner=='Sunday') 
+			{
+		$criteria->addInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 elseif ($team_dinner=='Friday')
+		 {$criteria->addNotInCondition('user.team_dinner', explode(',','Europe Sales,Americas SMB,Asia,Emerging Markets - India & CEEMEA,Client Partner Group,Japan Sales'));}
+		 else 
+		 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));}
 		}
 		if(!empty($dietary)){
 			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
@@ -911,10 +923,10 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 			$criteria->addInCondition('user.table_no', explode(',',$table_no));
 		}
 		$criteria->addColumnCondition(array('user.status'=>'1','user.has_guest'=>1,'t.has_checkin'=>1,'t.no_gala_dinner'=>0));
-		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> ''");
+		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.type not in ('Gartner Crew','Crew','Operating Committee')");
 		$criteria->order = "t.id desc";
 		$guests = Guest::model()->with('user')->findAll($criteria);
-	
+		
 		$this->layout = '//layouts/export';
 		$filename = 'Team_Dietary.xls';
 		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
@@ -1034,6 +1046,8 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 		if(!empty($team_dinner)){
 			if($team_dinner=='VIP'){
 				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");
+				
 				$criteria->addNotInCondition('type', array('Crew'));
 			}elseif($team_dinner=='Gartner Crew'){
 				$criteria->addColumnCondition(array('type'=>'Gartner Crew'));
@@ -1041,15 +1055,29 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 				$criteria->addNotInCondition('type', array('Crew'));
 			}elseif($team_dinner=="Crew"){
 				$criteria->addInCondition('type', array('Crew'));
+			}elseif($team_dinner=='VIP1'){
+				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addCondition("(t.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");
+				$criteria->addNotInCondition('type', array('Crew'));
 			}else{
-				$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));
-				$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
-				$criteria->addNotInCondition('type', array('Gartner Crew,Crew'));
+				
+				if ($team_dinner=='Friday') 
+					{
+				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");}
+				 elseif ($team_dinner=='Sunday')
+				 {$criteria->addCondition("(t.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' )");}
+				 else 
+				 {$criteria->addInCondition('t.team_dinner', explode(',',$team_dinner));
+				 	$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				 	}
+				
+				
+				$criteria->addNotInCondition('type', array('Gartner Crew','Crew'));
 			}
 		}
-	
+		
 		$criteria->addCondition("team_dinner is not null and t.has_checkin = 1 and t.no_gala_dinner = 0");
-	
+		
 		if(!empty($dietary)){
 			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
 		}
@@ -1061,19 +1089,37 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 		}
 		$criteria->addColumnCondition(array('status'=>'1'));
 		$criteria->order = "t.id desc";
-	
+		
 		$users = User::model()->findAll($criteria);
 	
 		$criteria = new CDbCriteria();
 		if(!empty($team_dinner)){
 			if($team_dinner=='VIP'){
-				$criteria->addColumnCondition(array('gala_dinner_vip'=>'Gala Dinner VIP'));
+				$criteria->addCondition("user.gala_dinner_vip='Gala Dinner VIP'");
+				$criteria->addCondition("(user.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");
+				
+
+			}elseif($team_dinner=='VIP1'){
+				$criteria->addCondition("user.gala_dinner_vip='Gala Dinner VIP'");
+				$criteria->addCondition("(user.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");
+				
 			}else{
-				$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));
-				$criteria->addNotInCondition('user.gala_dinner_vip', array('Gala Dinner VIP'));
+				
+				if ($team_dinner=='Friday') 
+					{
+				$criteria->addCondition("(user.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");}
+				 elseif ($team_dinner=='Sunday')
+				 {$criteria->addCondition("(user.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or user.type='Operating Committee' )");}
+				 else 
+				 {$criteria->addInCondition('user.team_dinner', explode(',',$team_dinner));
+				 	$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
+				 	}
+				
+				
+				
 			}
 		}
-	
+		
 		if(!empty($dietary)){
 			$criteria->addInCondition('t.team_dinner_dietary', explode(',',$dietary));
 		}
@@ -1302,15 +1348,15 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 	}
 	public function actionOnsiteTeamdinner(){
 		$criteria = new CDbCriteria;
-		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.status = 1 and t.has_checkin = 1");
+		$criteria->addCondition("t.team_dinner is not null and t.team_dinner <> '' and t.status = 1 and t.has_checkin = 1 and t.type not in ('Crew','Gartner Crew','Operating Committee')");
 		$criteria->order = 'team_dinner asc';
 		$users = User::model()->findAll($criteria);
 		$criteria = new CDbCriteria;
-		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.status = 1 and t.has_checkin = 1 and user.has_guest = 1 ");
+		$criteria->addCondition("user.team_dinner is not null and user.team_dinner <> '' and user.status = 1 and t.has_checkin = 1 and user.has_guest = 1  and user.type not in ('Crew','Gartner Crew','Operating Committee')");
 		$criteria->order = 'user.team_dinner asc';
 		$guests = Guest::model()->with('user')->findAll($criteria);
 		$this->render('onsite_teamdinner',array('users'=>$users,'guests'=>$guests));
-	}
+			}
 	public function actionOnsiteGalatable(){
 		$this->render('onsite_galatable');
 	}

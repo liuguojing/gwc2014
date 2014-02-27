@@ -10,9 +10,9 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>Up Side-Down “Cottage Pie”</th>
-							<th>Baingan Bharta “Open Faced Ravioli” (v) (Vegan)</th>
-							<th>Miso Black Cod</th>
+							<th>Meat</th>
+							<th>Fish</th>
+							<th>Vegetarian</th>
 							<th>Total</th>
 						</tr>
 					</thead>
@@ -21,9 +21,9 @@
 								$subTotal=0;?>
 						<tr>
 							<td><?php echo $table_no?></td>
-							<td><?php if(isset($menu['Cottage Pie'])){$subTotal+=$menu['Cottage Pie'];echo $menu['Cottage Pie'];}else{echo '0';}?></td>
-							<td><?php if(isset($menu['Ravioli'])){$subTotal+=$menu['Ravioli'];echo $menu['Ravioli'];}else{echo '0';}?></td>
-							<td><?php if(isset($menu['Cod'])){$subTotal+=$menu['Cod'];echo $menu['Cod'];}else{echo '0';}?></td>
+							<td><?php if(isset($menu['Meat'])){$subTotal+=$menu['Meat'];echo $menu['Meat'];}else{echo '0';}?></td>
+							<td><?php if(isset($menu['Fish'])){$subTotal+=$menu['Fish'];echo $menu['Fish'];}else{echo '0';}?></td>
+							<td><?php if(isset($menu['Vegetarian'])){$subTotal+=$menu['Vegetarian'];echo $menu['Vegetarian'];}else{echo '0';}?></td>
 							<td><?php echo CHtml::link($subTotal,array('exportGalaDietary','table_no'=>$table_no));?></td>
 						</tr>
 						<?php }?>

@@ -48,6 +48,12 @@ $night_f='Team Dinner';
 	
 	
 	 }
+if ($model->type=="Operating Committee")	 
+{
+	$night_f='Gala Dinner and Awards';
+ 	$night_s='Gala Dinner and Awards';
+	
+	}
 ?>
 
 

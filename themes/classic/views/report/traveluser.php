@@ -7,6 +7,8 @@
 	<td>Reg ID</td>
 	<td>Passport Given Name(s)</td>
 	<td>Passport Surname</td>
+	<td>First Name</td>
+	<td>Last Name</td>
 	<td>Email</td>
 	<td>Daytime Phone</td>
 	<td>Passport Number</td>
@@ -118,6 +120,8 @@
 	<td><?php echo 'W'.$user->id;?></td>
 	<td><?php echo $user->ga_firstname?></td>
 	<td><?php echo $user->ga_lastname?></td>
+	<td><?php echo $user->first_name?></td>
+	<td><?php echo $user->last_name?></td>
 	<td><?php echo $user->email?></td>
 	<td><?php echo $user->daytime_phone?></td>
 	<td><?php echo $user->ga_card_number?></td>
@@ -229,6 +233,8 @@
 	<td><?php echo 'W'.$user->id.'G';?></td>
 	<td><?php echo $user->guest->ga_firstname?></td>
 	<td><?php echo $user->guest->ga_lastname?></td>
+	<td><?php echo $user->guest->first_name?></td>
+	<td><?php echo $user->guest->last_name?></td>
 	<td></td>
 	<td></td>
 	<td><?php echo $user->guest->ga_card_number?></td>

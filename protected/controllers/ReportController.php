@@ -349,12 +349,12 @@ GROUP BY id
 
 			$Sheraton = User::model()->findBySql("
 			SELECT SUM(
-	(DATEDIFF(STR_TO_DATE(hotel_departure_date, '%b/%d/%Y'),
-	STR_TO_DATE(hotel_arrival_date, '%b/%d/%Y'))+1)*s.`sell_rate` ) AS email
+	(DATEDIFF(hotel_departure_date,
+	hotel_arrival_date)+1)*s.`sell_rate` ) AS email
 	 FROM 
 (SELECT a.id,
-CASE WHEN hotel_arrival_date>=mindate THEN hotel_arrival_date ELSE mindate END hotel_arrival_date,
-CASE WHEN hotel_departure_date<=maxdate THEN hotel_departure_date ELSE maxdate END hotel_departure_date
+CASE WHEN str_to_date(hotel_arrival_date,'%M/%d/%Y')>=mindate THEN str_to_date(hotel_arrival_date,'%M/%d/%Y') ELSE mindate END hotel_arrival_date,
+CASE WHEN str_to_date(hotel_departure_date,'%M/%d/%Y')<=maxdate THEN str_to_date(hotel_departure_date,'%M/%d/%Y') ELSE maxdate END hotel_departure_date
 FROM 
  (
 SELECT a.id , b.hotel_departure_date,b.hotel_arrival_date FROM
@@ -365,7 +365,7 @@ users b
 WHERE a.hotel_type=b.hotel_type AND b.status=1
 ) a,
 (
-SELECT s.id, MAX(DATE) maxdate,MIN(DATE) mindate FROM `rooms` r,
+SELECT s.id, MAX(str_to_date(DATE,'%M/%d/%Y')) maxdate,MIN(str_to_date(DATE,'%M/%d/%Y')) mindate FROM `rooms` r,
 v_hotel_room_info s
 WHERE s.hotel_name=:hotel_name AND r.hotel_id = s.id AND r.is_master=1
 GROUP BY id
@@ -415,8 +415,8 @@ GROUP BY b.hotel_name");
 		}else {
 		set_time_limit(0);
 		$users = User::model()->findAllBySql("SELECT t.hotel_arrival_date,t.hotel_departure_date,t.hotel_type,
-(SELECT MAX(DATE) AS DATE FROM rooms WHERE hotel_id IN (SELECT id FROM hotels WHERE CONCAT(hotel_name,' - ' ,NAME)=t.hotel_type) AND is_master =1) AS first_name,
-(SELECT MIN(DATE) AS DATE FROM rooms WHERE hotel_id IN (SELECT id FROM hotels WHERE CONCAT(hotel_name,' - ' ,NAME)=t.hotel_type) AND is_master =1) AS last_name		
+(SELECT MAX(str_to_date(DATE,'%M/%d/%Y' )) AS DATE FROM rooms WHERE hotel_id IN (SELECT id FROM hotels WHERE CONCAT(hotel_name,' - ' ,NAME)=t.hotel_type) AND is_master =1) AS first_name,
+(SELECT MIN(str_to_date(DATE,'%M/%d/%Y')) AS DATE FROM rooms WHERE hotel_id IN (SELECT id FROM hotels WHERE CONCAT(hotel_name,' - ' ,NAME)=t.hotel_type) AND is_master =1) AS last_name		
 FROM users t 
 WHERE 
 t.status = 1 
@@ -441,8 +441,8 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 			// 				$end_date = "Apr/21/2013";
 			// 			}
 	               
-	                $max_date = $this->strtodate($user->first_name);
-	                $min_date = $this->strtodate($user->last_name);
+	                $max_date = $user->first_name;
+	                $min_date = $user->last_name;
 			$from_date =  $this->strtodate($from_date);
 			$end_date =  $this->strtodate($end_date);
 			$from_date = $from_date>=$min_date?$from_date:$min_date;

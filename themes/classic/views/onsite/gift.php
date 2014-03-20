@@ -5,8 +5,14 @@
 			foreach(Yii::app()->user->getFlashes() as $key => $message) {
 				echo '<div class="span12"><p class="alert alert-' . $key . '">' . $message . "</p></div>\n";
 			}
+			if (date('y-m-d H:i:s',time()+57600)<date('y-m-d H:i:s',strtotime('14-05-10 00:00:00')) && ($model->type=='Winners' || $model->type=='Winners Guests')){
+				echo '<div class="span12"><p class="alert alert-1">please come back tomorrow</p></div>';
+			}
+			
+			
 		?>
 		</div>
+		
 		<div class="span12 form-horizontal" >
 		<?php $form=$this->beginWidget('CActiveForm', array(
 			'id'=>'user-form',
@@ -58,6 +64,7 @@
          			</label>
 		         	<hr/>
 		         <?php }?>
+		  <?php  if (!(date('y-m-d H:i:s',time()+57600)<date('y-m-d H:i:s',strtotime('14-05-10 00:00:00')) && ($model->type=='Winners' || $model->type=='Winners Guests'))){ ?>       
 		  <div class="control-group">
 		    <label class="control-label" for=""></label>
 		    <div class="controls">
@@ -65,6 +72,7 @@
 			  <button type="submit"  class="btn  btn-warning">Save</button>
 		    </div>
 		  </div>
+		  <?php }?>
 		</div>
 		<?php $this->endWidget(); ?>
 </div>

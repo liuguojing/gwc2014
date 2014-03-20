@@ -119,10 +119,10 @@ class Gift extends TrackStarActiveRecord
 		}
 	}
 	public function getGiftsByType($type){
-		if(in_array($type,array('Eagles','Top Achievers','Operating Committee'))){
+		//if(in_array($type,array('Eagles','Top Achievers','Operating Committee'))){
+		//	return self::model()->findAll();
+		//}else{
 			return self::model()->findAll();
-		}else{
-			return self::model()->findAll('id < 10');
-		}
+		//}
 	}
 }

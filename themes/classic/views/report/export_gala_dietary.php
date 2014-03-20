@@ -1,5 +1,6 @@
 <table>
 <tr>
+	<td>ID</td>
 	<td>Participant Type</td>
 	<td>Team</td>
 	<td>First Name</td>
@@ -12,6 +13,7 @@
 
 <?php foreach($users as $user){?>
 <tr>
+	<td><?php echo "W".$user->id;?></td>
 	<td><?php echo $user->type;?></td>
 	<td><?php echo $user->gala_dinner_vip=="Gala Dinner VIP"?"VIP":$user->team_dinner;?></td>
 	<td><?php echo $user->first_name?></td>
@@ -24,6 +26,7 @@
 <?php }
 foreach($guests as $guest){?>
 <tr>
+	<td><?php echo "W".$guest->user_id."G";?></td>
 	<td>Guest</td>
 	<td><?php echo $guest->user->gala_dinner_vip=="Gala Dinner VIP"?"VIP":$guest->user->team_dinner;?></td>
 	<td><?php echo $guest->first_name?></td>

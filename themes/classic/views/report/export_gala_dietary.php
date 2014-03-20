@@ -13,7 +13,7 @@
 <?php foreach($users as $user){?>
 <tr>
 	<td><?php echo $user->type;?></td>
-	<td><?php echo $team_dinner=="VIP"?"VIP":$user->team_dinner;?></td>
+	<td><?php echo $user->gala_dinner_vip=="Gala Dinner VIP"?"VIP":$user->team_dinner;?></td>
 	<td><?php echo $user->first_name?></td>
 	<td><?php echo $user->last_name?></td>
 	<td><?php echo $user->table_no?></td>
@@ -25,7 +25,7 @@
 foreach($guests as $guest){?>
 <tr>
 	<td>Guest</td>
-	<td><?php echo $guest->user->team_dinner;?></td>
+	<td><?php echo $guest->user->gala_dinner_vip=="Gala Dinner VIP"?"VIP":$guest->user->team_dinner;?></td>
 	<td><?php echo $guest->first_name?></td>
 	<td><?php echo $guest->last_name?></td>
 	<td><?php echo $guest->user->table_no?></td>

@@ -29,7 +29,7 @@ class UserController extends Controller
 	{
 		return array(
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-						'actions'=>array('welcome','decline','visa','teamdinnermenu','galadinnermenu','emailSummary','create','emailDinner','dinnerEmail','hotelEmail','FinEmail','VisaEmail','RemEmail'),
+						'actions'=>array('welcome','decline','visa','teamdinnermenu','galadinnermenu','emailSummary','create','emailDinner','dinnerEmail','hotelEmail','FinEmail','VisaEmail','RemEmail','HotelEmailW'),
 						'users'=>array('*'),
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -766,29 +766,7 @@ public  function actionGuestDeleteNew($id)
 		$this->render('email',array('user'=>$model));
 	}
 
-	public function actionDinnerEmail($from_id,$to_id){
-		if(intval($from_id)>intval($to_id)){
-			echo 'error params';
-		}else{
-			set_time_limit(0);
-			for($i=intval($from_id);$i<=intval($to_id);$i++){
-				try{
-					$model = $this->loadModel($i);
-					if(!($model->type=='Crew'||$model->type=="Gartner Crew"||$model->type=="Operating Committee") && $model->status==1){
-						$title = 'Winners Circle 2013 Team Dinner Menu Choice';
-						$this->sendMail($model->email,$title,$model,'dinner_email','');
-						Yii::log('sent '.$model->email . "\t" . " OK",'error');
-					}else{
-						echo 'error';
-					}
-				}catch (Exception $e){
-					Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');
-				}
-			}
-		}
-		echo 'ok';
-		Yii::app()->end();
-	}
+	
 
 	public function actionComplete(){
 		echo 'ok';Yii::app()->end();
@@ -910,8 +888,29 @@ public  function actionGuestDeleteNew($id)
 			try{
 				$model = $this->loadModel(intval(trim($id)));
 				if(!($model->type=="Operating Committee") && $model->status==1){
-					$title = 'Gartner Winners Circle 2013 Hotel Reservation Number';
+					$title = 'Winners Circle 2013 - Hotel Confirmation Details';
 					$this->sendMail($model->email,$title,$model,'hotel_email','');
+					echo "OK <br/>";
+					Yii::log('sent '.$model->email . "\t" . " OK",'error');
+				}else{
+					echo 'OC error<br/>';
+				}
+			}catch (Exception $e){
+				Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');
+			}
+		}
+		echo 'ok';
+		Yii::app()->end();
+	}
+	public function actionHotelEmailW($ids){
+		$id_arr = explode(',',$ids);
+		set_time_limit(0);
+		foreach($id_arr as $id){
+			try{
+				$model = $this->loadModel(intval(trim($id)));
+				if(!($model->type=="Operating Committee") && $model->status==1){
+					$title = 'Winners Circle 2013 - Hotel Confirmation Details';
+					$this->sendMail($model->email,$title,$model,'hotel_emailw','');
 					echo "OK <br/>";
 					Yii::log('sent '.$model->email . "\t" . " OK",'error');
 				}else{
@@ -991,5 +990,26 @@ public  function actionGuestDeleteNew($id)
 		echo 'ok';
 		Yii::app()->end();
 	}
-	
+	public function actionDinnerEmail($ids){
+		   $id_arr = explode(',',$ids);
+			set_time_limit(0);
+			foreach($id_arr as $id){
+				try{
+					$model = $this->loadModel(intval(trim($id)));
+					if(!($model->type=='Crew'||$model->type=="Gartner Crew"||$model->type=="Operating Committee") && $model->status==1){
+						$title = 'Winners Circle 2013 Team Dinner Menu Choice';
+						$this->sendMail($model->email,$title,$model,'dinner_email','');
+						echo "OK <br/>";
+						Yii::log('sent '.$model->email . "\t" . " OK",'error');
+					}else{
+						echo 'error';
+					}
+				}catch (Exception $e){
+					Yii::log('sent '.$model->email . "\t" . "FALSE" . "\t" . $e,'error');
+				}
+			}
+		
+		echo 'ok';
+		Yii::app()->end();
+	}
 }

@@ -943,7 +943,7 @@ class User extends TrackStarActiveRecord
 	public function galaMenuList(){
 		return array(
 				'Meat'=>'Meat',
-				'Fish'=>'Fish',
+				//'Fish'=>'Fish',
 				'Vegetarian'=>'Vegetarian',
 				);
 	}
@@ -1278,22 +1278,26 @@ Roasted Pineapple Cheesecake');
 	
 	public function getDinnerByTeam($teamDinner){
 		$dinnerArr = array(
-				'Europe Sales'=>'10 oz Prime NY Strip Steak|Pan Roasted Florida Red Snapper|Homemade Cavatelli Pasta',
-				'Japan Sales '=>'Grilled Wagyu beef with soy and virgin olive oil gravy|Florida Yellow Tail Snapper |Vegetarian green curry with thai eggplant and seasonal vegetables.',
-				'Americas Major Accounts – South EU'=>'Prime sirloin of beef, potato torta & oxtail sugo|Mediterranean branzino baby vegetables & almond butter brodetto|Home made spaghetti with market fresh tomato & basil',
-				'Americas Major Accounts – HTTP East'=>'Ny Sirloin Bisteca with roasted shallots, red wine jus|American Red Snapper with cherry tomatoes salad|Spaghetti Pomadoro  Sweet Tomatoes, Basil, Shaved Parmesan',
-				'Americas Major Accounts – HTTP West'=>'Ny Sirloin Bisteca with roasted shallots, red wine jus|American Red Snapper with cherry tomatoes salad|Spaghetti Pomadoro  Sweet Tomatoes, Basil, Shaved Parmesan',
-				'Americas SAO'=>'Back in Black skirt steak with creamy kale and glazed roots.|Roasted King Salmon, glazed with bell pepper compote.|Hand rolled strigoli pasta with crookneck squash & asparagus.',
-				'Americas Major Accounts – Northeast EU/Invest'=>'Prime sirloin of beef, potato torta & oxtail sugo|Mediterranean branzino baby vegetables & almond butter brodetto|Home made spaghetti with market fresh tomato & basil',
-				'Americas Major Accounts – EU Public Sector'=>'Prime sirloin of beef, potato torta & oxtail sugo|Mediterranean branzino baby vegetables & almond butter brodetto|Home made spaghetti with market fresh tomato & basil',
-				'Asia'=>'Char-grilled filet mignon|Crab Crusted Mahi Mahi with leeks and sauteed baby spinach|Angel Hair Mediterranean pasta with grilled portobello mushrooms',
-				'Client Partner Group'=>'Char-grilled filet mignon|Crab Crusted Mahi Mahi with leeks and sauteed baby spinach|Angel Hair Mediterranean pasta with grilled portobello mushrooms',
-				'ANZ'=>"Filet Mignon|Chilean Sea Bass|Chef's Vegetarian option of the day",
-				'Emerging Markets – India & CEEMEA'=>"Filet Mignon|Grilled Wild King Salmon with garlic mash|Chef's Vegetarian option of the day",
-				'Americas Major Accounts – Brazil Sales'=>'New York strip with peppercorn sauce|Grilled local snapper with heirloom tomato salad |Parmesan gnocchi with poached green beans and creamed spinach.',
-				'Americas Major Accounts – Northwest EU'=>'Bincho Charcoal Grilled Black Angus Tenderloin|Sea Bass with Maple Eggplant|Grilled Portobello mushroom with couscous and spinach',
-				'Americas SMB'=>'C.A.B. Filet Mignon|Snapper w/ Citrus Buer Blanc|Pasta Primavera with a selection of fresh vegetables',
-				'Event Sales'=>'Grilled Filet Mignon, Creekstone beef served with gorgonzola beet salad|Seared Yellowfin tuna with beet and jicama salad.|Three mushroom risotto, roasted shitake, portabello and porcini, alba white truffle oil',
+      'ANZ'=>'Pan roasted lamb rib eye with vadouvan roasted carrots, black garlic, panisse and dill|Barramundi, grilled scallop, zucchini flower, baby beans, heirloom tomato, summer herb salmoriglio|crisp polenta, portobello mushroom, lentils, broccolini, asparagus, shallot puree',
+			'Americas Major Accounts - EU Public Sector'=>'STRIPLOIN grain fed MBS 3, potato puree, beef jus|OCEAN TROUT crispy skin, citrus sabayon, pearl onions, pea puree, carrots and mint|GNOCCHI handmade potato, spring vegetable, zucchini blossom, crème fraiche, tarragon and parmesan',
+			'Americas Major Accounts - HTTP East'=>'Beef fillet, short rib, beetroot, king brown mushroom, shiraz butter|John dory, peking duck broth, calamari, zucchini|Slow cooked autumn vegetables, goats curd corquette, sorrel sauce',
+			'Americas Major Accounts - HTTP West'=>'Fillet of grain fed beef, morel cream, braised mushrooms, roasted ancient grains|Fish of the Day|Vegetarian dish of the Day',
+			'Americas Major Accounts - Northeast EU/Invest'=>'Riverina lamb, smoked persian fetta, blackberry, almond, quinoa|Barramundi with fennel, bisque, yuzu, vanilla |Risotto, mushroom, truffle pecorino',
+			'Americas Major Accounts - Northwest EU'=>'STRIPLOIN grain fed MBS 3, potato puree, beef jus|OCEAN TROUT crispy skin, citrus sabayon, pearl onions, pea puree, carrots and mint|GNOCCHI handmade potato, spring vegetable, zucchini blossom, crème fraiche, tarragon and parmesan',
+			'Americas Major Accounts - South EU'=>'Cape Grim Steak and Frites (300g) served medium with café de Paris butter|Roast Fillet of Cone Bay Barramundi with Blue Swimmer Crab and baby Squid Risotto|Papardelle of Autumn Mushrooms and Black Truffle with Herb Beurre Noisette',
+			'Americas Major Accounts - Brazil Sales'=>'Cape Grim Steak and Frites (300g) served medium with café de Paris butter|Roast Fillet of Cone Bay Barramundi with Blue Swimmer Crab and baby Squid Risotto|Papardelle of Autumn Mushrooms and Black Truffle with Herb Beurre Noisette',
+			'Americas Major Accounts - Supply Chain'=>'Riverina lamb, smoked persian fetta, blackberry, almond, quinoa|Barramundi with fennel, bisque, yuzu, vanilla |Risotto, mushroom, truffle pecorino',
+			'Americas SAO'=>'Fillet of grain fed beef, morel cream, braised mushrooms, roasted ancient grains|Fish of the Day|Vegetarian dish of the Day',
+			'Americas SMB'=>'Fillet of grain fed beef, morel cream, braised mushrooms, roasted ancient grains|Fish of the Day|Vegetarian dish of the Day',
+			'Asia'=>'Cape Grim Steak and Frites (300g) served medium with café de Paris butter|Roast Fillet of Cone Bay Barramundi with Blue Swimmer Crab and baby Squid Risotto|Papardelle of Autumn Mushrooms and Black Truffle with Herb Beurre Noisette',
+			'Emerging Markets - India & CEEMEA'=>'Riverine Grain-Fed Fillet with Shoestring Fries and Veal Jus|Cone Bay Barramundi, Crispy Skin, Smoked Oysters, Yarra Valley Roe|Pan Fried Pumpkin Gnocchi, Spinach, Pinenuts, Sage, parmesan',
+			'Client Partner Group'=>'Riverine Grain-Fed Fillet with Shoestring Fries and Veal Jus|Cone Bay Barramundi, Crispy Skin, Smoked Oysters, Yarra Valley Roe|Pan Fried Pumpkin Gnocchi, Spinach, Pinenuts, Sage, parmesan',
+			'Europe Sales'=>'Roast rump of Castricum lamb with truffle butter and french bean slivers|Grilled wild barramundi, fennel slivers, celeriac and scorched cauliflower florets|Warm vegetable antipasto assiette : slow roasted perino tomatoes, roast black zucchini stuffed with marjoram and butter, pumpkin and sage sformato, crisped zucchini flower',
+			'Event Sales'=>'Riverine Grain-Fed Fillet with Shoestring Fries and Veal Jus|Cone Bay Barramundi, Crispy Skin, Smoked Oysters, Yarra Valley Roe|Pan Fried Pumpkin Gnocchi, Spinach, Pinenuts, Sage, parmesan',			
+			'Japan Sales'=>'Cape Grim Steak and Frites (300g) served medium with café de Paris butter|Roast Fillet of Cone Bay Barramundi with Blue Swimmer Crab and baby Squid Risotto|Papardelle of Autumn Mushrooms and Black Truffle with Herb Beurre Noisette',
+			'Operating Committee'=>'Operating Committee',
+			'Specialists'=>'Beef fillet, short rib, beetroot, king brown mushroom, shiraz butter|John dory, peking duck broth, calamari, zucchini|Slow cooked autumn vegetables, goats curd corquette, sorrel sauce',
+			'Host'=>'Riverine Grain-Fed Fillet with Shoestring Fries and Veal Jus|Cone Bay Barramundi, Crispy Skin, Smoked Oysters, Yarra Valley Roe|Pan Fried Pumpkin Gnocchi, Spinach, Pinenuts, Sage, parmesan',			
 				);
 		if(isset($dinnerArr[$teamDinner])){
 			return $dinnerArr[$teamDinner];
@@ -1304,22 +1308,26 @@ Roasted Pineapple Cheesecake');
 	
 	public function getRestaurantByTeam($teamDinner){
 		$restaurants = array(
-				'Europe Sales'=>'Gotham',
-				'Japan Sales '=>'The Setai',
-				'Americas Major Accounts – South EU'=>'Scarpetta',
-				'Americas Major Accounts – HTTP East'=>'Delano',
-				'Americas Major Accounts – HTTP West'=>'Delano',
-				'Americas SAO'=>'Barton G, The Restaurant',
-				'Americas Major Accounts – Northeast EU/Invest'=>'Scarpetta',
-				'Americas Major Accounts – EU Public Sector'=>'Scarpetta',
-				'Asia'=>'Quinns',
-				'Client Partner Group'=>'Quinns',
-				'ANZ'=>'Prime Italian',
-				'Emerging Markets – India & CEEMEA'=>'Prime 112',
-				'Americas Major Accounts – Brazil Sales'=>'The Betsey',
-				'Americas Major Accounts – Northwest EU'=>'Juvia',
-				'Americas SMB'=>'Red The Steakhouse',
-				'Event Sales'=>'The Forge',
+			'ANZ'=>'EST',
+			'Americas Major Accounts - EU Public Sector'=>'Black',
+			'Americas Major Accounts - HTTP East'=>'Flying Fish',
+			'Americas Major Accounts - HTTP West'=>'Quay',
+			'Americas Major Accounts - Northeast EU/Invest'=>'Altitude 360',
+			'Americas Major Accounts - Northwest EU'=>'Black',
+			'Americas Major Accounts - South EU'=>'Ananas',
+			'Americas Major Accounts - Brazil Sales'=>'Ananas',
+			'Americas Major Accounts - Supply Chain'=>'Altitude 360',
+			'Americas SAO'=>'Quay',
+			'Americas SMB'=>'Quay',
+			'Asia'=>'Ananas',
+			'Emerging Markets - India & CEEMEA'=>'The Cut',
+			'Client Partner Group'=>'The Cut',
+			'Europe Sales'=>'Byron Kennedy Hall',
+			'Event Sales'=>'The Cut',			
+			'Japan Sales'=>'Ananas',
+			'Operating Committee'=>'Operating Committee',
+			'Specialists'=>'Flying Fish',
+			'Host'=>'The Cut',
 				);
 		if(isset($restaurants[$teamDinner])){
 			return $restaurants[$teamDinner];

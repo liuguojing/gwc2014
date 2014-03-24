@@ -997,7 +997,7 @@ public  function actionGuestDeleteNew($id)
 				try{
 					$model = $this->loadModel(intval(trim($id)));
 					if(!($model->type=='Crew'||$model->type=="Gartner Crew"||$model->type=="Operating Committee") && $model->status==1){
-						$title = 'Winners Circle 2013 Team Dinner Menu Choice';
+						$title = 'Winners Circle 2013 Team Dinner and Gala Dinner Menu Choice';
 						$this->sendMail($model->email,$title,$model,'dinner_email','');
 						echo "OK <br/>";
 						Yii::log('sent '.$model->email . "\t" . " OK",'error');

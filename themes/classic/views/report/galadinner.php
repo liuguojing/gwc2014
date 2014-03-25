@@ -30,12 +30,21 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if(isset($cottagePie['Gartner Crew'])){
-					$cottagePie['Gartner Crew']++;
+				if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+				  if(isset($cottagePie['Gartner CrewF'])){	
+			    	$cottagePie['Gartner CrewF']++; 
+			    }else{
+					$cottagePie['Gartner CrewF']=1;
+				} }
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				 if(isset($cottagePie['Gartner CrewS'])){	
+					$cottagePie['Gartner CrewS']++;
+				
 				}else{
-					$cottagePie['Gartner Crew']=1;
+					$cottagePie['Gartner CrewS']=1;
+				} }
 				}
-			}else{
+			else{
 				if(isset($cottagePie[$user->team_dinner])){
 					$cottagePie[$user->team_dinner]++;
 				}else{
@@ -65,11 +74,19 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if(isset($cod['Gartner Crew'])){
-					$cod['Gartner Crew']++;
+				if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+				  if(isset($cod['Gartner CrewF'])){	
+			    	$cod['Gartner CrewF']++; 
+			    }else{
+					$cod['Gartner CrewF']=1;
+				} }
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				 if(isset($cod['Gartner CrewS'])){	
+					$cod['Gartner CrewS']++;
+				
 				}else{
-					$cod['Gartner Crew']=1;
-				}
+					$cod['Gartner CrewS']=1;
+				} }
 			}else{
 				if(isset($cod[$user->team_dinner])){
 					$cod[$user->team_dinner]++;
@@ -99,11 +116,19 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if(isset($ravioli['Gartner Crew'])){
-					$ravioli['Gartner Crew']++;
+				if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+				  if(isset($ravioli['Gartner CrewF'])){	
+			    	$ravioli['Gartner CrewF']++; 
+			    }else{
+					$ravioli['Gartner CrewF']=1;
+				} }
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				 if(isset($ravioli['Gartner CrewS'])){	
+					$ravioli['Gartner CrewS']++;
+				
 				}else{
-					$ravioli['Gartner Crew']=1;
-				}
+					$ravioli['Gartner CrewS']=1;
+				} } 
 			}else{
 				if(isset($ravioli[$user->team_dinner])){
 					$ravioli[$user->team_dinner]++;
@@ -134,11 +159,19 @@ foreach($users as $user){
 		  	}
 	}else{
 		if($user->type == 'Gartner Crew'){
-			if(isset($total['Gartner Crew'])){
-				$total['Gartner Crew']++;
-			}else{
-				$total['Gartner Crew']=1;
-			}
+			if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+				  if(isset($total['Gartner CrewF'])){	
+			    	$total['Gartner CrewF']++; 
+			    }else{
+					$total['Gartner CrewF']=1;
+				} }
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				 if(isset($total['Gartner CrewS'])){	
+					$total['Gartner CrewS']++;
+				
+				}else{
+					$total['Gartner CrewS']=4;
+				} }
 		}else{
 			if(isset($total[$user->team_dinner])){
 				$total[$user->team_dinner]++;
@@ -307,7 +340,11 @@ foreach($guests as $guest){
 							  	$total2+=isset($cottagePie['VIP'])?$cottagePie['VIP']:0;
 							  	$total3+=isset($cod['VIP'])?$cod['VIP']:0;
 							  	$total4+=isset($ravioli['VIP'])?$ravioli['VIP']:0;
-						
+							  	
+						      $total1+=isset($total['Gartner CrewF'])?$total['Gartner CrewF']:0;
+							  	$total2+=isset($cottagePie['Gartner CrewF'])?$cottagePie['Gartner CrewF']:0;
+							  	$total3+=isset($cod['Gartner CrewF'])?$cod['Gartner CrewF']:0;
+							  	$total4+=isset($ravioli['Gartner CrewF'])?$ravioli['Gartner CrewF']:0;
 						
 						?>
 						<tr>
@@ -317,14 +354,14 @@ foreach($guests as $guest){
 							<td><?php echo isset($cod['VIP'])?CHtml::link($cod['VIP'],array('report/exportGalaDietary','team_dinner'=>'VIP','gala_dinner_menu'=>'Fish')):0?></td>
 							<td><?php echo isset($ravioli['VIP'])?CHtml::link($ravioli['VIP'],array('report/exportGalaDietary','team_dinner'=>'VIP','gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
-					<!--	<tr>
+						<tr>
 							<td><?php echo "Gartner Crew"?></td>
-							<td><?php echo isset($total['Gartner Crew'])?CHtml::link($total['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'')):0?></td>
-							<td><?php echo isset($cottagePie['Gartner Crew'])?CHtml::link($cottagePie['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Meat')):0?></td>
-							<td><?php echo isset($cod['Gartner Crew'])?CHtml::link($cod['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Fish')):0?></td>
-							<td><?php echo isset($ravioli['Gartner Crew'])?CHtml::link($ravioli['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Vegetarian')):0?></td>
+							<td><?php echo isset($total['Gartner CrewF'])?CHtml::link($total['Gartner CrewF'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewF','gala_dinner_menu'=>'')):0?></td>
+							<td><?php echo isset($cottagePie['Gartner CrewF'])?CHtml::link($cottagePie['Gartner CrewF'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewF','gala_dinner_menu'=>'Meat')):0?></td>
+							<td><?php echo isset($cod['Gartner CrewF'])?CHtml::link($cod['Gartner CrewF'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewF','gala_dinner_menu'=>'Fish')):0?></td>
+							<td><?php echo isset($ravioli['Gartner CrewF'])?CHtml::link($ravioli['Gartner CrewF'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewF','gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
-							-->
+							
 							
 							<tr>
 							<td><?php echo "Subtotal"?></td>
@@ -374,6 +411,11 @@ foreach($guests as $guest){
 							  	$total2+=isset($cottagePie['VIP1'])?$cottagePie['VIP1']:0;
 							  	$total3+=isset($cod['VIP1'])?$cod['VIP1']:0;
 							  	$total4+=isset($ravioli['VIP1'])?$ravioli['VIP1']:0;
+							  	
+							  	 $total1+=isset($total['Gartner CrewS'])?$total['Gartner CrewS']:0;
+							  	$total2+=isset($cottagePie['Gartner CrewS'])?$cottagePie['Gartner CrewS']:0;
+							  	$total3+=isset($cod['Gartner CrewS'])?$cod['Gartner CrewS']:0;
+							  	$total4+=isset($ravioli['Gartner CrewS'])?$ravioli['Gartner CrewS']:0;
 							
 						?>
 						<tr>
@@ -383,14 +425,14 @@ foreach($guests as $guest){
 							<td><?php echo isset($cod['VIP1'])?CHtml::link($cod['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP1','gala_dinner_menu'=>'Fish')):0?></td>
 							<td><?php echo isset($ravioli['VIP1'])?CHtml::link($ravioli['VIP1'],array('report/exportGalaDietary','team_dinner'=>'VIP1','gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
-					<!--	<tr>
+						<tr>
 							<td><?php echo "Gartner Crew"?></td>
-							<td><?php echo isset($total['Gartner Crew'])?CHtml::link($total['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'')):0?></td>
-							<td><?php echo isset($cottagePie['Gartner Crew'])?CHtml::link($cottagePie['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Meat')):0?></td>
-							<td><?php echo isset($cod['Gartner Crew'])?CHtml::link($cod['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Fish')):0?></td>
-							<td><?php echo isset($ravioli['Gartner Crew'])?CHtml::link($ravioli['Gartner Crew'],array('report/exportGalaDietary','team_dinner'=>'Gartner Crew','gala_dinner_menu'=>'Vegetarian')):0?></td>
+							<td><?php echo isset($total['Gartner CrewS'])?CHtml::link($total['Gartner CrewS'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewS','gala_dinner_menu'=>'')):0?></td>
+							<td><?php echo isset($cottagePie['Gartner CrewS'])?CHtml::link($cottagePie['Gartner CrewS'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewS','gala_dinner_menu'=>'Meat')):0?></td>
+							<td><?php echo isset($cod['Gartner CrewS'])?CHtml::link($cod['Gartner CrewS'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewS','gala_dinner_menu'=>'Fish')):0?></td>
+							<td><?php echo isset($ravioli['Gartner CrewS'])?CHtml::link($ravioli['Gartner CrewS'],array('report/exportGalaDietary','team_dinner'=>'Gartner CrewS','gala_dinner_menu'=>'Vegetarian')):0?></td>
 						</tr>
-							-->
+							
 							
 							<tr>
 							<td><?php echo "Subtotal"?></td>

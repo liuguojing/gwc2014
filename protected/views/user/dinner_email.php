@@ -88,7 +88,7 @@ if (in_array($model->team_dinner,array('ANZ','Americas SMB','Asia','Emerging Mar
 <p style="word-wrap:break-word;font-family:arial;"><b>Gala Dinner </b></p>
 <p style="word-wrap:break-word;font-family:arial;"><b>Your Choice:</b> <?php echo $model->gala_dinner_menu;?> <?php echo $model->nationality;?></p> 
 <?php if($model->has_guest == 1 && $model->guest){?>
-<p style="word-wrap:break-word;font-family:arial;"><b>Guest Choice:</b> <?php echo $model->gala->team_dinner_menu;?></p>
+<p style="word-wrap:break-word;font-family:arial;"><b>Guest Choice:</b> <?php echo $model->guest->gala_dinner_menu;?> <?php echo $model->guest->nationality;?></p>
 <?php }?>
 
 <p style="word-wrap:break-word;font-family:arial;"><a style="float:left;maring-left:500px;" href="<?php echo $this->domain;?>index.php/user/emailDinner?email=<?php echo $model->email;?>"><img src="https://app.corporate-reg.com/gwc2013/img/Amend.jpg" alt="Amend"/></a><br/></p>

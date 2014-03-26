@@ -30,13 +30,13 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
 				  if(isset($cottagePie['Gartner CrewF'])){	
 			    	$cottagePie['Gartner CrewF']++; 
 			    }else{
 					$cottagePie['Gartner CrewF']=1;
 				} }
-				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11963,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
 				 if(isset($cottagePie['Gartner CrewS'])){	
 					$cottagePie['Gartner CrewS']++;
 				
@@ -74,13 +74,13 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
 				  if(isset($cod['Gartner CrewF'])){	
 			    	$cod['Gartner CrewF']++; 
 			    }else{
 					$cod['Gartner CrewF']=1;
 				} }
-				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11963,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
 				 if(isset($cod['Gartner CrewS'])){	
 					$cod['Gartner CrewS']++;
 				
@@ -116,13 +116,13 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
 				  if(isset($ravioli['Gartner CrewF'])){	
 			    	$ravioli['Gartner CrewF']++; 
 			    }else{
 					$ravioli['Gartner CrewF']=1;
 				} }
-				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11963,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
 				 if(isset($ravioli['Gartner CrewS'])){	
 					$ravioli['Gartner CrewS']++;
 				
@@ -159,18 +159,18 @@ foreach($users as $user){
 		  	}
 	}else{
 		if($user->type == 'Gartner Crew'){
-			if (in_array($user->id,array(11968,11973,11969,11983,11963,11967,12056,11980,11941))) {
+			if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
 				  if(isset($total['Gartner CrewF'])){	
 			    	$total['Gartner CrewF']++; 
 			    }else{
 					$total['Gartner CrewF']=1;
 				} }
-				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
+				elseif (in_array($user->id,array(11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11963,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050))) {
 				 if(isset($total['Gartner CrewS'])){	
 					$total['Gartner CrewS']++;
 				
 				}else{
-					$total['Gartner CrewS']=4;
+					$total['Gartner CrewS']=5;
 				} }
 		}else{
 			if(isset($total[$user->team_dinner])){

@@ -10,6 +10,7 @@
 					<thead>
 						<tr>
 							<th></th>
+							<th>Team</th>
 							<th>Winner</th>
 							<th>Guest</th>
 							<th>Total</th>
@@ -20,6 +21,7 @@
 								$subTotal=0;?>
 						<tr>
 							<td><?php echo $item['table_no']?></td>
+							<td><?php echo $item['team_dinner']?></td>
 							<td><?php echo $item['user_num']?></td>
 							<td><?php echo $item['guest_num']?></td>
 							<td><?php echo CHtml::link($item['user_num']+$item['guest_num'],array('exportLibbys','table_no'=>$item['table_no']));?></td>

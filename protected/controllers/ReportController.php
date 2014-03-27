@@ -1204,7 +1204,7 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 	}
 	public function actionLibbys(){
 		$meals = array();
-		$dbCommand = Yii::app()->db->createCommand("SELECT sum(user_num) AS user_num, table_no, sum(guest_num) as guest_num FROM ( SELECT count(1) AS user_num, table_no, 0 AS guest_num FROM users WHERE STATUS = 1 AND table_no IS NOT NULL AND table_no <> '' GROUP BY table_no UNION ALL SELECT 0 AS user_num, u.table_no, count(1) AS guest_num FROM guests g, users u WHERE u.has_guest = 1 and g.user_id = u.id AND u. STATUS = 1 GROUP BY table_no ) AS a GROUP BY table_no");
+		$dbCommand = Yii::app()->db->createCommand("SELECT sum(user_num) AS user_num, table_no, team_dinner, sum(guest_num) as guest_num FROM ( SELECT count(1) AS user_num, table_no, team_dinner, 0 AS guest_num FROM users WHERE STATUS = 1 AND table_no IS NOT NULL AND table_no <> '' GROUP BY table_no,team_dinner UNION ALL SELECT 0 AS user_num, u.table_no, u.team_dinner, count(1) AS guest_num FROM guests g, users u WHERE u.has_guest = 1 and g.user_id = u.id AND u. STATUS = 1 GROUP BY table_no,team_dinner ) AS a GROUP BY table_no,team_dinner");
 		$meals = $dbCommand->queryAll();
 		if($meals === null){
 			$meals = array();

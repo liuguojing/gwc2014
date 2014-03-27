@@ -27,10 +27,32 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$this->layout = '//layouts/nonav';
+		$model = new Query();
+		if(isset($_POST['Query'])){
+			$model->attributes = $_POST['Query'];
+			$model->nature = $this->array2string($model->nature);
+			if($model->save()){
+				$this->sendMail('tony.chen@magictony-se.com', 'Gartner Winners Circle Query Form No#: '.$model->id, $model,'query_email');
+				Yii::app()->user->setFlash('success','Save successful ! ');
+				$this->redirect(array('index'));
+			}
+		}
+		$this->render('index',array('model'=>$model));
+	}
+	
+	public function actionDownloadCsv(){
+		$querys = Query::model()->findAll();
+		$this->layout = '//layouts/export';
+		$filename = 'Query_List';
+		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
+		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
+		header("Content-Transfer-Encoding: binary");
+		header("Pragma: public");
+		header("Cache-Control: public");
+		$this->render('query_export',array('querys'=>$querys));
 	}
 
 	/**

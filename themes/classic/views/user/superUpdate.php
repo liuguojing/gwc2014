@@ -386,6 +386,13 @@ $undisabled = array('separator' => '', 'template' => '<li class="q6" style="list
 								<?php if($guest->getError('last_name')){?><span class="help-inline"><?php echo $guest->getError('last_name')?></span><?php }?>
 							</div>
 						</div>
+						<div class="control-group <?php if($guest->getError('preferred_name')){ echo 'error';}?>">
+							<label class="control-label" for="Guest_preferred_name">Please state your preferred first name.  This will appear on your badge:<span class="required">*</span></label>
+							<div class="controls">
+								<?php echo $form->textField($guest,'preferred_name',array('placeholder'=>$guest->getAttributeLabel('preferred_name'))); ?>
+								<?php if($guest->getError('preferred_name')){?><span class="help-inline"><?php echo $guest->getError('preferred_name')?></span><?php }?>
+							</div>
+						</div>
 						<div class="control-group <?php if($guest->getError('ga_dateofbirth')){ echo 'error';}?>">
 							<label class="control-label" for="Guest_ga_dateofbirth"><?php echo $guest->getAttributeLabel('ga_dateofbirth')?>:<span class="required">*</span></label>
 							<div class="controls">

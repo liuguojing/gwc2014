@@ -17,9 +17,7 @@
 				'htmlOptions'=>array('class'=>'form-inline'),
 			)); ?>	
 			<div class="row">
-				<div class="span12">
-				  <p class="alert alert-warning">Thank you! Your Team Dinner and Glad Dinner options are finalized.</p>
-				  </div>
+				<div class="span12"><p class="alert alert-warning">Please note any fields with a <span class="required">*</span> are mandatory</p></div>
 				<?php
 				foreach(Yii::app()->user->getFlashes() as $key => $message) {
 					echo '<div class="span12"><p class="alert alert-' . $key . '">' . $message . "</p></div>\n";
@@ -83,7 +81,7 @@
 		
 			<div class="row">
 				<div class="control-group">
-					<div class="controls"  style=" display:none">
+					<div class="controls" style="float:right;">
 						<label class="checkbox">
 						</label>
 						<button type="submit"  class="btn btn-large2 btn-warning">Save & Proceed</button>

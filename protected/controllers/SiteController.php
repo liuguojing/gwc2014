@@ -34,6 +34,7 @@ class SiteController extends Controller
 		if(isset($_POST['Query'])){
 			$model->attributes = $_POST['Query'];
 			$model->nature = $this->array2string($model->nature);
+			$model->status = 'Pending';
 			if($model->save()){
 				$this->sendMail('tony.chen@magictony-se.com', 'Gartner Winners Circle Query Form No#: '.$model->id, $model,'query_email');
 				Yii::app()->user->setFlash('success','Save successful ! ');

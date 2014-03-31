@@ -17,6 +17,8 @@
  * @property integer $created_by
  * @property string $updated_at
  * @property integer $updated_by
+ * @property string $comment
+ * @property string $status
  */
 class Query extends TrackStarActiveRecord
 {
@@ -49,10 +51,10 @@ class Query extends TrackStarActiveRecord
 			array('created_by, updated_by', 'numerical', 'integerOnly'=>true),
 			array('staff_name, full_name, contact_telephone, contact_email, hotel, nature', 'length', 'max'=>255),
 			array('created_at, updated_at', 'safe'),
-			array('details,outcome','length','max'=>65535),
+			array('details,outcome,comment','length','max'=>65535),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, staff_name, full_name, contact_telephone, contact_email, hotel, nature, details, outcome, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
+			array('id, staff_name, full_name, contact_telephone, contact_email, hotel, nature, details, outcome, created_at, created_by, updated_at, updated_by, comment, status', 'safe', 'on'=>'search'),
 			array('staff_name,full_name,nature,details','required'),
 		);
 	}
@@ -114,6 +116,8 @@ class Query extends TrackStarActiveRecord
 		$criteria->compare('created_by',$this->created_by);
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('updated_by',$this->updated_by);
+		$criteria->compare('status',$this->status,true);
+		$criteria->compare('comment',$this->comment,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -127,6 +131,14 @@ class Query extends TrackStarActiveRecord
 				'REGISTRATION'=>'REGISTRATION',
 				'BADGES'=>'BADGES',
 				'OTHER'=>'OTHER',
+				);
+	}
+		public function getTravelCommentStatus(){
+		return array(
+				
+				'Pending'=>'Pending',
+				'Working'=>'Working',
+				'Finish'=>'Finish',
 				);
 	}
 }

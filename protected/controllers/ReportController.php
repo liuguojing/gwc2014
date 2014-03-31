@@ -42,7 +42,7 @@ class ReportController extends Controller
 						'actions'=>array('winner','travel','hotel','tours','summary','registation',
 								'housing','transfer','arrival','departure','dietary','download','teamdinner','galadinner',
 								'galatable','printers','dmc','newRegistration','declined','cancelled','amex','users','dmcdownload','traveluser',
-								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown','dietaryhotel','ExportHotelDietary'),
+								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown','dietaryhotel','ExportHotelDietary','QueryComment','updateQueryComment'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="Tony" || $user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="Jem")'
 				),
@@ -67,7 +67,7 @@ class ReportController extends Controller
 						'expression' => '$user->isAdmin && $user->name=="NTE"'
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('housingMaster','compare','travelComment','updateTravelComment'),
+						'actions'=>array('housingMaster','compare','travelComment','updateTravelComment','QueryComment','updateQueryComment'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin'
 				),
@@ -1517,6 +1517,26 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 		header("Cache-Control: public");
 		$this->render('hoteldown',array('users'=>$users));
 	}
-
+public function actionQueryComment($status='Pending'){
+		$users = Query::model()->findAllByAttributes(array('status' => '1',  'status'=>$status));
+		$this->render('query_comment',array('users'=>$users,'status'=>$status));
+	}
+	
+	public function actionUpdateQueryComment($id){
+		$model = Query::model()->findByPk($id);
+		if($model === null){
+			throw new CHttpException(404,'The requested page does not exist.');
+		}else{
+			if(isset($_POST['Query'])){
+				
+				$model->setScenario('search');
+				$model->attributes=$_POST['Query'];
+				if($model->save()){
+					$this->redirect(array('report/QueryComment'));
+				}
+			}
+		}
+		$this->render('update_query_comment',array('model'=>$model));
+	}
 }
 

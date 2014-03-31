@@ -1,5 +1,5 @@
 <div class="container top">
-	<h1>Bose Gift Redemption</h1>
+	<h1>Gift Redemption</h1>
 	<div class="row">
 		<?php
 			foreach(Yii::app()->user->getFlashes() as $key => $message) {

@@ -115,7 +115,7 @@ class Gift extends TrackStarActiveRecord
 		if($gift === null){
 			return  '';
 		}else{
-			return $gift->name;
+			return $gift->code;
 		}
 	}
 	public function getGiftsByType($type){

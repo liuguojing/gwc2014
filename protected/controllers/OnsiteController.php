@@ -116,7 +116,7 @@ class OnsiteController extends Controller
 				$model->setScenario('checkin');
 				$model->attributes=$_POST['User'];
 				$model->has_checkin = 1;
-				$model->checkin_at = new CDbExpression('NOW()');
+				$model->checkin_at = new CDbExpression('ADDDATE(NOW(), INTERVAL +10 HOUR)');
 				if($model->save()){
 					Yii::app()->user->setFlash('success',$model->first_name . ' ' . $model->last_name . ' Checkin.');
 					unset($model->id);
@@ -141,8 +141,9 @@ class OnsiteController extends Controller
 		}else{
 			if(isset($_POST['Guest'])){
 				$model->setScenario('checkin');
-				$model->attributes=$_POST['Guest'];
+				$model->attributes=$_POST['Guest'];				
 				$model->has_checkin = 1;
+				$model->checkin_at = new CDbExpression('ADDDATE(NOW(), INTERVAL +10 HOUR)');
 				if($model->save()){
 					Yii::app()->user->setFlash('success','Success.');
 					unset($model->id);
@@ -171,7 +172,7 @@ class OnsiteController extends Controller
 				$model->setScenario('checkin');
 				$model->attributes=$_POST['Guest'];
 				$model->has_gift = 1;
-				$model->gift_at = new CDbExpression('NOW()');
+				$model->gift_at = new CDbExpression('ADDDATE(NOW(), INTERVAL +10 HOUR)');
 				if($model->save()){
 					Yii::app()->user->setFlash('success','Success.');
 					unset($model->id);
@@ -200,7 +201,7 @@ class OnsiteController extends Controller
 				$model->setScenario('checkin');
 				$model->attributes=$_POST['User'];
 				$model->has_gift = 1;
-				$model->gift_at = new CDbExpression('NOW()');
+				$model->gift_at = new CDbExpression('ADDDATE(NOW(), INTERVAL +10 HOUR)');
 				if($model->save()){
 					Yii::app()->user->setFlash('success','Success.');
 					unset($model->id);
@@ -287,7 +288,7 @@ class OnsiteController extends Controller
 		$model->guest_travel_ticket = $this->array2string($model->guest_travel_ticket);
 		$model->has_ipad = 1;
 		$model->ipad_by = Yii::app()->user->name;
-		$model->ipad_at = new CDbExpression('NOW()');
+		$model->ipad_at = new CDbExpression('ADDDATE(NOW(), INTERVAL +10 HOUR)');
 		$image = base64_decode($model->img);
 		try{
 			$filename = Yii::app()->basePath . '/../uploads/' . $model->id . '.png';

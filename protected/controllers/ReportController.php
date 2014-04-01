@@ -948,7 +948,7 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 			}elseif($team_dinner=='Gartner CrewF'){
 				$criteria->addColumnCondition(array('type'=>'Gartner Crew'));
 				$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
-				$criteria->addCondition("t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941)");
+				$criteria->addCondition("t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043)");
 				$criteria->addNotInCondition('type', array('Crew'));
 			}elseif($team_dinner=='Gartner CrewS'){
 				$criteria->addColumnCondition(array('type'=>'Gartner Crew'));
@@ -965,7 +965,7 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 				
 				if ($team_dinner=='Friday') 
 					{
-				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' or (t.type='Gartner Crew' and t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941)) )");}
+				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' or (t.type='Gartner Crew' and t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043)) )");}
 				 elseif ($team_dinner=='Sunday')
 				 {$criteria->addCondition("((t.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') and t.type<>'Gartner Crew') or t.type='Operating Committee' or (t.type='Gartner Crew' and t.id in (11958,11964,11959,11978,11960,11982,11981,11965,11974,11962,11963,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050,12114,12115,12116)) )");}
 				 else 
@@ -1057,7 +1057,7 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 		  }elseif($team_dinner=='Gartner CrewF'){
 				$criteria->addColumnCondition(array('type'=>'Gartner Crew'));
 				$criteria->addNotInCondition('gala_dinner_vip', array('Gala Dinner VIP'));
-				$criteria->addCondition("t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941)");
+				$criteria->addCondition("t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043)");
 				$criteria->addNotInCondition('type', array('Crew'));
 			}elseif($team_dinner=='Gartner CrewS'){
 				$criteria->addColumnCondition(array('type'=>'Gartner Crew'));
@@ -1074,7 +1074,7 @@ AND t.hotel_type IN (SELECT CONCAT(hotel_name,' - ' ,NAME) FROM hotels WHERE hot
 				
 				if ($team_dinner=='Friday') 
 					{
-				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' or (t.type='Gartner Crew' and t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941)) )");}
+				$criteria->addCondition("(t.team_dinner in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') or t.type='Operating Committee' or (t.type='Gartner Crew' and t.id in (11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043)) )");}
 				 elseif ($team_dinner=='Sunday')
 				 {$criteria->addCondition("((t.team_dinner not in ('Europe Sales','Americas SMB','Asia','Emerging Markets - India & CEEMEA','Client Partner Group','Japan Sales') and t.type<>'Gartner Crew') or t.type='Operating Committee' or (t.type='Gartner Crew' and t.id in (11958,11964,11959,11978,11960,11982,11981,11965,11974,11963,11962,11976,11970,11983,11971,12025,11966,11967,11979,11977,11972,11941,12050,12114,12115,12116)) )");}
 				 else 

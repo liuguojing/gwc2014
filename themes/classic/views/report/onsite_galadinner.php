@@ -30,7 +30,7 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
+				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043))) {
 				  if(isset($cottagePie['Gartner CrewF'])){	
 			    	$cottagePie['Gartner CrewF']++; 
 			    }else{
@@ -74,7 +74,7 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
+				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043))) {
 				  if(isset($cod['Gartner CrewF'])){	
 			    	$cod['Gartner CrewF']++; 
 			    }else{
@@ -116,7 +116,7 @@ foreach($users as $user){
 		  	}
 		}else{
 			if($user->type == 'Gartner Crew'){
-				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
+				if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043))) {
 				  if(isset($ravioli['Gartner CrewF'])){	
 			    	$ravioli['Gartner CrewF']++; 
 			    }else{
@@ -159,7 +159,7 @@ foreach($users as $user){
 		  	}
 	}else{
 		if($user->type == 'Gartner Crew'){
-			if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941))) {
+			if (in_array($user->id,array(11968,11973,11969,11983,11962,11967,12056,11980,11941,12000,12041,12042,12043))) {
 				  if(isset($total['Gartner CrewF'])){	
 			    	$total['Gartner CrewF']++; 
 			    }else{

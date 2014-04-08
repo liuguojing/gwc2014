@@ -47,7 +47,7 @@ class ReportController extends Controller
 						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="Tony" || $user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="Jem")'
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('transfer','arrival','departure','dmcdownload','amex','traveluser'),
+						'actions'=>array('transfer','arrival','departure','dmcdownload','amex','traveluser','QueryComment','updateQueryComment'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin && $user->name=="Amex"'
 				),

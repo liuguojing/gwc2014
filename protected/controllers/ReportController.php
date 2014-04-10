@@ -42,7 +42,7 @@ class ReportController extends Controller
 						'actions'=>array('winner','travel','hotel','tours','summary','registation',
 								'housing','transfer','arrival','departure','dietary','download','teamdinner','galadinner',
 								'galatable','printers','dmc','newRegistration','declined','cancelled','amex','users','dmcdownload','traveluser',
-								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown','dietaryhotel','ExportHotelDietary','QueryComment','updateQueryComment'),
+								'exportTeamDietary','exportGalaDietary','meal','libbys','exportLibbys','housinguser','hoteldown','dietaryhotel','ExportHotelDietary','QueryComment','updateQueryComment','OnsitePrint'),
 						'users'=>array('@'),
 						'expression' => '$user->isAdmin && ($user->name=="client" || $user->name=="Tony" || $user->name=="Caroline" || $user->name=="Dickie"|| $user->name=="Jem")'
 				),
@@ -1537,6 +1537,24 @@ public function actionQueryComment($status='Pending'){
 			}
 		}
 		$this->render('update_query_comment',array('model'=>$model));
+	}
+	
+	public function actionOnsitePrint()
+	{
+
+		$this->layout = '//layouts/export';
+		$filename = 'Onsite Print Download';
+		$cirteria = new CDbCriteria;
+		$cirteria->addCondition("t.type not in ('Crew','Gartner Crew') and  t.status = 1 ");
+		$cirteria->order = 't.last_name asc';
+		$users = User::model()->with('guest')->findAll($cirteria);
+	
+		header('Content-type:application/csv;charset=utf8'); //表示输出Excel文件
+		header('Content-Disposition:attachment; filename=' . $filename . '.xls');//文件名
+		header("Content-Transfer-Encoding: binary");
+		header("Pragma: public");
+		header("Cache-Control: public");
+		$this->render('onsiteprint',array('users'=>$users));
 	}
 }
 
